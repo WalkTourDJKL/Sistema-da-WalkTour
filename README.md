@@ -31,6 +31,6 @@
 <p align="Left">
     👩‍💻Kemily Cristina Schmidt de Oliveira;
 </p>
-<p align="Left" href="https://moodle.ifsc.edu.br/my/">
+<a align="Left" href="https://moodle.ifsc.edu.br/my/">
     💻🐒Lucas Guerega;
-</p>
+</a>
