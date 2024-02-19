@@ -60,29 +60,29 @@ public class TelaLogin extends JFrame {
 		contentPane.setLayout(null);
 
 		JPanel LadoJanela = new JPanel();
-		LadoJanela.setBounds(-2, 0, 1030, 1068);
+		LadoJanela.setBounds(0, 0, 1030, 1068);
 		contentPane.add(LadoJanela);
 		LadoJanela.setLayout(null);
 
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setBounds(-214, 0, 1255, 1057);
+		lblNewLabel_3.setBounds(-239, 0, 1255, 1057);
 		lblNewLabel_3.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/LadoA.png")));
 		LadoJanela.add(lblNewLabel_3);
 
 		JLabel lblNewLabel = new JLabel("Entrar");
-		lblNewLabel.setBounds(1400, 129, 149, 67);
+		lblNewLabel.setBounds(1400, 129, 454, 294);
 		lblNewLabel.setBackground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 55));
 		contentPane.add(lblNewLabel);
 
 		JLabel lbl_CPF = new JLabel("CPF");
-		lbl_CPF.setBounds(1192, 165, 422, 31);
+		lbl_CPF.setBounds(1151, 412, 422, 31);
 		contentPane.add(lbl_CPF);
 		lbl_CPF.setForeground(new Color(52, 64, 84));
 		lbl_CPF.setFont(new Font("Corbel", Font.BOLD, 25));
 
 		txt_digiCPF = new JTextField();
-		txt_digiCPF.setBounds(1038, 201, 576, 25);
+		txt_digiCPF.setBounds(1151, 201, 576, 25);
 		contentPane.add(txt_digiCPF);
 		txt_digiCPF.setToolTipText("Digite seu CPF");
 		txt_digiCPF.setForeground(new Color(102, 112, 133));
@@ -91,7 +91,7 @@ public class TelaLogin extends JFrame {
 		txt_digiCPF.setColumns(10);
 
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(1038, 374, 576, 61);
+		btnNewButton.setBounds(1151, 374, 576, 61);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				HomePage homePage = new HomePage();
@@ -100,13 +100,13 @@ public class TelaLogin extends JFrame {
 		});
 
 		JLabel lbl_senha = new JLabel("Senha");
-		lbl_senha.setBounds(1038, 268, 576, 31);
+		lbl_senha.setBounds(1151, 268, 576, 31);
 		contentPane.add(lbl_senha);
 		lbl_senha.setForeground(new Color(52, 64, 84));
 		lbl_senha.setFont(new Font("Corbel", Font.BOLD, 25));
 
 		txt_digiSenha = new JTextField();
-		txt_digiSenha.setBounds(1038, 304, 576, 25);
+		txt_digiSenha.setBounds(1151, 304, 576, 25);
 		contentPane.add(txt_digiSenha);
 		txt_digiSenha.setToolTipText("Digite sua senha");
 		txt_digiSenha.setText("Digite sua senha...");
