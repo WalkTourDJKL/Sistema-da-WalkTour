@@ -2,31 +2,31 @@ package controle;
 
 import java.util.ArrayList;
 
-import modelo.cliente;
+import modelo.hotel;
 
-public class ClienteDAO implements IClienteDAO {
-	
-	public int inserirCliente(cliente end) {
+public class HotelDAO implements IHotelDAO {
+
+	public int inserirHotel(hotel end) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public ArrayList<cliente> listarClientes() {
+	public ArrayList<hotel> listarHotel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean atualizarCliente(cliente end) {
+	public boolean atualizarHotel(hotel end) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean removerCliente(cliente end) {
+	public boolean removerHotel(hotel end) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public cliente buscarClientePorCPF(int cpf) {
+	public hotel buscarHotelPorEndereco(String endereco) {
 		// TODO Auto-generated method stub
 		return null;
 	}

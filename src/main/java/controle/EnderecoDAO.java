@@ -2,31 +2,31 @@ package controle;
 
 import java.util.ArrayList;
 
-import modelo.cliente;
+import modelo.endereco;
 
-public class ClienteDAO implements IClienteDAO {
-	
-	public int inserirCliente(cliente end) {
+public class EnderecoDAO implements IEnderecoDAO{
+
+	public int inserirEndereco(endereco end) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public ArrayList<cliente> listarClientes() {
+	public ArrayList<endereco> listarEndereco() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean atualizarCliente(cliente end) {
+	public boolean atualizarEndereco(endereco end) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean removerCliente(cliente end) {
+	public boolean removerEndereco(endereco end) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public cliente buscarClientePorCPF(int cpf) {
+	public endereco buscarEnderecoPorCEP(int cpf) {
 		// TODO Auto-generated method stub
 		return null;
 	}
