@@ -26,9 +26,11 @@ public class HotelDAO implements IHotelDAO {
 		return false;
 	}
 
-	public hotel buscarHotelPorEndereco(String endereco) {
+	public hotel buscarHotelPorCidade(String cidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }
