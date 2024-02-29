@@ -66,12 +66,12 @@ public class HospedesDAO implements IHospedesDAO {
 	}
 
 	public boolean atualizarHopesdes(hospedes end) {
-		String SQL = "UPDATE hospedes set nome = ?, nome_social = ?, dt_nasc = ?, cpf = ? WHERE id_hospede = ?";
+		String SQL = "UPDATE hospedes SET nome = ?, nome_social = ?, dt_nasc = ?, cpf = ? WHERE id_hospede = ?";
 		return false;
 	}
 
 	public boolean removerHopesdes(hospedes end) {
-
+		String SQL = "DELETE FROM hospedes WHERE id_hospede = ?;";
 		return false;
 	}
 
