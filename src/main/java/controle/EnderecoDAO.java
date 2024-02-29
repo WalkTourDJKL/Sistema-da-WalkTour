@@ -26,6 +26,25 @@ public class EnderecoDAO implements IEnderecoDAO{
 
 	public int inserirEndereco(endereco end) {
 		String SQL = "INSERT INTO endereco (endereco_id,cep,cidade,estado,pais) VALUES (?,?,?,?,?)";
+		
+		Conexao con = Conexao.getConexao();
+		Connection conDB = con.conectar();
+		
+		try {
+			PreparedStatement ps = conDB.prepareStatement(SQL);
+			
+			ps.setInt(1, end.getEnderecoId());
+			ps.setString(2, end.getCep());
+			ps.setString(3, end.getCidade());
+			ps.setString(4, end.getEstado());
+			ps.setString(5, end.getPais());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
 		return 0;
 	}
 

@@ -44,9 +44,10 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 			
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} finally {
+			con.fecharConexao();
+		}	
 		
 		return 0;
 	}
