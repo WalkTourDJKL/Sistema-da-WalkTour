@@ -8,6 +8,7 @@ public class hotel {
 	private Date dataIn;
 	private Date dataOut;
 	private float preco;
+	private String cidade; 
 
 	public int getIdHospedagem() {
 		return idHospedagem;

@@ -7,6 +7,7 @@ public class pontosTur {
 	private Time horaAbre;
 	private Time horaFecha;
 	private float preco;
+	private String nomePontoTur;
 
 	public int getPontoId() {
 		return pontoId;
@@ -46,6 +47,14 @@ public class pontosTur {
 
 	public void setEnderecoId(int enderecoId) {
 		this.enderecoId = enderecoId;
+	}
+
+	public String getNomePontoTur() {
+		return nomePontoTur;
+	}
+
+	public void setNomePontoTur(String nomePontoTur) {
+		this.nomePontoTur = nomePontoTur;
 	}
 
 	private int enderecoId;
