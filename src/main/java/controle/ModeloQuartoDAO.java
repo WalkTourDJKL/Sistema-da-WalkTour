@@ -25,11 +25,12 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 	
 	
 	public int inserirModeloQuarto(modeloQuarto end) {
-		String SQL = "INSERT INTO modeloQuarto(tipo_id,nome_modelo,qtd_banheiro,qtd_camas,frigobar,servico_quarto) VALUES (?,?,?,?,?,?)";
+		String SQL = "INSERT INTO modeloQuarto(nome_modelo,qtd_banheiro,qtd_camas,frigobar,servico_quarto) VALUES (?,?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
 		
+		int chavePrimariaGerada = Integer.MIN_VALUE;
 		
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL);
@@ -41,15 +42,18 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 			ps.setBoolean(5, end.isFrigobar());
 			ps.setBoolean(6, end.isServicoQuarto());
 			
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				chavePrimariaGerada = rs.getInt(1);
+			}
 			
-			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			con.fecharConexao();
 		}	
 		
-		return 0;
+		return chavePrimariaGerada;
 	}
 	
 

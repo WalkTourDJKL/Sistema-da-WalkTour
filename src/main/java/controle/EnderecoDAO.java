@@ -25,19 +25,25 @@ public class EnderecoDAO implements IEnderecoDAO{
 	
 
 	public int inserirEndereco(endereco end) {
-		String SQL = "INSERT INTO endereco (endereco_id,cep,cidade,estado,pais) VALUES (?,?,?,?,?)";
+		String SQL = "INSERT INTO endereco (cep,cidade,estado,pais) VALUES (?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
 		
+		int chavePrimariaGerada = Integer.MIN_VALUE;
+		
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL);
 			
-			ps.setInt(1, end.getEnderecoId());
 			ps.setString(2, end.getCep());
 			ps.setString(3, end.getCidade());
 			ps.setString(4, end.getEstado());
 			ps.setString(5, end.getPais());
+			
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				chavePrimariaGerada = rs.getInt(1);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,7 +51,7 @@ public class EnderecoDAO implements IEnderecoDAO{
 			con.fecharConexao();
 		}
 		
-		return 0;
+		return chavePrimariaGerada;
 	}
 
 	public ArrayList<endereco> listarEndereco() {

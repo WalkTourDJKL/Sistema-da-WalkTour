@@ -25,21 +25,26 @@ public class HospedesDAO implements IHospedesDAO {
 
 	public int inserirHopesdes(hospedes end) {
 
-		String SQL = "INSERT INTO hospedes (idHospede,nome,senha,nomeSocial,dtNasc, cpf) VALUES (?,?,?,?,?,?)";
+		String SQL = "INSERT INTO hospedes (nome,senha,nomeSocial,dtNasc, cpf) VALUES (?,?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao(); 
 		Connection conDB = con.conectar(); 
 		
+		int chavePrimariaGerada = Integer.MIN_VALUE;
+		
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL);
 			
-			ps.setInt(1, end.getIdHospede());
 			ps.setString(2, end.getNome());
 			ps.setString(3, end.getNomeSocial());
 			ps.setDate(4, end.getDtNasc());
 			ps.setString(5, end.getCpf());
-			
-			ps.executeUpdate();
+
+			ResultSet rs = ps.executeQuery();
+			if (rs != null) {
+				chavePrimariaGerada = rs.getInt(1);
+			}
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -47,7 +52,7 @@ public class HospedesDAO implements IHospedesDAO {
 			con.fecharConexao();
 		}
 		
-		return 0;
+		return chavePrimariaGerada;
 	}
 
 	public ArrayList<hospedes> listarHopesdess() {
