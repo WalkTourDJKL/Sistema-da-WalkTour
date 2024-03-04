@@ -8,7 +8,6 @@ import java.sql.Time;
 import java.util.ArrayList; 
 import java.sql.Date; 
  
-import modelo.quarto; 
 import modelo.reserva; 
  
 public class ReservaDAO implements IReservaDAO { 
