@@ -25,7 +25,7 @@ public class QuartoDAO implements IQuartoDAO{
 	}
 
 	public int inserirQuarto(quarto end) {
-String SQL = "INSERT INTO quarto(numquarto,horalimpeza,servicoquarto,tipo_Id) VALUES (?,?,?,?)";
+String SQL = "INSERT INTO quarto(numquarto,horalimpeza,servicoquarto,tipo_id) VALUES (?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
