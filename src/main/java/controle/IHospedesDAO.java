@@ -1,5 +1,6 @@
 package controle;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import modelo.hospedes;
@@ -8,7 +9,7 @@ public interface IHospedesDAO {
 	
 	public int inserirHopesdes(hospedes end);
 
-	public ArrayList<hospedes> listarHopesdess();
+	public ArrayList<hospedes> listarHopesdes(Connection conDB);
 
 	public boolean atualizarHopesdes(hospedes end);
 

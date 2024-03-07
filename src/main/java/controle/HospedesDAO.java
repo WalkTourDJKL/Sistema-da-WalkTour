@@ -55,42 +55,39 @@ public class HospedesDAO implements IHospedesDAO {
 		return chavePrimariaGerada;
 	}
 
-	public ArrayList<hospedes> listarHopesdess() {
-		ArrayList<hospedes> hospede = new ArrayList<hospedes>();
+    public ArrayList<hospedes> listarHopesdes(Connection con) { // Adicione o parâmetro Connection
+        ArrayList<hospedes> hospede = new ArrayList<hospedes>();
 
-		String SQL = "SELECT * FROM hospedes";
+        String SQL = "SELECT * FROM hospedes";
 
-		Conexao con = Conexao.getConexao();
-		Connection conDB = con.conectar();
-		try {
-			PreparedStatement ps = conDB.prepareStatement(SQL);
+        try {
+            PreparedStatement ps = con.prepareStatement(SQL);
 
-			ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
-			while (rs.next()) {
-				hospedes end = new hospedes();
+            while (rs.next()) {
+                hospedes end = new hospedes();
 
-				String nome = rs.getString("nome");
-				String nomeSocial = rs.getString("nome_social");
-				Date dtNasc = rs.getDate("dt_nasc");
-				String cpf = rs.getString("cpf");
-				Integer idHospede = rs.getInt("id_hospede");
+                String nome = rs.getString("nome");
+                String nomeSocial = rs.getString("nome_social");
+                Date dtNasc = rs.getDate("dt_nasc");
+                String cpf = rs.getString("cpf");
+                Integer idHospede = rs.getInt("id_hospede");
 
-				end.setNome(nome);
-				end.setNomeSocial(nomeSocial);
-				end.setDtNasc(dtNasc);
-				end.setCpf(cpf);
-				end.setIdHospede(idHospede);
+                end.setNome(nome);
+                end.setNomeSocial(nomeSocial);
+                end.setDtNasc(dtNasc);
+                end.setCpf(cpf);
+                end.setIdHospede(idHospede);
 
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			con.fecharConexao();
-		}
+                hospede.add(end); // Adicione o objeto hospede à lista
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-		return hospede;
-	}
+        return hospede;
+    }
 
 	public boolean atualizarHopesdes(hospedes end) {
 		String SQL = "UPDATE hospedes SET nome = ?, nome_social = ?, dt_nasc = ?, cpf = ? WHERE id_hospede = ?";
