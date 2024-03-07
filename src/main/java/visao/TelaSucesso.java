@@ -19,6 +19,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class TelaSucesso extends JFrame {
 
@@ -55,10 +56,18 @@ public class TelaSucesso extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] {418};
-		gbl_contentPane.rowHeights = new int[] {0, 0, 0};
+		gbl_contentPane.rowHeights = new int[] {0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		contentPane.setLayout(gbl_contentPane);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\sucess icon.png"));
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNewLabel_2.gridx = 0;
+		gbc_lblNewLabel_2.gridy = 1;
+		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("Operação Concluída");
 		lblNewLabel.setForeground(new Color(102, 112, 122));
@@ -67,7 +76,7 @@ public class TelaSucesso extends JFrame {
 		gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 1;
+		gbc_lblNewLabel.gridy = 2;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Com Sucesso!");
@@ -77,7 +86,7 @@ public class TelaSucesso extends JFrame {
 		gbc_lblNewLabel_1.fill = GridBagConstraints.VERTICAL;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 2;
+		gbc_lblNewLabel_1.gridy = 3;
 		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Ok");
@@ -90,7 +99,7 @@ public class TelaSucesso extends JFrame {
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 3;
+		gbc_btnNewButton.gridy = 4;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 	}
 }
