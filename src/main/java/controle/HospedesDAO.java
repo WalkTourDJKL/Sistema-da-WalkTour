@@ -15,7 +15,7 @@ public class HospedesDAO implements IHospedesDAO {
 
 	private HospedesDAO() {
 	}
-
+	
 	public static HospedesDAO getInstancia() {
 		if (instancia == null) {
 			instancia = new HospedesDAO();
