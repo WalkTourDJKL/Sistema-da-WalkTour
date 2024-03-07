@@ -91,12 +91,12 @@ public class HotelDAO implements IHotelDAO {
 	}
 
 	public boolean atualizarHotel(hotel end) {
-		// TODO Auto-generated method stub
+		String SQL = "UPDATE hotel SET formaPag = ?, dataIn = ?, dataOut = ?, preco = ? WHERE id_hospedagem = ?";
 		return false;
 	}
 
 	public boolean removerHotel(hotel end) {
-		// TODO Auto-generated method stub
+		String SQL = "DELETE FROM hotel WHERE id_hospedagem = ?";
 		return false;
 	}
 

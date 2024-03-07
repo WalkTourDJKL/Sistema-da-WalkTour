@@ -100,12 +100,12 @@ public class EventoDAO implements IEventoDAO{
 	}
 
 	public boolean atualizarEventos(evento end) {
-		// TODO Auto-generated method stub
+		String SQL = "UPDATE evento SET diaInicio = ?, diaFim = ?, horaInicio = ?, horaFim = ?, nomeEvento = ?, preco = ? WHERE endereco_id = ?";
 		return false;
 	}
 
 	public boolean removerEventos(evento end) {
-		// TODO Auto-generated method stub
+		String SQL = "DELETE FROM evento WHERE id_evento = ?";
 		return false;
 	}
 
