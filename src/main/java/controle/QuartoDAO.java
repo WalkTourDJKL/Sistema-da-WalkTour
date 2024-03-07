@@ -89,13 +89,34 @@ ArrayList<quarto> quarto = new ArrayList<quarto>();
 	
 	}
 
-	public boolean atualizarQuarto(quarto end) {
-		// TODO Auto-generated method stub
-		return false;
+	public int atualizarQuarto(quarto end) {
+        String SQL = "UPDATE quarto SET numQuarto = ?, horaLimpeza = ?, servicoQuarto = ? WHERE tipo_id = ?";
+		
+		Conexao con = Conexao.getConexao();
+		
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, end.getNumQuarto());
+			ps.setTime(2, end.getHoraLimpeza());
+			ps.setBoolean(3, end.isServicoQuarto());
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		return retorno;
 	}
 
 	public boolean removerQuarto(quarto end) {
-		// TODO Auto-generated method stub
+		String SQL = "DELETE FROM quarto WHERE tipo_id = ?";
 		return false;
 	}
 
