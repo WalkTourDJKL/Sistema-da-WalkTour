@@ -26,6 +26,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JSlider;
 import java.awt.TextArea;
 import java.awt.Canvas;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
 
 public class TelaHotel extends JFrame {
 
@@ -60,23 +62,74 @@ public class TelaHotel extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
         
-        JLabel lblTitulo = new JLabel("");
-        lblTitulo.setBounds(12, 12, 1084, 211);
-        lblTitulo.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\Group 32.png"));
-        contentPane.add(lblTitulo);
-        
-        JLabel lblNewLabel = new JLabel("Check-in:");
-        lblNewLabel.setBounds(89, 288, 45, 14);
-        contentPane.add(lblNewLabel);
-        
         JLabel lblNomeHotel = new JLabel("Walk Tour Gramado");
-        lblNomeHotel.setBounds(850, 500, 440, 40);
-        lblNomeHotel.setFont(new Font("Tahoma", Font.PLAIN, 46));
+        lblNomeHotel.setBounds(960, 460, 498, 40);
+        lblNomeHotel.setFont(new Font("Tahoma", Font.BOLD, 46));
         contentPane.add(lblNomeHotel);
         
-        JLabel lblEndereco = new JLabel("");
-        lblEndereco.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\endereço.png"));
-        lblEndereco.setBounds(875, 584, 46, 14);
-        contentPane.add(lblEndereco);
+        JLabel lblTitulo = new JLabel("");
+        lblTitulo.setBounds(10, 0, 1063, 209);
+        lblTitulo.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\titulo.png"));
+        contentPane.add(lblTitulo);
+        
+        JLabel lblEndereço = new JLabel("");
+        lblEndereço.setBounds(890, 600, 45, 30);
+        lblEndereço.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\endereço.png"));
+        contentPane.add(lblEndereço);
+        
+        JLabel lblTelefone = new JLabel("");
+        lblTelefone.setBounds(890, 679, 46, 30);
+        lblTelefone.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\telefone.png"));
+        contentPane.add(lblTelefone);
+        
+        JLabel lblEmail = new JLabel("");
+        lblEmail.setBounds(890, 756, 46, 30);
+        lblEmail.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\email.png"));
+        contentPane.add(lblEmail);
+        
+        JLabel lblImagemMaior = new JLabel("");
+        lblImagemMaior.setBounds(250, 354, 600, 561);
+        lblImagemMaior.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\imagemMaior2.png"));
+        contentPane.add(lblImagemMaior);
+        
+        JLabel lblAcademia = new JLabel("");
+        lblAcademia.setBounds(250, 870, 200, 140);
+        lblAcademia.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\academia.png"));
+        contentPane.add(lblAcademia);
+        
+        JLabel lblEntrada = new JLabel("");
+        lblEntrada.setBounds(448, 870, 200, 140);
+        lblEntrada.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\entrada.png"));
+        contentPane.add(lblEntrada);
+        
+        JLabel lblQuarto = new JLabel("");
+        lblQuarto.setBounds(645, 870, 200, 140);
+        lblQuarto.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\quarto.png"));
+        contentPane.add(lblQuarto);
+        
+        JLabel lblEnd = new JLabel("Rua XXXX, Nº XXX");
+        lblEnd.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblEnd.setBounds(989, 590, 256, 52);
+        contentPane.add(lblEnd);
+        
+        JLabel lblTel = new JLabel("+55 (99) 99999999");
+        lblTel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblTel.setBounds(989, 685, 256, 14);
+        contentPane.add(lblTel);
+        
+        JLabel lblEmail2 = new JLabel("XX@XX.com");
+        lblEmail2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblEmail2.setBounds(989, 749, 256, 40);
+        contentPane.add(lblEmail2);
+        
+        JLabel lbliconePerfil = new JLabel("");
+        lbliconePerfil.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\perfil.png"));
+        lbliconePerfil.setBounds(1772, 35, 99, 95);
+        contentPane.add(lbliconePerfil);
+        
+        JLabel lblNewLabel = new JLabel("User10637");
+        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lblNewLabel.setBounds(1673, 78, 100, 14);
+        contentPane.add(lblNewLabel);
     }
 }
