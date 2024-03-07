@@ -92,12 +92,12 @@ String SQL = "INSERT INTO pontosTur(ponto_id,horaabre,horafecha,preco,nomepontot
 		}
 
 	public boolean atualizarPontosTur(pontosTur end) {
-		// TODO Auto-generated method stub
+		String SQL = "UPDATE pontosTur SET pontoId = ?, horaAbre = ?, horaFecha = ?, preco = ?, nomePontoTur = ? WHERE id_hospedagem = ?";
 		return false;
 	}
 
 	public boolean removerPontosTur(pontosTur end) {
-		// TODO Auto-generated method stub
+		String SQL = "DELETE FROM pontosTur WHERE ponto_id = ?";
 		return false;
 	}
 
