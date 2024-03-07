@@ -94,12 +94,12 @@ ArrayList<reserva> reserva = new ArrayList<reserva>();
 	} 
  
 	public boolean atualizarReserva(reserva end) { 
-		// TODO Auto-generated method stub 
+		String SQL = "UPDATE reserva SET formPag = ?, dataIn = ?, dataOut = ?, preco = ? WHERE id_hospedagem = ?";
 		return false; 
 	} 
  
 	public boolean removerReserva(reserva end) { 
-		// TODO Auto-generated method stub 
+		String SQL = "DELETE FROM reserva WHERE id_hospedagem = ?";
 		return false; 
 	} 
  
