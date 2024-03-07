@@ -95,13 +95,37 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 	
 	}
 
-	public boolean atualizarModeloQuarto(modeloQuarto end) {
-		// TODO Auto-generated method stub
-		return false;
+	public int atualizarModeloQuarto(modeloQuarto end) {
+        String SQL = "UPDATE modeloQuarto SET nomeModelo = ?, qtdBanheiro = ?, qtdCamas = ?, frigobar = ?, servicoQuarto = ? WHERE tipo_id = ?";
+		
+		Conexao con = Conexao.getConexao();
+		
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setString(1, end.getNomeModelo());
+			ps.setInt(2, end.getQtdBanheiro());
+			ps.setInt(3, end.getQtdCamas());
+			ps.setBoolean(4, end.isFrigobar());
+			ps.setBoolean(5, end.isServicoQuarto());
+
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		return retorno;
 	}
 
 	public boolean removerModeloQuarto(modeloQuarto end) {
-		// TODO Auto-generated method stub
+		String SQL = "DELETE FROM modeloQuarto WHERE tipo_id = ?";
 		return false;
 	}
 

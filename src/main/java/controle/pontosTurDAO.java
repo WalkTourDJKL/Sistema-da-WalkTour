@@ -92,7 +92,7 @@ String SQL = "INSERT INTO pontosTur(ponto_id,horaabre,horafecha,preco,nomepontot
 		}
 
 	public int atualizarPontosTur(pontosTur end) {
-		String SQL = "UPDATE pontosTur SET pontoId = ?, horaAbre = ?, horaFecha = ?, preco = ?, nomePontoTur = ? WHERE id_hospedagem = ?";
+		String SQL = "UPDATE pontosTur SET pontoId = ?, horaAbre = ?, horaFecha = ?, preco = ?, nomePontoTur = ? WHERE ponto_id = ?";
         Conexao con = Conexao.getConexao();
 		
 		Connection conBD = con.conectar();

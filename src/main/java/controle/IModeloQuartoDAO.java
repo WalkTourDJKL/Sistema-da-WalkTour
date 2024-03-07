@@ -10,7 +10,7 @@ public interface IModeloQuartoDAO {
 
 	public ArrayList<modeloQuarto> listarModeloQuarto();
 
-	public boolean atualizarModeloQuarto(modeloQuarto end);
+	public int atualizarModeloQuarto(modeloQuarto end);
 
 	public boolean removerModeloQuarto(modeloQuarto end);
 
