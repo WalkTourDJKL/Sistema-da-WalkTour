@@ -10,7 +10,7 @@ public interface IReservaDAO {
 
 			public ArrayList<reserva> listarReservas();
 
-			public boolean atualizarReserva(reserva end);
+			public int atualizarReserva(reserva end);
 
 			public boolean removerReserva(reserva end);
 

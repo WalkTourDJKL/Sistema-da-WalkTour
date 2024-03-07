@@ -91,11 +91,32 @@ String SQL = "INSERT INTO pontosTur(ponto_id,horaabre,horafecha,preco,nomepontot
 		
 		}
 
-	public boolean atualizarPontosTur(pontosTur end) {
+	public int atualizarPontosTur(pontosTur end) {
 		String SQL = "UPDATE pontosTur SET pontoId = ?, horaAbre = ?, horaFecha = ?, preco = ?, nomePontoTur = ? WHERE id_hospedagem = ?";
-		return false;
+        Conexao con = Conexao.getConexao();
+		
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setTime(1, end.getHoraAbre());
+			ps.setTime(2, end.getHoraFecha());
+			ps.setFloat(3, end.getPreco());
+			ps.setString(4, end.getNomePontoTur());
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		return retorno;
 	}
-
+	
 	public boolean removerPontosTur(pontosTur end) {
 		String SQL = "DELETE FROM pontosTur WHERE ponto_id = ?";
 		return false;

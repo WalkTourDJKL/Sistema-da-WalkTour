@@ -93,10 +93,32 @@ ArrayList<reserva> reserva = new ArrayList<reserva>();
 	 
 	} 
  
-	public boolean atualizarReserva(reserva end) { 
+	public int atualizarReserva(reserva end) { 
 		String SQL = "UPDATE reserva SET formPag = ?, dataIn = ?, dataOut = ?, preco = ? WHERE id_hospedagem = ?";
-		return false; 
-	} 
+        
+		Conexao con = Conexao.getConexao();
+		
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setString(1, end.getFormaPag());
+			ps.setDate(2, end.getDataIn());
+			ps.setDate(3, end.getDataOut());
+			ps.setFloat(4, end.getPreco());
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		return retorno;
+	}
  
 	public boolean removerReserva(reserva end) { 
 		String SQL = "DELETE FROM reserva WHERE id_hospedagem = ?";
