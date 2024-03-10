@@ -25,6 +25,7 @@ public class EventoDAO implements IEventoDAO{
 		} 
 		return instancia;
 	} 
+	0
 	
 	public int inserirEvento(evento end) {
 		String SQL = "INSERT INTO evento(id_evento, diainicio, diafim, horainicio, horafim, nomeevento, preco) VALUES (?,?,?,?,?,?,?)";
@@ -101,9 +102,35 @@ public class EventoDAO implements IEventoDAO{
 
 	public boolean atualizarEventos(evento end) {
 		String SQL = "UPDATE evento SET diaInicio = ?, diaFim = ?, horaInicio = ?, horaFim = ?, nomeEvento = ?, preco = ? WHERE endereco_id = ?";
-		return false;
-	}
+		
+		Conexao con = Conexao.getConexao();
+		
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setDate(1, end.getDiaInicio());
+			ps.setDate(2, end.getDiaFim());
+			ps.setTime(3, end.getHoraInicio());
+			ps.setTime(4, end.getHoraFim());
+			ps.setString(5, end.getNomeEvento());
+			ps.setFloat(6, end.getPreco());
 
+			
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		return retorno;
+	}
+ 
 	public boolean removerEventos(evento end) {
 		String SQL = "DELETE FROM evento WHERE id_evento = ?";
 		return false;

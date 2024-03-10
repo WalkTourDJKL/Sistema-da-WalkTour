@@ -25,7 +25,7 @@ public class HotelDAO implements IHotelDAO {
 	
 
 	public int inserirHotel(hotel end) {
-		String SQL = "INSERT INTO hotel(id_hospedagem, formapag, datain, dataout, preco) VALUES (?,?,?,?,?)";
+		String SQL = "INSERT INTO hotel(id_hospedagem, formapag, datain, dataout, preco, cidade) VALUES (?,?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -39,6 +39,8 @@ public class HotelDAO implements IHotelDAO {
 			ps.setDate(3, end.getDataIn());
 			ps.setDate(4, end.getDataOut());
 			ps.setFloat(5, end.getPreco());
+			ps.setString(6, end.getCidade());
+
 			
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -71,12 +73,14 @@ public class HotelDAO implements IHotelDAO {
 				Date dataIn = rs.getDate("datain");
 				Date dataOut = rs.getDate("dataout");
 				Float preco = rs.getFloat("preco");
+				String cidade = rs.getString("cidade");
 				
 				end.setIdHospedagem(idHospedagem);
 				end.setFormaPag(formaPag);
 				end.setDataIn(dataIn);
 				end.setDataOut(dataOut);
 				end.setPreco(preco);
+				end.setCidade(cidade);
                  
 			}
 			
@@ -91,10 +95,32 @@ public class HotelDAO implements IHotelDAO {
 	}
 
 	public boolean atualizarHotel(hotel end) {
-		String SQL = "UPDATE hotel SET formaPag = ?, dataIn = ?, dataOut = ?, preco = ? WHERE id_hospedagem = ?";
-		return false;
+		String SQL = "UPDATE hotel SET formaPag = ?, dataIn = ?, dataOut = ?, preco = ? cidade = ? WHERE id_hospedagem = ?";
+		
+		Conexao con = Conexao.getConexao();
+		
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setString(1, end.getFormaPag());
+			ps.setDate(2, end.getDataIn());
+			ps.setDate(3, end.getDataOut());
+			ps.setFloat(4, end.getPreco());
+			ps.setString(5,end.getCidade());
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		return retorno;
 	}
-
 	public boolean removerHotel(hotel end) {
 		String SQL = "DELETE FROM hotel WHERE id_hospedagem = ?";
 		return false;
