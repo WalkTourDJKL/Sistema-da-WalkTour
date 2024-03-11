@@ -62,7 +62,7 @@ public class TelaErro extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\error icon.png"));
+		lblNewLabel.setIcon(new ImageIcon(TelaErro.class.getResource("/imgs/error icon.png")));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 0;
