@@ -31,7 +31,7 @@ public class TelaTest extends JFrame {
         Connection conDB = conexao.conectar();
 
         HospedesDAO dao = HospedesDAO.getInstancia();
-        ArrayList<hospedes> listaHospedes = dao.listarHopesdes(conDB);
+        ArrayList<hospedes> listaHospedes = dao.listarHopesdes();
 
         conexao.fecharConexao();
 

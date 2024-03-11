@@ -9,7 +9,7 @@ public interface IHospedesDAO {
 	
 	public int inserirHopesdes(hospedes end);
 
-	public ArrayList<hospedes> listarHopesdes(Connection conDB);
+	public ArrayList<hospedes> listarHopesdes();
 
 	public boolean atualizarHopesdes(hospedes end);
 
