@@ -25,7 +25,7 @@ public class EventoDAO implements IEventoDAO{
 		} 
 		return instancia;
 	} 
-	0
+	
 	
 	public int inserirEvento(evento end) {
 		String SQL = "INSERT INTO evento(id_evento, diainicio, diafim, horainicio, horafim, nomeevento, preco) VALUES (?,?,?,?,?,?,?)";
