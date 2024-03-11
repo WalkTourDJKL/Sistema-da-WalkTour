@@ -28,6 +28,7 @@ import java.awt.TextArea;
 import java.awt.Canvas;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
 
 public class TelaHotel extends JFrame {
 
@@ -89,22 +90,22 @@ public class TelaHotel extends JFrame {
         
         JLabel lblImagemMaior = new JLabel("");
         lblImagemMaior.setBounds(250, 354, 600, 561);
-        lblImagemMaior.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\imagemMaior2.png"));
+        lblImagemMaior.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\Group 94.png"));
         contentPane.add(lblImagemMaior);
         
         JLabel lblAcademia = new JLabel("");
         lblAcademia.setBounds(250, 870, 200, 140);
-        lblAcademia.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\academia.png"));
+        lblAcademia.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\Group 59.png"));
         contentPane.add(lblAcademia);
         
         JLabel lblEntrada = new JLabel("");
-        lblEntrada.setBounds(448, 870, 200, 140);
+        lblEntrada.setBounds(440, 870, 200, 140);
         lblEntrada.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\entrada.png"));
         contentPane.add(lblEntrada);
         
         JLabel lblQuarto = new JLabel("");
         lblQuarto.setBounds(645, 870, 200, 140);
-        lblQuarto.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\quarto.png"));
+        lblQuarto.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\cama.png"));
         contentPane.add(lblQuarto);
         
         JLabel lblEnd = new JLabel("Rua XXXX, Nº XXX");
@@ -123,7 +124,7 @@ public class TelaHotel extends JFrame {
         contentPane.add(lblEmail2);
         
         JLabel lbliconePerfil = new JLabel("");
-        lbliconePerfil.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\perfil.png"));
+        lbliconePerfil.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\image 6.png"));
         lbliconePerfil.setBounds(1772, 35, 99, 95);
         contentPane.add(lbliconePerfil);
         
@@ -131,5 +132,37 @@ public class TelaHotel extends JFrame {
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblNewLabel.setBounds(1673, 78, 100, 14);
         contentPane.add(lblNewLabel);
+        
+        JComboBox SobreOhotel = new JComboBox();
+        SobreOhotel.setBounds(890, 839, 530, 30);
+        contentPane.add(SobreOhotel);
+        
+        SobreOhotel.addItem("Sobre o Hotel");
+        
+        JComboBox Comodidades = new JComboBox();
+        Comodidades.setBounds(890, 880, 530, 30);
+        contentPane.add(Comodidades);
+        
+        Comodidades.addItem("Comodidades");
+
+        
+        JComboBox QuartosMaisReservados = new JComboBox();
+        QuartosMaisReservados.setBounds(890, 922, 530, 30);
+        contentPane.add(QuartosMaisReservados);
+        
+        QuartosMaisReservados.addItem("Quartos Mais Reservados");
+
+        
+        JComboBox Especificações = new JComboBox();
+        Especificações.setBounds(890, 963, 530, 30);
+        contentPane.add(Especificações);
+ 
+        Especificações.addItem("Especificações e Regulamentações da Reserva");
+        
+        JButton btnProcurarQuarto = new JButton("Procurar Quarto para Reservar");
+        btnProcurarQuarto.setBounds(1100, 271, 253, 35);
+        contentPane.add(btnProcurarQuarto);
+
+        
     }
 }
