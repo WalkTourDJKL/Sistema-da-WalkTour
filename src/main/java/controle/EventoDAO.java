@@ -100,7 +100,7 @@ public class EventoDAO implements IEventoDAO{
 		return evento; 
 	}
 
-	public boolean atualizarEventos(evento end) {
+	public int atualizarEventos(evento end) {
 		String SQL = "UPDATE evento SET diaInicio = ?, diaFim = ?, horaInicio = ?, horaFim = ?, nomeEvento = ?, preco = ? WHERE endereco_id = ?";
 		
 		Conexao con = Conexao.getConexao();
