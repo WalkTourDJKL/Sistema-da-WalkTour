@@ -91,9 +91,37 @@ public class EnderecoDAO implements IEnderecoDAO{
 		return enderecos;
 	}
 
+<<<<<<< HEAD
+	public int atualizarEndereco(endereco end) {
+		String SQL = "UPDATE endereco SET cep = ?, cidade = ?, estado = ?, pais = ? WHERE endereco_id = ?";
+		
+		Conexao con = Conexao.getConexao();
+		
+		Connection conBD = con.conectar();
+		
+		int retorno = 0;
+		
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setString(1, end.getCep());
+			ps.setString(2, end.getCidade());
+			ps.setString(3, end.getEstado());
+			ps.setString(4, end.getPais());
+			
+			retorno = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		
+		return retorno;
+=======
 	public boolean atualizarEndereco(endereco end) {
 		String SQL = "UPDATE endereco SET cep = ?, cidade = ?, estado = ?, pais = ? WHERE endereco_id = ?";
 		return false;
+>>>>>>> main
 	}
 
 	public boolean removerEndereco(endereco end) {

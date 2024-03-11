@@ -10,7 +10,7 @@ public interface IQuartoDAO {
 
 		public ArrayList<quarto> listarQuartos();
 
-		public boolean atualizarQuarto(quarto end);
+		public int atualizarQuarto(quarto end);
 
 		public boolean removerQuarto(quarto end);
 

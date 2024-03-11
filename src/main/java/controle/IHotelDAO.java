@@ -9,7 +9,7 @@ public interface IHotelDAO {
 
 	public ArrayList<hotel> listarHotel();
 
-	public boolean atualizarHotel(hotel end);
+	public int atualizarHotel(hotel end);
 
 	public boolean removerHotel (hotel end);
 

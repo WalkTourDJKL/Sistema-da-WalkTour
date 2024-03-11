@@ -9,7 +9,7 @@ public interface IEventoDAO {
 
 	public ArrayList<evento> listarEventos();
 
-	public boolean atualizarEventos(evento end);
+	public int atualizarEventos(evento end);
 
 	public boolean removerEventos(evento end);
 

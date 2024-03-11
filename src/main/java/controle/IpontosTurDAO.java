@@ -9,7 +9,7 @@ public interface IpontosTurDAO {
 
 	public ArrayList<pontosTur> listarPontoTur();
 
-	public boolean atualizarPontosTur(pontosTur end);
+	public int atualizarPontosTur(pontosTur end);
 
 	public boolean removerPontosTur(pontosTur end);
 
