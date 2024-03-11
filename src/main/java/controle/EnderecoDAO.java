@@ -91,6 +91,7 @@ public class EnderecoDAO implements IEnderecoDAO{
 		return enderecos;
 	}
 
+<<<<<<< HEAD
 	public int atualizarEndereco(endereco end) {
 		String SQL = "UPDATE endereco SET cep = ?, cidade = ?, estado = ?, pais = ? WHERE endereco_id = ?";
 		
@@ -116,6 +117,11 @@ public class EnderecoDAO implements IEnderecoDAO{
 		}
 		
 		return retorno;
+=======
+	public boolean atualizarEndereco(endereco end) {
+		String SQL = "UPDATE endereco SET cep = ?, cidade = ?, estado = ?, pais = ? WHERE endereco_id = ?";
+		return false;
+>>>>>>> main
 	}
 
 	public boolean removerEndereco(endereco end) {

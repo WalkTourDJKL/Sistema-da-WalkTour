@@ -22,15 +22,21 @@
         Participantes
     </a>
 </h1>
+<br><br>
 <a align="Left" href="https://br.linkedin.com/in/douglas-eduardo-fernandes-4b880a285">
     👨‍💻Douglas Eduardo Fernandes;
 </a>
+<br><br>
 <p align="Left">
     👨‍💻José Paulo Baptista;
 </a>
+<br><br>
 <a align="Left" href="">
     👩‍💻Kemily Cristina Schmidt de Oliveira;
 </a>
+<br><br>
 <a align="Left" href="https://br.linkedin.com/in/lucas-guerega-bba206256">
     💻🐒Lucas Guerega;
 </a>
+<br><br>
+
