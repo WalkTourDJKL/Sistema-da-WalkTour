@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -23,28 +24,27 @@ public class HospedesDAO implements IHospedesDAO {
 		}
 		return instancia;
 	}
-	
+
 	public hospedes hospAchado = null;
 
 	public int inserirHopesdes(hospedes end) {
-
-		String SQL = "INSERT INTO hospedes (nome,senha,nomeSocial,dtNasc, cpf) VALUES (?,?,?,?,?,?)";
+		String SQL = "INSERT INTO hospedes (nome, nome_social, dt_nasc, cpf) VALUES (?, ?, ?, ?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
-
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
-			PreparedStatement ps = conDB.prepareStatement(SQL);
+			PreparedStatement ps = conDB.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, end.getNome());
+			ps.setString(2, end.getNomeSocial());
+			ps.setDate(3, end.getDtNasc());
+			ps.setString(4, end.getCpf());
 
-			ps.setString(2, end.getNome());
-			ps.setString(3, end.getNomeSocial());
-			ps.setDate(4, end.getDtNasc());
-			ps.setString(5, end.getCpf());
+			ps.executeUpdate();
 
-			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
 				chavePrimariaGerada = rs.getInt(1);
 			}
 
@@ -58,10 +58,10 @@ public class HospedesDAO implements IHospedesDAO {
 	}
 
 	public ArrayList<hospedes> listarHopesdes() { // Adicione o parâmetro Connection
-		
+
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
-		
+
 		ArrayList<hospedes> hospede = new ArrayList<hospedes>();
 
 		String SQL = "SELECT * FROM hospedes";
@@ -100,7 +100,7 @@ public class HospedesDAO implements IHospedesDAO {
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
-		
+
 		int retorn = 0;
 
 		try {
@@ -133,16 +133,20 @@ public class HospedesDAO implements IHospedesDAO {
 
 		return null;
 	}
-	
+
 	public hospedes login(hospedes h) {
 		hospAchado = null;
 		for (hospedes hosp : listarHopesdes()) {
-			if (hosp.getNome().equals(h.getNome()) && hosp.getCpf().equals(h.getCpf())) { // Verifica se o Nome e CPF colocados na tale Login são iguais a algum no banco de dados
+			if ((hosp.getNome().equals(h.getNome()) || hosp.getNomeSocial().equals(h.getNomeSocial()))
+					&& hosp.getCpf().equals(h.getCpf())) { // Verifica se o Nome e CPF
+				// colocados na tale Login
+				// são iguais a algum no
+				// banco de dados
 				hospAchado = hosp;
-				
+
 				return hospAchado;
 			}
-			
+
 		}
 		return hospAchado;
 	}

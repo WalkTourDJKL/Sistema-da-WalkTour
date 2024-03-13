@@ -130,11 +130,15 @@ public class TelaLogin extends JFrame {
 				if (cpf.isEmpty() || nome.isEmpty()) {
 					txt_digiNome.setText(null);
 					txt_digiCPF.setText(null);
+					TelaErro erro = new TelaErro();
+					erro.setLocationRelativeTo(null);
+					erro.setVisible(true);
 
 				} else {
 					// Cria obj Hóspede para atribuir login e senha
 					hospedes testelogin = new hospedes();
 					testelogin.setNome(nome);
+					testelogin.setNomeSocial(nome);
 					testelogin.setCpf(cpf);
 					;
 
@@ -148,9 +152,14 @@ public class TelaLogin extends JFrame {
 						dispose();
 						homepage.setExtendedState(MAXIMIZED_BOTH);
 						homepage.setVisible(true);
+						TelaSucesso sucesso = new TelaSucesso();
+						sucesso.setLocationRelativeTo(null);
+						sucesso.setVisible(true);
 
 					} else {
-
+						TelaErro erro = new TelaErro();
+						erro.setLocationRelativeTo(null);
+						erro.setVisible(true);
 					}
 
 				}
@@ -224,5 +233,3 @@ public class TelaLogin extends JFrame {
 		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 	}
 }
-
-

@@ -7,6 +7,8 @@ import controle.HospedesDAO;
 import modelo.hospedes;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaTest extends JFrame {
 
@@ -17,7 +19,15 @@ public class TelaTest extends JFrame {
 
         table = new JTable();
         JScrollPane scrollPane = new JScrollPane(table);
-        add(scrollPane);
+        getContentPane().add(scrollPane);
+        
+        JButton btnNewButton = new JButton("Atualizar");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		atualizarTabela();
+        	}
+        });
+        scrollPane.setRowHeaderView(btnNewButton);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
@@ -28,6 +38,7 @@ public class TelaTest extends JFrame {
 
     private void atualizarTabela() {
         Conexao conexao = Conexao.getConexao();
+        
         Connection conDB = conexao.conectar();
 
         HospedesDAO dao = HospedesDAO.getInstancia();
