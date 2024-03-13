@@ -124,9 +124,27 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 		return retorno;
 	}
 
-	public boolean removerModeloQuarto(modeloQuarto end) {
-		// TODO Auto-generated method stub
-		return false;
+	public int removerModeloQuarto(modeloQuarto end) {
+        String SQL = "DELETE modeloQuarto WHERE tipo_id = ?";
+
+		Conexao con = Conexao.getConexao();
+
+		Connection conBD = con.conectar();
+
+		int retorno = 0;
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, end.getTipoId());
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
+		return retorno;
 	}
 
 	public modeloQuarto buscarModeloQuartoPorNome(String nomeModelo) {

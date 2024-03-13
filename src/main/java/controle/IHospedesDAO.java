@@ -13,7 +13,7 @@ public interface IHospedesDAO {
 
 	public boolean atualizarHopesdes(hospedes end);
 
-	public boolean removerHopesdes(hospedes end);
+	public int removerHopesdes(hospedes end);
 
 	public hospedes buscarHopesdesPorCPF(int cpf);
 

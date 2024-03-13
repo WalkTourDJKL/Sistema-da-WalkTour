@@ -11,7 +11,7 @@ public interface IHotelDAO {
 
 	public int atualizarHotel(hotel end);
 
-	public boolean removerHotel (hotel end);
+	public int removerHotel (hotel end);
 
 	public hotel buscarHotelPorCidade(String cidade);
 

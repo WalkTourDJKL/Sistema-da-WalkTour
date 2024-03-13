@@ -11,7 +11,7 @@ public interface IEventoDAO {
 
 	public int atualizarEventos(evento end);
 
-	public boolean removerEventos(evento end);
+	public int removerEventos(evento end);
 
 	public evento buscarEventoPorNome(String nomeEvento);
 

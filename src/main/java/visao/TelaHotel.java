@@ -69,42 +69,42 @@ public class TelaHotel extends JFrame {
         
         JLabel lblTitulo = new JLabel("");
         lblTitulo.setBounds(10, 0, 1063, 209);
-        lblTitulo.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\titulo.png"));
+        lblTitulo.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/titulo.png")));
         contentPane.add(lblTitulo);
         
         JLabel lblEndereço = new JLabel("");
         lblEndereço.setBounds(890, 600, 45, 30);
-        lblEndereço.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\endereço.png"));
+        lblEndereço.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/endereço.png")));
         contentPane.add(lblEndereço);
         
         JLabel lblTelefone = new JLabel("");
         lblTelefone.setBounds(890, 679, 46, 30);
-        lblTelefone.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\telefone.png"));
+        lblTelefone.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/telefone.png")));
         contentPane.add(lblTelefone);
         
         JLabel lblEmail = new JLabel("");
         lblEmail.setBounds(890, 756, 46, 30);
-        lblEmail.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\email.png"));
+        lblEmail.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/email.png")));
         contentPane.add(lblEmail);
         
         JLabel lblImagemMaior = new JLabel("");
         lblImagemMaior.setBounds(250, 354, 600, 561);
-        lblImagemMaior.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\imagemMaior2.png"));
+        lblImagemMaior.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/imagemMaior.png")));
         contentPane.add(lblImagemMaior);
         
         JLabel lblAcademia = new JLabel("");
         lblAcademia.setBounds(250, 870, 200, 140);
-        lblAcademia.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\academia.png"));
+        lblAcademia.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/academia.png")));
         contentPane.add(lblAcademia);
         
         JLabel lblEntrada = new JLabel("");
         lblEntrada.setBounds(448, 870, 200, 140);
-        lblEntrada.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\entrada.png"));
+        lblEntrada.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/entrada.png")));
         contentPane.add(lblEntrada);
         
         JLabel lblQuarto = new JLabel("");
         lblQuarto.setBounds(645, 870, 200, 140);
-        lblQuarto.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\quarto.png"));
+        lblQuarto.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/quarto.png")));
         contentPane.add(lblQuarto);
         
         JLabel lblEnd = new JLabel("Rua XXXX, Nº XXX");
@@ -123,7 +123,7 @@ public class TelaHotel extends JFrame {
         contentPane.add(lblEmail2);
         
         JLabel lbliconePerfil = new JLabel("");
-        lbliconePerfil.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\perfil.png"));
+        lbliconePerfil.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/perfil.png")));
         lbliconePerfil.setBounds(1772, 35, 99, 95);
         contentPane.add(lbliconePerfil);
         

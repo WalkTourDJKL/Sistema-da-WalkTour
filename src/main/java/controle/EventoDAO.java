@@ -131,9 +131,26 @@ public class EventoDAO implements IEventoDAO{
 		return retorno;
 	}
  
-	public boolean removerEventos(evento end) {
+	public int removerEventos(evento end) {
 		String SQL = "DELETE FROM evento WHERE id_evento = ?";
-		return false;
+		Conexao con = Conexao.getConexao();
+
+		Connection conBD = con.conectar();
+
+		int retorno = 0;
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, end.getIdEvento());
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
+		return retorno;
 	}
 
 	public evento buscarEventoPorNome(String nomeEvento) {

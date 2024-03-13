@@ -116,9 +116,27 @@ public class EnderecoDAO implements IEnderecoDAO {
 		return retorno;
 	}
 
-	public boolean removerEndereco(endereco end) {
+	public int removerEndereco(endereco end) {
 		String SQL = "DELETE FROM endereco WHERE endereco_id = ?";
-		return false;
+
+		Conexao con = Conexao.getConexao();
+
+		Connection conBD = con.conectar();
+
+		int retorno = 0;
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, end.getEnderecoId());
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
+		return retorno;
 	}
 
 	public endereco buscarEnderecoPorCEP(int cpf) {

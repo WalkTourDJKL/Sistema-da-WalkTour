@@ -12,7 +12,7 @@ public interface IQuartoDAO {
 
 		public int atualizarQuarto(quarto end);
 
-		public boolean removerQuarto(quarto end);
+		public int removerQuarto(quarto end);
 
 		public quarto buscarQuartoPorNúmero(int numQuarto);
 

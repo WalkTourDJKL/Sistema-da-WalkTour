@@ -117,9 +117,27 @@ public class HotelDAO implements IHotelDAO {
 		
 		return retorno;
 	}
-	public boolean removerHotel(hotel end) {
+	public int removerHotel(hotel end) {
 		String SQL = "DELETE FROM hotel WHERE id_hospedagem = ?";
-		return false;
+
+		Conexao con = Conexao.getConexao();
+
+		Connection conBD = con.conectar();
+
+		int retorno = 0;
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, end.getIdHospedagem());
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
+		return retorno;
 	}
 
 	public hotel buscarHotelPorCidade(String cidade) {

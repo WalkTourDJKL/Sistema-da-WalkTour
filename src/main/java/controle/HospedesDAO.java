@@ -124,9 +124,26 @@ public class HospedesDAO implements IHospedesDAO {
 		return (retorn == 0 ? false : true);
 	}
 
-	public boolean removerHopesdes(hospedes end) {
+	public int removerHopesdes(hospedes end) {
 		String SQL = "DELETE FROM hospedes WHERE id_hospede = ?;";
-		return false;
+		Conexao con = Conexao.getConexao();
+
+		Connection conBD = con.conectar();
+
+		int retorno = 0;
+
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setInt(1, end.getIdHospede());
+			retorno = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+
+		return retorno;
 	}
 
 	public hospedes buscarHopesdesPorCPF(int cpf) {

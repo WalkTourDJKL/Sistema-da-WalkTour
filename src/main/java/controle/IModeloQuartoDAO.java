@@ -12,7 +12,7 @@ public interface IModeloQuartoDAO {
 
 	public int atualizarModeloQuarto(modeloQuarto end);
 
-	public boolean removerModeloQuarto(modeloQuarto end);
+	public int removerModeloQuarto(modeloQuarto end);
 
 	public modeloQuarto buscarModeloQuartoPorNome(String nomeModelo);
 }

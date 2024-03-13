@@ -11,7 +11,7 @@ public interface IpontosTurDAO {
 
 	public int atualizarPontosTur(pontosTur end);
 
-	public boolean removerPontosTur(pontosTur end);
+	public int removerPontosTur(pontosTur end);
 
 	public pontosTur buscarPontoTurPorNome(String nomePontoTur);
 }

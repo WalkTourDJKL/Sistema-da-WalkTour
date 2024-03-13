@@ -12,7 +12,7 @@ public interface IReservaDAO {
 
 			public int atualizarReserva(reserva end);
 
-			public boolean removerReserva(reserva end);
+			public int removerReserva(reserva end);
 
 			public reserva buscarReservaPorIdHospedagem(int idHospedagem);
 
