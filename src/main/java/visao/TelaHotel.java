@@ -88,26 +88,6 @@ public class TelaHotel extends JFrame {
         lblEmail.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\email.png"));
         contentPane.add(lblEmail);
         
-        JLabel lblImagemMaior = new JLabel("");
-        lblImagemMaior.setBounds(250, 354, 600, 561);
-        lblImagemMaior.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\Group 94.png"));
-        contentPane.add(lblImagemMaior);
-        
-        JLabel lblAcademia = new JLabel("");
-        lblAcademia.setBounds(250, 870, 200, 140);
-        lblAcademia.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\Group 59.png"));
-        contentPane.add(lblAcademia);
-        
-        JLabel lblEntrada = new JLabel("");
-        lblEntrada.setBounds(440, 870, 200, 140);
-        lblEntrada.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\entrada.png"));
-        contentPane.add(lblEntrada);
-        
-        JLabel lblQuarto = new JLabel("");
-        lblQuarto.setBounds(645, 870, 200, 140);
-        lblQuarto.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\cama.png"));
-        contentPane.add(lblQuarto);
-        
         JLabel lblEnd = new JLabel("Rua XXXX, Nº XXX");
         lblEnd.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblEnd.setBounds(989, 590, 256, 52);
@@ -122,11 +102,6 @@ public class TelaHotel extends JFrame {
         lblEmail2.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lblEmail2.setBounds(989, 749, 256, 40);
         contentPane.add(lblEmail2);
-        
-        JLabel lbliconePerfil = new JLabel("");
-        lbliconePerfil.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\image 6.png"));
-        lbliconePerfil.setBounds(1772, 35, 99, 95);
-        contentPane.add(lbliconePerfil);
         
         JLabel lblNewLabel = new JLabel("User10637");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -160,8 +135,72 @@ public class TelaHotel extends JFrame {
         Especificações.addItem("Especificações e Regulamentações da Reserva");
         
         JButton btnProcurarQuarto = new JButton("Procurar Quarto para Reservar");
-        btnProcurarQuarto.setBounds(1100, 271, 253, 35);
+        btnProcurarQuarto.setBounds(1500, 271, 253, 35);
         contentPane.add(btnProcurarQuarto);
+        
+        JLabel lblUser = new JLabel("");
+        lblUser.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\perfil.png"));
+        lblUser.setBounds(1781, 50, 110, 96);
+        contentPane.add(lblUser);
+        
+        JLabel lblImgMaior = new JLabel("New label");
+        lblImgMaior.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\hotel.png"));
+        lblImgMaior.setBounds(250, 354, 600, 500);
+        contentPane.add(lblImgMaior);
+        
+        JLabel lblAcademia = new JLabel("");
+        lblAcademia.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\academia.png"));
+        lblAcademia.setBounds(250, 855, 200, 120);
+        contentPane.add(lblAcademia);
+        
+        JLabel lblEntrada = new JLabel("");
+        lblEntrada.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\entrada.png"));
+        lblEntrada.setBounds(450, 855, 200, 120);
+        contentPane.add(lblEntrada);
+        
+        JLabel lblQuarto = new JLabel("");
+        lblQuarto.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\cama.png"));
+        lblQuarto.setBounds(649, 855, 200, 120);
+        contentPane.add(lblQuarto);
+        
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBounds(260, 976, 17, 48);
+        contentPane.add(scrollBar);
+        
+        JLabel lblCheckIn = new JLabel("Check-In: ");
+        lblCheckIn.setFont(new Font("Arial", Font.PLAIN, 28));
+        lblCheckIn.setBounds(124, 281, 135, 22);
+        contentPane.add(lblCheckIn);
+        
+        JLabel lblCalenCheckIn = new JLabel("");
+        lblCalenCheckIn.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\CalendarMinus.png"));
+        lblCalenCheckIn.setBounds(250, 271, 65, 45);
+        contentPane.add(lblCalenCheckIn);
+        
+        JLabel lblCheckOut = new JLabel("Check-Out:");
+        lblCheckOut.setFont(new Font("Arial", Font.PLAIN, 28));
+        lblCheckOut.setBounds(550, 281, 145, 22);
+        contentPane.add(lblCheckOut);
+        
+        JLabel lblCalenCheckOut = new JLabel("New label");
+        lblCalenCheckOut.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\CalendarMinus.png"));
+        lblCalenCheckOut.setBounds(700, 271, 65, 45);
+        contentPane.add(lblCalenCheckOut);
+        
+        JLabel lblAdulto = new JLabel("Adulto");
+        lblAdulto.setFont(new Font("Arial", Font.PLAIN, 28));
+        lblAdulto.setBounds(960, 281, 95, 22);
+        contentPane.add(lblAdulto);
+        
+        JLabel lblIconAdulto = new JLabel("");
+        lblIconAdulto.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\Vector.png"));
+        lblIconAdulto.setBounds(1065, 271, 54, 45);
+        contentPane.add(lblIconAdulto);
+        
+        JLabel lblCrianca = new JLabel("Criança");
+        lblCrianca.setFont(new Font("Arial", Font.PLAIN, 28));
+        lblCrianca.setBounds(1276, 281, 95, 22);
+        contentPane.add(lblCrianca);
 
         
     }
