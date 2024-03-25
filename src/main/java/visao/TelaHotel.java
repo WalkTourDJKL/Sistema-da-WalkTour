@@ -172,22 +172,17 @@ public class TelaHotel extends JFrame {
         lblCheckIn.setBounds(124, 281, 135, 22);
         contentPane.add(lblCheckIn);
         
-        JLabel lblCalenCheckIn = new JLabel("");
-        lblCalenCheckIn.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\CalendarMinus.png"));
-        lblCalenCheckIn.setBounds(250, 271, 65, 45);
-        contentPane.add(lblCalenCheckIn);
-        
         JLabel lblCheckOut = new JLabel("Check-Out:");
         lblCheckOut.setFont(new Font("Arial", Font.PLAIN, 28));
         lblCheckOut.setBounds(550, 281, 145, 22);
         contentPane.add(lblCheckOut);
         
-        JLabel lblCalenCheckOut = new JLabel("New label");
-        lblCalenCheckOut.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\target\\classes\\imgs\\CalendarMinus.png"));
+        JLabel lblCalenCheckOut = new JLabel("");
+        lblCalenCheckOut.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\CalendarMinus.png"));
         lblCalenCheckOut.setBounds(700, 271, 65, 45);
         contentPane.add(lblCalenCheckOut);
         
-        JLabel lblAdulto = new JLabel("Adulto");
+        JLabel lblAdulto = new JLabel("Adulto:");
         lblAdulto.setFont(new Font("Arial", Font.PLAIN, 28));
         lblAdulto.setBounds(960, 281, 95, 22);
         contentPane.add(lblAdulto);
@@ -197,10 +192,25 @@ public class TelaHotel extends JFrame {
         lblIconAdulto.setBounds(1065, 271, 54, 45);
         contentPane.add(lblIconAdulto);
         
-        JLabel lblCrianca = new JLabel("Criança");
+        JLabel lblCrianca = new JLabel("Criança:");
         lblCrianca.setFont(new Font("Arial", Font.PLAIN, 28));
-        lblCrianca.setBounds(1276, 281, 95, 22);
+        lblCrianca.setBounds(1276, 281, 112, 22);
         contentPane.add(lblCrianca);
+        
+        JLabel lblCalenCheckIn = new JLabel("");
+        lblCalenCheckIn.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\CalendarMinus.png"));
+        lblCalenCheckIn.setBounds(250, 271, 65, 45);
+        contentPane.add(lblCalenCheckIn);
+        
+        JLabel lblQtdAdult = new JLabel("");
+        lblQtdAdult.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\pessoa.png"));
+        lblQtdAdult.setBounds(1065, 265, 55, 50);
+        contentPane.add(lblQtdAdult);
+        
+        JLabel lblQtdCri = new JLabel("");
+        lblQtdCri.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Sistema-da-WalkTour\\src\\main\\resources\\imgs\\pessoa.png"));
+        lblQtdCri.setBounds(1398, 271, 54, 45);
+        contentPane.add(lblQtdCri);
 
         
     }
