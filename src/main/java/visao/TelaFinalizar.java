@@ -13,7 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+
 
 public class TelaFinalizar extends JFrame {
 	
@@ -23,7 +25,6 @@ public class TelaFinalizar extends JFrame {
     private JTextField txt_digiEmail;
     private JTextField txt_digiDocumento;
     private JTextField txt_digiFormas;
-
 
 
 	private static final long serialVersionUID = 1L;
@@ -82,7 +83,7 @@ public class TelaFinalizar extends JFrame {
         txt_digiNome = new JTextField();
         txt_digiNome.setBounds(1036, 179, 576, 25);
         txt_digiNome.setFont(new Font("Corbel", Font.BOLD, 15));
-        txt_digiNome.setText("Digite seu nome...");
+        txt_digiNome.setText("");
         contentPane1.add(txt_digiNome);
         txt_digiNome.setColumns(10);
         
@@ -94,7 +95,7 @@ public class TelaFinalizar extends JFrame {
         txt_digiDocumento = new JTextField();
         txt_digiDocumento.setBounds(1036, 265, 576, 25);
         txt_digiDocumento.setFont(new Font("Corbel", Font.BOLD, 15));
-        txt_digiDocumento.setText("Digite seu nome...");
+        txt_digiDocumento.setText("");
         contentPane1.add(txt_digiDocumento);
         txt_digiDocumento.setColumns(10);
 
@@ -116,7 +117,7 @@ public class TelaFinalizar extends JFrame {
         txt_digiTelefone = new JTextField();
         txt_digiTelefone.setBounds(1036, 343, 576, 25);
         txt_digiTelefone.setFont(new Font("Corbel", Font.BOLD, 15));
-        txt_digiTelefone.setText("Digite seu telefone...");
+        txt_digiTelefone.setText("");
         contentPane1.add(txt_digiTelefone);
         txt_digiTelefone.setColumns(10);
         
@@ -128,7 +129,7 @@ public class TelaFinalizar extends JFrame {
         txt_digiEmail = new JTextField();
         txt_digiEmail.setBounds(1036, 430, 576, 25);
         txt_digiEmail.setFont(new Font("Corbel", Font.BOLD, 15));
-        txt_digiEmail.setText("Digite seu email...");
+        txt_digiEmail.setText("");
         contentPane1.add(txt_digiEmail);
         txt_digiEmail.setColumns(10);
         
@@ -137,16 +138,26 @@ public class TelaFinalizar extends JFrame {
         lbl_formas.setFont(new Font("Corbel", Font.BOLD, 25));
         contentPane1.add(lbl_formas);
         
-        JCheckBox checkBoxPix = new JCheckBox("PIX");
-        checkBoxPix.setBounds(1148, 524, 97, 23);
-        contentPane1.add(checkBoxPix);
         
-        JCheckBox checkBoxBoleto = new JCheckBox("Boleto Parcelado");
-        checkBoxBoleto.setBounds(1148, 561, 129, 23);
-        contentPane1.add(checkBoxBoleto);
         
-        JCheckBox checkBoxCartao = new JCheckBox("Cartão de Crédito");
-        checkBoxCartao.setBounds(1149, 598, 160, 23);
-        contentPane1.add(checkBoxCartao);
+     // Radio Button
+        
+        JRadioButton radioButtonPix = new JRadioButton("Pix");
+        radioButtonPix.setBounds(1148, 515, 196, 42);
+        contentPane1.add(radioButtonPix);
+        
+        JRadioButton radioButtonBoleto = new JRadioButton("Boleto Parcelado");
+        radioButtonBoleto.setBounds(1148, 560, 166, 23);
+        contentPane1.add(radioButtonBoleto);
+        
+        JRadioButton radioButtonCartao = new JRadioButton("Cartão de crédito");
+        radioButtonCartao.setBounds(1148, 595, 178, 23);
+        contentPane1.add(radioButtonCartao);
+        
+     // Agrupando os botões
+        ButtonGroup group = new ButtonGroup();
+        group.add(radioButtonPix);
+        group.add(radioButtonBoleto);
+        group.add(radioButtonCartao);
 	}
 }
