@@ -112,7 +112,7 @@ public class TelaCadastro extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("Já tem Cadastro?");
 		lblNewLabel_1.setFont(new Font("Corbel", Font.ITALIC, 14));
-		lblNewLabel_1.setBounds(350, 890, 120, 14);
+		lblNewLabel_1.setBounds(330, 890, 120, 14);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel(
@@ -205,7 +205,7 @@ public class TelaCadastro extends JFrame {
 			contentPane.add(formattedTextFieldDataNascimento);
 			
 			JButton btnNewButton = new JButton("Faça Login");
-			btnNewButton.setBounds(458, 884, 89, 23);
+			btnNewButton.setBounds(452, 884, 110, 23);
 			contentPane.add(btnNewButton);
 		} catch (Exception e) {
 			e.printStackTrace();
