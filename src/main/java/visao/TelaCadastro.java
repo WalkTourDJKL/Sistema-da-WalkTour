@@ -66,25 +66,25 @@ public class TelaCadastro extends JFrame {
 		contentPane.setLayout(null);
 
 		JPanel LadoJanela = new JPanel();
-		LadoJanela.setBounds(568, 0, 1036, 881);
+		LadoJanela.setBounds(780, 0, 1338, 1054);
 		contentPane.add(LadoJanela);
 		LadoJanela.setLayout(null);
 
 		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setBounds(-58, 0, 1309, 895);
+		lblNewLabel_3.setBounds(-20, 0, 1400, 1080);
 		LadoJanela.add(lblNewLabel_3);
 		lblNewLabel_3.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/LadoB.png")));
 
 		JLabel lblNewLabel = new JLabel("Cadastrar");
 		lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 55));
 		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setBounds(193, 21, 264, 67);
+		lblNewLabel.setBounds(320, 50, 264, 67);
 		contentPane.add(lblNewLabel);
 
 		JLabel lbl_Nome = new JLabel("Nome Completo");
 		lbl_Nome.setForeground(new Color(52, 64, 84));
-		lbl_Nome.setFont(new Font("Corbel", Font.BOLD, 25));
-		lbl_Nome.setBounds(53, 97, 515, 25);
+		lbl_Nome.setFont(new Font("Corbel", Font.BOLD, 35));
+		lbl_Nome.setBounds(180, 240, 515, 50);
 		contentPane.add(lbl_Nome);
 
 		txtDigiteSeuNomeSocial = new JTextField();
@@ -93,13 +93,13 @@ public class TelaCadastro extends JFrame {
 		txtDigiteSeuNomeSocial.setForeground(new Color(102, 112, 133));
 		txtDigiteSeuNomeSocial.setFont(new Font("Corbel", Font.ITALIC, 15));
 		txtDigiteSeuNomeSocial.setColumns(10);
-		txtDigiteSeuNomeSocial.setBounds(53, 187, 515, 31);
+		txtDigiteSeuNomeSocial.setBounds(180, 420, 515, 35);
 		contentPane.add(txtDigiteSeuNomeSocial);
 
 		JLabel lbl_nomeSC = new JLabel("Nome Social");
 		lbl_nomeSC.setForeground(new Color(52, 64, 84));
-		lbl_nomeSC.setFont(new Font("Corbel", Font.BOLD, 25));
-		lbl_nomeSC.setBounds(53, 163, 515, 25);
+		lbl_nomeSC.setFont(new Font("Corbel", Font.BOLD, 35));
+		lbl_nomeSC.setBounds(180, 380, 515, 50);
 		contentPane.add(lbl_nomeSC);
 
 		txtDigiteSeuNome = new JTextField();
@@ -107,37 +107,37 @@ public class TelaCadastro extends JFrame {
 		txtDigiteSeuNome.setForeground(new Color(102, 112, 133));
 		txtDigiteSeuNome.setFont(new Font("Corbel", Font.ITALIC, 15));
 		txtDigiteSeuNome.setColumns(10);
-		txtDigiteSeuNome.setBounds(53, 121, 515, 31);
+		txtDigiteSeuNome.setBounds(180, 280, 515, 35);
 		contentPane.add(txtDigiteSeuNome);
 
-		JLabel lblNewLabel_1 = new JLabel("Não tem cadastro? cadastre-se");
+		JLabel lblNewLabel_1 = new JLabel("Já tem Cadastro?");
 		lblNewLabel_1.setFont(new Font("Corbel", Font.ITALIC, 14));
-		lblNewLabel_1.setBounds(220, 980, 251, 14);
+		lblNewLabel_1.setBounds(350, 890, 120, 14);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel(
 				"Ao continuar com o acesso, \n\r\nvocê concorda com nossa \n\r\npolítica de privacidade ");
 		lblNewLabel_2.setFont(new Font("Corbel", Font.ITALIC, 14));
-		lblNewLabel_2.setBounds(95, 1000, 480, 40);
+		lblNewLabel_2.setBounds(225, 910, 480, 40);
 		contentPane.add(lblNewLabel_2);
 
 		JLabel lbl_DNasc = new JLabel("Data de Nascimento");
 		lbl_DNasc.setForeground(new Color(52, 64, 84));
-		lbl_DNasc.setFont(new Font("Corbel", Font.BOLD, 25));
-		lbl_DNasc.setBounds(53, 230, 251, 30);
+		lbl_DNasc.setFont(new Font("Corbel", Font.BOLD, 35));
+		lbl_DNasc.setBounds(180, 520, 500, 50);
 		contentPane.add(lbl_DNasc);
 
 		JLabel lbl_CPF = new JLabel("CPF");
 		lbl_CPF.setForeground(new Color(52, 64, 84));
-		lbl_CPF.setFont(new Font("Corbel", Font.BOLD, 25));
-		lbl_CPF.setBounds(53, 294, 60, 30);
+		lbl_CPF.setFont(new Font("Corbel", Font.BOLD, 35));
+		lbl_CPF.setBounds(180, 660, 100, 50);
 		contentPane.add(lbl_CPF);
 
 		txtDigiteSeuCpf = new JTextField();
 		txtDigiteSeuCpf.setToolTipText("Digite seu CPF...");
 		txtDigiteSeuCpf.setForeground(new Color(102, 112, 133));
 		txtDigiteSeuCpf.setFont(new Font("Corbel", Font.ITALIC, 15));
-		txtDigiteSeuCpf.setBounds(53, 323, 515, 31);
+		txtDigiteSeuCpf.setBounds(180, 700, 515, 35);
 		contentPane.add(txtDigiteSeuCpf);
 		txtDigiteSeuCpf.setColumns(10);
 
@@ -194,18 +194,21 @@ public class TelaCadastro extends JFrame {
 		btnNewButton_1.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/BotaoCadastrar.png")));
 		btnNewButton_1.setForeground(new Color(255, 255, 128));
 		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-		btnNewButton_1.setBounds(53, 809, 486, 61);
+		btnNewButton_1.setBounds(196, 809, 486, 61);
 		contentPane.add(btnNewButton_1);
 
 		try {
 			MaskFormatter formatter = new MaskFormatter("####-##-##");
 			formatter.setPlaceholderCharacter('_'); // Define um caractere de espaço reservado
 			formattedTextFieldDataNascimento = new JFormattedTextField(formatter);
-			formattedTextFieldDataNascimento.setBounds(53, 258, 515, 31); // Ajuste conforme necessário
+			formattedTextFieldDataNascimento.setBounds(180, 560, 515, 35); // Ajuste conforme necessário
 			contentPane.add(formattedTextFieldDataNascimento);
+			
+			JButton btnNewButton = new JButton("Faça Login");
+			btnNewButton.setBounds(458, 884, 89, 23);
+			contentPane.add(btnNewButton);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }
