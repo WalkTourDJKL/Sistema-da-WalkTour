@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.JFormattedTextField;
 
 
 public class TelaFinalizar extends JFrame {
@@ -23,7 +24,6 @@ public class TelaFinalizar extends JFrame {
     private JTextField txt_digiNome;
     private JTextField txt_digiTelefone;
     private JTextField txt_digiEmail;
-    private JTextField txt_digiDocumento;
     private JTextField txt_digiFormas;
 
 
@@ -66,12 +66,12 @@ public class TelaFinalizar extends JFrame {
         LadoJanela.setLayout(null);
 
         JLabel lblNewLabel_3 = new JLabel("");
-        lblNewLabel_3.setBounds(-257, 0, 1283, 895);
+        lblNewLabel_3.setBounds(-278, 0, 1283, 895);
         lblNewLabel_3.setIcon(new ImageIcon(TelaFinalizar.class.getResource("/imgs/LadoA.png")));
         LadoJanela.add(lblNewLabel_3);
         
         JLabel lblNewLabel = new JLabel("Finalizar Reserva");
-        lblNewLabel.setBounds(1032, 54, 328, 67);
+        lblNewLabel.setBounds(1032, 52, 328, 67);
         lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 55));
         contentPane1.add(lblNewLabel);
         
@@ -91,13 +91,6 @@ public class TelaFinalizar extends JFrame {
         lbl_documento.setBounds(1036, 227, 422, 31);
         lbl_documento.setFont(new Font("Corbel", Font.BOLD, 25));
         contentPane1.add(lbl_documento);
-
-        txt_digiDocumento = new JTextField();
-        txt_digiDocumento.setBounds(1036, 265, 576, 25);
-        txt_digiDocumento.setFont(new Font("Corbel", Font.BOLD, 15));
-        txt_digiDocumento.setText("");
-        contentPane1.add(txt_digiDocumento);
-        txt_digiDocumento.setColumns(10);
 
         JButton btnNewButton = new JButton("");
         btnNewButton.addActionListener(new ActionListener() {
@@ -143,7 +136,7 @@ public class TelaFinalizar extends JFrame {
      // Radio Button
         
         JRadioButton radioButtonPix = new JRadioButton("Pix");
-        radioButtonPix.setBounds(1148, 515, 196, 42);
+        radioButtonPix.setBounds(1148, 515, 178, 42);
         contentPane1.add(radioButtonPix);
         
         JRadioButton radioButtonBoleto = new JRadioButton("Boleto Parcelado");
