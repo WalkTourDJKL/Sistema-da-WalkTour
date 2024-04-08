@@ -33,10 +33,10 @@ public class EnderecoDAO implements IEnderecoDAO {
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL);
 
-			ps.setString(2, end.getCep());
-			ps.setString(3, end.getCidade());
-			ps.setString(4, end.getEstado());
-			ps.setString(5, end.getPais());
+			ps.setString(1, end.getCep());
+			ps.setString(2, end.getCidade());
+			ps.setString(3, end.getEstado());
+			ps.setString(4, end.getPais());
 
 			ResultSet rs = ps.executeQuery();
 			if (rs != null) {
