@@ -86,7 +86,7 @@ public class TelaFinalizar extends JFrame {
         contentPane1.add(txt_digiNome); 
         txt_digiNome.setColumns(10); 
          
-        JLabel lbl_documento = new JLabel("Tipo e NÃºmero do Documento"); 
+        JLabel lbl_documento = new JLabel("Tipo e Número do Documento"); 
         lbl_documento.setBounds(1036, 227, 422, 31); 
         lbl_documento.setFont(new Font("Corbel", Font.BOLD, 25)); 
         contentPane1.add(lbl_documento); 
@@ -145,7 +145,7 @@ public class TelaFinalizar extends JFrame {
         checkBoxBoleto.setBounds(1148, 561, 129, 23); 
         contentPane1.add(checkBoxBoleto); 
          
-        JCheckBox checkBoxCartao = new JCheckBox("CartÃ£o de CrÃ©dito"); 
+        JCheckBox checkBoxCartao = new JCheckBox("Cartão de Crédito"); 
         checkBoxCartao.setBounds(1149, 598, 160, 23); 
         contentPane1.add(checkBoxCartao); 
 	} 

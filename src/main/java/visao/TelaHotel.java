@@ -72,10 +72,10 @@ public class TelaHotel extends JFrame {
         lblTitulo.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/titulo.png")));
         contentPane.add(lblTitulo);
         
-        JLabel lblEndereço = new JLabel("");
-        lblEndereço.setBounds(890, 600, 45, 30);
-        lblEndereço.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/endereço.png")));
-        contentPane.add(lblEndereço);
+        JLabel lblEndereco = new JLabel("");
+        lblEndereco.setBounds(890, 600, 45, 30);
+        lblEndereco.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/endere\u00E7o.png")));
+        contentPane.add(lblEndereco);
         
         JLabel lblTelefone = new JLabel("");
         lblTelefone.setBounds(890, 679, 46, 30);
@@ -91,7 +91,7 @@ public class TelaHotel extends JFrame {
         lblImagemMaior.setBounds(250, 354, 600, 561);
         lblImagemMaior.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/imagemMaior.png")));
         contentPane.add(lblImagemMaior);
-        
+        /*
         JLabel lblAcademia = new JLabel("");
         lblAcademia.setBounds(250, 870, 200, 140);
         lblAcademia.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/academia.png")));
@@ -101,7 +101,7 @@ public class TelaHotel extends JFrame {
         lblEntrada.setBounds(448, 870, 200, 140);
         lblEntrada.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/entrada.png")));
         contentPane.add(lblEntrada);
-        
+        */
         JLabel lblQuarto = new JLabel("");
         lblQuarto.setBounds(645, 870, 200, 140);
         lblQuarto.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/quarto.png")));
