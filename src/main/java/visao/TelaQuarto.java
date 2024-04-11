@@ -97,7 +97,7 @@ public class TelaQuarto extends JFrame {
         lblComputador.setBounds(1515, 645, 76, 89);
         contentPane.add(lblComputador);
         
-        JLabel lblWifiGra = new JLabel("Wifi Grátis ");
+        JLabel lblWifiGra = new JLabel("Wifi Gr�tis ");
         lblWifiGra.setFont(new Font("Arial", Font.PLAIN, 14));
         lblWifiGra.setBounds(1128, 577, 78, 14);
         contentPane.add(lblWifiGra);
@@ -112,9 +112,9 @@ public class TelaQuarto extends JFrame {
         lblArcondi.setBounds(1500, 577, 99, 25);
         contentPane.add(lblArcondi);
         
-        JLabel lblCafé = new JLabel("Máquina de Café ");
-        lblCafé.setFont(new Font("Arial", Font.PLAIN, 14));
-        lblCafé.setBounds(1685, 583, 115, 14);
-        contentPane.add(lblCafé);
+        JLabel lblCafeMaq = new JLabel("M�quina de Caf�");
+        lblCafeMaq.setFont(new Font("Arial", Font.PLAIN, 14));
+        lblCafeMaq.setBounds(1685, 583, 115, 14);
+        contentPane.add(lblCafeMaq);
     }
 }
