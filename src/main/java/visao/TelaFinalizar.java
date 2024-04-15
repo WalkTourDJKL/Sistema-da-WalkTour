@@ -104,7 +104,7 @@ public class TelaFinalizar extends JFrame {
         	} 
         }); 
         btnNewButton.setBounds(1036, 653, 576, 61); 
-        btnNewButton.setIcon(new ImageIcon(TelaFinalizar.class.getResource("/imgs/BotaoEntrar.png"))); 
+        btnNewButton.setIcon(new ImageIcon(TelaFinalizar.class.getResource("/imgs/btnEntrar.png"))); 
         btnNewButton.setFont(new Font("Modern No. 20", Font.PLAIN, 20)); 
         contentPane1.add(btnNewButton); 
  

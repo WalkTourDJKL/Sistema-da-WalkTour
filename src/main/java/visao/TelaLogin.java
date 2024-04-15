@@ -148,7 +148,7 @@ public class TelaLogin extends JFrame {
 					// Se o valor retornado pela função ser true
 					if (hospTesteLogin != null) {
 						// Passa para a proxima tela
-						TelaPrincipal homepage = new TelaPrincipal();
+						TelaPrincipal homepage = new TelaPrincipal(nome,cpf);
 						dispose();
 						homepage.setExtendedState(MAXIMIZED_BOTH);
 						homepage.setVisible(true);
@@ -191,7 +191,7 @@ public class TelaLogin extends JFrame {
 		txt_digiCPF.setFont(new Font("Corbel", Font.BOLD, 15));
 		txt_digiCPF.setColumns(10);
 		btnNewButton.setForeground(new Color(255, 255, 128));
-		btnNewButton.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/BotaoEntrar.png")));
+		btnNewButton.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/btnEntrar.png")));
 		btnNewButton.setFont(new Font("Modern No. 20", Font.PLAIN, 20));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.anchor = GridBagConstraints.NORTH;
@@ -223,7 +223,7 @@ public class TelaLogin extends JFrame {
 		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
 
 		JLabel lblNewLabel_2 = new JLabel(
-				"Ao continuar com o acesso, \n\r\nvocê concorda com nossa \n\r\npolítica de privacidade ");
+				"Ao continuar com o acesso, voce concorda com nossa politica de privacidade ");
 		lblNewLabel_2.setFont(new Font("Corbel", Font.ITALIC, 14));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.anchor = GridBagConstraints.NORTH;

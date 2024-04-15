@@ -110,13 +110,13 @@ public class TelaCadastro extends JFrame {
 		txtDigiteSeuNome.setBounds(180, 280, 515, 35);
 		contentPane.add(txtDigiteSeuNome);
 
-		JLabel lblNewLabel_1 = new JLabel("Já tem Cadastro?");
+		JLabel lblNewLabel_1 = new JLabel("Ja tem Cadastro?");
 		lblNewLabel_1.setFont(new Font("Corbel", Font.ITALIC, 14));
 		lblNewLabel_1.setBounds(330, 890, 120, 14);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel(
-				"Ao continuar com o acesso, \n\r\nvocê concorda com nossa \n\r\npolítica de privacidade ");
+				"Ao continuar com o acesso, voce concorda com nossa politica de privacidade ");
 		lblNewLabel_2.setFont(new Font("Corbel", Font.ITALIC, 14));
 		lblNewLabel_2.setBounds(225, 910, 480, 40);
 		contentPane.add(lblNewLabel_2);
@@ -191,7 +191,7 @@ public class TelaCadastro extends JFrame {
 				}
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/BotaoCadastrar.png")));
+		btnNewButton_1.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/btnCadastrar.png")));
 		btnNewButton_1.setForeground(new Color(255, 255, 128));
 		btnNewButton_1.setFont(new Font("Dialog", Font.PLAIN, 20));
 		btnNewButton_1.setBounds(196, 809, 486, 61);

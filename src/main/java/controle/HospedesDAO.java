@@ -167,5 +167,8 @@ public class HospedesDAO implements IHospedesDAO {
 		}
 		return hospAchado;
 	}
+	public hospedes passaLogado() {
+		return hospAchado;
+	}
 
 }

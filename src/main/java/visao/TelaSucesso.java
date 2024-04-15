@@ -62,14 +62,14 @@ public class TelaSucesso extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(TelaSucesso.class.getResource("/imgs/sucess icon.png")));
+		lblNewLabel_2.setIcon(new ImageIcon(TelaSucesso.class.getResource("/imgs/sucessoIcon.png")));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_2.gridx = 0;
 		gbc_lblNewLabel_2.gridy = 1;
 		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JLabel lblNewLabel = new JLabel("Operação Concluída");
+		JLabel lblNewLabel = new JLabel("Operacao Concluida");
 		lblNewLabel.setForeground(new Color(102, 112, 122));
 		lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 35));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();

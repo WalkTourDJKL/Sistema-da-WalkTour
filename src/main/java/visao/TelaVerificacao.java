@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TelaTest extends JFrame {
+public class TelaVerificacao extends JFrame {
 
     private JTable table;
 
-    public TelaTest() {
-        super("Lista de Hóspedes");
+    public TelaVerificacao() {
+        super("Tela de vericficacao no banco de dados");
 
         table = new JTable();
         JScrollPane scrollPane = new JScrollPane(table);
@@ -65,7 +65,7 @@ public class TelaTest extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            TelaTest tela = new TelaTest();
+            TelaVerificacao tela = new TelaVerificacao();
             tela.setVisible(true);
         });
     }

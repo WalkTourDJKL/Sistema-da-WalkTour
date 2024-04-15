@@ -1,150 +1,252 @@
 package visao;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import java.awt.*;
+import java.awt.EventQueue;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.JToggleButton;
+import javax.swing.JScrollBar;
+import javax.swing.JComboBox;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JTable;
+import javax.swing.JToolBar;
+import javax.swing.JLayeredPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JSplitPane;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextPane;
+import javax.swing.JMenu;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.JSlider;
+import java.awt.TextArea;
+import java.awt.Canvas;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import java.awt.Color;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import net.miginfocom.swing.MigLayout;
+import javax.swing.SwingConstants;
 
 public class TelaPrincipal extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public TelaPrincipal() {
-		
-		// Criar os dados para a tabela
-		Object[][] data2 = {
-				{ getImageIcon("Blumenau"), "Blumenau", "Santa Catarina", "Bento Goncalves", "Rio Grande do Sul" },
-				{ getImageIcon("Canela"), "Canela", "Rio Grande do Sul", "Gramado", "Rio Grande do Sul" },
-				{ getImageIcon("SaoFranciscoDoSul"), "Sao Francisco Do Sul", "Santa Catarina" } };
 
-		// Criar os nomes das colunas
-		String[] columnNames = { "", "", "", "" };
+	/**
+	 * Create the frame.
+	 * 
+	 * @param nome
+	 * @param cpf
+	 */
+	public TelaPrincipal(String nome, String cpf) {
+		setTitle("Tela Principal");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 1920, 1090);
+		contentPane = new JPanel();
+		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 
-		// Criar o modelo da tabela
-		DefaultTableModel model = new DefaultTableModel(data2, columnNames) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
+		JLabel lblTitulo = new JLabel("");
+		lblTitulo.setBounds(10, 0, 1516, 229);
+		lblTitulo.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/Title.png")));
+		contentPane.add(lblTitulo);
 
-		// Criar a JTable com o modelo
-		JTable table = new JTable(model);
-		table.setShowGrid(false);
-		table.setRowHeight(100); // Altura
-
-		// Configurar o renderizador para todas as colunas
-		for (int i = 0; i < table.getColumnCount(); i++) {
-			table.getColumnModel().getColumn(i).setCellRenderer(new CustomPanelRenderer());
-		}
-
-		// Configurar o evento de clique para toda a célula
-		table.addMouseListener(new MouseAdapter() {
+		JLabel lbliconePerfil = new JLabel("");
+		lbliconePerfil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaHotel hotel = new TelaHotel();
-				hotel.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				hotel.setVisible(true);
-				dispose(); // Fechar a tela atual
+				TelaUsuario user = new TelaUsuario(cpf);
+				dispose();
+				user.setExtendedState(MAXIMIZED_BOTH);
+				user.setVisible(true);
+
 			}
 		});
+		lbliconePerfil.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/perfil.png")));
+		lbliconePerfil.setBounds(1772, 35, 99, 95);
+		contentPane.add(lbliconePerfil);
 
-		// Adicionar a JTable a um JScrollPane para suportar rolagem
-		JScrollPane scrollPane = new JScrollPane(table);
+		JLabel lblPerfil = new JLabel(nome);
+		lblPerfil.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPerfil.setFont(new Font("Corbel", Font.PLAIN, 18));
+		lblPerfil.setBounds(1363, 68, 409, 23);
+		contentPane.add(lblPerfil);
 
-		// Configurar o JFrame
-		setTitle("Tela principal");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1920, 1090);
-		setLocationRelativeTo(null);
-		// Adicionar a JScrollPane (que contém a JTable) ao JFrame
-		getContentPane().add(scrollPane);
-		
 		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.NORTH);
-		panel.setLayout(new MigLayout("", "[1700.00px][300.00][400.00]", "[209px]"));
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(10, 0, 1063, 209);
-		lblNewLabel.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/titulo.png")));
-		panel.add(lblNewLabel, "cell 0 0,alignx left,aligny top");
-		
-		JLabel lblNewLabel2 = new JLabel("User10637");
-        lblNewLabel2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel2.setBounds(1673, 78, 100, 14);
-        panel.add(lblNewLabel2);
-        
-		JLabel lbliconePerfil = new JLabel("");
-        lbliconePerfil.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/perfil.png")));
-        lbliconePerfil.setBounds(1772, 35, 99, 95);
-        panel.add(lbliconePerfil);
-        
-        
-
-		// Exibir o JFrame
-		setVisible(true);
-	}
-
-	// Método para carregar as imagens a partir dos nomes dos arquivos
-	private ImageIcon getImageIcon(String url) {
-		File directory = new File(".");
-		Image img = null;
-		String path = "";
-		try {
-			// Carrega a imagem a partir do caminho relativo
-			path = directory.getCanonicalPath() + "/src/main/java/imgs/" + url + ".png";
-			img = ImageIO.read(new File(path));
-			System.out.println(path);
-			return new ImageIcon(img);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	// Classe para renderizar os painéis personalizados na tabela
-	class CustomPanelRenderer extends JPanel implements TableCellRenderer {
-		private JLabel txtCidade;
-		private JLabel txtEstado;
-
-		public CustomPanelRenderer() {
-			setLayout(new BorderLayout());
-			setPreferredSize(new Dimension(300, 100));
-
-			JLabel imageLabel = new JLabel();
-			add(imageLabel, BorderLayout.CENTER);
-
-			JPanel textPanel = new JPanel(new GridLayout(2, 1));
-			txtCidade = new JLabel("");
-			txtEstado = new JLabel("");
-			textPanel.add(txtCidade);
-			textPanel.add(txtEstado);
-			add(textPanel, BorderLayout.SOUTH);
-		}
-
-		@Override
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-				int row, int column) {
-			if (value instanceof String) {
-				String cidade = (String) value;
-				int nextColumn = column + 1;
-				String estado = nextColumn < table.getColumnCount() ? (String) table.getValueAt(row, nextColumn) : "";
-				txtCidade.setText(cidade);
-				txtEstado.setText(estado);
-			} else if (value instanceof ImageIcon) {
-				((JLabel) getComponent(0)).setIcon((ImageIcon) value);
+		panel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaHotel hotel = new TelaHotel(nome, cpf, null);
+				dispose();
+				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setVisible(true);
 			}
+		});
+		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(423, 263, 300, 300);
+		contentPane.add(panel);
+		panel.setLayout(null);
 
-			return this;
-		}
-	}
+		JLabel lblImageCidade = new JLabel("");
+		lblImageCidade.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/Blumenau.png")));
+		lblImageCidade.setBounds(10, 11, 280, 225);
+		panel.add(lblImageCidade);
 
-	public static void main(String[] args) {
-		// Criar uma instância do JFrame
-		new TelaPrincipal();
+		JLabel lblCidade = new JLabel("Blumenau");
+		lblCidade.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblCidade.setBackground(new Color(240, 240, 240));
+		lblCidade.setBounds(10, 240, 117, 31);
+		panel.add(lblCidade);
+
+		JLabel lblEstado = new JLabel("Santa Catarina");
+		lblEstado.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblEstado.setBackground(UIManager.getColor("Button.background"));
+		lblEstado.setBounds(10, 269, 160, 31);
+		panel.add(lblEstado);
+
+		JPanel panel_1 = new JPanel();
+		panel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String cidade = lblCidade.getText();
+				TelaHotel hotel = new TelaHotel(nome, cpf,cidade);
+				dispose();
+				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setVisible(true);
+				System.out.println(cidade);
+			}
+		});
+		panel_1.setLayout(null);
+		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(803, 263, 300, 300);
+		contentPane.add(panel_1);
+
+		JLabel lblImageCidade_1 = new JLabel("");
+		lblImageCidade_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/SaoFranciscoDoSul.png")));
+		lblImageCidade_1.setBounds(10, 11, 280, 225);
+		panel_1.add(lblImageCidade_1);
+
+		JLabel lblCidade_1 = new JLabel("Sao Francisco do Sul");
+		lblCidade_1.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblCidade_1.setBackground(UIManager.getColor("Button.background"));
+		lblCidade_1.setBounds(10, 240, 229, 31);
+		panel_1.add(lblCidade_1);
+
+		JLabel lblEstado_1 = new JLabel("Santa Catarina");
+		lblEstado_1.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblEstado_1.setBackground(UIManager.getColor("Button.background"));
+		lblEstado_1.setBounds(10, 269, 160, 31);
+		panel_1.add(lblEstado_1);
+
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String cidade = lblCidade_1.getText();
+				TelaHotel hotel = new TelaHotel(nome, cpf,cidade);
+				dispose();
+				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setVisible(true);
+				System.out.println(cidade);
+			}
+		});
+		panel_1_1.setLayout(null);
+		panel_1_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBounds(1179, 263, 300, 300);
+		contentPane.add(panel_1_1);
+
+		JLabel lblImageCidade_1_1 = new JLabel("");
+		lblImageCidade_1_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/BentoGoncalves.png")));
+		lblImageCidade_1_1.setBounds(10, 11, 280, 225);
+		panel_1_1.add(lblImageCidade_1_1);
+
+		JLabel lblCidade_1_1 = new JLabel("Bento Goncalves");
+		lblCidade_1_1.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblCidade_1_1.setBackground(UIManager.getColor("Button.background"));
+		lblCidade_1_1.setBounds(10, 240, 229, 31);
+		panel_1_1.add(lblCidade_1_1);
+
+		JLabel lblEstado_1_1 = new JLabel("Rio Grande do Sul");
+		lblEstado_1_1.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblEstado_1_1.setBackground(UIManager.getColor("Button.background"));
+		lblEstado_1_1.setBounds(10, 269, 193, 31);
+		panel_1_1.add(lblEstado_1_1);
+
+		JPanel panel_1_1_1 = new JPanel();
+		panel_1_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String cidade = lblCidade_1_1.getText();
+				TelaHotel hotel = new TelaHotel(nome, cpf,cidade);
+				dispose();
+				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setVisible(true);
+				System.out.println(cidade);
+			}
+		});
+		panel_1_1_1.setLayout(null);
+		panel_1_1_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1_1.setBounds(423, 599, 300, 300);
+		contentPane.add(panel_1_1_1);
+
+		JLabel lblImageCidade_1_1_1 = new JLabel("");
+		lblImageCidade_1_1_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/Canela.png")));
+		lblImageCidade_1_1_1.setBounds(10, 11, 280, 225);
+		panel_1_1_1.add(lblImageCidade_1_1_1);
+
+		JLabel lblCidade_1_1_1 = new JLabel("Canela");
+		lblCidade_1_1_1.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblCidade_1_1_1.setBackground(UIManager.getColor("Button.background"));
+		lblCidade_1_1_1.setBounds(10, 240, 229, 31);
+		panel_1_1_1.add(lblCidade_1_1_1);
+
+		JLabel lblEstado_1_1_1 = new JLabel("Rio Grande do Sul");
+		lblEstado_1_1_1.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblEstado_1_1_1.setBackground(UIManager.getColor("Button.background"));
+		lblEstado_1_1_1.setBounds(10, 269, 193, 31);
+		panel_1_1_1.add(lblEstado_1_1_1);
+
+		JPanel panel_1_1_2 = new JPanel();
+		panel_1_1_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String cidade = lblCidade_1_1_1.getText();
+				TelaHotel hotel = new TelaHotel(nome, cpf,cidade);
+				dispose();
+				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setVisible(true);
+				System.out.println(cidade);
+			}
+		});
+		panel_1_1_2.setLayout(null);
+		panel_1_1_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1_2.setBounds(803, 599, 300, 300);
+		contentPane.add(panel_1_1_2);
+
+		JLabel lblImageCidade_1_1_2 = new JLabel("");
+		lblImageCidade_1_1_2.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/Gramado.png")));
+		lblImageCidade_1_1_2.setBounds(10, 11, 280, 225);
+		panel_1_1_2.add(lblImageCidade_1_1_2);
+
+		JLabel lblCidade_1_1_2 = new JLabel("Gramado");
+		lblCidade_1_1_2.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblCidade_1_1_2.setBackground(UIManager.getColor("Button.background"));
+		lblCidade_1_1_2.setBounds(10, 240, 229, 31);
+		panel_1_1_2.add(lblCidade_1_1_2);
+
+		JLabel lblEstado_1_1_2 = new JLabel("Rio Grande do Sul");
+		lblEstado_1_1_2.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblEstado_1_1_2.setBackground(UIManager.getColor("Button.background"));
+		lblEstado_1_1_2.setBounds(10, 269, 193, 31);
+		panel_1_1_2.add(lblEstado_1_1_2);
 	}
 }
