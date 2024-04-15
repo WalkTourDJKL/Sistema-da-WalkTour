@@ -14,14 +14,17 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener; 
 import java.awt.event.ActionEvent; 
 import javax.swing.JCheckBox; 
+import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
  
 public class TelaFinalizar extends JFrame { 
 	 
 	private JPanel contentPane1; 
-    private JTextField txt_digiNome; 
-    private JTextField txt_digiTelefone; 
-    private JTextField txt_digiEmail; 
-    private JTextField txt_digiDocumento; 
+    private JTextField txt_digiQuarto; 
+    private JTextField txt_digiDataF; 
+    private JTextField txt_digiQdtP; 
+    private JTextField txt_digiDataI; 
     private JTextField txt_digiFormas; 
  
  
@@ -70,33 +73,35 @@ public class TelaFinalizar extends JFrame {
         LadoJanela.add(lblNewLabel_3); 
          
         JLabel lblNewLabel = new JLabel("Finalizar Reserva"); 
-        lblNewLabel.setBounds(1032, 54, 328, 67); 
+        lblNewLabel.setBounds(1032, 54, 386, 67); 
         lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 55)); 
         contentPane1.add(lblNewLabel); 
          
-        JLabel lbl_nome = new JLabel("Nome"); 
-        lbl_nome.setBounds(1036, 141, 422, 31); 
-        lbl_nome.setFont(new Font("Corbel", Font.BOLD, 25)); 
-        contentPane1.add(lbl_nome); 
+        JLabel lbl_quarto = new JLabel("Quarto Selecionado"); 
+        lbl_quarto.setBounds(1036, 141, 422, 31); 
+        lbl_quarto.setFont(new Font("Corbel", Font.BOLD, 25)); 
+        contentPane1.add(lbl_quarto); 
  
-        txt_digiNome = new JTextField(); 
-        txt_digiNome.setBounds(1036, 179, 576, 25); 
-        txt_digiNome.setFont(new Font("Corbel", Font.BOLD, 15)); 
-        txt_digiNome.setText("Digite seu nome..."); 
-        contentPane1.add(txt_digiNome); 
-        txt_digiNome.setColumns(10); 
+        txt_digiQuarto = new JTextField(); 
+        txt_digiQuarto.setBounds(1036, 179, 576, 25); 
+        txt_digiQuarto.setFont(new Font("Corbel", Font.BOLD, 15)); 
+        txt_digiQuarto.setText(" "); 
+        contentPane1.add(txt_digiQuarto); 
+        txt_digiQuarto.setColumns(10); 
          
-        JLabel lbl_documento = new JLabel("Tipo e Número do Documento"); 
-        lbl_documento.setBounds(1036, 227, 422, 31); 
-        lbl_documento.setFont(new Font("Corbel", Font.BOLD, 25)); 
-        contentPane1.add(lbl_documento); 
+        JLabel lbl_dataI = new JLabel("Data Inicio"); 
+        lbl_dataI.setBounds(1036, 227, 422, 31); 
+        lbl_dataI.setFont(new Font("Corbel", Font.BOLD, 25)); 
+        contentPane1.add(lbl_dataI); 
  
-        txt_digiDocumento = new JTextField(); 
-        txt_digiDocumento.setBounds(1036, 265, 576, 25); 
-        txt_digiDocumento.setFont(new Font("Corbel", Font.BOLD, 15)); 
-        txt_digiDocumento.setText("Digite seu nome..."); 
-        contentPane1.add(txt_digiDocumento); 
-        txt_digiDocumento.setColumns(10); 
+        txt_digiDataI = new JTextField(); 
+        txt_digiDataI.setBounds(1036, 265, 576, 25); 
+        txt_digiDataI.setFont(new Font("Corbel", Font.BOLD, 15)); 
+        txt_digiDataI.setText(" "); 
+        contentPane1.add(txt_digiDataI); 
+        txt_digiDataI.setColumns(10); 
+        
+        
  
         JButton btnNewButton = new JButton(""); 
         btnNewButton.addActionListener(new ActionListener() { 
@@ -107,46 +112,50 @@ public class TelaFinalizar extends JFrame {
         btnNewButton.setIcon(new ImageIcon(TelaFinalizar.class.getResource("/imgs/btnEntrar.png"))); 
         btnNewButton.setFont(new Font("Modern No. 20", Font.PLAIN, 20)); 
         contentPane1.add(btnNewButton); 
+        
+        
  
-        JLabel lbl_telefone = new JLabel("Telefone"); 
-        lbl_telefone.setBounds(1036, 311, 576, 31); 
-        lbl_telefone.setFont(new Font("Corbel", Font.BOLD, 25)); 
-        contentPane1.add(lbl_telefone); 
+        JLabel lbl_dataF = new JLabel("Data Fim"); 
+        lbl_dataF.setBounds(1036, 311, 576, 31); 
+        lbl_dataF.setFont(new Font("Corbel", Font.BOLD, 25)); 
+        contentPane1.add(lbl_dataF); 
  
-        txt_digiTelefone = new JTextField(); 
-        txt_digiTelefone.setBounds(1036, 343, 576, 25); 
-        txt_digiTelefone.setFont(new Font("Corbel", Font.BOLD, 15)); 
-        txt_digiTelefone.setText("Digite seu telefone..."); 
-        contentPane1.add(txt_digiTelefone); 
-        txt_digiTelefone.setColumns(10); 
+        txt_digiDataF = new JTextField(); 
+        txt_digiDataF.setBounds(1036, 343, 576, 25); 
+        txt_digiDataF.setFont(new Font("Corbel", Font.BOLD, 15)); 
+        txt_digiDataF.setText(" "); 
+        contentPane1.add(txt_digiDataF); 
+        txt_digiDataF.setColumns(10); 
+        
+        
          
-        JLabel lbl_email = new JLabel("Email"); 
-        lbl_email.setBounds(1036, 394, 576, 31); 
-        lbl_email.setFont(new Font("Corbel", Font.BOLD, 25)); 
-        contentPane1.add(lbl_email); 
+        JLabel lbl_qtdP = new JLabel("Quantidade de Pessoas"); 
+        lbl_qtdP.setBounds(1036, 394, 576, 31); 
+        lbl_qtdP.setFont(new Font("Corbel", Font.BOLD, 25)); 
+        contentPane1.add(lbl_qtdP); 
+        
+        String[] opcoesQuantidade = {"1", "2", "3"};
+        JComboBox<String> comboBoxQuantidade = new JComboBox<>(opcoesQuantidade);
+        comboBoxQuantidade.setBounds(1036,430, 576, 25);
+        contentPane1.add(comboBoxQuantidade);
  
-        txt_digiEmail = new JTextField(); 
-        txt_digiEmail.setBounds(1036, 430, 576, 25); 
-        txt_digiEmail.setFont(new Font("Corbel", Font.BOLD, 15)); 
-        txt_digiEmail.setText("Digite seu email..."); 
-        contentPane1.add(txt_digiEmail); 
-        txt_digiEmail.setColumns(10); 
          
-        JLabel lbl_formas = new JLabel("Formas de Pagamento"); 
-        lbl_formas.setBounds(1148, 486, 500, 31); 
-        lbl_formas.setFont(new Font("Corbel", Font.BOLD, 25)); 
-        contentPane1.add(lbl_formas); 
-         
-        JCheckBox checkBoxPix = new JCheckBox("PIX"); 
-        checkBoxPix.setBounds(1148, 524, 97, 23); 
-        contentPane1.add(checkBoxPix); 
-         
-        JCheckBox checkBoxBoleto = new JCheckBox("Boleto Parcelado"); 
-        checkBoxBoleto.setBounds(1148, 561, 129, 23); 
-        contentPane1.add(checkBoxBoleto); 
-         
-        JCheckBox checkBoxCartao = new JCheckBox("Cartão de Crédito"); 
-        checkBoxCartao.setBounds(1149, 598, 160, 23); 
-        contentPane1.add(checkBoxCartao); 
+        
+        ButtonGroup grupoFormasPagamento = new ButtonGroup();
+
+        JRadioButton radioPIX = new JRadioButton("PIX");
+        radioPIX.setBounds(1148, 524, 97, 23);
+        contentPane1.add(radioPIX);
+        grupoFormasPagamento.add(radioPIX);
+
+        JRadioButton radioBoleto = new JRadioButton("Boleto Parcelado");
+        radioBoleto.setBounds(1148, 561, 129, 23);
+        contentPane1.add(radioBoleto);
+        grupoFormasPagamento.add(radioBoleto);
+
+        JRadioButton radioCartao = new JRadioButton("CartÃ£o de CrÃ©dito");
+        radioCartao.setBounds(1149, 598, 160, 23);
+        contentPane1.add(radioCartao);
+        grupoFormasPagamento.add(radioCartao);
 	} 
 } 
