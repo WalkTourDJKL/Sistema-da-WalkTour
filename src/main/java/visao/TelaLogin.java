@@ -16,8 +16,11 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
@@ -34,6 +37,7 @@ public class TelaLogin extends JFrame {
 	private JTextField txt_digiNome;
 	private JTextField txt_digiCPF;
 	private HospedesDAO hospdao = HospedesDAO.getInstancia();
+	private MaskFormatter formatterCPF;
 
 	/**
 	 * Create the frame.
@@ -179,5 +183,22 @@ public class TelaLogin extends JFrame {
 		lblNewLabel_2.setBounds(1133, 627, 430, 18);
 		lblNewLabel_2.setFont(new Font("Corbel", Font.ITALIC, 14));
 		contentPane.add(lblNewLabel_2);
+		
+		try {
+			MaskFormatter formatterCPF = new MaskFormatter("###.###.###-##");
+			formatterCPF.setPlaceholderCharacter('_');
+			txt_digiCPF = new JFormattedTextField(formatterCPF);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
+
+	public MaskFormatter getFormatterCPF() {
+		return formatterCPF;
+	}
+
+	public void setFormatterCPF(MaskFormatter formatterCPF) {
+		this.formatterCPF = formatterCPF;
+	}
+
 }

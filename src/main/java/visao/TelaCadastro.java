@@ -35,6 +35,7 @@ public class TelaCadastro extends JFrame {
 	private JTextField txtDigiteSeuNome;
 	private JTextField txtDigiteSeuCpf;
 	private JFormattedTextField formattedTextFieldDataNascimento;
+	private JFormattedTextField formattedTextFieldCPF;
 
 	/**
 	 * Create the frame.
@@ -133,6 +134,19 @@ public class TelaCadastro extends JFrame {
 		lbl_CPF.setFont(new Font("Corbel", Font.BOLD, 35));
 		lbl_CPF.setBounds(180, 660, 100, 50);
 		contentPane.add(lbl_CPF);
+		
+		try {
+			MaskFormatter formatterCPF = new MaskFormatter("###.###.###-##");
+			formatterCPF.setPlaceholder("_");
+			formattedTextFieldCPF = new JFormattedTextField(formatterCPF);
+			formattedTextFieldCPF.setToolTipText("Digite seu CPF...");
+			formattedTextFieldCPF.setForeground(new Color(102, 112, 133));
+		    formattedTextFieldCPF.setFont(new Font("Corbel", Font.ITALIC, 15));
+		    formattedTextFieldCPF.setBounds(180, 700, 515, 35);
+		    contentPane.add(formattedTextFieldCPF);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
 
 		txtDigiteSeuCpf = new JTextField();
 		txtDigiteSeuCpf.setToolTipText("Digite seu CPF...");
