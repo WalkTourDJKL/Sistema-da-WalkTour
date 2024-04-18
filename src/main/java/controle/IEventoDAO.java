@@ -2,17 +2,17 @@ package controle;
 
 import java.util.ArrayList;
 
-import modelo.evento;
+import modelo.Evento;
 
 public interface IEventoDAO {
-	public int inserirEvento (evento end);
+	public int inserirEvento (Evento end);
 
-	public ArrayList<evento> listarEventos();
+	public ArrayList<Evento> listarEventos();
 
-	public int atualizarEventos(evento end);
+	public int atualizarEventos(Evento end);
 
-	public int removerEventos(evento end);
+	public int removerEventos(Evento end);
 
-	public evento buscarEventoPorNome(String nomeEvento);
+	public Evento buscarEventoPorNome(String nomeEvento);
 
 }

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-import modelo.pontosTur;
+import modelo.PontosTur;
 
 public class pontosTurDAO implements IpontosTurDAO {
 
@@ -24,7 +24,7 @@ public class pontosTurDAO implements IpontosTurDAO {
 		return instancia;
 	}
 
-	public int inserirPontoTur(pontosTur end) {
+	public int inserirPontoTur(PontosTur end) {
 		String SQL = "INSERT INTO pontosTur(ponto_id,horaabre,horafecha,preco,nomepontotur) VALUES (?,?,?,?,?)";
 
 		Conexao con = Conexao.getConexao();
@@ -49,8 +49,8 @@ public class pontosTurDAO implements IpontosTurDAO {
 
 	}
 
-	public ArrayList<pontosTur> listarPontoTur() {
-		ArrayList<pontosTur> pontosTur = new ArrayList<pontosTur>();
+	public ArrayList<PontosTur> listarPontoTur() {
+		ArrayList<PontosTur> pontosTur = new ArrayList<PontosTur>();
 
 		String SQL = "SELECT * FROM pontosTur";
 
@@ -63,7 +63,7 @@ public class pontosTurDAO implements IpontosTurDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				pontosTur end = new pontosTur();
+				PontosTur end = new PontosTur();
 
 				Integer pontoId = rs.getInt("ponto_id");
 				Time horaAbre = rs.getTime("horaabre");
@@ -89,7 +89,7 @@ public class pontosTurDAO implements IpontosTurDAO {
 
 	}
 
-	public int atualizarPontosTur(pontosTur end) {
+	public int atualizarPontosTur(PontosTur end) {
 		String SQL = "UPDATE pontosTur SET pontoId = ?, horaAbre = ?, horaFecha = ?, preco = ?, nomePontoTur = ? WHERE ponto_id = ?";
 		Conexao con = Conexao.getConexao();
 
@@ -115,7 +115,7 @@ public class pontosTurDAO implements IpontosTurDAO {
 		return retorno;
 	}
 
-	public int removerPontosTur(pontosTur end) {
+	public int removerPontosTur(PontosTur end) {
 		String SQL = "DELETE FROM pontosTur WHERE ponto_id = ?";
 		Conexao con = Conexao.getConexao();
 
@@ -137,7 +137,7 @@ public class pontosTurDAO implements IpontosTurDAO {
 		return retorno;
 	}
 
-	public pontosTur buscarPontoTurPorNome(String nomePontoTur) {
+	public PontosTur buscarPontoTurPorNome(String nomePontoTur) {
 		// TODO Auto-generated method stub
 		return null;
 	}

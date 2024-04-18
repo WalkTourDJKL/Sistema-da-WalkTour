@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException; 
 import java.util.ArrayList; 
 import java.sql.Date; 
-import modelo.hotel;
+import modelo.Hotel;
 
 public class HotelDAO implements IHotelDAO {
 	
@@ -24,7 +24,7 @@ public class HotelDAO implements IHotelDAO {
 	}
 	
 
-	public int inserirHotel(hotel end) {
+	public int inserirHotel(Hotel end) {
 		String SQL = "INSERT INTO hotel(id_hospedagem, formapag, datain, dataout, preco) VALUES (?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
@@ -51,8 +51,8 @@ public class HotelDAO implements IHotelDAO {
 		return 0;
 	}
 
-	public ArrayList<hotel> listarHotel() {
-		ArrayList<hotel> hotel = new ArrayList<hotel>();
+	public ArrayList<Hotel> listarHotel() {
+		ArrayList<Hotel> hotel = new ArrayList<Hotel>();
 		
         String SQL = "SELECT * FROM hotel";
 		
@@ -65,7 +65,7 @@ public class HotelDAO implements IHotelDAO {
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				hotel end = new hotel();
+				Hotel end = new Hotel();
 				
 				Integer idHospedagem = rs.getInt("id_hospedagem");
 				String formaPag = rs.getString("formapag");
@@ -91,7 +91,7 @@ public class HotelDAO implements IHotelDAO {
 	
 	}
 
-	public int atualizarHotel(hotel end) {
+	public int atualizarHotel(Hotel end) {
 		String SQL = "UPDATE hotel SET formaPag = ?, dataIn = ?, dataOut = ?, preco = ? WHERE id_hospedagem = ?";
 		
 		Conexao con = Conexao.getConexao();
@@ -117,7 +117,7 @@ public class HotelDAO implements IHotelDAO {
 		
 		return retorno;
 	}
-	public int removerHotel(hotel end) {
+	public int removerHotel(Hotel end) {
 		String SQL = "DELETE FROM hotel WHERE id_hospedagem = ?";
 
 		Conexao con = Conexao.getConexao();
@@ -140,7 +140,7 @@ public class HotelDAO implements IHotelDAO {
 		return retorno;
 	}
 
-	public hotel buscarHotelPorCidade(String cidade) {
+	public Hotel buscarHotelPorCidade(String cidade) {
 		// TODO Auto-generated method stub
 		return null;
 	}

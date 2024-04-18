@@ -3,7 +3,7 @@ package modelo;
 import java.sql.Time;
 import java.sql.Date;
 
-public class evento {
+public class Evento {
     private int idEvento;
     private Date diaInicio;
     private Date diaFim;
@@ -11,7 +11,7 @@ public class evento {
     private Time horaFim;
     private String nomeEvento;
     private float preco;
-	private endereco endereco;
+	private Endereco endereco;
 
 	public int getIdEvento() {
 		return idEvento;
@@ -69,11 +69,11 @@ public class evento {
 		this.preco = preco;
 	}
 
-	public endereco getEndereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(endereco endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 }

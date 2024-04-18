@@ -2,7 +2,7 @@ package modelo;
 
 import java.sql.Date;
 
-public class hospedes {
+public class Hospedes {
     private int idHospede;
     private String nome;
     private String senha;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.sql.Date; 
 
 
-import modelo.evento;
+import modelo.Evento;
 
 public class EventoDAO implements IEventoDAO{
 	
@@ -27,7 +27,7 @@ public class EventoDAO implements IEventoDAO{
 	} 
 	
 	
-	public int inserirEvento(evento end) {
+	public int inserirEvento(Evento end) {
 		String SQL = "INSERT INTO evento(id_evento, diainicio, diafim, horainicio, horafim, nomeevento, preco) VALUES (?,?,?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
@@ -56,8 +56,8 @@ public class EventoDAO implements IEventoDAO{
 		
 	}
 
-	public ArrayList<evento> listarEventos() {
-		ArrayList<evento> evento = new ArrayList<evento>(); 
+	public ArrayList<Evento> listarEventos() {
+		ArrayList<Evento> evento = new ArrayList<Evento>(); 
 		
 		String SQL = "SELECT * FROM evento";
 		
@@ -70,7 +70,7 @@ public class EventoDAO implements IEventoDAO{
 			ResultSet rs = ps.executeQuery(); 
 			 
 			while (rs.next()) { 
-				evento end = new evento(); 
+				Evento end = new Evento(); 
 				
 				Integer idEvento = rs.getInt("id_evento");
 				Date diaInicio = rs.getDate("diainicio");
@@ -100,7 +100,7 @@ public class EventoDAO implements IEventoDAO{
 		return evento; 
 	}
 
-	public int atualizarEventos(evento end) {
+	public int atualizarEventos(Evento end) {
 		String SQL = "UPDATE evento SET diaInicio = ?, diaFim = ?, horaInicio = ?, horaFim = ?, nomeEvento = ?, preco = ? WHERE endereco_id = ?";
 		
 		Conexao con = Conexao.getConexao();
@@ -131,7 +131,7 @@ public class EventoDAO implements IEventoDAO{
 		return retorno;
 	}
  
-	public int removerEventos(evento end) {
+	public int removerEventos(Evento end) {
 		String SQL = "DELETE FROM evento WHERE id_evento = ?";
 		Conexao con = Conexao.getConexao();
 
@@ -153,7 +153,7 @@ public class EventoDAO implements IEventoDAO{
 		return retorno;
 	}
 
-	public evento buscarEventoPorNome(String nomeEvento) {
+	public Evento buscarEventoPorNome(String nomeEvento) {
 		// TODO Auto-generated method stub
 		return null;
 	}

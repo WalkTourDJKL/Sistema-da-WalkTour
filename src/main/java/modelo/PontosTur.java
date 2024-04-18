@@ -2,7 +2,7 @@ package modelo;
 
 import java.sql.Time;
 
-public class pontosTur {
+public class PontosTur {
 	private int pontoId;
 	private Time horaAbre;
 	private Time horaFecha;

@@ -2,18 +2,18 @@ package controle;
 
 import java.util.ArrayList;
 
-import modelo.endereco;
+import modelo.Endereco;
 
 public interface IEnderecoDAO {
 	
-	public int inserirEndereco(endereco end);
+	public int inserirEndereco(Endereco end);
 
-	public ArrayList<endereco> listarEndereco();
+	public ArrayList<Endereco> listarEndereco();
 
-	public int atualizarEndereco(endereco end);
+	public int atualizarEndereco(Endereco end);
 
-	public int removerEndereco(endereco end);
+	public int removerEndereco(Endereco end);
 
-	public endereco buscarEnderecoPorCEP(int cep);
+	public Endereco buscarEnderecoPorCEP(int cep);
 	
 }

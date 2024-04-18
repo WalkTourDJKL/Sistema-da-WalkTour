@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-import modelo.endereco;
-import modelo.quarto;
+import modelo.Endereco;
+import modelo.Quarto;
 
 public class QuartoDAO implements IQuartoDAO {
 
@@ -25,7 +25,7 @@ public class QuartoDAO implements IQuartoDAO {
 		return instancia;
 	}
 
-	public int inserirQuarto(quarto end) {
+	public int inserirQuarto(Quarto end) {
 		String SQL = "INSERT INTO quarto(numquarto,horalimpeza,servicoquarto,tipo_id) VALUES (?,?,?,?)";
 
 		Conexao con = Conexao.getConexao();
@@ -49,8 +49,8 @@ public class QuartoDAO implements IQuartoDAO {
 
 	}
 
-	public ArrayList<quarto> listarQuartos() {
-		ArrayList<quarto> quarto = new ArrayList<quarto>();
+	public ArrayList<Quarto> listarQuartos() {
+		ArrayList<Quarto> quarto = new ArrayList<Quarto>();
 
 		String SQL = "SELECT * FROM quarto";
 
@@ -63,7 +63,7 @@ public class QuartoDAO implements IQuartoDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				quarto end = new quarto();
+				Quarto end = new Quarto();
 
 				Integer numQuarto = rs.getInt("numquarto");
 				Time horaLimpeza = rs.getTime("horalimpeza");
@@ -87,7 +87,7 @@ public class QuartoDAO implements IQuartoDAO {
 
 	}
 
-	public int atualizarQuarto(quarto end) {
+	public int atualizarQuarto(Quarto end) {
 		String SQL = "UPDATE quarto SET numQuarto = ?, horaLimpeza = ?, servicoQuarto = ? WHERE tipo_id = ?";
 
 		Conexao con = Conexao.getConexao();
@@ -113,7 +113,7 @@ public class QuartoDAO implements IQuartoDAO {
 		return retorno;
 	}
 
-	public int removerQuarto(quarto end) {
+	public int removerQuarto(Quarto end) {
 		String SQL = "DELETE FROM quarto WHERE tipo_id = ?";
 
 		Conexao con = Conexao.getConexao();
@@ -136,7 +136,7 @@ public class QuartoDAO implements IQuartoDAO {
 		return retorno;
 	}
 
-	public quarto buscarQuartoPorNúmero(int numQuarto) {
+	public Quarto buscarQuartoPorNúmero(int numQuarto) {
 		// TODO Auto-generated method stub
 		return null;
 	}

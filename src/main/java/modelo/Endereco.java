@@ -1,6 +1,6 @@
 package modelo;
 
-public class endereco {
+public class Endereco {
 	private int enderecoId;
 	private String cep;
 	private String cidade;

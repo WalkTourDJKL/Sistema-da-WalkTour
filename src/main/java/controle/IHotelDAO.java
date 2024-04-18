@@ -2,17 +2,17 @@ package controle;
 
 import java.util.ArrayList;
 
-import modelo.hotel;
+import modelo.Hotel;
 
 public interface IHotelDAO {
-	public int inserirHotel(hotel end);
+	public int inserirHotel(Hotel end);
 
-	public ArrayList<hotel> listarHotel();
+	public ArrayList<Hotel> listarHotel();
 
-	public int atualizarHotel(hotel end);
+	public int atualizarHotel(Hotel end);
 
-	public int removerHotel (hotel end);
+	public int removerHotel (Hotel end);
 
-	public hotel buscarHotelPorCidade(String cidade);
+	public Hotel buscarHotelPorCidade(String cidade);
 
 }

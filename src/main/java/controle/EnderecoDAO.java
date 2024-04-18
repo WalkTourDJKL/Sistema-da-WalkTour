@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import modelo.endereco;
+import modelo.Endereco;
 
 public class EnderecoDAO implements IEnderecoDAO {
 
@@ -22,7 +22,7 @@ public class EnderecoDAO implements IEnderecoDAO {
 		return instancia;
 	}
 
-	public int inserirEndereco(endereco end) {
+	public int inserirEndereco(Endereco end) {
 		String SQL = "INSERT INTO endereco (cep,cidade,estado,pais) VALUES (?,?,?,?,?)";
 
 		Conexao con = Conexao.getConexao();
@@ -52,8 +52,8 @@ public class EnderecoDAO implements IEnderecoDAO {
 		return chavePrimariaGerada;
 	}
 
-	public ArrayList<endereco> listarEndereco() {
-		ArrayList<endereco> enderecos = new ArrayList<endereco>();
+	public ArrayList<Endereco> listarEndereco() {
+		ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 
 		String SQL = "SELECT * FROM endereco";
 
@@ -65,7 +65,7 @@ public class EnderecoDAO implements IEnderecoDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				endereco end = new endereco();
+				Endereco end = new Endereco();
 
 				Integer enderecoId = rs.getInt("endereco_id");
 				String cep = rs.getString("cep");
@@ -89,7 +89,7 @@ public class EnderecoDAO implements IEnderecoDAO {
 		return enderecos;
 	}
 
-	public int atualizarEndereco(endereco end) {
+	public int atualizarEndereco(Endereco end) {
 		String SQL = "UPDATE endereco SET cep = ?, cidade = ?, estado = ?, pais = ? WHERE endereco_id = ?";
 
 		Conexao con = Conexao.getConexao();
@@ -116,7 +116,7 @@ public class EnderecoDAO implements IEnderecoDAO {
 		return retorno;
 	}
 
-	public int removerEndereco(endereco end) {
+	public int removerEndereco(Endereco end) {
 		String SQL = "DELETE FROM endereco WHERE endereco_id = ?";
 
 		Conexao con = Conexao.getConexao();
@@ -139,7 +139,7 @@ public class EnderecoDAO implements IEnderecoDAO {
 		return retorno;
 	}
 
-	public endereco buscarEnderecoPorCEP(int cpf) {
+	public Endereco buscarEnderecoPorCEP(int cpf) {
 
 		return null;
 	}

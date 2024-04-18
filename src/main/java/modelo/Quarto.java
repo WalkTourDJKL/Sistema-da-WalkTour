@@ -2,12 +2,12 @@ package modelo;
 
 import java.sql.Time;
 
-public class quarto {
+public class Quarto {
 	private int numQuarto;
 	private Time horaLimpeza;
 	private boolean servicoQuarto;
 	private int tipoId;
-	private modeloQuarto modeloQuarto;
+	private ModeloQuarto modeloQuarto;
 
 	public int getNumQuarto() {
 		return numQuarto;
@@ -41,11 +41,11 @@ public class quarto {
 		this.tipoId = tipoId;
 	}
 
-	public modeloQuarto getModeloQuarto() {
+	public ModeloQuarto getModeloQuarto() {
 		return modeloQuarto;
 	}
 
-	public void setModeloQuarto(modeloQuarto modeloQuarto) {
+	public void setModeloQuarto(ModeloQuarto modeloQuarto) {
 		this.modeloQuarto = modeloQuarto;
 	}
 }

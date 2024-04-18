@@ -1,6 +1,6 @@
 package modelo;
 
-public class modeloQuarto {
+public class ModeloQuarto {
 	private int tipoId;
 	private String nomeModelo;
 	private int qtdBanheiro;

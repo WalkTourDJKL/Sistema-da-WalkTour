@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import modelo.modeloQuarto;
+import modelo.ModeloQuarto;
 
 public class ModeloQuartoDAO implements IModeloQuartoDAO{
 
@@ -20,7 +20,7 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 	}
 	
 	
-	public int inserirModeloQuarto(modeloQuarto end) {
+	public int inserirModeloQuarto(ModeloQuarto end) {
 		String SQL = "INSERT INTO modeloQuarto(nome_modelo,qtd_banheiro,qtd_camas,frigobar,servico_quarto) VALUES (?,?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
@@ -53,8 +53,8 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 	}
 	
 
-	public ArrayList<modeloQuarto> listarModeloQuarto() {
-		ArrayList<modeloQuarto> modeloQuarto = new ArrayList<modeloQuarto>();
+	public ArrayList<ModeloQuarto> listarModeloQuarto() {
+		ArrayList<ModeloQuarto> modeloQuarto = new ArrayList<ModeloQuarto>();
 		
 		String SQL = "SELECT * FROM modeloQuarto";
 		
@@ -67,7 +67,7 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 			ResultSet rs = ps.executeQuery();
 			
 			while (rs.next()) {
-				modeloQuarto end = new modeloQuarto();
+				ModeloQuarto end = new ModeloQuarto();
 				
 				Integer tipoId = rs.getInt("tipo_id");
 				String nomeModelo = rs.getString("nome_modelo");
@@ -95,7 +95,7 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 	
 	}
 
-	public int atualizarModeloQuarto(modeloQuarto end) {
+	public int atualizarModeloQuarto(ModeloQuarto end) {
         String SQL = "UPDATE modeloQuarto SET nomeModelo = ?, qtdBanheiro = ?, qtdCamas = ?, frigobar = ?, servicoQuarto = ? WHERE tipo_id = ?";
 		
 		Conexao con = Conexao.getConexao();
@@ -124,7 +124,7 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 		return retorno;
 	}
 
-	public int removerModeloQuarto(modeloQuarto end) {
+	public int removerModeloQuarto(ModeloQuarto end) {
         String SQL = "DELETE modeloQuarto WHERE tipo_id = ?";
 
 		Conexao con = Conexao.getConexao();
@@ -147,7 +147,7 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO{
 		return retorno;
 	}
 
-	public modeloQuarto buscarModeloQuartoPorNome(String nomeModelo) {
+	public ModeloQuarto buscarModeloQuartoPorNome(String nomeModelo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

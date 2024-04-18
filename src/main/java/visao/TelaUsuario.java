@@ -11,7 +11,7 @@ import com.mysql.cj.xdevapi.Table;
 
 import controle.Conexao;
 import controle.HospedesDAO;
-import modelo.hospedes;
+import modelo.Hospedes;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -45,7 +45,7 @@ public class TelaUsuario extends JFrame {
 	 * @param cpf 
 	 */
 	public TelaUsuario(String cpf) {
-		hospedes hops = new hospedes();
+		Hospedes hops = new Hospedes();
 
 		hops = hospdao.passaLogado();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

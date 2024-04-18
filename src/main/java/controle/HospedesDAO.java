@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import modelo.hospedes;
+import modelo.Hospedes;
 
 public class HospedesDAO implements IHospedesDAO {
 
@@ -25,9 +25,9 @@ public class HospedesDAO implements IHospedesDAO {
 		return instancia;
 	}
 
-	public hospedes hospAchado = null;
+	public Hospedes hospAchado = null;
 
-	public int inserirHopesdes(hospedes end) {
+	public int inserirHopesdes(Hospedes end) {
 		String SQL = "INSERT INTO hospedes (nome, nome_social, dt_nasc, cpf) VALUES (?, ?, ?, ?)";
 
 		Conexao con = Conexao.getConexao();
@@ -57,12 +57,12 @@ public class HospedesDAO implements IHospedesDAO {
 		return chavePrimariaGerada;
 	}
 
-	public ArrayList<hospedes> listarHopesdes() { // Adicione o parâmetro Connection
+	public ArrayList<Hospedes> listarHopesdes() { // Adicione o parâmetro Connection
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
 
-		ArrayList<hospedes> hospede = new ArrayList<hospedes>();
+		ArrayList<Hospedes> hospede = new ArrayList<Hospedes>();
 
 		String SQL = "SELECT * FROM hospedes";
 
@@ -72,7 +72,7 @@ public class HospedesDAO implements IHospedesDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				hospedes end = new hospedes();
+				Hospedes end = new Hospedes();
 
 				String nome = rs.getString("nome");
 				String nomeSocial = rs.getString("nome_social");
@@ -95,7 +95,7 @@ public class HospedesDAO implements IHospedesDAO {
 		return hospede;
 	}
 
-	public boolean atualizarHopesdes(hospedes end) {
+	public boolean atualizarHopesdes(Hospedes end) {
 		String SQL = "UPDATE hospedes SET nome = ?, nome_social = ?, dt_nasc = ?, cpf = ? WHERE id_hospede = ?";
 
 		Conexao con = Conexao.getConexao();
@@ -124,7 +124,7 @@ public class HospedesDAO implements IHospedesDAO {
 		return (retorn == 0 ? false : true);
 	}
 
-	public int removerHopesdes(hospedes end) {
+	public int removerHopesdes(Hospedes end) {
 		String SQL = "DELETE FROM hospedes WHERE id_hospede = ?;";
 		Conexao con = Conexao.getConexao();
 
@@ -146,14 +146,14 @@ public class HospedesDAO implements IHospedesDAO {
 		return retorno;
 	}
 
-	public hospedes buscarHopesdesPorCPF(int cpf) {
+	public Hospedes buscarHopesdesPorCPF(int cpf) {
 
 		return null;
 	}
 
-	public hospedes login(hospedes h) {
+	public Hospedes login(Hospedes h) {
 		hospAchado = null;
-		for (hospedes hosp : listarHopesdes()) {
+		for (Hospedes hosp : listarHopesdes()) {
 			if ((hosp.getNome().equals(h.getNome()) || hosp.getNomeSocial().equals(h.getNomeSocial()))
 					&& hosp.getCpf().equals(h.getCpf())) { // Verifica se o Nome e CPF
 				// colocados na tale Login
@@ -167,7 +167,7 @@ public class HospedesDAO implements IHospedesDAO {
 		}
 		return hospAchado;
 	}
-	public hospedes passaLogado() {
+	public Hospedes passaLogado() {
 		return hospAchado;
 	}
 

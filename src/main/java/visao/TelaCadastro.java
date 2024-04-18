@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-import modelo.hospedes;
+import modelo.Hospedes;
 import controle.HospedesDAO;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
@@ -155,7 +155,7 @@ public class TelaCadastro extends JFrame {
 					erro.setVisible(true);
 				} else {
 
-					hospedes end = new hospedes();
+					Hospedes end = new Hospedes();
 
 					end.setNome(nome);
 					end.setNomeSocial(nomeSc);

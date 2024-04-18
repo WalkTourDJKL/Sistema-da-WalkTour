@@ -2,13 +2,12 @@ package modelo;
 
 import java.sql.Date;
 
-public class hotel {
+public class Reserva {
 	private int idHospedagem;
 	private String formaPag;
 	private Date dataIn;
 	private Date dataOut;
 	private float preco;
-	private String cidade; 
 
 	public int getIdHospedagem() {
 		return idHospedagem;

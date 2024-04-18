@@ -2,16 +2,16 @@ package controle;
 
 import java.util.ArrayList;
 
-import modelo.pontosTur;
+import modelo.PontosTur;
 
 public interface IpontosTurDAO {
-	public int inserirPontoTur(pontosTur end);
+	public int inserirPontoTur(PontosTur end);
 
-	public ArrayList<pontosTur> listarPontoTur();
+	public ArrayList<PontosTur> listarPontoTur();
 
-	public int atualizarPontosTur(pontosTur end);
+	public int atualizarPontosTur(PontosTur end);
 
-	public int removerPontosTur(pontosTur end);
+	public int removerPontosTur(PontosTur end);
 
-	public pontosTur buscarPontoTurPorNome(String nomePontoTur);
+	public PontosTur buscarPontoTurPorNome(String nomePontoTur);
 }

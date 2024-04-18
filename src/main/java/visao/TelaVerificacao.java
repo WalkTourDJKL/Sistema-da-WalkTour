@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import controle.Conexao;
 import controle.HospedesDAO;
-import modelo.hospedes;
+import modelo.Hospedes;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
@@ -42,14 +42,14 @@ public class TelaVerificacao extends JFrame {
         Connection conDB = conexao.conectar();
 
         HospedesDAO dao = HospedesDAO.getInstancia();
-        ArrayList<hospedes> listaHospedes = dao.listarHopesdes();
+        ArrayList<Hospedes> listaHospedes = dao.listarHopesdes();
 
         conexao.fecharConexao();
 
         String[] colunas = {"ID", "Nome", "Nome Social", "Data de Nascimento", "CPF"};
         DefaultTableModel model = new DefaultTableModel(colunas, 0);
 
-        for (hospedes h : listaHospedes) {
+        for (Hospedes h : listaHospedes) {
             Object[] rowData = {
                     h.getIdHospede(),
                     h.getNome(),

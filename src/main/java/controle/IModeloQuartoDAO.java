@@ -2,17 +2,17 @@ package controle;
 
 import java.util.ArrayList;
 
-import modelo.modeloQuarto;
+import modelo.ModeloQuarto;
 
 public interface IModeloQuartoDAO {
 
-	public int inserirModeloQuarto(modeloQuarto end);
+	public int inserirModeloQuarto(ModeloQuarto end);
 
-	public ArrayList<modeloQuarto> listarModeloQuarto();
+	public ArrayList<ModeloQuarto> listarModeloQuarto();
 
-	public int atualizarModeloQuarto(modeloQuarto end);
+	public int atualizarModeloQuarto(ModeloQuarto end);
 
-	public int removerModeloQuarto(modeloQuarto end);
+	public int removerModeloQuarto(ModeloQuarto end);
 
-	public modeloQuarto buscarModeloQuartoPorNome(String nomeModelo);
+	public ModeloQuarto buscarModeloQuartoPorNome(String nomeModelo);
 }

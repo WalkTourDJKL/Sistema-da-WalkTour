@@ -2,18 +2,18 @@ package controle;
 	
 import java.util.ArrayList;
 
-import modelo.reserva;
+import modelo.Reserva;
 
 public interface IReservaDAO {
 				
-			public int inserirReserva(reserva end);
+			public int inserirReserva(Reserva end);
 
-			public ArrayList<reserva> listarReservas();
+			public ArrayList<Reserva> listarReservas();
 
-			public int atualizarReserva(reserva end);
+			public int atualizarReserva(Reserva end);
 
-			public int removerReserva(reserva end);
+			public int removerReserva(Reserva end);
 
-			public reserva buscarReservaPorIdHospedagem(int idHospedagem);
+			public Reserva buscarReservaPorIdHospedagem(int idHospedagem);
 
 }

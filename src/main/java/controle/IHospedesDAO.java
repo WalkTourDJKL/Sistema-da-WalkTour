@@ -3,18 +3,18 @@ package controle;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import modelo.hospedes;
+import modelo.Hospedes;
 
 public interface IHospedesDAO {
 	
-	public int inserirHopesdes(hospedes end);
+	public int inserirHopesdes(Hospedes end);
 
-	public ArrayList<hospedes> listarHopesdes();
+	public ArrayList<Hospedes> listarHopesdes();
 
-	public boolean atualizarHopesdes(hospedes end);
+	public boolean atualizarHopesdes(Hospedes end);
 
-	public int removerHopesdes(hospedes end);
+	public int removerHopesdes(Hospedes end);
 
-	public hospedes buscarHopesdesPorCPF(int cpf);
+	public Hospedes buscarHopesdesPorCPF(int cpf);
 
 }

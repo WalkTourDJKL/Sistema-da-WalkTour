@@ -8,7 +8,7 @@ import java.sql.Time;
 import java.util.ArrayList; 
 import java.sql.Date; 
  
-import modelo.reserva; 
+import modelo.Reserva; 
  
 public class ReservaDAO implements IReservaDAO { 
 	 
@@ -25,7 +25,7 @@ public class ReservaDAO implements IReservaDAO {
 		return instancia;
 	} 
  
-	public int inserirReserva(reserva end) { 
+	public int inserirReserva(Reserva end) { 
 String SQL = "INSERT INTO reserva(id_hospedagem,formapag,datin,dataout, preco) VALUES (?,?,?,?,?)"; 
 		 
 		Conexao con = Conexao.getConexao(); 
@@ -52,8 +52,8 @@ String SQL = "INSERT INTO reserva(id_hospedagem,formapag,datin,dataout, preco) V
 		 
 		 
 	} 
-	public ArrayList<reserva> listarReservas() { 
-ArrayList<reserva> reserva = new ArrayList<reserva>(); 
+	public ArrayList<Reserva> listarReservas() { 
+ArrayList<Reserva> reserva = new ArrayList<Reserva>(); 
 		 
 		String SQL = "SELECT * FROM reserva"; 
 		 
@@ -66,7 +66,7 @@ ArrayList<reserva> reserva = new ArrayList<reserva>();
 			ResultSet rs = ps.executeQuery(); 
 			 
 			while (rs.next()) { 
-				reserva end = new reserva(); 
+				Reserva end = new Reserva(); 
 				 
 				Integer idHospedagem = rs.getInt("id_hospedagem"); 
 			    String formaPag = rs.getString("formapag"); 
@@ -93,7 +93,7 @@ ArrayList<reserva> reserva = new ArrayList<reserva>();
 	 
 	} 
  
-	public int atualizarReserva(reserva end) { 
+	public int atualizarReserva(Reserva end) { 
 		String SQL = "UPDATE reserva SET formPag = ?, dataIn = ?, dataOut = ?, preco = ? WHERE id_hospedagem = ?";
         
 		Conexao con = Conexao.getConexao();
@@ -120,7 +120,7 @@ ArrayList<reserva> reserva = new ArrayList<reserva>();
 		return retorno;
 	}
  
-	public int removerReserva(reserva end) { 
+	public int removerReserva(Reserva end) { 
 		String SQL = "DELETE FROM reserva WHERE id_hospedagem = ?";
 		Conexao con = Conexao.getConexao();
 
@@ -142,7 +142,7 @@ ArrayList<reserva> reserva = new ArrayList<reserva>();
 		return retorno;
 	} 
  
-	public reserva buscarReservaPorIdHospedagem(int idHospedagem) { 
+	public Reserva buscarReservaPorIdHospedagem(int idHospedagem) { 
 		// TODO Auto-generated method stub 
 		return null; 
 	} 

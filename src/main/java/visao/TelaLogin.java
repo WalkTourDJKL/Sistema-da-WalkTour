@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import controle.HospedesDAO;
-import modelo.hospedes;
+import modelo.Hospedes;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.sound.midi.SysexMessage;
@@ -136,14 +136,14 @@ public class TelaLogin extends JFrame {
 
 				} else {
 					// Cria obj Hóspede para atribuir login e senha
-					hospedes testelogin = new hospedes();
+					Hospedes testelogin = new Hospedes();
 					testelogin.setNome(nome);
 					testelogin.setNomeSocial(nome);
 					testelogin.setCpf(cpf);
 					;
 
 					// Cria uma variavel boolean login1 que verifica se há o usuário no banco
-					hospedes hospTesteLogin = hospdao.login(testelogin);
+					Hospedes hospTesteLogin = hospdao.login(testelogin);
 
 					// Se o valor retornado pela função ser true
 					if (hospTesteLogin != null) {
