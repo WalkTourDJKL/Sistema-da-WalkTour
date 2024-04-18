@@ -76,6 +76,7 @@ public class TelaCadastro extends JFrame {
 		lblNewLabel_3.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/LadoB.png")));
 
 		JLabel lblNewLabel = new JLabel("Cadastrar");
+		lblNewLabel.setForeground(new Color(52, 64, 84));
 		lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 55));
 		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setBounds(320, 50, 264, 67);

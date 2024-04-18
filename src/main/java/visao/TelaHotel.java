@@ -31,6 +31,9 @@ import java.awt.event.MouseEvent;
 import java.awt.Canvas;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaHotel extends JFrame {
 
@@ -137,5 +140,18 @@ public class TelaHotel extends JFrame {
 		lblEmail2.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblEmail2.setBounds(989, 749, 256, 40);
 		contentPane.add(lblEmail2);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaPrincipal telaprincipal = new TelaPrincipal(nome, null);
+				dispose();
+				telaprincipal.setExtendedState(MAXIMIZED_BOTH);
+				telaprincipal.setVisible(true);
+			}
+		});
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setBounds(40, 240, 90, 25);
+		contentPane.add(btnVoltar);
 	}
 }

@@ -114,9 +114,23 @@ public class TelaQuarto extends JFrame {
 		lblArcondi.setBounds(1500, 577, 99, 25);
 		contentPane.add(lblArcondi);
 
-		JLabel lblCafeMaq = new JLabel("Máquina de Cafe");
+		JLabel lblCafeMaq = new JLabel("Mï¿½quina de Cafe");
 		lblCafeMaq.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblCafeMaq.setBounds(1685, 583, 115, 14);
 		contentPane.add(lblCafeMaq);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String cidade = "teste";
+				TelaHotel telahotel = new TelaHotel(nome, cpf, cidade);
+				dispose();
+				telahotel.setExtendedState(MAXIMIZED_BOTH);
+				telahotel.setVisible(true);
+			}
+		});
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setBounds(40, 220, 90, 25);
+		contentPane.add(btnVoltar);
 	}
 }
