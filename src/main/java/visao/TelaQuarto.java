@@ -116,5 +116,15 @@ public class TelaQuarto extends JFrame {
         lblCafé.setFont(new Font("Arial", Font.PLAIN, 14));
         lblCafé.setBounds(1685, 583, 115, 14);
         contentPane.add(lblCafé);
+        
+        JLabel lblCafeManha = new JLabel("Café da Manhã ");
+        lblCafeManha.setFont(new Font("Arial", Font.PLAIN, 14));
+        lblCafeManha.setBounds(1117, 735, 115, 21);
+        contentPane.add(lblCafeManha);
+        
+        JLabel lblGratu = new JLabel("Gratuito");
+        lblGratu.setFont(new Font("Arial", Font.PLAIN, 14));
+        lblGratu.setBounds(1136, 757, 65, 14);
+        contentPane.add(lblGratu);
     }
 }
