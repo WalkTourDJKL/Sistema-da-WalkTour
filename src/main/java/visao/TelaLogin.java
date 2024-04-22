@@ -51,6 +51,8 @@ public class TelaLogin extends JFrame {
 				try {
 					TelaLogin frame = new TelaLogin();
 					frame.setVisible(true);
+					/*Não deixa ser redimensionado a tela*/
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -172,6 +174,14 @@ public class TelaLogin extends JFrame {
 		contentPane.add(lblNewLabel_1);
 
 		JButton btnNewButton_1 = new JButton("cadastre-se");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCadastro cad = new TelaCadastro();
+				dispose();
+				cad.setExtendedState(MAXIMIZED_BOTH);
+				cad.setVisible(true);
+			}
+		});
 		btnNewButton_1.setBounds(1345, 578, 120, 25);
 		btnNewButton_1.setForeground(Color.BLACK);
 		btnNewButton_1.setFont(new Font("Corbel", Font.ITALIC, 14));
@@ -183,16 +193,16 @@ public class TelaLogin extends JFrame {
 		lblNewLabel_2.setBounds(1133, 627, 430, 18);
 		lblNewLabel_2.setFont(new Font("Corbel", Font.ITALIC, 14));
 		contentPane.add(lblNewLabel_2);
-		
+		/*
 		try {
 			MaskFormatter formatterCPF = new MaskFormatter("###.###.###-##");
 			formatterCPF.setPlaceholderCharacter('_');
 			txt_digiCPF = new JFormattedTextField(formatterCPF);
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
-
+/*
 	public MaskFormatter getFormatterCPF() {
 		return formatterCPF;
 	}
@@ -200,5 +210,5 @@ public class TelaLogin extends JFrame {
 	public void setFormatterCPF(MaskFormatter formatterCPF) {
 		this.formatterCPF = formatterCPF;
 	}
-
+*/
 }

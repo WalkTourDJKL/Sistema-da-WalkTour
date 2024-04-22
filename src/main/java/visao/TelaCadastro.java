@@ -220,6 +220,14 @@ public class TelaCadastro extends JFrame {
 			contentPane.add(formattedTextFieldDataNascimento);
 			
 			JButton btnNewButton = new JButton("Faça Login");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					TelaLogin login = new TelaLogin();
+					dispose();
+					login.setExtendedState(MAXIMIZED_BOTH);
+					login.setVisible(true);
+				}
+			});
 			btnNewButton.setBounds(452, 884, 110, 23);
 			contentPane.add(btnNewButton);
 		} catch (Exception e) {

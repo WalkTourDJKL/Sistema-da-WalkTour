@@ -39,6 +39,7 @@ public class TelaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
 
 	/**
 	 * Create the frame.
@@ -47,13 +48,15 @@ public class TelaPrincipal extends JFrame {
 	 * @param cpf
 	 */
 	public TelaPrincipal(String nome, String cpf) {
+		
 		setTitle("Tela Principal");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 1920, 1090);
+		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setBounds(10, 0, 1516, 229);
@@ -72,29 +75,16 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		lbliconePerfil.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/perfil.png")));
-		lbliconePerfil.setBounds(1772, 35, 99, 95);
+		lbliconePerfil.setBounds(1262, 31, 99, 95);
 		contentPane.add(lbliconePerfil);
 
 		JLabel lblPerfil = new JLabel(nome);
 		lblPerfil.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPerfil.setFont(new Font("Corbel", Font.PLAIN, 18));
-		lblPerfil.setBounds(1363, 68, 409, 23);
+		lblPerfil.setBounds(853, 64, 409, 23);
 		contentPane.add(lblPerfil);
 
 		JPanel panel = new JPanel();
-		panel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				TelaHotel hotel = new TelaHotel(nome, cpf, null);
-				dispose();
-				hotel.setExtendedState(MAXIMIZED_BOTH);
-				hotel.setVisible(true);
-			}
-		});
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(423, 263, 300, 300);
-		contentPane.add(panel);
-		panel.setLayout(null);
 
 		JLabel lblImageCidade = new JLabel("");
 		lblImageCidade.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/Blumenau.png")));
@@ -112,23 +102,22 @@ public class TelaPrincipal extends JFrame {
 		lblEstado.setBackground(UIManager.getColor("Button.background"));
 		lblEstado.setBounds(10, 269, 160, 31);
 		panel.add(lblEstado);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.addMouseListener(new MouseAdapter() {
+		panel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade.getText();
-				TelaHotel hotel = new TelaHotel(nome, cpf,cidade);
+				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
 				dispose();
 				hotel.setExtendedState(MAXIMIZED_BOTH);
 				hotel.setVisible(true);
-				System.out.println(cidade);
 			}
 		});
-		panel_1.setLayout(null);
-		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(803, 263, 300, 300);
-		contentPane.add(panel_1);
+		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(20, 240, 300, 300);
+		contentPane.add(panel);
+		panel.setLayout(null);
+
+		JPanel panel_1 = new JPanel();
 
 		JLabel lblImageCidade_1 = new JLabel("");
 		lblImageCidade_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/SaoFranciscoDoSul.png")));
@@ -147,22 +136,23 @@ public class TelaPrincipal extends JFrame {
 		lblEstado_1.setBounds(10, 269, 160, 31);
 		panel_1.add(lblEstado_1);
 
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.addMouseListener(new MouseAdapter() {
+		panel_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade_1.getText();
-				TelaHotel hotel = new TelaHotel(nome, cpf,cidade);
+				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
 				dispose();
 				hotel.setExtendedState(MAXIMIZED_BOTH);
 				hotel.setVisible(true);
 				System.out.println(cidade);
 			}
 		});
-		panel_1_1.setLayout(null);
-		panel_1_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1.setBounds(1179, 263, 300, 300);
-		contentPane.add(panel_1_1);
+		panel_1.setLayout(null);
+		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(361, 240, 300, 300);
+		contentPane.add(panel_1);
+
+		JPanel panel_1_1 = new JPanel();
 
 		JLabel lblImageCidade_1_1 = new JLabel("");
 		lblImageCidade_1_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/BentoGoncalves.png")));
@@ -181,22 +171,23 @@ public class TelaPrincipal extends JFrame {
 		lblEstado_1_1.setBounds(10, 269, 193, 31);
 		panel_1_1.add(lblEstado_1_1);
 
-		JPanel panel_1_1_1 = new JPanel();
-		panel_1_1_1.addMouseListener(new MouseAdapter() {
+		panel_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade_1_1.getText();
-				TelaHotel hotel = new TelaHotel(nome, cpf,cidade);
+				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
 				dispose();
 				hotel.setExtendedState(MAXIMIZED_BOTH);
 				hotel.setVisible(true);
 				System.out.println(cidade);
 			}
 		});
-		panel_1_1_1.setLayout(null);
-		panel_1_1_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1_1.setBounds(423, 599, 300, 300);
-		contentPane.add(panel_1_1_1);
+		panel_1_1.setLayout(null);
+		panel_1_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1.setBounds(724, 240, 300, 300);
+		contentPane.add(panel_1_1);
+
+		JPanel panel_1_1_1 = new JPanel();
 
 		JLabel lblImageCidade_1_1_1 = new JLabel("");
 		lblImageCidade_1_1_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/Canela.png")));
@@ -215,22 +206,23 @@ public class TelaPrincipal extends JFrame {
 		lblEstado_1_1_1.setBounds(10, 269, 193, 31);
 		panel_1_1_1.add(lblEstado_1_1_1);
 
-		JPanel panel_1_1_2 = new JPanel();
-		panel_1_1_2.addMouseListener(new MouseAdapter() {
+		panel_1_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade_1_1_1.getText();
-				TelaHotel hotel = new TelaHotel(nome, cpf,cidade);
+				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
 				dispose();
 				hotel.setExtendedState(MAXIMIZED_BOTH);
 				hotel.setVisible(true);
 				System.out.println(cidade);
 			}
 		});
-		panel_1_1_2.setLayout(null);
-		panel_1_1_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1_2.setBounds(803, 599, 300, 300);
-		contentPane.add(panel_1_1_2);
+		panel_1_1_1.setLayout(null);
+		panel_1_1_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1_1.setBounds(20, 569, 300, 300);
+		contentPane.add(panel_1_1_1);
+
+		JPanel panel_1_1_2 = new JPanel();
 
 		JLabel lblImageCidade_1_1_2 = new JLabel("");
 		lblImageCidade_1_1_2.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/Gramado.png")));
@@ -248,5 +240,20 @@ public class TelaPrincipal extends JFrame {
 		lblEstado_1_1_2.setBackground(UIManager.getColor("Button.background"));
 		lblEstado_1_1_2.setBounds(10, 269, 193, 31);
 		panel_1_1_2.add(lblEstado_1_1_2);
+		panel_1_1_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String cidade = lblCidade_1_1_2.getText();
+				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
+				dispose();
+				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setVisible(true);
+				System.out.println(cidade);
+			}
+		});
+		panel_1_1_2.setLayout(null);
+		panel_1_1_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1_2.setBounds(361, 569, 300, 300);
+		contentPane.add(panel_1_1_2);
 	}
 }
