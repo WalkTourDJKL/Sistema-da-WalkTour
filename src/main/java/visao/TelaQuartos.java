@@ -97,7 +97,7 @@ public class TelaQuartos extends JFrame {
 
 		panel.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {s
+			public void mouseClicked(MouseEvent e) {
 				String tipo = lblTipoQuarto1.getText();
 				TelaQuarto quarto = new TelaQuarto(tipo);
 				dispose();
@@ -196,5 +196,10 @@ public class TelaQuartos extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnVoltar.setBounds(40, 242, 89, 23);
 		contentPane.add(btnVoltar);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/Baixo.png")));
+		lblNewLabel.setBounds(-16, 458, 1440, 418);
+		contentPane.add(lblNewLabel);
 	}
 }
