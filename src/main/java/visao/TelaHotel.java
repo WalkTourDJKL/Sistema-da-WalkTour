@@ -29,6 +29,8 @@ import javax.swing.JMenu;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSlider;
 import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Canvas;
@@ -47,90 +49,125 @@ public class TelaHotel extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param cidade 
+	 * 
+	 * @param cidade
+	 * @param hosp
+	 * @param cidade
 	 */
-	public TelaHotel() {
-        setTitle("Walktour");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 1440, 900);
-        contentPane = new JPanel();
-        contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
-        
-        JLabel lblNomeHotel = new JLabel("Walk Tour Gramado");
-        lblNomeHotel.setBounds(785, 297, 498, 40);
-        lblNomeHotel.setFont(new Font("Tahoma", Font.BOLD, 46));
-        contentPane.add(lblNomeHotel);
-        
-        JLabel lblTitulo = new JLabel("");
-        lblTitulo.setBounds(10, 0, 1063, 209);
-        lblTitulo.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/titulo.png")));
-        contentPane.add(lblTitulo);
-        
-        JLabel lblEndereço = new JLabel("");
-        lblEndereço.setBounds(701, 440, 45, 30);
-        lblEndereço.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/endereço.png")));
-        contentPane.add(lblEndereço);
-        
-        JLabel lblTelefone = new JLabel("");
-        lblTelefone.setBounds(701, 519, 46, 30);
-        lblTelefone.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/telefone.png")));
-        contentPane.add(lblTelefone);
-        
-        JLabel lblEmail = new JLabel("");
-        lblEmail.setBounds(701, 596, 46, 30);
-        lblEmail.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/email.png")));
-        contentPane.add(lblEmail);
-        
-        JLabel lblImagemMaior = new JLabel("");
-        lblImagemMaior.setBounds(61, 194, 600, 561);
-        lblImagemMaior.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/imagemMaior.png")));
-        contentPane.add(lblImagemMaior);
-        
-        JLabel lblAcademia = new JLabel("");
-        lblAcademia.setBounds(61, 710, 200, 140);
-        lblAcademia.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/academia.png")));
-        contentPane.add(lblAcademia);
-        
-        JLabel lblEntrada = new JLabel("");
-        lblEntrada.setBounds(259, 710, 200, 140);
-        lblEntrada.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/entrada.png")));
-        contentPane.add(lblEntrada);
-        
-        JLabel lblEnd = new JLabel("Rua XXXX, Nº XXX");
-        lblEnd.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblEnd.setBounds(800, 430, 256, 52);
-        contentPane.add(lblEnd);
-        
-        JLabel lblTel = new JLabel("+55 (99) 99999999");
-        lblTel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblTel.setBounds(800, 525, 256, 14);
-        contentPane.add(lblTel);
-        
-        JLabel lblEmail2 = new JLabel("XX@XX.com");
-        lblEmail2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblEmail2.setBounds(800, 589, 256, 40);
-        contentPane.add(lblEmail2);
-        
-        JLabel lbliconePerfil = new JLabel("");
-        lbliconePerfil.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/perfil.png")));
-        lbliconePerfil.setBounds(1302, 11, 99, 95);
-        contentPane.add(lbliconePerfil);
-        
-        JLabel lblNewLabel = new JLabel("User10637");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        lblNewLabel.setBounds(1211, 53, 100, 14);
-        contentPane.add(lblNewLabel);
-        
-        JLabel lblQuadra = new JLabel("");
-        lblQuadra.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/Group 57.png")));
-        lblQuadra.setBounds(457, 728, 190, 106);
-        contentPane.add(lblQuadra);
-        
-        JButton btnProcurarQuarto = new JButton("");
-        btnProcurarQuarto.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/btnBuscaQuarto.png")));
-        btnProcurarQuarto.setBounds(842, 715, 427, 61);
-        contentPane.add(btnProcurarQuarto);
-    }
+	public TelaHotel(Hospedes hosp, String cidade) {
+		setTitle("Tela Hotel de " + cidade);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 1440, 900);
+		contentPane = new JPanel();
+		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaPrincipal telaprincipal = new TelaPrincipal(hosp);
+				dispose();
+				telaprincipal.setResizable(false);
+				telaprincipal.setVisible(true);
+			}
+		});
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setBounds(10, 240, 90, 25);
+		contentPane.add(btnVoltar);
+
+		JLabel lblNomeHotel = new JLabel("Walk Tour " + cidade);
+		lblNomeHotel.setBounds(785, 297, 574, 40);
+		lblNomeHotel.setFont(new Font("Tahoma", Font.BOLD, 46));
+		contentPane.add(lblNomeHotel);
+
+		JLabel lblTitulo = new JLabel("");
+		lblTitulo.setBounds(0, 0, 1424, 229);
+		lblTitulo.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/Title.png")));
+		contentPane.add(lblTitulo);
+
+		JLabel lbliconePerfil = new JLabel("");
+		lbliconePerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaUsuario user = new TelaUsuario(hosp);
+				dispose();
+				user.setResizable(false);
+				user.setVisible(true);
+
+			}
+		});
+		lbliconePerfil.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/perfil.png")));
+		lbliconePerfil.setBounds(1302, 11, 99, 95);
+		contentPane.add(lbliconePerfil);
+
+		JLabel lblPerfil = new JLabel(hosp.getNome());
+		lblPerfil.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPerfil.setFont(new Font("Corbel", Font.PLAIN, 18));
+		lblPerfil.setBounds(853, 64, 409, 23);
+		contentPane.add(lblPerfil);
+
+		JLabel lblEndereço = new JLabel("");
+		lblEndereço.setBounds(701, 440, 45, 30);
+		lblEndereço.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/endereco.png")));
+		contentPane.add(lblEndereço);
+
+		JLabel lblTelefone = new JLabel("");
+		lblTelefone.setBounds(701, 519, 46, 30);
+		lblTelefone.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/telefone.png")));
+		contentPane.add(lblTelefone);
+
+		JLabel lblEmail = new JLabel("");
+		lblEmail.setBounds(701, 596, 46, 30);
+		lblEmail.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/email.png")));
+		contentPane.add(lblEmail);
+
+		JLabel lblImagemMaior = new JLabel("");
+		lblImagemMaior.setBounds(60, 217, 600, 561);
+		lblImagemMaior.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/imagemMaior.png")));
+		contentPane.add(lblImagemMaior);
+
+		JLabel lblAcademia = new JLabel("");
+		lblAcademia.setBounds(60, 733, 200, 140);
+		lblAcademia.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/academia.png")));
+		contentPane.add(lblAcademia);
+
+		JLabel lblEntrada = new JLabel("");
+		lblEntrada.setBounds(258, 733, 200, 140);
+		lblEntrada.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/entrada.png")));
+		contentPane.add(lblEntrada);
+
+		JLabel lblEnd = new JLabel("Rua XXXX, Nº XXX");
+		lblEnd.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblEnd.setBounds(800, 430, 256, 52);
+		contentPane.add(lblEnd);
+
+		JLabel lblTel = new JLabel("+55 (99) 99999999");
+		lblTel.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblTel.setBounds(800, 525, 256, 14);
+		contentPane.add(lblTel);
+
+		JLabel lblEmail2 = new JLabel("XX@XX.com");
+		lblEmail2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblEmail2.setBounds(800, 589, 256, 40);
+		contentPane.add(lblEmail2);
+
+		JLabel lblQuadra = new JLabel("");
+		lblQuadra.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/Group 57.png")));
+		lblQuadra.setBounds(456, 751, 190, 106);
+		contentPane.add(lblQuadra);
+
+		JButton btnProcurarQuarto = new JButton("");
+		btnProcurarQuarto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaQuartos telaquartos = new TelaQuartos(hosp, cidade);
+				dispose();
+				telaquartos.setResizable(false);
+				telaquartos.setVisible(true);
+			}
+		});
+		btnProcurarQuarto.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/btnBuscaQuarto.png")));
+		btnProcurarQuarto.setBounds(842, 715, 427, 61);
+		contentPane.add(btnProcurarQuarto);
+	}
 }

@@ -33,6 +33,8 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
+import modelo.Hospedes;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -46,12 +48,14 @@ public class TelaQuartos extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param hosp 
+	 * @param cidade 
 	 * 
 	 * @param nome
 	 * @param cpf
 	 */
 
-	public TelaQuartos(String string, Object object) {
+	public TelaQuartos(Hospedes hosp, String cidade) {
 		setTitle("Tela Principal");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -61,15 +65,18 @@ public class TelaQuartos extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblTitulo = new JLabel("");
-		lblTitulo.setBounds(10, 0, 1516, 229);
-		lblTitulo.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/titulo.png")));
+		lblTitulo.setBounds(0, 0, 1516, 229);
+		lblTitulo.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/Title.png")));
 		contentPane.add(lblTitulo);
 
 		JLabel lbliconePerfil = new JLabel("");
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
+				TelaUsuario user = new TelaUsuario(hosp);
+				dispose();
+				user.setResizable(false);
+				user.setVisible(true);
 			}
 		});
 		lbliconePerfil.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/perfil.png")));
@@ -99,9 +106,9 @@ public class TelaQuartos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String tipo = lblTipoQuarto1.getText();
-				TelaQuarto quarto = new TelaQuarto(tipo);
+				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade);
 				dispose();
-				quarto.setExtendedState(MAXIMIZED_BOTH);
+				quarto.setResizable(false);
 				quarto.setVisible(true);
 				System.out.println(tipo);
 
@@ -140,9 +147,9 @@ public class TelaQuartos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String tipo = lblTipoQuarto2.getText();
-				TelaQuarto quarto = new TelaQuarto(tipo);
+				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade);
 				dispose();
-				quarto.setExtendedState(MAXIMIZED_BOTH);
+				quarto.setResizable(false);
 				quarto.setVisible(true);
 				System.out.println(tipo);
 			}
@@ -176,9 +183,9 @@ public class TelaQuartos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String tipo = lblTipoQuarto3.getText();
-				TelaQuarto quarto = new TelaQuarto(tipo);
+				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade);
 				dispose();
-				quarto.setExtendedState(MAXIMIZED_BOTH);
+				quarto.setResizable(false);
 				quarto.setVisible(true);
 				System.out.println(tipo);
 			}
@@ -186,11 +193,10 @@ public class TelaQuartos extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * TelaPrincipal telaprincipal = new TelaPrincipal(txtNome.getText(), cpf);
-				 * dispose(); telaprincipal.setExtendedState(MAXIMIZED_BOTH);
-				 * telaprincipal.setVisible(true);
-				 */
+				TelaHotel telahotel = new TelaHotel(hosp, cidade);
+				dispose();
+				telahotel.setResizable(false);
+				telahotel.setVisible(true);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));

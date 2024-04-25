@@ -155,17 +155,17 @@ public class TelaPrincipal extends JFrame {
 		JPanel panel_1_1 = new JPanel();
 
 		JLabel lblImageCidade_1_1 = new JLabel("");
-		lblImageCidade_1_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/BentoGoncalves.png")));
+		lblImageCidade_1_1.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/BC.png")));
 		lblImageCidade_1_1.setBounds(10, 11, 280, 225);
 		panel_1_1.add(lblImageCidade_1_1);
 
-		JLabel lblCidade_1_1 = new JLabel("Bento Goncalves");
+		JLabel lblCidade_1_1 = new JLabel("Balneario Camburiu");
 		lblCidade_1_1.setFont(new Font("Corbel", Font.BOLD, 25));
 		lblCidade_1_1.setBackground(UIManager.getColor("Button.background"));
 		lblCidade_1_1.setBounds(10, 240, 229, 31);
 		panel_1_1.add(lblCidade_1_1);
 
-		JLabel lblEstado_1_1 = new JLabel("Rio Grande do Sul");
+		JLabel lblEstado_1_1 = new JLabel("Santa Catarina");
 		lblEstado_1_1.setFont(new Font("Corbel", Font.BOLD, 25));
 		lblEstado_1_1.setBackground(UIManager.getColor("Button.background"));
 		lblEstado_1_1.setBounds(10, 269, 193, 31);
@@ -255,5 +255,28 @@ public class TelaPrincipal extends JFrame {
 		panel_1_1_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1_2.setBounds(361, 569, 300, 300);
 		contentPane.add(panel_1_1_2);
+		
+		JPanel panel_1_1_3 = new JPanel();
+		panel_1_1_3.setLayout(null);
+		panel_1_1_3.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1_1_3.setBounds(724, 569, 300, 300);
+		contentPane.add(panel_1_1_3);
+		
+		JLabel lblImageCidade_1_1_3 = new JLabel("");
+		lblImageCidade_1_1_3.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/BentoGoncalves.png")));
+		lblImageCidade_1_1_3.setBounds(10, 11, 280, 225);
+		panel_1_1_3.add(lblImageCidade_1_1_3);
+		
+		JLabel lblCidade_1_1_3 = new JLabel("Bento Goncalves");
+		lblCidade_1_1_3.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblCidade_1_1_3.setBackground(UIManager.getColor("Button.background"));
+		lblCidade_1_1_3.setBounds(10, 240, 229, 31);
+		panel_1_1_3.add(lblCidade_1_1_3);
+		
+		JLabel lblEstado_1_1_3 = new JLabel("Rio Grande do Sul");
+		lblEstado_1_1_3.setFont(new Font("Corbel", Font.BOLD, 25));
+		lblEstado_1_1_3.setBackground(UIManager.getColor("Button.background"));
+		lblEstado_1_1_3.setBounds(10, 269, 193, 31);
+		panel_1_1_3.add(lblEstado_1_1_3);
 	}
 }

@@ -1,6 +1,9 @@
 package visao;
 
 import javax.swing.*;
+
+import modelo.Hospedes;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +13,8 @@ import java.awt.event.MouseEvent;
 public class TelaQuarto extends JFrame {
 	private JPanel contentPane;
 
-	public TelaQuarto(String tipo) {
-		setTitle("Walktour");
+	public TelaQuarto(String tipo, Hospedes hosp, String cidade) {
+		setTitle("Tela de quarto de " + cidade);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
@@ -20,7 +23,7 @@ public class TelaQuarto extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblTitulo = new JLabel("");
-		lblTitulo.setBounds(10, 0, 1063, 209);
+		lblTitulo.setBounds(0, 0, 1424, 234);
 		lblTitulo.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/Title.png")));
 		contentPane.add(lblTitulo);
 
@@ -28,15 +31,18 @@ public class TelaQuarto extends JFrame {
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				TelaUsuario user = new TelaUsuario(hosp);
+				dispose();
+				user.setResizable(false);
+				user.setVisible(true);
 
 			}
 		});
-		lbliconePerfil.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/perfil.png")));
+		lbliconePerfil.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/perfil.png")));
 		lbliconePerfil.setBounds(1312, 7, 99, 95);
 		contentPane.add(lbliconePerfil);
 
-		JLabel lblPerfil = new JLabel(tipo);
+		JLabel lblPerfil = new JLabel(hosp.getNome());
 		lblPerfil.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPerfil.setFont(new Font("Corbel", Font.PLAIN, 18));
 		lblPerfil.setBounds(901, 44, 409, 23);
@@ -52,9 +58,9 @@ public class TelaQuarto extends JFrame {
 		lblDescricao.setBounds(312, 754, 365, 21);
 		contentPane.add(lblDescricao);
 
-		JLabel lblNomeHotel = new JLabel("Quarto Casal Plus ");
+		JLabel lblNomeHotel = new JLabel("Quarto "+ tipo);
 		lblNomeHotel.setFont(new Font("Arial", Font.BOLD, 37));
-		lblNomeHotel.setBounds(750, 327, 345, 56);
+		lblNomeHotel.setBounds(750, 327, 583, 56);
 		contentPane.add(lblNomeHotel);
 
 		JLabel lblWifi = new JLabel("");
@@ -119,17 +125,25 @@ public class TelaQuarto extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaQuartos telaQuartos  = new TelaQuartos(lblPerfil.getText(), null);
+				TelaQuartos telaQuartos  = new TelaQuartos(hosp, cidade);
 				dispose(); 
-				telaQuartos.setExtendedState(MAXIMIZED_BOTH);
+				telaQuartos.setResizable(false);
 				telaQuartos.setVisible(true);
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVoltar.setBounds(40, 220, 90, 25);
+		btnVoltar.setBounds(10, 241, 90, 25);
 		contentPane.add(btnVoltar);
 		
 		JButton btnReservar = new JButton("");
+		btnReservar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaFinalizar telaFinalizar  = new TelaFinalizar(tipo, hosp, cidade);
+				dispose(); 
+				telaFinalizar.setResizable(false);
+				telaFinalizar.setVisible(true);
+			}
+		});
 		btnReservar.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/btnReservar.png")));
 		btnReservar.setBounds(860, 771, 463, 56);
 		contentPane.add(btnReservar);

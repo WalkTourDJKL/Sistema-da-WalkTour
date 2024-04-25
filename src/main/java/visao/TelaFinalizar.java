@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
 import controle.ReservaDAO;
+import modelo.Hospedes;
 import modelo.Reserva;
 
 public class TelaFinalizar extends JFrame {
@@ -33,8 +34,11 @@ public class TelaFinalizar extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param cidade 
+	 * @param hosp 
+	 * @param tipo 
 	 */
-	public TelaFinalizar() {
+	public TelaFinalizar(String tipo, Hospedes hosp, String cidade) {
 		setTitle("Walktour");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
