@@ -70,7 +70,6 @@ CREATE TABLE WalkTourDB.`hospedagens` (
   `forma_pag` VARCHAR(45) NOT NULL,
   `data_in` DATE NOT NULL,
   `data_out` DATE NOT NULL,
-  `preco` FLOAT NOT NULL,
   PRIMARY KEY (`id_hospedagem`));
 
 
@@ -85,6 +84,7 @@ CREATE TABLE WalkTourDB.`modelo_quarto` (
   `qtd_camas` INT NOT NULL,
   `frigobar` TINYINT NOT NULL,
   `servico_quarto` TINYINT NOT NULL,
+  `preco` INT NOT NULL,
   PRIMARY KEY (`tipo_id`));
 
 
@@ -235,26 +235,26 @@ SET @id_hospede = LAST_INSERT_ID();
 
     
     /* Nenhuma chave estrangeira */
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('dinheiro', '2088-11-11', '2046-01-12', '464.24');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('dinheiro', '2095-02-10', '1909-07-13', '383.5');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('dinheiro', '1908-05-03', '1927-04-17', '174.28');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('cartão(3x)', '2059-02-04', '1970-08-30', '200.9');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('dinheiro', '2092-10-23', '1925-08-14', '359.4');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('dinheiro', '1926-09-28', '2043-07-19', '482.72');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('boleto', '2016-01-16', '1969-02-18', '478.68');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('dinheiro', '1941-05-01', '1955-04-13', '110.42');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('cartão(3x)', '1937-10-06', '1920-04-17', '238.92');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('cartão(3x)', '2042-09-15', '1966-12-20', '459.63');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('pix', '1961-01-16', '2005-04-20', '258.3');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('boleto', '1931-04-29', '1917-01-21', '445.89');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('pix', '2014-12-04', '1954-11-07', '468.65');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('cartão(3x)', '2091-09-08', '1951-09-10', '143.17');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('cartão(3x)', '1984-02-14', '1988-01-24', '381.82');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('dinheiro', '1988-07-17', '2070-07-07', '327.34');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('pix', '2062-06-20', '1995-10-27', '259.66');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('boleto', '2053-10-18', '2021-10-18', '170.21');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('dinheiro', '2055-11-22', '1946-12-27', '418.83');
-insert into  hospedagens (forma_pag, data_in, data_out, preco) values ('pix', '2000-07-20', '2080-06-09', '509.54');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '2088-11-11', '2046-01-12');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '2095-02-10', '1909-07-13');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '1908-05-03', '1927-04-17');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '2059-02-04', '1970-08-30');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '2092-10-23', '1925-08-14');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '1926-09-28', '2043-07-19');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('boleto', '2016-01-16', '1969-02-18');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '1941-05-01', '1955-04-13');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '1937-10-06', '1920-04-17');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '2042-09-15', '1966-12-20');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('pix', '1961-01-16', '2005-04-20');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('boleto', '1931-04-29', '1917-01-21');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('pix', '2014-12-04', '1954-11-07');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '2091-09-08', '1951-09-10');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '1984-02-14', '1988-01-24');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '1988-07-17', '2070-07-07');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('pix', '2062-06-20', '1995-10-27');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('boleto', '2053-10-18', '2021-10-18');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '2055-11-22', '1946-12-27');
+insert into  hospedagens (forma_pag, data_in, data_out) values ('pix', '2000-07-20', '2080-06-09');
 SET @id_hospedagem = LAST_INSERT_ID();
 
 
@@ -265,9 +265,9 @@ SET @id_hospedagem = LAST_INSERT_ID();
     Sim = 0
     Não = 1 
     */
-	insert into modelo_quarto (nome_modelo, qtd_banheiro, qtd_camas, frigobar, servico_quarto) values ('Standard', 1, 2, 0, 1);
-	insert into modelo_quarto (nome_modelo, qtd_banheiro, qtd_camas, frigobar, servico_quarto) values ('Suite Executiva', 2, 2, 1, 1);
-	insert into modelo_quarto (nome_modelo, qtd_banheiro, qtd_camas, frigobar, servico_quarto) values ('Deluxe', 3, 3, 1, 1);
+	insert into modelo_quarto (nome_modelo, qtd_banheiro, qtd_camas, frigobar, servico_quarto, preco) values ('Standard', 1, 2, 0, 1, 350);
+	insert into modelo_quarto (nome_modelo, qtd_banheiro, qtd_camas, frigobar, servico_quarto, preco) values ('Suite Executiva', 2, 2, 1, 1, 700);
+	insert into modelo_quarto (nome_modelo, qtd_banheiro, qtd_camas, frigobar, servico_quarto, preco) values ('Deluxe', 3, 3, 1, 1, 950);
      SET @tipo_id = LAST_INSERT_ID();
     
     /* 1 chave estrangeira */
@@ -292,30 +292,6 @@ SET @id_hospedagem = LAST_INSERT_ID();
 	insert into quarto (hora_limpeza, tipo_id) values ('6:50', @tipo_id);
 	insert into quarto (hora_limpeza, tipo_id) values ('3:13', @tipo_id);
     SET @num_quarto = LAST_INSERT_ID();
-
-    
-    /* 1 chave estrangeira */
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('2:57','7:58',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('3:03','12:37',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('5:33','4:31',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('6:04','5:13',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('12:43','1:45',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('9:41','3:57',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('7:32','9:03',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('4:11','4:13',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('7:45','10:27',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('6:52','11:51',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('10:05','12:04',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('11:40','9:06',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('6:40','5:27',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('3:23','5:16',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('9:08','6:30',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('11:18','12:19',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('9:39','11:57',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('2:14','2:31',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('5:00','4:14',@endereco_id);
-	insert into hoteis(hora_checkin,hora_checkout,endereco_id)values('7:03','11:04',@endereco_id);
-    SET @hotel_id = LAST_INSERT_ID();
 
     
     /* Tabela formada por chaves estrangeiras */

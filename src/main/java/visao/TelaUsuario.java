@@ -134,7 +134,7 @@ public class TelaUsuario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaPrincipal telaprincipal = new TelaPrincipal(txtNome.getText(), cpf);
 				dispose();
-				telaprincipal.setExtendedState(MAXIMIZED_BOTH);
+				telaprincipal.setResizable(false);
 				telaprincipal.setVisible(true);
 			}
 		});

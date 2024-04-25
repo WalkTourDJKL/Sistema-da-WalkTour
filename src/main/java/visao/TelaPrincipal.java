@@ -39,7 +39,6 @@ public class TelaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	
 
 	/**
 	 * Create the frame.
@@ -48,7 +47,7 @@ public class TelaPrincipal extends JFrame {
 	 * @param cpf
 	 */
 	public TelaPrincipal(String nome, String cpf) {
-		
+
 		setTitle("Tela Principal");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -56,7 +55,6 @@ public class TelaPrincipal extends JFrame {
 		contentPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
 
 		JLabel lblTitulo = new JLabel("");
 		lblTitulo.setBounds(10, 0, 1516, 229);
@@ -69,7 +67,7 @@ public class TelaPrincipal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				TelaUsuario user = new TelaUsuario(cpf);
 				dispose();
-				user.setExtendedState(MAXIMIZED_BOTH);
+				user.setResizable(false);
 				user.setVisible(true);
 
 			}
@@ -108,7 +106,7 @@ public class TelaPrincipal extends JFrame {
 				String cidade = lblCidade.getText();
 				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
 				dispose();
-				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setResizable(false);
 				hotel.setVisible(true);
 			}
 		});
@@ -142,7 +140,7 @@ public class TelaPrincipal extends JFrame {
 				String cidade = lblCidade_1.getText();
 				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
 				dispose();
-				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setResizable(false);
 				hotel.setVisible(true);
 				System.out.println(cidade);
 			}
@@ -177,7 +175,7 @@ public class TelaPrincipal extends JFrame {
 				String cidade = lblCidade_1_1.getText();
 				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
 				dispose();
-				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setResizable(false);
 				hotel.setVisible(true);
 				System.out.println(cidade);
 			}
@@ -212,7 +210,7 @@ public class TelaPrincipal extends JFrame {
 				String cidade = lblCidade_1_1_1.getText();
 				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
 				dispose();
-				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setResizable(false);
 				hotel.setVisible(true);
 				System.out.println(cidade);
 			}
@@ -246,7 +244,7 @@ public class TelaPrincipal extends JFrame {
 				String cidade = lblCidade_1_1_2.getText();
 				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
 				dispose();
-				hotel.setExtendedState(MAXIMIZED_BOTH);
+				hotel.setResizable(false);
 				hotel.setVisible(true);
 				System.out.println(cidade);
 			}
