@@ -107,10 +107,11 @@ public class TelaFinalizar extends JFrame {
         btnNewButton_1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String dataInicio = txt_digiDataI.getText();
-                String dataFim = txt_digiDataF.getText();
+                String dataFim = txt_digiDataI.getText();
                 AbstractButton txt_digiPreco = null;
 				String preco = txt_digiPreco.getText();
                 String formaPagamento = txt_digiFormas.getText();
+                
 
                 reserva reserva = new reserva();
 
@@ -135,7 +136,7 @@ public class TelaFinalizar extends JFrame {
             }
         });
         btnNewButton_1.setBounds(1036, 607, 576, 61);
-        btnNewButton_1.setIcon(new ImageIcon(TelaFinalizar.class.getResource("/imgs/btnEntrar.png")));
+        btnNewButton_1.setIcon(new ImageIcon(TelaFinalizar.class.getResource("/imgs/btnFinalizar.png")));
         btnNewButton_1.setFont(new Font("Modern No. 20", Font.PLAIN, 20));
         contentPane1.add(btnNewButton_1);
 
@@ -153,9 +154,7 @@ public class TelaFinalizar extends JFrame {
         txt_digiDataF.setColumns(10);
          
          
-        
         ButtonGroup grupoFormasPagamento = new ButtonGroup();
-
         JRadioButton radioPIX = new JRadioButton("PIX");
         radioPIX.setBounds(1147, 515, 97, 23);
         contentPane1.add(radioPIX);
@@ -175,7 +174,7 @@ public class TelaFinalizar extends JFrame {
         lbl_forma.setFont(new Font("Corbel", Font.BOLD, 25));
         lbl_forma.setBounds(1036, 439, 576, 31);
         contentPane1.add(lbl_forma);
-        
+                
         JLabel lbl_preco = new JLabel("Preço");
         lbl_preco.setFont(new Font("Corbel", Font.BOLD, 25));
         lbl_preco.setBounds(1036, 332, 576, 31);
