@@ -141,7 +141,7 @@ public class TelaLogin extends JFrame {
 					// Se o valor retornado pela função ser true
 					if (hospTesteLogin != null) {
 						// Passa para a proxima tela
-						TelaPrincipal homepage = new TelaPrincipal(nome, cpf);
+						TelaPrincipal homepage = new TelaPrincipal(hospTesteLogin);
 						dispose();
 						homepage.setResizable(false);
 						homepage.setVisible(true);

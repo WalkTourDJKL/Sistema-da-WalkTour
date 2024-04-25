@@ -35,6 +35,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 
+import modelo.Hospedes;
+
 public class TelaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -46,7 +48,7 @@ public class TelaPrincipal extends JFrame {
 	 * @param nome
 	 * @param cpf
 	 */
-	public TelaPrincipal(String nome, String cpf) {
+	public TelaPrincipal(Hospedes hosp) {
 
 		setTitle("Tela Principal");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -65,7 +67,7 @@ public class TelaPrincipal extends JFrame {
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaUsuario user = new TelaUsuario(cpf);
+				TelaUsuario user = new TelaUsuario(hosp);
 				dispose();
 				user.setResizable(false);
 				user.setVisible(true);
@@ -76,7 +78,7 @@ public class TelaPrincipal extends JFrame {
 		lbliconePerfil.setBounds(1262, 31, 99, 95);
 		contentPane.add(lbliconePerfil);
 
-		JLabel lblPerfil = new JLabel(nome);
+		JLabel lblPerfil = new JLabel(hosp.getNome());
 		lblPerfil.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPerfil.setFont(new Font("Corbel", Font.PLAIN, 18));
 		lblPerfil.setBounds(853, 64, 409, 23);
@@ -104,7 +106,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade.getText();
-				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
+				TelaHotel hotel = new TelaHotel(hosp, cidade);
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
@@ -138,7 +140,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade_1.getText();
-				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
+				TelaHotel hotel = new TelaHotel(hosp, cidade);
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
@@ -173,7 +175,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade_1_1.getText();
-				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
+				TelaHotel hotel = new TelaHotel(hosp, cidade);
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
@@ -208,7 +210,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade_1_1_1.getText();
-				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
+				TelaHotel hotel = new TelaHotel(hosp, cidade);
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
@@ -242,7 +244,7 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade_1_1_2.getText();
-				TelaHotel hotel = new TelaHotel(nome, cpf, cidade);
+				TelaHotel hotel = new TelaHotel(hosp, cidade);
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);

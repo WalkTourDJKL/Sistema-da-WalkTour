@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Hospedes;
+
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
@@ -48,7 +51,7 @@ public class TelaHotel extends JFrame {
 	 * Create the frame.
 	 * @param cidade 
 	 */
-	public TelaHotel(String nome, String cpf, String cidade) {
+	public TelaHotel(Hospedes hosp, String cidade) {
 		setTitle("Walktour");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1920, 1090);
@@ -69,7 +72,7 @@ public class TelaHotel extends JFrame {
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaUsuario user = new TelaUsuario(cpf);
+				TelaUsuario user = new TelaUsuario(hosp);
 				dispose();
 				user.setExtendedState(MAXIMIZED_BOTH);
 				user.setVisible(true);
@@ -80,7 +83,7 @@ public class TelaHotel extends JFrame {
 		lbliconePerfil.setBounds(1772, 35, 99, 95);
 		contentPane.add(lbliconePerfil);
 
-		JLabel lblPerfil = new JLabel(nome);
+		JLabel lblPerfil = new JLabel(hosp.getNome());
 		lblPerfil.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPerfil.setFont(new Font("Corbel", Font.PLAIN, 18));
 		lblPerfil.setBounds(1363, 68, 409, 23);
@@ -144,7 +147,7 @@ public class TelaHotel extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaPrincipal telaprincipal = new TelaPrincipal(nome, null);
+				TelaPrincipal telaprincipal = new TelaPrincipal(hosp);
 				dispose();
 				telaprincipal.setExtendedState(MAXIMIZED_BOTH);
 				telaprincipal.setVisible(true);

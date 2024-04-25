@@ -42,9 +42,10 @@ public class TelaUsuario extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param cpf 
+	 * 
+	 * @param hosp
 	 */
-	public TelaUsuario(String cpf) {
+	public TelaUsuario(Hospedes hosp) {
 		Hospedes hops = new Hospedes();
 
 		hops = hospdao.passaLogado();
@@ -96,12 +97,13 @@ public class TelaUsuario extends JFrame {
 		txtNomeSc.setBounds(370, 380, 500, 38);
 		txtNomeSc.setText(hops.getNomeSocial());
 		contentPane.add(txtNomeSc);
+		/*hops.getIdHospede()*/
 
 		JButton btnAtualizar = new JButton("Atualizar");
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Hospedes hosp = new Hospedes();
-				
+
 				hosp.setIdHospede(ABORT);
 				hosp.setNome(txtNome.getText());
 				hosp.setCpf(txtCPF.getText());
@@ -115,11 +117,12 @@ public class TelaUsuario extends JFrame {
 		btnAtualizar.setBackground(new Color(240, 240, 240));
 		btnAtualizar.setBounds(40, 500, 250, 35);
 		contentPane.add(btnAtualizar);
-		
+
 		JButton btnDeletar = new JButton("Deletar");
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				hospdao.removerHopesdes(hosp);		
+
 			}
 		});
 		btnDeletar.setForeground(Color.BLACK);
@@ -128,11 +131,11 @@ public class TelaUsuario extends JFrame {
 		btnDeletar.setBackground(new Color(240, 240, 240));
 		btnDeletar.setBounds(370, 500, 250, 35);
 		contentPane.add(btnDeletar);
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaPrincipal telaprincipal = new TelaPrincipal(txtNome.getText(), cpf);
+				TelaPrincipal telaprincipal = new TelaPrincipal(hosp);
 				dispose();
 				telaprincipal.setResizable(false);
 				telaprincipal.setVisible(true);
