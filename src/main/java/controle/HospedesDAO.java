@@ -106,11 +106,11 @@ public class HospedesDAO implements IHospedesDAO {
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL);
 
-			ps.setString(2, end.getNome());
-			ps.setString(3, end.getNomeSocial());
-			ps.setDate(4, end.getDtNasc());
-			ps.setString(5, end.getCpf());
-			ps.setInt(6, end.getIdHospede());
+			ps.setString(1, end.getNome());
+			ps.setString(2, end.getNomeSocial());
+			ps.setDate(3, end.getDtNasc());
+			ps.setString(4, end.getCpf());
+			ps.setInt(5, end.getIdHospede());
 
 			retorn = ps.executeUpdate();
 

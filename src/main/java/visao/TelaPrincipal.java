@@ -59,15 +59,15 @@ public class TelaPrincipal extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblTitulo = new JLabel("");
-		lblTitulo.setBounds(10, 0, 1516, 229);
+		lblTitulo.setBounds(0, 0, 1516, 229);
 		lblTitulo.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/Title.png")));
 		contentPane.add(lblTitulo);
 
 		JLabel lbliconePerfil = new JLabel("");
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaUsuario user = new TelaUsuario(hosp);
+				int tVolt = 1; 
+				TelaUsuario user = new TelaUsuario(hosp, null, null,tVolt);
 				dispose();
 				user.setResizable(false);
 				user.setVisible(true);
@@ -113,7 +113,7 @@ public class TelaPrincipal extends JFrame {
 			}
 		});
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(20, 240, 300, 300);
+		panel.setBounds(208, 232, 300, 300);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -149,7 +149,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		panel_1.setLayout(null);
 		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(361, 240, 300, 300);
+		panel_1.setBounds(549, 232, 300, 300);
 		contentPane.add(panel_1);
 
 		JPanel panel_1_1 = new JPanel();
@@ -184,7 +184,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		panel_1_1.setLayout(null);
 		panel_1_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1.setBounds(724, 240, 300, 300);
+		panel_1_1.setBounds(896, 232, 300, 300);
 		contentPane.add(panel_1_1);
 
 		JPanel panel_1_1_1 = new JPanel();
@@ -219,7 +219,7 @@ public class TelaPrincipal extends JFrame {
 		});
 		panel_1_1_1.setLayout(null);
 		panel_1_1_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1_1.setBounds(20, 569, 300, 300);
+		panel_1_1_1.setBounds(208, 561, 300, 300);
 		contentPane.add(panel_1_1_1);
 
 		JPanel panel_1_1_2 = new JPanel();
@@ -253,13 +253,13 @@ public class TelaPrincipal extends JFrame {
 		});
 		panel_1_1_2.setLayout(null);
 		panel_1_1_2.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1_2.setBounds(361, 569, 300, 300);
+		panel_1_1_2.setBounds(549, 561, 300, 300);
 		contentPane.add(panel_1_1_2);
 		
 		JPanel panel_1_1_3 = new JPanel();
 		panel_1_1_3.setLayout(null);
 		panel_1_1_3.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1_1_3.setBounds(724, 569, 300, 300);
+		panel_1_1_3.setBounds(896, 561, 300, 300);
 		contentPane.add(panel_1_1_3);
 		
 		JLabel lblImageCidade_1_1_3 = new JLabel("");

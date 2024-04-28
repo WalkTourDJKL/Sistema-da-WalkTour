@@ -21,9 +21,12 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import controle.DetaHospDAO;
 import controle.ReservaDAO;
+import modelo.DetalhesHospedagem;
 import modelo.Hospedes;
 import modelo.Reserva;
+import javax.swing.SwingConstants;
 
 public class TelaFinalizar extends JFrame {
 
@@ -34,12 +37,14 @@ public class TelaFinalizar extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param cidade 
-	 * @param hosp 
-	 * @param tipo 
+	 * 
+	 * @param cidade
+	 * @param hosp
+	 * @param tipo
+	 * @param preco
 	 */
-	public TelaFinalizar(String tipo, Hospedes hosp, String cidade) {
-		setTitle("Walktour");
+	public TelaFinalizar(String tipo, Hospedes hosp, String cidade, String preco) {
+		setTitle("Tela de finalizar reserva");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane1 = new JPanel();
@@ -47,12 +52,31 @@ public class TelaFinalizar extends JFrame {
 		setContentPane(contentPane1);
 		contentPane1.setLayout(null);
 
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaQuarto telaQuarto = new TelaQuarto(tipo, hosp, cidade);
+				dispose();
+				telaQuarto.setResizable(false);
+				telaQuarto.setVisible(true);
+			}
+		});
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setBounds(983, 108, 90, 25);
+		contentPane1.add(btnVoltar);
+
+		JLabel lblR = new JLabel("R$"+preco+".00");
+		lblR.setHorizontalAlignment(SwingConstants.LEFT);
+		lblR.setFont(new Font("Arial", Font.BOLD, 37));
+		lblR.setBounds(983, 385, 473, 38);
+		contentPane1.add(lblR);
+
 		JLabel lblNewLabel = new JLabel("Finalizar Reserva");
 		lblNewLabel.setBounds(983, 47, 402, 67);
 		lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 55));
 		contentPane1.add(lblNewLabel);
 
-		JLabel lbl_dataI = new JLabel("Data Inicio");
+		JLabel lbl_dataI = new JLabel("Data de incio da reserva");
 		lbl_dataI.setBounds(983, 144, 422, 31);
 		lbl_dataI.setFont(new Font("Corbel", Font.BOLD, 25));
 		contentPane1.add(lbl_dataI);
@@ -68,7 +92,7 @@ public class TelaFinalizar extends JFrame {
 		contentPane1.add(radioBoleto);
 		grupoFormasPagamento.add(radioBoleto);
 
-		JRadioButton radioCartao = new JRadioButton("Cartão de Crédito");
+		JRadioButton radioCartao = new JRadioButton("Cartao de Credito");
 		radioCartao.setBounds(1094, 489, 160, 23);
 		contentPane1.add(radioCartao);
 		grupoFormasPagamento.add(radioCartao);
@@ -86,48 +110,70 @@ public class TelaFinalizar extends JFrame {
 
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String dataInicio = txt_digiDataI.getText();
-				String dataFim = txt_digiDataF.getText();
-				String formaPagamento = "";
+		    public void actionPerformed(ActionEvent e) {
+		        String dataInicio = txt_digiDataI.getText();
+		        String dataFim = txt_digiDataF.getText();
+		        String formaPagamento = "";
 
-				if (radioPIX.isSelected()) {
-					formaPagamento = "PIX";
-				} else if (radioBoleto.isSelected()) {
-					formaPagamento = "Boleto Parcelado";
-				} else if (radioCartao.isSelected()) {
-					formaPagamento = "Cartão de Crédito";
-				}
+		        if (radioPIX.isSelected()) {
+		            formaPagamento = "PIX";
+		        } else if (radioBoleto.isSelected()) {
+		            formaPagamento = "Boleto Parcelado";
+		        } else if (radioCartao.isSelected()) {
+		            formaPagamento = "Cartao de Credito";
+		        }
 
-				Reserva reserva = new Reserva();
+		        Reserva reserva = new Reserva();
 
-				SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-				try {
-					java.util.Date dataFormatadaUtil = formatador.parse(dataInicio);
-					java.sql.Date dataFormatadaSql = new java.sql.Date(dataFormatadaUtil.getTime());
-					reserva.setDataIn(dataFormatadaSql);
+		        SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+		        try {
+		            java.util.Date dataFormatadaUtil = formatador.parse(dataInicio);
+		            java.sql.Date dataFormatadaSql = new java.sql.Date(dataFormatadaUtil.getTime());
+		            reserva.setDataIn(dataFormatadaSql);
 
-					dataFormatadaUtil = formatador.parse(dataFim);
-					java.sql.Date dataFormatada2Sql = new java.sql.Date(dataFormatadaUtil.getTime());
-					reserva.setDataOut(dataFormatada2Sql);
+		            dataFormatadaUtil = formatador.parse(dataFim);
+		            java.sql.Date dataFormatada2Sql = new java.sql.Date(dataFormatadaUtil.getTime());
+		            reserva.setDataOut(dataFormatada2Sql);
 
-				} catch (ParseException ex) {
-					ex.printStackTrace();
-				}
+		        } catch (ParseException ex) {
+		            ex.printStackTrace();
+		        }
 
-				reserva.setFormaPag(formaPagamento);
+		        reserva.setFormaPag(formaPagamento);
+		        reserva.setPreco(Integer.valueOf(preco));
 
-				ReservaDAO dao = ReservaDAO.getInstancia();
-				dao.inserirReserva(reserva);
-			}
+		        ReservaDAO dao = ReservaDAO.getInstancia();
+		        int idReserva = dao.inserirReserva(reserva);
+		        
+		        if (idReserva != Integer.MIN_VALUE) {
+		            DetalhesHospedagem detalhes = new DetalhesHospedagem();
+		            detalhes.setIdHospedagem(idReserva);
+		            detalhes.setIdHospede(hosp.getIdHospede());  
+
+		            DetaHospDAO detalhesDAO = DetaHospDAO.getInstancia();
+		            int idDetalhes = detalhesDAO.inserirDetalhes(detalhes);
+
+		            if (idDetalhes != Integer.MIN_VALUE) {
+		                TelaSucesso sucesso = new TelaSucesso();
+		                sucesso.setResizable(false);
+		                sucesso.setLocationRelativeTo(null);
+		                sucesso.setVisible(true);
+		            } else {
+		                
+		            }
+		        } else {
+		            
+		        }
+		    }
 		});
+
 		btnNewButton_1.setBounds(923, 660, 491, 61);
 		btnNewButton_1.setIcon(new ImageIcon(TelaFinalizar.class.getResource("/imgs/btnFinalizar.png")));
 		btnNewButton_1.setFont(new Font("Modern No. 20", Font.PLAIN, 20));
 		contentPane1.add(btnNewButton_1);
 
-		JLabel lbl_dataF = new JLabel("Data Fim");
-		lbl_dataF.setBounds(983, 245, 576, 31);
+		JLabel lbl_dataF = new JLabel("Data de fim da reserva");
+		lbl_dataF.setBounds(983, 245, 431, 31);
 		lbl_dataF.setFont(new Font("Corbel", Font.BOLD, 25));
 		contentPane1.add(lbl_dataF);
 
@@ -144,10 +190,10 @@ public class TelaFinalizar extends JFrame {
 
 		JLabel lbl_forma = new JLabel("Formas de Pagamento");
 		lbl_forma.setFont(new Font("Corbel", Font.BOLD, 25));
-		lbl_forma.setBounds(983, 451, 576, 31);
+		lbl_forma.setBounds(983, 451, 431, 31);
 		contentPane1.add(lbl_forma);
 
-		JLabel lbl_preco = new JLabel("Preço");
+		JLabel lbl_preco = new JLabel("Preco:");
 		lbl_preco.setFont(new Font("Corbel", Font.BOLD, 25));
 		lbl_preco.setBounds(983, 344, 576, 31);
 		contentPane1.add(lbl_preco);

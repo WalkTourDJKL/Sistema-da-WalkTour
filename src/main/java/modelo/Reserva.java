@@ -7,6 +7,7 @@ public class Reserva {
 	private String formaPag;
 	private Date dataIn;
 	private Date dataOut;
+	private int preco;
 
 	public int getIdHospedagem() {
 		return idHospedagem;
@@ -38,6 +39,14 @@ public class Reserva {
 
 	public void setDataOut(Date dataOut) {
 		this.dataOut = dataOut;
+	}
+
+	public int getPreco() {
+		return preco;
+	}
+
+	public void setPreco(int preco) {
+		this.preco = preco;
 	}
 
 }

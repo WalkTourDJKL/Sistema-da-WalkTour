@@ -77,7 +77,8 @@ public class TelaHotel extends JFrame {
 		contentPane.add(btnVoltar);
 
 		JLabel lblNomeHotel = new JLabel("Walk Tour " + cidade);
-		lblNomeHotel.setBounds(785, 297, 574, 40);
+		lblNomeHotel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNomeHotel.setBounds(701, 297, 723, 40);
 		lblNomeHotel.setFont(new Font("Tahoma", Font.BOLD, 46));
 		contentPane.add(lblNomeHotel);
 
@@ -88,9 +89,9 @@ public class TelaHotel extends JFrame {
 
 		JLabel lbliconePerfil = new JLabel("");
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaUsuario user = new TelaUsuario(hosp);
+				int tVolt = 2; 
+				TelaUsuario user = new TelaUsuario(hosp,null ,cidade,tVolt);
 				dispose();
 				user.setResizable(false);
 				user.setVisible(true);
@@ -107,10 +108,10 @@ public class TelaHotel extends JFrame {
 		lblPerfil.setBounds(853, 64, 409, 23);
 		contentPane.add(lblPerfil);
 
-		JLabel lblEndereço = new JLabel("");
-		lblEndereço.setBounds(701, 440, 45, 30);
-		lblEndereço.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/endereco.png")));
-		contentPane.add(lblEndereço);
+		JLabel lblEndereco = new JLabel("");
+		lblEndereco.setBounds(701, 440, 45, 30);
+		lblEndereco.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/endereco.png")));
+		contentPane.add(lblEndereco);
 
 		JLabel lblTelefone = new JLabel("");
 		lblTelefone.setBounds(701, 519, 46, 30);

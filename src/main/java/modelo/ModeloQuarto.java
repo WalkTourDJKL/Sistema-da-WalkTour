@@ -5,6 +5,7 @@ public class ModeloQuarto {
 	private String nomeModelo;
 	private int qtdBanheiro;
 	private int qtdCamas;
+	private String preco;
 	private boolean frigobar;
 	private boolean servicoQuarto;
 
@@ -55,4 +56,18 @@ public class ModeloQuarto {
 	public void setServicoQuarto(boolean servicoQuarto) {
 		this.servicoQuarto = servicoQuarto;
 	}
+
+	public String getPreco() {
+		return preco;
+	}
+
+	public void setPreco(String preco) {
+		this.preco = preco;
+	}
+
+	public ModeloQuarto buscPreco(ModeloQuarto testelogin) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

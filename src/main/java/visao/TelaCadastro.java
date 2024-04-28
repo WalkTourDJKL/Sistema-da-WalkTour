@@ -82,7 +82,7 @@ public class TelaCadastro extends JFrame {
 		contentPane.add(lbl_Nome);
 
 		txtDigiteSeuNomeSocial = new JTextField();
-		txtDigiteSeuNomeSocial.setToolTipText("Digite seu Nome Social se você tiver");
+		txtDigiteSeuNomeSocial.setToolTipText("Digite seu Nome Social se voce tiver");
 		txtDigiteSeuNomeSocial.setForeground(new Color(102, 112, 133));
 		txtDigiteSeuNomeSocial.setFont(new Font("Corbel", Font.ITALIC, 15));
 		txtDigiteSeuNomeSocial.setColumns(10);
@@ -185,9 +185,9 @@ public class TelaCadastro extends JFrame {
 
 		try {
 			MaskFormatter formatter = new MaskFormatter("####-##-##");
-			formatter.setPlaceholderCharacter('_'); // Define um caractere de espaço reservado
+			formatter.setPlaceholderCharacter('_'); 
 			formattedTextFieldDataNascimento = new JFormattedTextField(formatter);
-			formattedTextFieldDataNascimento.setBounds(10, 424, 458, 35); // Ajuste conforme necessário
+			formattedTextFieldDataNascimento.setBounds(10, 424, 458, 35); 
 			contentPane.add(formattedTextFieldDataNascimento);
 
 			JLabel lblNewLabel_1 = new JLabel("Ja tem Cadastro?");
@@ -201,7 +201,7 @@ public class TelaCadastro extends JFrame {
 			lblNewLabel_2.setBounds(26, 785, 480, 40);
 			contentPane.add(lblNewLabel_2);
 
-			JButton btnNewButton = new JButton("Faça Login");
+			JButton btnNewButton = new JButton("Faca Login");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					TelaLogin log = new TelaLogin();

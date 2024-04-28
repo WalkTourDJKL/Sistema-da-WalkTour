@@ -100,7 +100,6 @@ public class TelaLogin extends JFrame {
 
 		try {
 			MaskFormatter formatterCPF = new MaskFormatter("###.###.###-##");
-			formatterCPF.setPlaceholder("_");
 			formattedTextFieldCPF = new JFormattedTextField(formatterCPF);
 			formattedTextFieldCPF.setToolTipText("Digite seu CPF...");
 			formattedTextFieldCPF.setForeground(new Color(102, 112, 133));
@@ -124,6 +123,7 @@ public class TelaLogin extends JFrame {
 					txt_digiNome.setText(null);
 					formattedTextFieldCPF.setText(null);
 					TelaErro erro = new TelaErro();
+					erro.setResizable(false);
 					erro.setLocationRelativeTo(null);
 					erro.setVisible(true);
 
@@ -141,16 +141,18 @@ public class TelaLogin extends JFrame {
 					// Se o valor retornado pela função ser true
 					if (hospTesteLogin != null) {
 						// Passa para a proxima tela
+						TelaSucesso sucesso = new TelaSucesso();
 						TelaPrincipal homepage = new TelaPrincipal(hospTesteLogin);
+						sucesso.setResizable(false);
+						sucesso.setLocationRelativeTo(null);
+						sucesso.setVisible(true);
 						dispose();
 						homepage.setResizable(false);
 						homepage.setVisible(true);
-						TelaSucesso sucesso = new TelaSucesso();
-						sucesso.setLocationRelativeTo(null);
-						sucesso.setVisible(true);
 
 					} else {
 						TelaErro erro = new TelaErro();
+						erro.setResizable(false);
 						erro.setLocationRelativeTo(null);
 						erro.setVisible(true);
 					}
@@ -165,7 +167,7 @@ public class TelaLogin extends JFrame {
 		btnNewButton.setFont(new Font("Modern No. 20", Font.PLAIN, 20));
 		contentPane.add(btnNewButton);
 
-		JLabel lblNewLabel_1 = new JLabel("Não tem cadastro? ");
+		JLabel lblNewLabel_1 = new JLabel("Nao tem cadastro? ");
 		lblNewLabel_1.setBounds(1075, 525, 109, 18);
 		lblNewLabel_1.setFont(new Font("Corbel", Font.ITALIC, 14));
 		contentPane.add(lblNewLabel_1);

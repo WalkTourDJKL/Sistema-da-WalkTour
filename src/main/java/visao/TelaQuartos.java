@@ -56,7 +56,7 @@ public class TelaQuartos extends JFrame {
 	 */
 
 	public TelaQuartos(Hospedes hosp, String cidade) {
-		setTitle("Tela Principal");
+		setTitle("Tela de selecao de quartos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
@@ -71,9 +71,9 @@ public class TelaQuartos extends JFrame {
 
 		JLabel lbliconePerfil = new JLabel("");
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaUsuario user = new TelaUsuario(hosp);
+				int tVolt = 3;
+				TelaUsuario user = new TelaUsuario(hosp, null, cidade, tVolt);
 				dispose();
 				user.setResizable(false);
 				user.setVisible(true);
@@ -86,7 +86,7 @@ public class TelaQuartos extends JFrame {
 		JPanel panel = new JPanel();
 
 		JLabel lblImageQuarto1 = new JLabel("");
-		lblImageQuarto1.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/quartoSolteiro (2)_resized.jpg")));
+		lblImageQuarto1.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/quartoStandardMini.png")));
 		lblImageQuarto1.setBounds(10, 11, 280, 225);
 		panel.add(lblImageQuarto1);
 
@@ -111,6 +111,7 @@ public class TelaQuartos extends JFrame {
 				quarto.setResizable(false);
 				quarto.setVisible(true);
 				System.out.println(tipo);
+				System.out.println();
 
 			}
 		});
@@ -127,7 +128,7 @@ public class TelaQuartos extends JFrame {
 		contentPane.add(panel_1);
 
 		JLabel lblImageCidade_1 = new JLabel("");
-		lblImageCidade_1.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/quarto_resized.png")));
+		lblImageCidade_1.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/quartoSuite ExecutivaMini.png")));
 		lblImageCidade_1.setBounds(10, 11, 280, 225);
 		panel_1.add(lblImageCidade_1);
 
@@ -137,7 +138,7 @@ public class TelaQuartos extends JFrame {
 		lblQuarto2.setBounds(10, 240, 229, 31);
 		panel_1.add(lblQuarto2);
 
-		JLabel lblTipoQuarto2 = new JLabel("Suíte Executiva");
+		JLabel lblTipoQuarto2 = new JLabel("Suite Executiva");
 		lblTipoQuarto2.setFont(new Font("Corbel", Font.BOLD, 25));
 		lblTipoQuarto2.setBackground(UIManager.getColor("Button.background"));
 		lblTipoQuarto2.setBounds(10, 269, 180, 31);
@@ -164,7 +165,7 @@ public class TelaQuartos extends JFrame {
 		contentPane.add(panel_1_1);
 
 		JLabel lblImageQuarto3 = new JLabel("");
-		lblImageQuarto3.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/quartoFt_resized.jpg")));
+		lblImageQuarto3.setIcon(new ImageIcon(TelaQuartos.class.getResource("/imgs/quartoDeluxeMini.png")));
 		lblImageQuarto3.setBounds(10, 11, 280, 225);
 		panel_1_1.add(lblImageQuarto3);
 

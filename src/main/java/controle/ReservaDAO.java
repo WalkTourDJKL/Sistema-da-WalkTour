@@ -27,7 +27,7 @@ public class ReservaDAO implements IReservaDAO {
 	}
 
 	public int inserirReserva(Reserva end) {
-		String SQL = "INSERT INTO hospedagens(forma_pag, data_in, data_out) VALUES (?,?,?)";
+		String SQL = "INSERT INTO hospedagens(forma_pag, data_in, data_out, preco) VALUES (?,?,?,?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -39,6 +39,7 @@ public class ReservaDAO implements IReservaDAO {
 			ps.setString(1, end.getFormaPag());
 			ps.setDate(2, end.getDataIn());
 			ps.setDate(3, end.getDataOut());
+			ps.setInt(4, end.getPreco());
 			
 			ps.executeUpdate();
 
@@ -57,13 +58,14 @@ public class ReservaDAO implements IReservaDAO {
 	}
 
 	public ArrayList<Reserva> listarReservas() {
-		ArrayList<Reserva> reserva = new ArrayList<Reserva>();
-
-		String SQL = "SELECT * FROM hospedagem";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
-
+		
+		ArrayList<Reserva> reserva = new ArrayList<Reserva>();
+		
+		String SQL = "SELECT * FROM hospedagens";
+		
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL);
 
@@ -76,12 +78,15 @@ public class ReservaDAO implements IReservaDAO {
 				String formaPag = rs.getString("forma_pag");
 				Date dataIn = rs.getDate("data_in");
 				Date dataOut = rs.getDate("data_out");
+				Integer preco = rs.getInt("preco");
 
 				end.setIdHospedagem(idHospedagem);
 				end.setFormaPag(formaPag);
 				end.setDataIn(dataIn);
 				end.setDataOut(dataOut);
-
+				end.setPreco(preco);
+				
+				reserva.add(end);
 			}
 
 		} catch (Exception e) {
@@ -95,7 +100,7 @@ public class ReservaDAO implements IReservaDAO {
 	}
 
 	public int atualizarReserva(Reserva end) {
-		String SQL = "UPDATE reserva SET formPag = ?, dataIn = ?, dataOut = ?, preco = ? WHERE id_hospedagem = ?";
+		String SQL = "UPDATE hospedagens SET forma_pag = ?, data_in = ?, data_out = ? WHERE id_hospedagem = ?";
 
 		Conexao con = Conexao.getConexao();
 
@@ -108,6 +113,7 @@ public class ReservaDAO implements IReservaDAO {
 			ps.setString(1, end.getFormaPag());
 			ps.setDate(2, end.getDataIn());
 			ps.setDate(3, end.getDataOut());
+			ps.setInt(4, end.getIdHospedagem());
 
 			retorno = ps.executeUpdate();
 
@@ -121,7 +127,7 @@ public class ReservaDAO implements IReservaDAO {
 	}
 
 	public int removerReserva(Reserva end) {
-		String SQL = "DELETE FROM reserva WHERE id_hospedagem = ?";
+		String SQL = "DELETE FROM hospedagens WHERE id_hospedagem = ?";
 		Conexao con = Conexao.getConexao();
 
 		Connection conBD = con.conectar();

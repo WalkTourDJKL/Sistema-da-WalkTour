@@ -70,6 +70,7 @@ CREATE TABLE WalkTourDB.`hospedagens` (
   `forma_pag` VARCHAR(45) NOT NULL,
   `data_in` DATE NOT NULL,
   `data_out` DATE NOT NULL,
+  `preco` INT NOT NULL,
   PRIMARY KEY (`id_hospedagem`));
 
 
@@ -105,20 +106,16 @@ CREATE TABLE WalkTourDB.`quarto` (
 -- Table WalkTourDB.`detalhes_hospedagem`
 -- -----------------------------------------------------
 CREATE TABLE WalkTourDB.`detalhes_hospedagem` (
-  `id_detalhe_hospedagem` INT NOT NULL ,
+  `id_detalhe_hospedagem` INT NOT NULL AUTO_INCREMENT,
   `id_hospedagem` INT NOT NULL ,
-  `id_hospede` INT NOT NULL ,
-  `num_quarto` INT NOT NULL ,
-  PRIMARY KEY (`id_detalhe_hospedagem`, `id_hospedagem`, `id_hospede`, `num_quarto`),
+  `id_hospede` INT NOT NULL,
+  PRIMARY KEY (`id_detalhe_hospedagem`, `id_hospedagem`, `id_hospede`),
   CONSTRAINT `fk_hospedagens_has_hospedes_hospedagens1`
     FOREIGN KEY (`id_hospedagem`)
     REFERENCES WalkTourDB.`hospedagens` (`id_hospedagem`),
   CONSTRAINT `fk_hospedagens_has_hospedes_hospedes1`
     FOREIGN KEY (`id_hospede`)
-    REFERENCES WalkTourDB.`hospedes` (`id_hospede`),
-  CONSTRAINT `fk_hospedagens_has_hospedes_quarto1`
-    FOREIGN KEY (`num_quarto`)
-    REFERENCES WalkTourDB.`quarto` (`num_quarto`)
+    REFERENCES WalkTourDB.`hospedes` (`id_hospede`)
     );
 
     
@@ -233,33 +230,6 @@ insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Eartha', 'Yoshi
 insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Chlo', 'Desmond', '1935-07-22', '39102928415');
 SET @id_hospede = LAST_INSERT_ID();
 
-    
-    /* Nenhuma chave estrangeira */
-insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '2088-11-11', '2046-01-12');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '2095-02-10', '1909-07-13');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '1908-05-03', '1927-04-17');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '2059-02-04', '1970-08-30');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '2092-10-23', '1925-08-14');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '1926-09-28', '2043-07-19');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('boleto', '2016-01-16', '1969-02-18');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '1941-05-01', '1955-04-13');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '1937-10-06', '1920-04-17');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '2042-09-15', '1966-12-20');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('pix', '1961-01-16', '2005-04-20');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('boleto', '1931-04-29', '1917-01-21');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('pix', '2014-12-04', '1954-11-07');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '2091-09-08', '1951-09-10');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('cartão(3x)', '1984-02-14', '1988-01-24');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '1988-07-17', '2070-07-07');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('pix', '2062-06-20', '1995-10-27');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('boleto', '2053-10-18', '2021-10-18');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('dinheiro', '2055-11-22', '1946-12-27');
-insert into  hospedagens (forma_pag, data_in, data_out) values ('pix', '2000-07-20', '2080-06-09');
-SET @id_hospedagem = LAST_INSERT_ID();
-
-
-
-    
     /* Organizar o resto da tabela */
     /*
     Sim = 0
@@ -293,29 +263,6 @@ SET @id_hospedagem = LAST_INSERT_ID();
 	insert into quarto (hora_limpeza, tipo_id) values ('3:13', @tipo_id);
     SET @num_quarto = LAST_INSERT_ID();
 
-    
-    /* Tabela formada por chaves estrangeiras */
-    
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (1,  @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (2,  @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (3,  @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (4,  @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (5,  @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (6,  @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (7,  @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (8,  @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (9,  @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (10, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (11, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (12, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (13, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (14, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (16, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (15, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (17, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (19, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (18, @id_hospedagem, @id_hospede,@num_quarto);
-	insert into detalhes_hospedagem (id_detalhe_hospedagem, id_hospedagem, id_hospede, num_quarto) values (20, @id_hospedagem, @id_hospede,@num_quarto);
 -- -----------------------------------------------------
 -- Selects em cada tabela
 -- -----------------------------------------------------
@@ -327,7 +274,6 @@ SET @id_hospedagem = LAST_INSERT_ID();
     SELECT * FROM hospedagens ORDER BY id_hospedagem;
     SELECT * FROM modelo_quarto ORDER BY tipo_id;
     SELECT * FROM quarto ORDER BY num_quarto;
-    SELECT * FROM hoteis ORDER BY hotel_id;
     SELECT * FROM detalhes_hospedagem ORDER BY id_detalhe_hospedagem;
     
 
