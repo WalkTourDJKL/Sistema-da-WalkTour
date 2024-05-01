@@ -128,13 +128,30 @@ public class TelaPontosTur extends JFrame {
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					PontosTur pt = new PontosTur();
-					pt.setHoraAbre(Time.valueOf(txtHoraAbre.getText() + ":00"));
-					pt.setHoraFecha(Time.valueOf(txtHoraFecha.getText() + ":00"));
-					pt.setPreco(Float.parseFloat(txtPreco.getText()));
-					dao.inserirPontoTur(pt);
-					atualizarTabela();
-					limparCampos();
+					try {
+						String preco = txtPreco.getText().replace(",", ".");
+						String dataA = txtHoraAbre.getText() + ":00";
+						String dataF = txtHoraFecha.getText() + ":00";
+						pt.setHoraAbre(Time.valueOf(dataA));
+						pt.setHoraFecha(Time.valueOf(dataF));
+						pt.setPreco(Float.parseFloat(preco));
+						int resultado = dao.inserirPontoTur(pt);
+						if (resultado > 0) {
+							TelaSucesso sucesso = new TelaSucesso();
+							sucesso.setResizable(false);
+							sucesso.setLocationRelativeTo(null);
+							sucesso.setVisible(true);
+							atualizarTabela();
+							limparCampos();
+						} else {
+							TelaErro erro = new TelaErro();
+							erro.setResizable(false);
+							erro.setLocationRelativeTo(null);
+							erro.setVisible(true);
+						}
+					} catch (NumberFormatException ex) {
+
+					}
 				} catch (Exception ex) {
 				}
 
