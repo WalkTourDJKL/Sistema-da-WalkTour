@@ -19,42 +19,44 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO {
 		}
 		return instancia;
 	}
-	
+
 	public ModeloQuarto precoAchado = null;
 
-	public int inserirModeloQuarto(ModeloQuarto end) {
-		String SQL = "INSERT INTO modelo_quarto(nome_modelo,qtd_banheiro,qtd_camas,frigobar,servico_quarto,preco) VALUES (?,?,?,?,?,?,?)";
-
+	public int inserirModeloQuarto(ModeloQuarto modelo) {
+		// SQL sem a coluna 'tipo_id' que é autoincrementada
+		String SQL = "INSERT INTO modelo_quarto(nome_modelo, qtd_banheiro, qtd_camas, frigobar, servico_quarto, preco) VALUES (?, ?, ?, ?, ?, ?)";
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
-
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
-			PreparedStatement ps = conDB.prepareStatement(SQL);
+			// Preparando o comando SQL e informando que queremos recuperar chaves primárias
+			// geradas
+			PreparedStatement ps = conDB.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, end.getTipoId());
-			ps.setString(2, end.getNomeModelo());
-			ps.setInt(3, end.getQtdBanheiro());
-			ps.setInt(4, end.getQtdCamas());
-			ps.setBoolean(5, end.isFrigobar());
-			ps.setBoolean(6, end.isServicoQuarto());
-			ps.setString(7, end.getPreco());
+			ps.setString(1, modelo.getNomeModelo());
+			ps.setInt(2, modelo.getQtdBanheiro());
+			ps.setInt(3, modelo.getQtdCamas());
+			ps.setBoolean(4, modelo.isFrigobar());
+			ps.setBoolean(5, modelo.isServicoQuarto());
+			ps.setString(6, modelo.getPreco());
 
-			ps.executeUpdate();
+			int affectedRows = ps.executeUpdate();
 
-			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				chavePrimariaGerada = rs.getInt(1);
+			// Verificando se foram inseridas linhas e recuperando a chave gerada
+			if (affectedRows > 0) {
+				ResultSet rs = ps.getGeneratedKeys();
+				if (rs.next()) {
+					chavePrimariaGerada = rs.getInt(1); // Obtém a chave primária gerada
+				}
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			con.fecharConexao();
 		}
 
-		return chavePrimariaGerada;
+		return chavePrimariaGerada; // Retorna o ID gerado ou -1 se houver erro
 	}
 
 	public ArrayList<ModeloQuarto> listarModeloQuarto() {
@@ -102,7 +104,7 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO {
 	}
 
 	public boolean atualizarModeloQuarto(ModeloQuarto end) {
-		String SQL = "UPDATE modeloQuarto SET nomeModelo = ?, qtdBanheiro = ?, qtdCamas = ?, frigobar = ?, servicoQuarto = ?, preco = ? WHERE tipo_id = ?";
+		String SQL = "UPDATE modelo_quarto SET nome_modelo = ?, qtd_banheiro = ?, qtd_camas = ?, frigobar = ?, servico_quarto = ?, preco = ? WHERE tipo_id = ?";
 
 		Conexao con = Conexao.getConexao();
 
@@ -118,6 +120,8 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO {
 			ps.setInt(3, end.getQtdCamas());
 			ps.setBoolean(4, end.isFrigobar());
 			ps.setBoolean(5, end.isServicoQuarto());
+			ps.setString(6, end.getPreco());
+			ps.setInt(7, end.getTipoId());
 
 			retorno = ps.executeUpdate();
 
@@ -131,7 +135,7 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO {
 	}
 
 	public int removerModeloQuarto(ModeloQuarto end) {
-		String SQL = "DELETE modelo_quarto WHERE tipo_id = ?";
+		String SQL = "DELETE FROM modelo_quarto WHERE tipo_id = ?";
 
 		Conexao con = Conexao.getConexao();
 
@@ -157,39 +161,36 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
-	
 	public ModeloQuarto buscPreco(ModeloQuarto mQ) {
-	    precoAchado = null;
-	    Conexao con = Conexao.getConexao();
-	    Connection conDB = con.conectar();
+		precoAchado = null;
+		Conexao con = Conexao.getConexao();
+		Connection conDB = con.conectar();
 
-	    String SQL = "SELECT * FROM modelo_quarto WHERE nome_modelo = ?";
-	    try {
-	        PreparedStatement ps = conDB.prepareStatement(SQL);
-	        ps.setString(1, mQ.getNomeModelo());
-	        ResultSet rs = ps.executeQuery();
+		String SQL = "SELECT * FROM modelo_quarto WHERE nome_modelo = ?";
+		try {
+			PreparedStatement ps = conDB.prepareStatement(SQL);
+			ps.setString(1, mQ.getNomeModelo());
+			ResultSet rs = ps.executeQuery();
 
-	        if (rs.next()) {
-	            ModeloQuarto mQuar = new ModeloQuarto();
-	            mQuar.setTipoId(rs.getInt("tipo_id"));
-	            mQuar.setNomeModelo(rs.getString("nome_modelo"));
-	            mQuar.setQtdBanheiro(rs.getInt("qtd_banheiro"));
-	            mQuar.setQtdCamas(rs.getInt("qtd_camas"));
-	            mQuar.setFrigobar(rs.getBoolean("frigobar"));
-	            mQuar.setServicoQuarto(rs.getBoolean("servico_quarto"));
-	            mQuar.setPreco(rs.getString("preco"));
+			if (rs.next()) {
+				ModeloQuarto mQuar = new ModeloQuarto();
+				mQuar.setTipoId(rs.getInt("tipo_id"));
+				mQuar.setNomeModelo(rs.getString("nome_modelo"));
+				mQuar.setQtdBanheiro(rs.getInt("qtd_banheiro"));
+				mQuar.setQtdCamas(rs.getInt("qtd_camas"));
+				mQuar.setFrigobar(rs.getBoolean("frigobar"));
+				mQuar.setServicoQuarto(rs.getBoolean("servico_quarto"));
+				mQuar.setPreco(rs.getString("preco"));
 
-	            precoAchado = mQuar;
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        con.fecharConexao();
-	    }
-	    return precoAchado;
+				precoAchado = mQuar;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		return precoAchado;
 	}
-
 
 }
