@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 
@@ -25,26 +26,35 @@ public class pontosTurDAO implements IpontosTurDAO {
 	}
 
 	public int inserirPontoTur(PontosTur end) {
-		String SQL = "INSERT INTO pontos_tur(ponto_id,horaabre,horafecha,preco VALUES (?,?,?,?)";
+		String SQL = "INSERT INTO pontos_tur(hora_abre, hora_fecha, preco, endereco_id) VALUES (?,?,?,?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
 
+		int chavePrimariaGerada = Integer.MIN_VALUE;
+
 		try {
-			PreparedStatement ps = conDB.prepareStatement(SQL);
+			PreparedStatement ps = conDB.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, end.getPontoId());
-			ps.setTime(2, end.getHoraAbre());
-			ps.setTime(3, end.getHoraFecha());
-			ps.setFloat(4, end.getPreco());
+			ps.setTime(1, end.getHoraAbre());
+			ps.setTime(2, end.getHoraFecha());
+			ps.setFloat(3, end.getPreco());
+			ps.setInt(4, 2);
 
-			ps.executeUpdate();
+			int affectedRows = ps.executeUpdate();
+			if (affectedRows > 0) {
+				try (ResultSet rs = ps.getGeneratedKeys()) {
+					if (rs.next()) {
+						chavePrimariaGerada = rs.getInt(1);
+					}
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			con.fecharConexao();
 		}
-		return 0;
+		return chavePrimariaGerada;
 
 	}
 
@@ -88,27 +98,26 @@ public class pontosTurDAO implements IpontosTurDAO {
 	}
 
 	public int atualizarPontosTur(PontosTur end) {
-	    String SQL = "UPDATE pontos_tur SET hora_abre = ?, hora_fecha = ?, preco = ? WHERE ponto_id = ?";
-	    Conexao con = Conexao.getConexao();
-	    Connection conBD = con.conectar();
-	    int retorno = 0;
+		String SQL = "UPDATE pontos_tur SET hora_abre = ?, hora_fecha = ?, preco = ? WHERE ponto_id = ?";
+		Conexao con = Conexao.getConexao();
+		Connection conBD = con.conectar();
+		int retorno = 0;
 
-	    try {
-	        PreparedStatement ps = conBD.prepareStatement(SQL);
-	        ps.setTime(1, end.getHoraAbre());
-	        ps.setTime(2, end.getHoraFecha());
-	        ps.setFloat(3, end.getPreco());
-	        ps.setInt(4, end.getPontoId());
+		try {
+			PreparedStatement ps = conBD.prepareStatement(SQL);
+			ps.setTime(1, end.getHoraAbre());
+			ps.setTime(2, end.getHoraFecha());
+			ps.setFloat(3, end.getPreco());
+			ps.setInt(4, end.getPontoId());
 
-	        retorno = ps.executeUpdate();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        con.fecharConexao();
-	    }
-	    return retorno;
+			retorno = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			con.fecharConexao();
+		}
+		return retorno;
 	}
-
 
 	public int removerPontosTur(PontosTur end) {
 		String SQL = "DELETE FROM pontos_tur WHERE ponto_id = ?";
