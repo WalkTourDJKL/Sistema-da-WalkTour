@@ -23,14 +23,22 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO {
 	public ModeloQuarto precoAchado = null;
 
 	public int inserirModeloQuarto(ModeloQuarto modelo) {
+<<<<<<< HEAD
 		// SQL sem a coluna 'tipo_id' que Ã© autoincrementada
+=======
+		// SQL sem a coluna 'tipo_id' que é autoincrementada
+>>>>>>> 0e85260bf0a49b3ab828726a1ab8e2ba4d2930a2
 		String SQL = "INSERT INTO modelo_quarto(nome_modelo, qtd_banheiro, qtd_camas, frigobar, servico_quarto, preco) VALUES (?, ?, ?, ?, ?, ?)";
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
 		int chavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
+<<<<<<< HEAD
 			// Preparando o comando SQL e informando que queremos recuperar chaves primÃ¡rias
+=======
+			// Preparando o comando SQL e informando que queremos recuperar chaves primárias
+>>>>>>> 0e85260bf0a49b3ab828726a1ab8e2ba4d2930a2
 			// geradas
 			PreparedStatement ps = conDB.prepareStatement(SQL, PreparedStatement.RETURN_GENERATED_KEYS);
 
@@ -47,7 +55,11 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO {
 			if (affectedRows > 0) {
 				ResultSet rs = ps.getGeneratedKeys();
 				if (rs.next()) {
+<<<<<<< HEAD
 					chavePrimariaGerada = rs.getInt(1); // ObtÃ©m a chave primÃ¡ria gerada
+=======
+					chavePrimariaGerada = rs.getInt(1); // Obtém a chave primária gerada
+>>>>>>> 0e85260bf0a49b3ab828726a1ab8e2ba4d2930a2
 				}
 			}
 		} catch (SQLException e) {
@@ -193,4 +205,8 @@ public class ModeloQuartoDAO implements IModeloQuartoDAO {
 		return precoAchado;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0e85260bf0a49b3ab828726a1ab8e2ba4d2930a2

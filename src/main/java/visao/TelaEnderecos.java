@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
+
 import controle.EnderecoDAO;
 import modelo.Endereco;
 import javax.swing.JLabel;
@@ -15,15 +17,18 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class TelaEventos extends JFrame {
+public class TelaEnderecos extends JFrame {
 
 	private JPanel contentPane;
 	private EnderecoDAO dao = EnderecoDAO.getInstancia();
@@ -39,7 +44,7 @@ public class TelaEventos extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaEventos frame = new TelaEventos();
+					TelaEnderecos frame = new TelaEnderecos();
 					frame.setVisible(true);
 					frame.setResizable(false);
 				} catch (Exception e) {
@@ -49,7 +54,7 @@ public class TelaEventos extends JFrame {
 		});
 	}
 
-	public TelaEventos() {
+	public TelaEnderecos() {
 
 		Endereco endereco = new Endereco();
 		setTitle("Tela de Eventos");
@@ -77,7 +82,7 @@ public class TelaEventos extends JFrame {
 		contentPane.add(scrollPane);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(TelaEventos.class.getResource("/imgs/Title.png")));
+		lblNewLabel.setIcon(new ImageIcon(TelaEnderecos.class.getResource("/imgs/Title.png")));
 		lblNewLabel.setBounds(0, 0, 1435, 231);
 		contentPane.add(lblNewLabel);
 
@@ -237,11 +242,15 @@ public class TelaEventos extends JFrame {
 		contentPane.add(btnDeletar);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaEventos.class.getResource("/imgs/ladoD.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(TelaEnderecos.class.getResource("/imgs/ladoD.png")));
 		lblNewLabel_1.setBounds(723, 0, 712, 1089);
 		contentPane.add(lblNewLabel_1);
-
-		txtCep = new JTextField();
+		try {
+			MaskFormatter mascaraCep = new MaskFormatter("#####-###");
+			txtCep = new JFormattedTextField(mascaraCep);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		txtCep.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtCep.setColumns(10);
 		txtCep.setBounds(239, 263, 500, 38);

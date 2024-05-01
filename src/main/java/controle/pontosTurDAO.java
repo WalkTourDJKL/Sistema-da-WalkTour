@@ -25,7 +25,7 @@ public class pontosTurDAO implements IpontosTurDAO {
 	}
 
 	public int inserirPontoTur(PontosTur end) {
-		String SQL = "INSERT INTO pontosTur(ponto_id,horaabre,horafecha,preco,nomepontotur) VALUES (?,?,?,?,?)";
+		String SQL = "INSERT INTO pontos_tur(ponto_id,horaabre,horafecha,preco VALUES (?,?,?,?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -37,7 +37,6 @@ public class pontosTurDAO implements IpontosTurDAO {
 			ps.setTime(2, end.getHoraAbre());
 			ps.setTime(3, end.getHoraFecha());
 			ps.setFloat(4, end.getPreco());
-			ps.setString(5, end.getNomePontoTur());
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -52,7 +51,7 @@ public class pontosTurDAO implements IpontosTurDAO {
 	public ArrayList<PontosTur> listarPontoTur() {
 		ArrayList<PontosTur> pontosTur = new ArrayList<PontosTur>();
 
-		String SQL = "SELECT * FROM pontosTur";
+		String SQL = "SELECT * FROM pontos_tur";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -66,16 +65,15 @@ public class pontosTurDAO implements IpontosTurDAO {
 				PontosTur end = new PontosTur();
 
 				Integer pontoId = rs.getInt("ponto_id");
-				Time horaAbre = rs.getTime("horaabre");
-				Time horaFecha = rs.getTime("horafecha");
+				Time horaAbre = rs.getTime("hora_abre");
+				Time horaFecha = rs.getTime("hora_fecha");
 				Float preco = rs.getFloat("preco");
-				String nomePontoTur = rs.getString("nomepontotur");
 
 				end.setPontoId(pontoId);
 				end.setHoraAbre(horaAbre);
 				end.setHoraFecha(horaFecha);
 				end.setPreco(preco);
-				end.setNomePontoTur(nomePontoTur);
+				pontosTur.add(end);
 
 			}
 
@@ -90,33 +88,30 @@ public class pontosTurDAO implements IpontosTurDAO {
 	}
 
 	public int atualizarPontosTur(PontosTur end) {
-		String SQL = "UPDATE pontosTur SET pontoId = ?, horaAbre = ?, horaFecha = ?, preco = ?, nomePontoTur = ? WHERE ponto_id = ?";
-		Conexao con = Conexao.getConexao();
+	    String SQL = "UPDATE pontos_tur SET hora_abre = ?, hora_fecha = ?, preco = ? WHERE ponto_id = ?";
+	    Conexao con = Conexao.getConexao();
+	    Connection conBD = con.conectar();
+	    int retorno = 0;
 
-		Connection conBD = con.conectar();
+	    try {
+	        PreparedStatement ps = conBD.prepareStatement(SQL);
+	        ps.setTime(1, end.getHoraAbre());
+	        ps.setTime(2, end.getHoraFecha());
+	        ps.setFloat(3, end.getPreco());
+	        ps.setInt(4, end.getPontoId());
 
-		int retorno = 0;
-
-		try {
-			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setTime(1, end.getHoraAbre());
-			ps.setTime(2, end.getHoraFecha());
-			ps.setFloat(3, end.getPreco());
-			ps.setString(4, end.getNomePontoTur());
-
-			retorno = ps.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			con.fecharConexao();
-		}
-
-		return retorno;
+	        retorno = ps.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        con.fecharConexao();
+	    }
+	    return retorno;
 	}
 
+
 	public int removerPontosTur(PontosTur end) {
-		String SQL = "DELETE FROM pontosTur WHERE ponto_id = ?";
+		String SQL = "DELETE FROM pontos_tur WHERE ponto_id = ?";
 		Conexao con = Conexao.getConexao();
 
 		Connection conBD = con.conectar();
