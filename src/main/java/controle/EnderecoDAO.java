@@ -3,6 +3,8 @@ package controle;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import modelo.Endereco;
@@ -23,39 +25,43 @@ public class EnderecoDAO implements IEnderecoDAO {
 	}
 
 	public int inserirEndereco(Endereco end) {
-		String SQL = "INSERT INTO endereco (cep,cidade,estado,pais) VALUES (?,?,?,?,?)";
+	    String SQL = "INSERT INTO enderecos (cep, cidade, estado, pais) VALUES (?, ?, ?, ?)";
 
-		Conexao con = Conexao.getConexao();
-		Connection conDB = con.conectar();
+	    Conexao con = Conexao.getConexao();
+	    Connection conDB = con.conectar();
 
-		int chavePrimariaGerada = Integer.MIN_VALUE;
+	    int chavePrimariaGerada = Integer.MIN_VALUE;
 
-		try {
-			PreparedStatement ps = conDB.prepareStatement(SQL);
+	    try {
+	        PreparedStatement ps = conDB.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setString(1, end.getCep());
-			ps.setString(2, end.getCidade());
-			ps.setString(3, end.getEstado());
-			ps.setString(4, end.getPais());
+	        ps.setString(1, end.getCep());
+	        ps.setString(2, end.getCidade());
+	        ps.setString(3, end.getEstado());
+	        ps.setString(4, end.getPais());
 
-			ResultSet rs = ps.executeQuery();
-			if (rs != null) {
-				chavePrimariaGerada = rs.getInt(1);
-			}
+	        int affectedRows = ps.executeUpdate();
+	        if (affectedRows > 0) {
+	            try (ResultSet rs = ps.getGeneratedKeys()) {
+	                if (rs.next()) {
+	                    chavePrimariaGerada = rs.getInt(1);
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        con.fecharConexao();
+	    }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			con.fecharConexao();
-		}
-
-		return chavePrimariaGerada;
+	    return chavePrimariaGerada;
 	}
+
 
 	public ArrayList<Endereco> listarEndereco() {
 		ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
 
-		String SQL = "SELECT * FROM endereco";
+		String SQL = "SELECT * FROM enderecos";
 
 		Conexao con = Conexao.getConexao(); // Pegou a conexão do banco de dados
 		Connection conDB = con.conectar(); // Se conectou realmente ao banco de dados
@@ -78,6 +84,7 @@ public class EnderecoDAO implements IEnderecoDAO {
 				end.setCidade(cidade);
 				end.setEstado(estado);
 				end.setPais(pais);
+				enderecos.add(end);
 
 			}
 		} catch (Exception e) {
@@ -90,7 +97,7 @@ public class EnderecoDAO implements IEnderecoDAO {
 	}
 
 	public int atualizarEndereco(Endereco end) {
-		String SQL = "UPDATE endereco SET cep = ?, cidade = ?, estado = ?, pais = ? WHERE endereco_id = ?";
+		String SQL = "UPDATE enderecos SET cep = ?, cidade = ?, estado = ?, pais = ? WHERE endereco_id = ?";
 
 		Conexao con = Conexao.getConexao();
 
@@ -104,6 +111,7 @@ public class EnderecoDAO implements IEnderecoDAO {
 			ps.setString(2, end.getCidade());
 			ps.setString(3, end.getEstado());
 			ps.setString(4, end.getPais());
+			ps.setInt(5, end.getEnderecoId());
 
 			retorno = ps.executeUpdate();
 
@@ -117,7 +125,7 @@ public class EnderecoDAO implements IEnderecoDAO {
 	}
 
 	public int removerEndereco(Endereco end) {
-		String SQL = "DELETE FROM endereco WHERE endereco_id = ?";
+		String SQL = "DELETE FROM enderecos WHERE endereco_id = ?";
 
 		Conexao con = Conexao.getConexao();
 
