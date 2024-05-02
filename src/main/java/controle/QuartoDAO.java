@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class QuartoDAO implements IQuartoDAO {
 
 	}
 
-	public static QuartoDAO getInstancia1() {
+	public static QuartoDAO getInstancia() {
 		if (instancia == null) {
 			instancia = new QuartoDAO();
 		}
@@ -26,26 +27,33 @@ public class QuartoDAO implements IQuartoDAO {
 	}
 
 	public int inserirQuarto(Quarto end) {
-		String SQL = "INSERT INTO quarto(numquarto,horalimpeza,servicoquarto,tipo_id) VALUES (?,?,?,?)";
+		String SQL = "INSERT INTO quarto(hora_limpeza,tipo_id) VALUES (?,?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
+		int chavePrimariaGerada = Integer.MIN_VALUE;
 
 		try {
-			PreparedStatement ps = conDB.prepareStatement(SQL);
+			PreparedStatement ps = conDB.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1, end.getNumQuarto());
-			ps.setTime(2, end.getHoraLimpeza());
-			ps.setBoolean(3, end.isServicoQuarto());
-			ps.setInt(4, end.getTipoId());
+			ps.setTime(1, end.getHoraLimpeza());
+			ps.setInt(2, end.getTipoId());
 
-			ps.executeUpdate();
+			int affectedRows = ps.executeUpdate();
+			if (affectedRows > 0) {
+				try (ResultSet rs = ps.getGeneratedKeys()) {
+					if (rs.next()) {
+						chavePrimariaGerada = rs.getInt(1);
+					}
+				}
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			con.fecharConexao();
 		}
-		return 0;
+
+		return chavePrimariaGerada;
 
 	}
 
@@ -65,15 +73,14 @@ public class QuartoDAO implements IQuartoDAO {
 			while (rs.next()) {
 				Quarto end = new Quarto();
 
-				Integer numQuarto = rs.getInt("numquarto");
-				Time horaLimpeza = rs.getTime("horalimpeza");
-				Boolean servicoQuarto = rs.getBoolean("servicoquarto");
+				Integer numQuarto = rs.getInt("num_quarto");
+				Time horaLimpeza = rs.getTime("hora_limpeza");
 				Integer tipoId = rs.getInt("tipo_id");
 
 				end.setNumQuarto(numQuarto);
 				end.setHoraLimpeza(horaLimpeza);
-				end.setServicoQuarto(servicoQuarto);
 				end.setTipoId(tipoId);
+				quarto.add(end);
 
 			}
 
@@ -88,7 +95,7 @@ public class QuartoDAO implements IQuartoDAO {
 	}
 
 	public int atualizarQuarto(Quarto end) {
-		String SQL = "UPDATE quarto SET numQuarto = ?, horaLimpeza = ?, servicoQuarto = ? WHERE tipo_id = ?";
+		String SQL = "UPDATE quarto SET hora_limpeza = ?, tipo_id = ?  WHERE num_quarto = ?  ";
 
 		Conexao con = Conexao.getConexao();
 
@@ -98,9 +105,10 @@ public class QuartoDAO implements IQuartoDAO {
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, end.getNumQuarto());
-			ps.setTime(2, end.getHoraLimpeza());
-			ps.setBoolean(3, end.isServicoQuarto());
+			
+			ps.setTime(1, end.getHoraLimpeza());
+			ps.setInt(2, end.getTipoId());
+			ps.setInt(3, end.getNumQuarto());
 
 			retorno = ps.executeUpdate();
 
@@ -114,7 +122,7 @@ public class QuartoDAO implements IQuartoDAO {
 	}
 
 	public int removerQuarto(Quarto end) {
-		String SQL = "DELETE FROM quarto WHERE tipo_id = ?";
+		String SQL = "DELETE FROM quarto WHERE num_quarto = ?";
 
 		Conexao con = Conexao.getConexao();
 
@@ -141,9 +149,6 @@ public class QuartoDAO implements IQuartoDAO {
 		return null;
 	}
 
-	public static QuartoDAO getInstancia() {
-		return instancia;
-	}
 
 	public static void setInstancia(QuartoDAO instancia) {
 		QuartoDAO.instancia = instancia;
