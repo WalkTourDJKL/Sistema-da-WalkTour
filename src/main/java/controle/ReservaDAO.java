@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.time.LocalDate;
 import java.sql.Date;
-
 import modelo.Reserva;
 
 public class ReservaDAO implements IReservaDAO {
@@ -37,10 +37,10 @@ public class ReservaDAO implements IReservaDAO {
 			PreparedStatement ps = conDB.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, end.getFormaPag());
-			ps.setDate(2, end.getDataIn());
-			ps.setDate(3, end.getDataOut());
+			ps.setDate(2, Date.valueOf(end.getDataIn()));
+			ps.setDate(3, Date.valueOf(end.getDataOut()));
 			ps.setInt(4, end.getPreco());
-			
+
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -61,11 +61,11 @@ public class ReservaDAO implements IReservaDAO {
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
-		
+
 		ArrayList<Reserva> reserva = new ArrayList<Reserva>();
-		
+
 		String SQL = "SELECT * FROM hospedagens";
-		
+
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL);
 
@@ -76,8 +76,8 @@ public class ReservaDAO implements IReservaDAO {
 
 				Integer idHospedagem = rs.getInt("id_hospedagem");
 				String formaPag = rs.getString("forma_pag");
-				Date dataIn = rs.getDate("data_in");
-				Date dataOut = rs.getDate("data_out");
+				LocalDate dataIn = rs.getDate("data_in").toLocalDate();
+				LocalDate dataOut = rs.getDate("data_out").toLocalDate();
 				Integer preco = rs.getInt("preco");
 
 				end.setIdHospedagem(idHospedagem);
@@ -85,7 +85,7 @@ public class ReservaDAO implements IReservaDAO {
 				end.setDataIn(dataIn);
 				end.setDataOut(dataOut);
 				end.setPreco(preco);
-				
+
 				reserva.add(end);
 			}
 
@@ -111,8 +111,8 @@ public class ReservaDAO implements IReservaDAO {
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
 			ps.setString(1, end.getFormaPag());
-			ps.setDate(2, end.getDataIn());
-			ps.setDate(3, end.getDataOut());
+			ps.setDate(2, Date.valueOf(end.getDataIn()));
+			ps.setDate(3, Date.valueOf(end.getDataOut()));
 			ps.setInt(4, end.getIdHospedagem());
 
 			retorno = ps.executeUpdate();

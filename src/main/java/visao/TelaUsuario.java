@@ -81,11 +81,11 @@ public class TelaUsuario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		table = new JTable();
+		/*table = new JTable();
 		atualizarTabela(hosp, h1);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(40, 619, 584, 231);
-		contentPane.add(scrollPane);
+		contentPane.add(scrollPane);*/
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/Title.png")));
@@ -148,7 +148,7 @@ public class TelaUsuario extends JFrame {
 				Date dataNascimento = convertStringToDate(txtDtNsc.getText());
 				if (dataNascimento == null) {
 					JOptionPane.showMessageDialog(null,
-							"Data de nascimento inválida. Por favor, use o formato aaaa-mm-dd.");
+							"Data de nascimento invï¿½lida. Por favor, use o formato aaaa-mm-dd.");
 					return;
 				}
 
@@ -158,7 +158,7 @@ public class TelaUsuario extends JFrame {
 				hosp.setNomeSocial(txtNomeSc.getText());
 				hosp.setDtNasc(dataNascimento);
 				hospdao.atualizarHopesdes(hosp);
-				atualizarTabela(hosp, h1);
+				//atualizarTabela(hosp, h1);
 			}
 		});
 		btnAtualizar.setForeground(Color.BLACK);
@@ -231,7 +231,7 @@ public class TelaUsuario extends JFrame {
 			java.util.Date date = formatter.parse(dateString);
 			return new java.sql.Date(date.getTime());
 		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Formato de data inválido. Use o formato yyyy-MM-dd.");
+			JOptionPane.showMessageDialog(null, "Formato de data invï¿½lido. Use o formato yyyy-MM-dd.");
 			return null;
 		}
 	}
@@ -255,8 +255,8 @@ public class TelaUsuario extends JFrame {
 			while (rs.next()) {
 				Reserva r = new Reserva();
 				r.setFormaPag(rs.getString("forma_pag"));
-				r.setDataIn(rs.getDate("data_in"));
-				r.setDataOut(rs.getDate("data_out"));
+				//r.setDataIn(rs.getDate("data_in"));
+				//r.setDataOut(rs.getDate("data_out"));
 				r.setPreco(rs.getInt("preco"));
 				r.setIdHospedagem(rs.getInt("id_hospedagem"));
 				reserva.add(r);
@@ -364,7 +364,7 @@ public class TelaUsuario extends JFrame {
 	        DetalhesHospedagem detalhe = new DetalhesHospedagem();
 	        detalhe.setIdDetalheHospedagem(idDetalheHospedagem);
 
-	        // Remover detalhes específicos
+	        // Remover detalhes especï¿½ficos
 	        detalhesDAO.removerDetalhes(detalhe);
 
 	        // Remover a reserva
@@ -387,7 +387,7 @@ public class TelaUsuario extends JFrame {
 			TelaEditReserva edit = new TelaEditReserva(formaPag,dataIn,dataOut,idHospedagem);
 			edit.setResizable(false);
 			edit.setVisible(true);
-			System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data Início: " + dataIn + ", Data Fim: "
-					+ dataOut + ", Preço: " + preco);
+			System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data Inï¿½cio: " + dataIn + ", Data Fim: "
+					+ dataOut + ", Preï¿½o: " + preco);
 		}
 	}

@@ -15,11 +15,15 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import controle.DetaHospDAO;
 import controle.ReservaDAO;
@@ -31,8 +35,8 @@ import javax.swing.SwingConstants;
 public class TelaFinalizar extends JFrame {
 
 	private JPanel contentPane1;
-	private JFormattedTextField txt_digiDataF;
-	private JFormattedTextField txt_digiDataI;
+	private JTextField txt_digiDataF;
+	private JTextField txt_digiDataI;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -65,7 +69,7 @@ public class TelaFinalizar extends JFrame {
 		btnVoltar.setBounds(983, 108, 90, 25);
 		contentPane1.add(btnVoltar);
 
-		JLabel lblR = new JLabel("R$"+preco+".00");
+		JLabel lblR = new JLabel("R$" + preco + ".00");
 		lblR.setHorizontalAlignment(SwingConstants.LEFT);
 		lblR.setFont(new Font("Arial", Font.BOLD, 37));
 		lblR.setBounds(983, 385, 473, 38);
@@ -98,7 +102,7 @@ public class TelaFinalizar extends JFrame {
 		grupoFormasPagamento.add(radioCartao);
 
 		try {
-			MaskFormatter mascaraData = new MaskFormatter("####-##-##");
+			MaskFormatter mascaraData = new MaskFormatter("##/##/####");
 			txt_digiDataI = new JFormattedTextField(mascaraData);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -110,61 +114,85 @@ public class TelaFinalizar extends JFrame {
 
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String dataInicio = txt_digiDataI.getText();
-		        String dataFim = txt_digiDataF.getText();
-		        String formaPagamento = "";
+			public void actionPerformed(ActionEvent e) {
+				String dataInicio = txt_digiDataI.getText();
+				String dataFim = txt_digiDataF.getText();
+				String formaPagamento = "";
 
-		        if (radioPIX.isSelected()) {
-		            formaPagamento = "PIX";
-		        } else if (radioBoleto.isSelected()) {
-		            formaPagamento = "Boleto Parcelado";
-		        } else if (radioCartao.isSelected()) {
-		            formaPagamento = "Cartao de Credito";
-		        }
+				if (radioPIX.isSelected()) {
+					formaPagamento = "PIX";
+				} else if (radioBoleto.isSelected()) {
+					formaPagamento = "Boleto Parcelado";
+				} else if (radioCartao.isSelected()) {
+					formaPagamento = "Cartao de Credito";
+				}
 
-		        Reserva reserva = new Reserva();
+				Reserva reserva = new Reserva();
 
-		        SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-		        try {
-		            java.util.Date dataFormatadaUtil = formatador.parse(dataInicio);
-		            java.sql.Date dataFormatadaSql = new java.sql.Date(dataFormatadaUtil.getTime());
-		            reserva.setDataIn(dataFormatadaSql);
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 
-		            dataFormatadaUtil = formatador.parse(dataFim);
-		            java.sql.Date dataFormatada2Sql = new java.sql.Date(dataFormatadaUtil.getTime());
-		            reserva.setDataOut(dataFormatada2Sql);
+				String dataI = txt_digiDataI.getText();
+				if (dataI.length() == 0) {
+					JOptionPane.showMessageDialog(null, "Campo Data de Entrada obrigatório!");
+					return;
+				}
 
-		        } catch (ParseException ex) {
-		            ex.printStackTrace();
-		        }
+				MaskFormatter mascaradataI = null;
+				try {
+					mascaradataI = new MaskFormatter("##/##/####");
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				txt_digiDataI = new JFormattedTextField(mascaradataI);
+				contentPane1.add(txt_digiDataI);
+				txt_digiDataI.setColumns(10);
 
-		        reserva.setFormaPag(formaPagamento);
-		        reserva.setPreco(Integer.valueOf(preco));
+				String dataF = txt_digiDataF.getText();
+				if (dataF.length() == 0) {
+					JOptionPane.showMessageDialog(null, "Campo Data de Saída obrigatório!");
+					return;
+				}
+				MaskFormatter mascaradataF = null;
+				try {
+					mascaradataF = new MaskFormatter("##/##/####");
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				txt_digiDataF = new JFormattedTextField(mascaradataF);
+				contentPane1.add(txt_digiDataF);
+				txt_digiDataF.setColumns(10);
 
-		        ReservaDAO dao = ReservaDAO.getInstancia();
-		        int idReserva = dao.inserirReserva(reserva);
-		        
-		        if (idReserva != Integer.MIN_VALUE) {
-		            DetalhesHospedagem detalhes = new DetalhesHospedagem();
-		            detalhes.setIdHospedagem(idReserva);
-		            detalhes.setIdHospede(hosp.getIdHospede());  
+				LocalDate dtI = LocalDate.parse(dataI, formatter);
+				LocalDate dtF = LocalDate.parse(dataF, formatter);
 
-		            DetaHospDAO detalhesDAO = DetaHospDAO.getInstancia();
-		            int idDetalhes = detalhesDAO.inserirDetalhes(detalhes);
+				reserva.setDataIn(dtI);
+				reserva.setDataOut(dtF);
+				reserva.setFormaPag(formaPagamento);
+				reserva.setPreco(Integer.valueOf(preco));
 
-		            if (idDetalhes != Integer.MIN_VALUE) {
-		                TelaSucesso sucesso = new TelaSucesso();
-		                sucesso.setResizable(false);
-		                sucesso.setLocationRelativeTo(null);
-		                sucesso.setVisible(true);
-		            } else {
-		                
-		            }
-		        } else {
-		            
-		        }
-		    }
+				ReservaDAO dao = ReservaDAO.getInstancia();
+				int idReserva = dao.inserirReserva(reserva);
+
+				if (idReserva != Integer.MIN_VALUE) {
+					DetalhesHospedagem detalhes = new DetalhesHospedagem();
+					detalhes.setIdHospedagem(idReserva);
+					detalhes.setIdHospede(hosp.getIdHospede());
+
+					DetaHospDAO detalhesDAO = DetaHospDAO.getInstancia();
+					int idDetalhes = detalhesDAO.inserirDetalhes(detalhes);
+
+					if (idDetalhes != Integer.MIN_VALUE) {
+						TelaSucesso sucesso = new TelaSucesso();
+						sucesso.setResizable(false);
+						sucesso.setLocationRelativeTo(null);
+						sucesso.setVisible(true);
+					} else {
+
+					}
+				} else {
+
+				}
+			}
 		});
 
 		btnNewButton_1.setBounds(923, 660, 491, 61);
@@ -178,7 +206,7 @@ public class TelaFinalizar extends JFrame {
 		contentPane1.add(lbl_dataF);
 
 		try {
-			MaskFormatter mascaraData = new MaskFormatter("####-##-##");
+			MaskFormatter mascaraData = new MaskFormatter("##/##/####");
 			txt_digiDataF = new JFormattedTextField(mascaraData);
 		} catch (ParseException e) {
 			e.printStackTrace();

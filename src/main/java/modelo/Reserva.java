@@ -1,12 +1,13 @@
 package modelo;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Reserva {
 	private int idHospedagem;
 	private String formaPag;
-	private Date dataIn;
-	private Date dataOut;
+	private LocalDate dataIn;
+	private LocalDate dataOut;
 	private int preco;
 
 	public int getIdHospedagem() {
@@ -25,19 +26,19 @@ public class Reserva {
 		this.formaPag = formaPag;
 	}
 
-	public Date getDataIn() {
+	public LocalDate getDataIn() {
 		return dataIn;
 	}
 
-	public void setDataIn(Date dataIn) {
+	public void setDataIn(LocalDate dataIn) {
 		this.dataIn = dataIn;
 	}
 
-	public Date getDataOut() {
+	public LocalDate getDataOut() {
 		return dataOut;
 	}
 
-	public void setDataOut(Date dataOut) {
+	public void setDataOut(LocalDate dataOut) {
 		this.dataOut = dataOut;
 	}
 
