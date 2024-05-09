@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import modelo.DetalhesHospedagem;
-import modelo.Hospedes;
+import modelo.Usuarios;
 
 public interface IDetaHospDAO {
 	

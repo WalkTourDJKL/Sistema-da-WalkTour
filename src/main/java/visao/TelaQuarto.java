@@ -3,7 +3,7 @@ package visao;
 import javax.swing.*;
 
 import controle.ModeloQuartoDAO;
-import modelo.Hospedes;
+import modelo.Usuarios;
 import modelo.ModeloQuarto;
 import modelo.Quarto;
 
@@ -18,7 +18,7 @@ public class TelaQuarto extends JFrame {
 	private JTextField textField;
 	private ModeloQuartoDAO modeqdao = ModeloQuartoDAO.getInstancia();
 
-	public TelaQuarto(String tipo, Hospedes hosp, String cidade) {
+	public TelaQuarto(String tipo, Usuarios hosp, String cidade) {
 		setTitle("Tela do quarto de " + cidade);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);

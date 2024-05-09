@@ -35,7 +35,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 
-import modelo.Hospedes;
+import modelo.Usuarios;
 
 public class TelaPrincipal extends JFrame {
 
@@ -48,7 +48,7 @@ public class TelaPrincipal extends JFrame {
 	 * @param nome
 	 * @param cpf
 	 */
-	public TelaPrincipal(Hospedes hosp) {
+	public TelaPrincipal(Usuarios hosp) {
 
 		setTitle("Tela Principal");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -1,67 +1,39 @@
 package visao;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.text.MaskFormatter;
 
-import com.mysql.cj.xdevapi.Table;
-
-import controle.Conexao;
-import controle.DetaHospDAO;
-import controle.HospedesDAO;
+import controle.UsuariosDAO;
 import controle.ReservaDAO;
-import modelo.DetalhesHospedagem;
-import modelo.Hospedes;
+import modelo.Usuarios;
 import modelo.Reserva;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
-import java.awt.Component;
 
 public class TelaEditReserva extends JFrame {
 
 	private JPanel contentPane;
 	public JFormattedTextField txt_digiDataI;
 	private JFormattedTextField txt_digiDataF;
-	private HospedesDAO hospdao = HospedesDAO.getInstancia();
+	private UsuariosDAO hospdao = UsuariosDAO.getInstancia();
 
 	/**
 	 * Create the frame.
@@ -71,8 +43,8 @@ public class TelaEditReserva extends JFrame {
 	 * @param dataIn
 	 * @param formaPag
 	 */
-	public TelaEditReserva(String formaPag, Date dataIn, Date dataOut, int idHospedagem) {
-		Hospedes hops = new Hospedes();
+	public TelaEditReserva(String formaPag, LocalDate dataIn, LocalDate dataOut, int idHospedagem) {
+		Usuarios hops = new Usuarios();
 		hops = hospdao.passaLogado();
 		setTitle("Tela de edicao de reserva");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,7 +65,7 @@ public class TelaEditReserva extends JFrame {
 		contentPane.add(lbl_dataI);
 
 		try {
-			MaskFormatter mascaraData = new MaskFormatter("####-##-##");
+			MaskFormatter mascaraData = new MaskFormatter("####/##/##");
 			txt_digiDataI = new JFormattedTextField(mascaraData);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -110,7 +82,7 @@ public class TelaEditReserva extends JFrame {
 		contentPane.add(lbl_dataF);
 
 		try {
-			MaskFormatter mascaraData = new MaskFormatter("####-##-##");
+			MaskFormatter mascaraData = new MaskFormatter("####/##/##");
 			txt_digiDataF = new JFormattedTextField(mascaraData);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -162,20 +134,16 @@ public class TelaEditReserva extends JFrame {
 				}
 
 				Reserva reserva = new Reserva();
+
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+
+				LocalDate dtI = LocalDate.parse(dataInicio, formatter);
+				LocalDate dtF = LocalDate.parse(dataFim, formatter);
+
 				reserva.setFormaPag(formaPagamento);
 				reserva.setIdHospedagem(idHospedagem);
-
-				SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-				try {
-					java.util.Date dataFormatadaInicio = formatador.parse(dataInicio);
-					reserva.setDataIn(new java.sql.Date(dataFormatadaInicio.getTime()));
-
-					java.util.Date dataFormatadaFim = formatador.parse(dataFim);
-					reserva.setDataOut(new java.sql.Date(dataFormatadaFim.getTime()));
-				} catch (ParseException ex) {
-					ex.printStackTrace();
-				}
-
+				reserva.setDataIn(dtI);
+				reserva.setDataOut(dtF);
 				ReservaDAO dao = ReservaDAO.getInstancia();
 				if (dao.atualizarReserva(reserva) > 0) {
 					TelaSucesso sucesso = new TelaSucesso();
@@ -214,12 +182,12 @@ public class TelaEditReserva extends JFrame {
 	}
 
 	public Date convertStringToDate(String dateString) {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
 		try {
 			java.util.Date date = formatter.parse(dateString);
 			return new java.sql.Date(date.getTime());
 		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Formato de data inválido. Use o formato yyyy-MM-dd.");
+			JOptionPane.showMessageDialog(null, "Formato de data invï¿½lido. Use o formato yyyy-MM-dd.");
 			return null;
 		}
 	}

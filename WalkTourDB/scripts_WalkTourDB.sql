@@ -50,15 +50,18 @@ CREATE TABLE WalkTourDB.`pontos_tur` (
 
 
 -- -----------------------------------------------------
--- Table WalkTourDB.`hospedes`
+-- Table WalkTourDB.`usuarios`
 -- -----------------------------------------------------
-CREATE TABLE WalkTourDB.`hospedes` (
-  `id_hospede` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE WalkTourDB.`usuarios` (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `nome_social` VARCHAR(45),
   `dt_nasc` DATE NOT NULL,
   `cpf` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_hospede`));
+  `login` VARCHAR(45) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  `tipo_user` INT NOT NULL,
+  PRIMARY KEY (`id_usuario`));
 
 
 
@@ -108,14 +111,14 @@ CREATE TABLE WalkTourDB.`quarto` (
 CREATE TABLE WalkTourDB.`detalhes_hospedagem` (
   `id_detalhe_hospedagem` INT NOT NULL AUTO_INCREMENT,
   `id_hospedagem` INT NOT NULL ,
-  `id_hospede` INT NOT NULL,
-  PRIMARY KEY (`id_detalhe_hospedagem`, `id_hospedagem`, `id_hospede`),
-  CONSTRAINT `fk_hospedagens_has_hospedes_hospedagens1`
+  `id_usuario` INT NOT NULL,
+  PRIMARY KEY (`id_detalhe_hospedagem`, `id_hospedagem`, `id_usuario`),
+  CONSTRAINT `fk_hospedagens_has_usuarios_hospedagens1`
     FOREIGN KEY (`id_hospedagem`)
     REFERENCES WalkTourDB.`hospedagens` (`id_hospedagem`),
-  CONSTRAINT `fk_hospedagens_has_hospedes_hospedes1`
-    FOREIGN KEY (`id_hospede`)
-    REFERENCES WalkTourDB.`hospedes` (`id_hospede`)
+  CONSTRAINT `fk_hospedagens_has_usuarios_usuarios1`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES WalkTourDB.`usuarios` (`id_usuario`)
     );
 
     
@@ -208,27 +211,9 @@ SET @id_evento = LAST_INSERT_ID();
     SET @ponto_id = LAST_INSERT_ID();
     
     /* Nenhuma chave estrangeira */
-	insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Gerry', 'Daryl', '1930-01-16', '17672839653');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Emmalynne', 'Zeke', '1987-03-15', '91920920872');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Blake', 'Brittani', '1920-10-13', '185497552');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Kiersten', 'Waldo', '1974-12-21', '13733984851');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Mattheus', 'Sherlock', '1989-09-12', '69273392867');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Berta', 'Boigie', '1954-02-19', '73912143461');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Dory', 'Erin', '1954-10-12', '62843506504');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Kara', 'Lyman', '1918-04-26', '8098559818');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Manolo', 'Zelig', '1929-10-01', '42146997535');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Valene', 'Alessandro', '1902-06-08', '12982996281');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Way', 'Dana', '1975-12-25', '80554866441');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Tammy', 'Darryl', '1927-03-10', '64184002232');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Rainer', 'Howard', '1929-05-18', '39980131978');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Bastian', 'Gabriella', '1970-11-04', '39034704162');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Edan', 'Hansiain', '1972-05-10', '70186535840');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Schuyler', 'Mylo', '1922-12-18', '57953832660');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Wells', 'Shaina', '1953-05-10', '67462715744');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Clare', 'Peg', '1990-04-18', '52917878261');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Eartha', 'Yoshi', '1901-04-14', '8080951120');
-insert into  hospedes (nome, nome_social, dt_nasc, cpf) values ('Chlo', 'Desmond', '1935-07-22', '39102928415');
-SET @id_hospede = LAST_INSERT_ID();
+	insert into  usuarios (nome, nome_social, dt_nasc, cpf, login, senha, tipo_user) values ('0', null, '1989-04-25', '000.000.000-00','hosp0','0',0);
+    insert into  usuarios (nome, nome_social, dt_nasc, cpf, login, senha, tipo_user) values ('1', null, '1989-04-25', '111.111.111-11','func0','1',1);
+	SET @id_usuario = LAST_INSERT_ID();
 
     /* Organizar o resto da tabela */
     /*
@@ -270,7 +255,7 @@ SET @id_hospede = LAST_INSERT_ID();
     SELECT * FROM enderecos ORDER BY endereco_id;
     SELECT * FROM eventos ORDER BY id_evento;
     SELECT * FROM pontos_tur ORDER BY ponto_id;
-    SELECT * FROM hospedes ORDER BY id_hospede;
+    SELECT * FROM usuarios ORDER BY id_usuario;
     SELECT * FROM hospedagens ORDER BY id_hospedagem;
     SELECT * FROM modelo_quarto ORDER BY tipo_id;
     SELECT * FROM quarto ORDER BY num_quarto;

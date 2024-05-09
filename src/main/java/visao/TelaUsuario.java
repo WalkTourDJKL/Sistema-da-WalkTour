@@ -12,10 +12,10 @@ import com.mysql.cj.xdevapi.Table;
 
 import controle.Conexao;
 import controle.DetaHospDAO;
-import controle.HospedesDAO;
+import controle.UsuariosDAO;
 import controle.ReservaDAO;
 import modelo.DetalhesHospedagem;
-import modelo.Hospedes;
+import modelo.Usuarios;
 import modelo.Reserva;
 
 import javax.swing.JLabel;
@@ -42,6 +42,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
@@ -58,7 +60,7 @@ public class TelaUsuario extends JFrame {
 	public static JTextField txtNome;
 	private JTextField txtCPF;
 	private JTextField txtNomeSc;
-	private HospedesDAO hospdao = HospedesDAO.getInstancia();
+	private UsuariosDAO hospdao = UsuariosDAO.getInstancia();
 	private JTextField txtDtNsc;
 	private JTable table;
 
@@ -70,10 +72,10 @@ public class TelaUsuario extends JFrame {
 	 * @param cidade
 	 * @param tVolt
 	 */
-	public TelaUsuario(Hospedes hosp, String tipo, String cidade, int tVolt) {
-		setTitle("Tela do usuario:"+hosp.getNome());
-		Hospedes hops = new Hospedes();
-		Hospedes h1 = hosp;
+	public TelaUsuario(Usuarios hosp, String tipo, String cidade, int tVolt) {
+		setTitle("Tela do usuario:" + hosp.getNome());
+		Usuarios hops = new Usuarios();
+		Usuarios h1 = hosp;
 		hops = hospdao.passaLogado();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -81,11 +83,11 @@ public class TelaUsuario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		/*table = new JTable();
+		table = new JTable();
 		atualizarTabela(hosp, h1);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(40, 619, 584, 231);
-		contentPane.add(scrollPane);*/
+		contentPane.add(scrollPane);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/Title.png")));
@@ -152,13 +154,13 @@ public class TelaUsuario extends JFrame {
 					return;
 				}
 
-				hosp.setIdHospede(hosp.getIdHospede());
+				hosp.setIdUsuario(hosp.getIdUsuario());
 				hosp.setNome(txtNome.getText());
 				hosp.setCpf(txtCPF.getText());
 				hosp.setNomeSocial(txtNomeSc.getText());
 				hosp.setDtNasc(dataNascimento);
-				hospdao.atualizarHopesdes(hosp);
-				//atualizarTabela(hosp, h1);
+				hospdao.atualizarUsuarios(hosp);
+				atualizarTabela(hosp, h1);
 			}
 		});
 		btnAtualizar.setForeground(Color.BLACK);
@@ -217,7 +219,7 @@ public class TelaUsuario extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnVoltar.setBounds(40, 242, 89, 23);
 		contentPane.add(btnVoltar);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
 		lblNewLabel_1.setBounds(723, 0, 712, 1089);
@@ -236,7 +238,8 @@ public class TelaUsuario extends JFrame {
 		}
 	}
 
-	private void atualizarTabela(Hospedes hops, Hospedes h1) {
+	private void atualizarTabela(Usuarios hops, Usuarios h1) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
 		Conexao conexao = Conexao.getConexao();
 
 		Connection conDB = conexao.conectar();
@@ -244,19 +247,17 @@ public class TelaUsuario extends JFrame {
 		ReservaDAO reservaDAO = ReservaDAO.getInstancia();
 		ArrayList<Reserva> reserva = new ArrayList<Reserva>();
 
-		String sql = "SELECT hospedagens.* " + "FROM hospedagens "
-				+ "INNER JOIN detalhes_hospedagem ON hospedagens.id_hospedagem = detalhes_hospedagem.id_hospedagem "
-				+ "WHERE detalhes_hospedagem.id_hospede = ?";
+		String sql = "SELECT hospedagens.* FROM hospedagens INNER JOIN detalhes_hospedagem ON hospedagens.id_hospedagem = detalhes_hospedagem.id_hospedagem WHERE detalhes_hospedagem.id_usuario = ?";
 		try {
 			PreparedStatement stmt = conDB.prepareStatement(sql);
-			stmt.setInt(1, hops.getIdHospede());
+			stmt.setInt(1, hops.getIdUsuario());
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				Reserva r = new Reserva();
 				r.setFormaPag(rs.getString("forma_pag"));
-				//r.setDataIn(rs.getDate("data_in"));
-				//r.setDataOut(rs.getDate("data_out"));
+				r.setDataIn(rs.getDate("data_in").toLocalDate());
+				r.setDataOut(rs.getDate("data_out").toLocalDate());
 				r.setPreco(rs.getInt("preco"));
 				r.setIdHospedagem(rs.getInt("id_hospedagem"));
 				reserva.add(r);
@@ -303,91 +304,95 @@ public class TelaUsuario extends JFrame {
 			return this;
 		}
 	}
+
 	class ButtonEditor extends DefaultCellEditor {
-	    protected JButton button;
-	    private String label;
-	    private boolean isPushed;
-	    private int row;
-	    private JTable table;
-	    private String action;
-	    private Hospedes hosp;
+		protected JButton button;
+		private String label;
+		private boolean isPushed;
+		private int row;
+		private JTable table;
+		private String action;
+		private Usuarios hosp;
 
-	    public ButtonEditor(JCheckBox checkBox, String action, Hospedes hosp) {
-	        super(checkBox);
-	        this.hosp = hosp;
-	        this.action = action;
-	        button = new JButton();
-	        button.setOpaque(true);
-	        button.addActionListener(e -> {
-	            isPushed = true;
-	            fireEditingStopped();
-	        });
-	    }
-
-	    @Override
-	    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-	        this.table = table;
-	        this.row = row;
-	        if (isSelected) {
-	            button.setForeground(table.getSelectionForeground());
-	            button.setBackground(table.getSelectionBackground());
-	        } else {
-	            button.setForeground(table.getForeground());
-	            button.setBackground(table.getBackground());
-	        }
-	        label = (value == null) ? action : value.toString();
-	        button.setText(label);
-	        return button;
-	    }
-
-	    public Object getCellEditorValue() {
-	        if (isPushed) {
-	            if (action.equals("Editar")) {
-	                editarReserva(row);
-	            } else if (action.equals("Excluir")) {
-	                excluirReserva(row);
-	            }
-	        }
-	        isPushed = false;
-	        return label;
-	    }
-
-	    private void excluirReserva(int row) {
-	        DefaultTableModel model = (DefaultTableModel) table.getModel();
-	        int idHospedagem = (Integer) model.getValueAt(row, 6);
-	        int idDetalheHospedagem = (Integer) model.getValueAt(row, 6); 
-
-	        ReservaDAO reservaDAO = ReservaDAO.getInstancia();
-	        DetaHospDAO detalhesDAO = DetaHospDAO.getInstancia();
-	        
-	        // Criar objeto DetalhesHospedagem
-	        DetalhesHospedagem detalhe = new DetalhesHospedagem();
-	        detalhe.setIdDetalheHospedagem(idDetalheHospedagem);
-
-	        // Remover detalhes espec�ficos
-	        detalhesDAO.removerDetalhes(detalhe);
-
-	        // Remover a reserva
-	        Reserva reserva = new Reserva();
-	        reserva.setIdHospedagem(idHospedagem);
-	        reservaDAO.removerReserva(reserva);
-
-	        System.out.println("Excluindo reserva e detalhes da hospedagem: ID Reserva " + idHospedagem + ", ID Detalhe " + idDetalheHospedagem);
-	    }
-
-	}
-		private void editarReserva(int row) {
-			DefaultTableModel model = (DefaultTableModel) table.getModel();
-
-			String formaPag = (String) model.getValueAt(row, 0);
-			Date dataIn = (Date) model.getValueAt(row, 1);
-			Date dataOut = (Date) model.getValueAt(row, 2);
-			int preco = (Integer) model.getValueAt(row, 3);
-			int idHospedagem = (Integer) model.getValueAt(row, 6);
-			TelaEditReserva edit = new TelaEditReserva(formaPag,dataIn,dataOut,idHospedagem);
-			edit.setResizable(false);
-			edit.setVisible(true);
-			System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data In�cio: " + dataIn + ", Data Fim: "
-					+ dataOut + ", Pre�o: " + preco);
+		public ButtonEditor(JCheckBox checkBox, String action, Usuarios hosp) {
+			super(checkBox);
+			this.hosp = hosp;
+			this.action = action;
+			button = new JButton();
+			button.setOpaque(true);
+			button.addActionListener(e -> {
+				isPushed = true;
+				fireEditingStopped();
+			});
 		}
+
+		@Override
+		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
+				int column) {
+			this.table = table;
+			this.row = row;
+			if (isSelected) {
+				button.setForeground(table.getSelectionForeground());
+				button.setBackground(table.getSelectionBackground());
+			} else {
+				button.setForeground(table.getForeground());
+				button.setBackground(table.getBackground());
+			}
+			label = (value == null) ? action : value.toString();
+			button.setText(label);
+			return button;
+		}
+
+		public Object getCellEditorValue() {
+			if (isPushed) {
+				if (action.equals("Editar")) {
+					editarReserva(row);
+				} else if (action.equals("Excluir")) {
+					excluirReserva(row);
+				}
+			}
+			isPushed = false;
+			return label;
+		}
+
+		private void excluirReserva(int row) {
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			int idHospedagem = (Integer) model.getValueAt(row, 6);
+			int idDetalheHospedagem = (Integer) model.getValueAt(row, 6);
+
+			ReservaDAO reservaDAO = ReservaDAO.getInstancia();
+			DetaHospDAO detalhesDAO = DetaHospDAO.getInstancia();
+
+			// Criar objeto DetalhesHospedagem
+			DetalhesHospedagem detalhe = new DetalhesHospedagem();
+			detalhe.setIdDetalheHospedagem(idDetalheHospedagem);
+
+			// Remover detalhes espec�ficos
+			detalhesDAO.removerDetalhes(detalhe);
+
+			// Remover a reserva
+			Reserva reserva = new Reserva();
+			reserva.setIdHospedagem(idHospedagem);
+			reservaDAO.removerReserva(reserva);
+
+			System.out.println("Excluindo reserva e detalhes da hospedagem: ID Reserva " + idHospedagem
+					+ ", ID Detalhe " + idDetalheHospedagem);
+		}
+
 	}
+
+	private void editarReserva(int row) {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+		String formaPag = (String) model.getValueAt(row, 0);
+		LocalDate dataIn = (LocalDate) model.getValueAt(row, 1);
+		LocalDate dataOut = (LocalDate) model.getValueAt(row, 2);
+		int preco = (Integer) model.getValueAt(row, 3);
+		int idHospedagem = (Integer) model.getValueAt(row, 6);
+		TelaEditReserva edit = new TelaEditReserva(formaPag, dataIn, dataOut, idHospedagem);
+		edit.setResizable(false);
+		edit.setVisible(true);
+		System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data In�cio: " + dataIn + ", Data Fim: "
+				+ dataOut + ", Pre�o: " + preco);
+	}
+}

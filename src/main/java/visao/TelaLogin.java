@@ -7,8 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-import controle.HospedesDAO;
-import modelo.Hospedes;
+import controle.UsuariosDAO;
+import modelo.Usuarios;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.sound.midi.SysexMessage;
@@ -34,11 +34,10 @@ public class TelaLogin extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txt_digiNome;
-	private JTextField txt_digiCPF;
-	private HospedesDAO hospdao = HospedesDAO.getInstancia();
+	private JTextField txt_digiLogin;
+	private JTextField txt_digiSenha;
+	private UsuariosDAO hospdao = UsuariosDAO.getInstancia();
 	private MaskFormatter formatterCPF;
-	private JFormattedTextField formattedTextFieldCPF;
 
 	/**
 	 * Create the frame.
@@ -78,50 +77,46 @@ public class TelaLogin extends JFrame {
 		lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 55));
 		contentPane.add(lblNewLabel);
 
-		JLabel lbl_nome = new JLabel("Nome");
-		lbl_nome.setBounds(950, 158, 464, 50);
-		contentPane.add(lbl_nome);
-		lbl_nome.setForeground(new Color(52, 64, 84));
-		lbl_nome.setFont(new Font("Corbel", Font.BOLD, 35));
+		JLabel lbl_Login = new JLabel("Login");
+		lbl_Login.setBounds(950, 158, 464, 50);
+		contentPane.add(lbl_Login);
+		lbl_Login.setForeground(new Color(52, 64, 84));
+		lbl_Login.setFont(new Font("Corbel", Font.BOLD, 35));
 
-		txt_digiNome = new JTextField();
-		txt_digiNome.setBounds(950, 203, 464, 35);
-		contentPane.add(txt_digiNome);
-		txt_digiNome.setToolTipText("Digite seu Nome");
-		txt_digiNome.setForeground(new Color(102, 112, 133));
-		txt_digiNome.setFont(new Font("Corbel", Font.ITALIC, 15));
-		txt_digiNome.setColumns(10);
+		txt_digiLogin = new JTextField();
+		txt_digiLogin.setBounds(950, 203, 464, 35);
+		contentPane.add(txt_digiLogin);
+		txt_digiLogin.setToolTipText("Digite seu login");
+		txt_digiLogin.setForeground(new Color(102, 112, 133));
+		txt_digiLogin.setFont(new Font("Corbel", Font.ITALIC, 15));
+		txt_digiLogin.setColumns(10);
 
-		JLabel lbl_cpf = new JLabel("CPF");
+		JLabel lbl_cpf = new JLabel("Senha");
 		lbl_cpf.setBounds(950, 283, 464, 50);
 		contentPane.add(lbl_cpf);
 		lbl_cpf.setForeground(new Color(52, 64, 84));
 		lbl_cpf.setFont(new Font("Corbel", Font.BOLD, 35));
 
-		try {
-			MaskFormatter formatterCPF = new MaskFormatter("###.###.###-##");
-			formattedTextFieldCPF = new JFormattedTextField(formatterCPF);
-			formattedTextFieldCPF.setToolTipText("Digite seu CPF...");
-			formattedTextFieldCPF.setForeground(new Color(102, 112, 133));
-			formattedTextFieldCPF.setFont(new Font("Corbel", Font.ITALIC, 15));
-			formattedTextFieldCPF.setBounds(950, 328, 464, 35);
-			contentPane.add(formattedTextFieldCPF);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		txt_digiSenha = new JTextField();
+		txt_digiSenha.setBounds(950, 328, 464, 35);
+		contentPane.add(txt_digiSenha);
+		txt_digiSenha.setToolTipText("Digite sua senha");
+		txt_digiSenha.setForeground(new Color(102, 112, 133));
+		txt_digiSenha.setFont(new Font("Corbel", Font.ITALIC, 15));
+		txt_digiSenha.setColumns(10);
 
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setBounds(909, 611, 515, 61);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String nome = txt_digiNome.getText();
+				String Login = txt_digiLogin.getText();
 
-				String cpf = formattedTextFieldCPF.getText();
+				String senha = txt_digiSenha.getText();
 
-				if (cpf.isEmpty() || nome.isEmpty()) {
-					txt_digiNome.setText(null);
-					formattedTextFieldCPF.setText(null);
+				if (senha.isEmpty() || Login.isEmpty()) {
+					txt_digiLogin.setText(null);
+					txt_digiSenha.setText(null);
 					TelaErro erro = new TelaErro();
 					erro.setResizable(false);
 					erro.setLocationRelativeTo(null);
@@ -129,14 +124,13 @@ public class TelaLogin extends JFrame {
 
 				} else {
 					// Cria obj Hóspede para atribuir login e senha
-					Hospedes testelogin = new Hospedes();
-					testelogin.setNome(nome);
-					testelogin.setNomeSocial(nome);
-					testelogin.setCpf(cpf);
+					Usuarios testelogin = new Usuarios();
+					testelogin.setLogin(Login);
+					testelogin.setSenha(senha);
 					;
 
 					// Cria uma variavel boolean login1 que verifica se há o usuário no banco
-					Hospedes hospTesteLogin = hospdao.login(testelogin);
+					Usuarios hospTesteLogin = hospdao.login(testelogin);
 
 					// Se o valor retornado pela função ser true
 					if (hospTesteLogin != null) {

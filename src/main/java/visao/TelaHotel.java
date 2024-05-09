@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Hospedes;
+import modelo.Usuarios;
 
 import java.awt.Font;
 import javax.swing.ImageIcon;
@@ -54,7 +54,7 @@ public class TelaHotel extends JFrame {
 	 * @param hosp
 	 * @param cidade
 	 */
-	public TelaHotel(Hospedes hosp, String cidade) {
+	public TelaHotel(Usuarios hosp, String cidade) {
 		setTitle("Tela Hotel de " + cidade);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);

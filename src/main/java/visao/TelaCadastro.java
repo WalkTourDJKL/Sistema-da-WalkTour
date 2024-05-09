@@ -7,8 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-import modelo.Hospedes;
-import controle.HospedesDAO;
+import modelo.Usuarios;
+import controle.UsuariosDAO;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -36,6 +36,8 @@ public class TelaCadastro extends JFrame {
 	private JTextField txtDigiteSeuCpf;
 	private JFormattedTextField formattedTextFieldDataNascimento;
 	private JFormattedTextField formattedTextFieldCPF;
+	private JTextField txtSenha;
+	private JTextField txtLogin;
 
 	/**
 	 * Create the frame.
@@ -86,13 +88,13 @@ public class TelaCadastro extends JFrame {
 		txtDigiteSeuNomeSocial.setForeground(new Color(102, 112, 133));
 		txtDigiteSeuNomeSocial.setFont(new Font("Corbel", Font.ITALIC, 15));
 		txtDigiteSeuNomeSocial.setColumns(10);
-		txtDigiteSeuNomeSocial.setBounds(10, 284, 458, 35);
+		txtDigiteSeuNomeSocial.setBounds(10, 230, 458, 35);
 		contentPane.add(txtDigiteSeuNomeSocial);
 
 		JLabel lbl_nomeSC = new JLabel("Nome Social");
 		lbl_nomeSC.setForeground(new Color(52, 64, 84));
 		lbl_nomeSC.setFont(new Font("Corbel", Font.BOLD, 35));
-		lbl_nomeSC.setBounds(10, 244, 515, 50);
+		lbl_nomeSC.setBounds(10, 190, 515, 50);
 		contentPane.add(lbl_nomeSC);
 
 		txtDigiteSeuNome = new JTextField();
@@ -106,13 +108,13 @@ public class TelaCadastro extends JFrame {
 		JLabel lbl_DNasc = new JLabel("Data de Nascimento");
 		lbl_DNasc.setForeground(new Color(52, 64, 84));
 		lbl_DNasc.setFont(new Font("Corbel", Font.BOLD, 35));
-		lbl_DNasc.setBounds(10, 384, 500, 50);
+		lbl_DNasc.setBounds(10, 276, 500, 50);
 		contentPane.add(lbl_DNasc);
 
 		JLabel lbl_CPF = new JLabel("CPF");
 		lbl_CPF.setForeground(new Color(52, 64, 84));
 		lbl_CPF.setFont(new Font("Corbel", Font.BOLD, 35));
-		lbl_CPF.setBounds(10, 531, 100, 50);
+		lbl_CPF.setBounds(10, 362, 100, 50);
 		contentPane.add(lbl_CPF);
 
 		try {
@@ -122,7 +124,7 @@ public class TelaCadastro extends JFrame {
 			formattedTextFieldCPF.setToolTipText("Digite seu CPF...");
 			formattedTextFieldCPF.setForeground(new Color(102, 112, 133));
 			formattedTextFieldCPF.setFont(new Font("Corbel", Font.ITALIC, 15));
-			formattedTextFieldCPF.setBounds(10, 564, 458, 35);
+			formattedTextFieldCPF.setBounds(10, 395, 458, 35);
 			contentPane.add(formattedTextFieldCPF);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,6 +136,9 @@ public class TelaCadastro extends JFrame {
 				String nomeSc = txtDigiteSeuNomeSocial.getText();
 				String cpf = formattedTextFieldCPF.getText();
 				String dataNascimento = formattedTextFieldDataNascimento.getText();
+				String login = txtLogin.getText();
+				String senha = txtSenha.getText();
+				int tipo = 0;
 
 				if (nome.isEmpty() || cpf.isEmpty() || dataNascimento.isEmpty()) {
 					TelaErro erro = new TelaErro();
@@ -141,11 +146,14 @@ public class TelaCadastro extends JFrame {
 					erro.setVisible(true);
 				} else {
 
-					Hospedes end = new Hospedes();
+					Usuarios end = new Usuarios();
 
 					end.setNome(nome);
 					end.setNomeSocial(nomeSc);
 					end.setCpf(cpf);
+					end.setLogin(login);
+					end.setSenha(senha);
+					end.setTipoUser(0);
 
 					try {
 						SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
@@ -156,9 +164,9 @@ public class TelaCadastro extends JFrame {
 						ex.printStackTrace();
 					}
 
-					HospedesDAO dao = HospedesDAO.getInstancia();
+					UsuariosDAO dao = UsuariosDAO.getInstancia();
 
-					int retorno = dao.inserirHopesdes(end);
+					int retorno = dao.inserirUsuarios(end);
 
 					if (retorno == 0) {
 						TelaErro erro = new TelaErro();
@@ -185,9 +193,9 @@ public class TelaCadastro extends JFrame {
 
 		try {
 			MaskFormatter formatter = new MaskFormatter("####-##-##");
-			formatter.setPlaceholderCharacter('_'); 
+			formatter.setPlaceholderCharacter('_');
 			formattedTextFieldDataNascimento = new JFormattedTextField(formatter);
-			formattedTextFieldDataNascimento.setBounds(10, 424, 458, 35); 
+			formattedTextFieldDataNascimento.setBounds(10, 316, 458, 35);
 			contentPane.add(formattedTextFieldDataNascimento);
 
 			JLabel lblNewLabel_1 = new JLabel("Ja tem Cadastro?");
@@ -222,6 +230,34 @@ public class TelaCadastro extends JFrame {
 			lblNewLabel_3.setBounds(-82, -99, 1126, 1080);
 			LadoJanela.add(lblNewLabel_3);
 			lblNewLabel_3.setIcon(new ImageIcon(TelaCadastro.class.getResource("/imgs/LadoB.png")));
+
+			txtSenha = new JTextField();
+			txtSenha.setToolTipText("Digite sua Senha");
+			txtSenha.setForeground(new Color(102, 112, 133));
+			txtSenha.setFont(new Font("Corbel", Font.ITALIC, 15));
+			txtSenha.setColumns(10);
+			txtSenha.setBounds(10, 567, 458, 35);
+			contentPane.add(txtSenha);
+
+			JLabel lbl_nomeSC_1 = new JLabel("Senha");
+			lbl_nomeSC_1.setForeground(new Color(52, 64, 84));
+			lbl_nomeSC_1.setFont(new Font("Corbel", Font.BOLD, 35));
+			lbl_nomeSC_1.setBounds(10, 527, 515, 50);
+			contentPane.add(lbl_nomeSC_1);
+
+			txtLogin = new JTextField();
+			txtLogin.setToolTipText("Digite seu Login");
+			txtLogin.setForeground(new Color(102, 112, 133));
+			txtLogin.setFont(new Font("Corbel", Font.ITALIC, 15));
+			txtLogin.setColumns(10);
+			txtLogin.setBounds(10, 481, 458, 35);
+			contentPane.add(txtLogin);
+
+			JLabel lbl_Nome_1 = new JLabel("Login");
+			lbl_Nome_1.setForeground(new Color(52, 64, 84));
+			lbl_Nome_1.setFont(new Font("Corbel", Font.BOLD, 35));
+			lbl_Nome_1.setBounds(10, 441, 515, 50);
+			contentPane.add(lbl_Nome_1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

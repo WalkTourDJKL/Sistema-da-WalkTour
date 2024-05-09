@@ -3,7 +3,15 @@ package modelo;
 public class DetalhesHospedagem {
 	private int idDetalheHospedagem;
 	private int idHospedagem;
-	private int idHospede;
+	private int idUsuario;
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
 	public int getIdDetalheHospedagem() {
 		return idDetalheHospedagem;
@@ -21,11 +29,4 @@ public class DetalhesHospedagem {
 		this.idHospedagem = idHospedagem;
 	}
 
-	public int getIdHospede() {
-		return idHospede;
-	}
-
-	public void setIdHospede(int idHospede) {
-		this.idHospede = idHospede;
-	}
 }

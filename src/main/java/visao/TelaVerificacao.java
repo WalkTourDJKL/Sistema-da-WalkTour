@@ -3,14 +3,14 @@ package visao;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import controle.Conexao;
-import controle.HospedesDAO;
-import modelo.Hospedes;
+import controle.UsuariosDAO;
+import modelo.Usuarios;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-// Importações para reprodução de áudio
+// Importaï¿½ï¿½es para reproduï¿½ï¿½o de ï¿½udio
 import javax.sound.sampled.*;
 
 public class TelaVerificacao extends JFrame {
@@ -74,23 +74,23 @@ public class TelaVerificacao extends JFrame {
 
         Connection conDB = conexao.conectar();
 
-        HospedesDAO dao = HospedesDAO.getInstancia();
-        ArrayList<Hospedes> listaHospedes = dao.listarHopesdes();
+        UsuariosDAO dao = UsuariosDAO.getInstancia();
+        ArrayList<Usuarios> listaUsers = dao.listarUsuarios();
 
         conexao.fecharConexao();
 
-        String[] colunas = { "ID", "Nome", "Nome Social", "Data de Nascimento", "CPF" };
+        String[] colunas = {"Nome", "Nome Social", "Data de Nascimento", "CPF", "Login", "Senha", "Tipo" };
         DefaultTableModel model = new DefaultTableModel(colunas, 0);
 
-        for (Hospedes h : listaHospedes) {
-            Object[] rowData = { h.getIdHospede(), h.getNome(), h.getNomeSocial(), h.getDtNasc(), h.getCpf() };
+        for (Usuarios u : listaUsers) {
+            Object[] rowData = { u.getNome(), u.getNomeSocial(), u.getDtNasc(), u.getCpf(), u.getLogin(), u.getSenha(), u.getTipoUser() };
             model.addRow(rowData);
         }
 
         table.setModel(model);
     }
 
-    // Método para reproduzir a música
+    // Mï¿½todo para reproduzir a mï¿½sica
     private void reproduzirMusica() {
         try {
             AudioInputStream audioInputStream = AudioSystem

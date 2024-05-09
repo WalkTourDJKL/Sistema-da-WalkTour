@@ -33,7 +33,7 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 
-import modelo.Hospedes;
+import modelo.Usuarios;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,7 +55,7 @@ public class TelaQuartos extends JFrame {
 	 * @param cpf
 	 */
 
-	public TelaQuartos(Hospedes hosp, String cidade) {
+	public TelaQuartos(Usuarios hosp, String cidade) {
 		setTitle("Tela de selecao de quartos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);

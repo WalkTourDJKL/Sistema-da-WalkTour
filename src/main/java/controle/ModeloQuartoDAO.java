@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import modelo.Hospedes;
+import modelo.Usuarios;
 import modelo.ModeloQuarto;
 
 public class ModeloQuartoDAO implements IModeloQuartoDAO {

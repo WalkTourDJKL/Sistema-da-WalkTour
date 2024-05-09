@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controle.DetaHospDAO;
-import controle.HospedesDAO;
+import controle.UsuariosDAO;
 import controle.ReservaDAO;
-import modelo.Hospedes;
+import modelo.Usuarios;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -47,7 +47,7 @@ public class TelaConfirmacao extends JFrame {
 	 * @param buttonEditor
 	 * @param hops
 	 */
-	public TelaConfirmacao(String coisa, String tipo, Hospedes hosp, HospedesDAO hospdao, JFrame frame) {
+	public TelaConfirmacao(String coisa, String tipo, Usuarios hosp, UsuariosDAO hospdao, JFrame frame) {
 		setTitle("Tela de confirmacao de exclusao de " + coisa);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 444, 234);
@@ -79,7 +79,7 @@ public class TelaConfirmacao extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (coisa.equals("conta")) {
 					detalhesDAO.removerDetalhesTodos(hosp);
-					hospdao.removerHopesdes(hosp);
+					hospdao.removerUsuarios(hosp);
 					frame.dispose();
 					setVisible(false);
 					dispose();

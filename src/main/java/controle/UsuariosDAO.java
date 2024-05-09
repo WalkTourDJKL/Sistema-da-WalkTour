@@ -9,26 +9,26 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import modelo.Hospedes;
+import modelo.Usuarios;
 
-public class HospedesDAO implements IHospedesDAO {
+public class UsuariosDAO implements IUsuariosDAO {
 
-	private static HospedesDAO instancia;
+	private static UsuariosDAO instancia;
 
-	private HospedesDAO() {
+	private UsuariosDAO() {
 	}
 
-	public static HospedesDAO getInstancia() {
+	public static UsuariosDAO getInstancia() {
 		if (instancia == null) {
-			instancia = new HospedesDAO();
+			instancia = new UsuariosDAO();
 		}
 		return instancia;
 	}
 
-	public Hospedes hospAchado = null;
+	public Usuarios hospAchado = null;
 
-	public int inserirHopesdes(Hospedes end) {
-		String SQL = "INSERT INTO hospedes (nome, nome_social, dt_nasc, cpf) VALUES (?, ?, ?, ?)";
+	public int inserirUsuarios(Usuarios end) {
+		String SQL = "INSERT INTO usuarios (nome, nome_social, dt_nasc, cpf, login, senha, tipo_user) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -40,6 +40,9 @@ public class HospedesDAO implements IHospedesDAO {
 			ps.setString(2, end.getNomeSocial());
 			ps.setDate(3, end.getDtNasc());
 			ps.setString(4, end.getCpf());
+			ps.setString(5, end.getLogin());
+			ps.setString(6, end.getSenha());
+			ps.setInt(7, end.getIdUsuario());
 
 			ps.executeUpdate();
 
@@ -57,14 +60,14 @@ public class HospedesDAO implements IHospedesDAO {
 		return chavePrimariaGerada;
 	}
 
-	public ArrayList<Hospedes> listarHopesdes() { // Adicione o parâmetro Connection
+	public ArrayList<Usuarios> listarUsuarios() { // Adicione o parâmetro Connection
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
 
-		ArrayList<Hospedes> hospede = new ArrayList<Hospedes>();
+		ArrayList<Usuarios> usuario = new ArrayList<Usuarios>();
 
-		String SQL = "SELECT * FROM hospedes";
+		String SQL = "SELECT * FROM usuarios";
 
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL);
@@ -72,31 +75,37 @@ public class HospedesDAO implements IHospedesDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Hospedes end = new Hospedes();
+				Usuarios end = new Usuarios();
 
 				String nome = rs.getString("nome");
 				String nomeSocial = rs.getString("nome_social");
 				Date dtNasc = rs.getDate("dt_nasc");
 				String cpf = rs.getString("cpf");
-				Integer idHospede = rs.getInt("id_hospede");
+				Integer idUsuario = rs.getInt("id_usuario");
+				String login = rs.getString("login");
+				String senha = rs.getString("senha");
+				Integer tipo = rs.getInt("tipo_user");
 
 				end.setNome(nome);
 				end.setNomeSocial(nomeSocial);
 				end.setDtNasc(dtNasc);
 				end.setCpf(cpf);
-				end.setIdHospede(idHospede);
+				end.setIdUsuario(idUsuario);
+				end.setLogin(login);
+				end.setSenha(senha);
+				end.setTipoUser(tipo);
 
-				hospede.add(end); // Adicione o objeto hospede à lista
+				usuario.add(end); // Adicione o objeto hospede à lista
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return hospede;
+		return usuario;
 	}
 
-	public boolean atualizarHopesdes(Hospedes end) {
-		String SQL = "UPDATE hospedes SET nome = ?, nome_social = ?, dt_nasc = ?, cpf = ? WHERE id_hospede = ?";
+	public boolean atualizarUsuarios(Usuarios end) {
+		String SQL = "UPDATE usuarios SET nome = ?, nome_social = ?, dt_nasc = ?, cpf = ?, login = ?, senha = ?  WHERE id_usuario = ?";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -110,7 +119,9 @@ public class HospedesDAO implements IHospedesDAO {
 			ps.setString(2, end.getNomeSocial());
 			ps.setDate(3, end.getDtNasc());
 			ps.setString(4, end.getCpf());
-			ps.setInt(5, end.getIdHospede());
+			ps.setString(5, end.getLogin());
+			ps.setString(6, end.getSenha());
+			ps.setInt(7, end.getIdUsuario());
 
 			retorn = ps.executeUpdate();
 
@@ -124,8 +135,8 @@ public class HospedesDAO implements IHospedesDAO {
 		return (retorn == 0 ? false : true);
 	}
 
-	public int removerHopesdes(Hospedes end) {
-		String SQL = "DELETE FROM hospedes WHERE id_hospede = ?;";
+	public int removerUsuarios(Usuarios end) {
+		String SQL = "DELETE FROM usuarios WHERE id_usuario = ?;";
 		Conexao con = Conexao.getConexao();
 
 		Connection conBD = con.conectar();
@@ -134,7 +145,7 @@ public class HospedesDAO implements IHospedesDAO {
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, end.getIdHospede());
+			ps.setInt(1, end.getIdUsuario());
 			retorno = ps.executeUpdate();
 
 		} catch (Exception e) {
@@ -146,16 +157,11 @@ public class HospedesDAO implements IHospedesDAO {
 		return retorno;
 	}
 
-	public Hospedes buscarHopesdesPorCPF(int cpf) {
-
-		return null;
-	}
-
-	public Hospedes login(Hospedes h) {
+	public Usuarios login(Usuarios h) {
 		hospAchado = null;
-		for (Hospedes hosp : listarHopesdes()) {
-			if ((hosp.getNome().equals(h.getNome()) || hosp.getNomeSocial().equals(h.getNomeSocial()))
-					&& hosp.getCpf().equals(h.getCpf())) { // Verifica se o Nome e CPF
+		for (Usuarios hosp : listarUsuarios()) {
+			if (hosp.getLogin().equals(h.getLogin()) && hosp.getSenha().equals(h.getSenha())) { // Verifica se o Login e
+																								// Senha
 				// colocados na tale Login
 				// são iguais a algum no
 				// banco de dados
@@ -167,8 +173,15 @@ public class HospedesDAO implements IHospedesDAO {
 		}
 		return hospAchado;
 	}
-	public Hospedes passaLogado() {
+
+	public Usuarios passaLogado() {
 		return hospAchado;
+	}
+
+	@Override
+	public Usuarios buscarUsuariosPorCPF(int cpf) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

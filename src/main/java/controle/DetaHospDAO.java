@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import modelo.DetalhesHospedagem;
-import modelo.Hospedes;
+import modelo.Usuarios;
 import modelo.Reserva;
 
 public class DetaHospDAO implements IDetaHospDAO {
@@ -30,7 +30,7 @@ public class DetaHospDAO implements IDetaHospDAO {
 	public DetalhesHospedagem hospAchado = null;
 
 	public int inserirDetalhes(DetalhesHospedagem end) {
-		String SQL = "INSERT INTO detalhes_hospedagem ( id_hospedagem, id_hospede) VALUES (?, ?)";
+		String SQL = "INSERT INTO detalhes_hospedagem ( id_hospedagem, id_usuario) VALUES (?, ?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -39,7 +39,7 @@ public class DetaHospDAO implements IDetaHospDAO {
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, end.getIdHospedagem());
-			ps.setInt(2, end.getIdHospede());
+			ps.setInt(2, end.getIdUsuario());
 
 			ps.executeUpdate();
 
@@ -76,11 +76,11 @@ public class DetaHospDAO implements IDetaHospDAO {
 
 				Integer idDetHospedagem = rs.getInt("id_detalhe_hospedagem");
 				Integer idHospedagem = rs.getInt("id_hospedagem");
-				Integer idHospede = rs.getInt("id_hospede");
+				Integer idUsuario = rs.getInt("id_usuario");
 
 				end.setIdDetalheHospedagem(idDetHospedagem);
 				end.setIdHospedagem(idHospedagem);
-				end.setIdHospede(idHospede);
+				end.setIdUsuario(idUsuario);
 
 				hospede.add(end); // Adicione o objeto hospede à lista
 			}
@@ -92,7 +92,7 @@ public class DetaHospDAO implements IDetaHospDAO {
 	}
 
 	public boolean atualizarDetalhes(DetalhesHospedagem end) {
-		String SQL = "UPDATE detalhes_hospedagem SET id_hospedagem = ?, id_hospede= ? WHERE id_detalhe_hospedagem = ?";
+		String SQL = "UPDATE detalhes_hospedagem SET id_hospedagem = ?, id_usuario = ? WHERE id_detalhe_hospedagem = ?";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -103,7 +103,7 @@ public class DetaHospDAO implements IDetaHospDAO {
 			PreparedStatement ps = conDB.prepareStatement(SQL);
 
 			ps.setInt(2, end.getIdHospedagem());
-			ps.setInt(3, end.getIdHospede());
+			ps.setInt(3, end.getIdUsuario());
 			ps.setInt(6, end.getIdDetalheHospedagem());
 
 			retorn = ps.executeUpdate();
@@ -118,8 +118,8 @@ public class DetaHospDAO implements IDetaHospDAO {
 		return (retorn == 0 ? false : true);
 	}
 
-	public int removerDetalhesTodos(Hospedes hosp) {
-		String SQL = "DELETE FROM detalhes_hospedagem WHERE id_hospede = ?;";
+	public int removerDetalhesTodos(Usuarios hosp) {
+		String SQL = "DELETE FROM detalhes_hospedagem WHERE id_usuario = ?;";
 		Conexao con = Conexao.getConexao();
 
 		Connection conBD = con.conectar();
@@ -128,7 +128,7 @@ public class DetaHospDAO implements IDetaHospDAO {
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setInt(1, hosp.getIdHospede());
+			ps.setInt(1, hosp.getIdUsuario());
 			retorno = ps.executeUpdate();
 
 		} catch (Exception e) {

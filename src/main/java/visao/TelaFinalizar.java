@@ -28,7 +28,7 @@ import java.time.format.DateTimeFormatter;
 import controle.DetaHospDAO;
 import controle.ReservaDAO;
 import modelo.DetalhesHospedagem;
-import modelo.Hospedes;
+import modelo.Usuarios;
 import modelo.Reserva;
 import javax.swing.SwingConstants;
 
@@ -47,7 +47,7 @@ public class TelaFinalizar extends JFrame {
 	 * @param tipo
 	 * @param preco
 	 */
-	public TelaFinalizar(String tipo, Hospedes hosp, String cidade, String preco) {
+	public TelaFinalizar(String tipo, Usuarios hosp, String cidade, String preco) {
 		setTitle("Tela de finalizar reserva");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -176,7 +176,7 @@ public class TelaFinalizar extends JFrame {
 				if (idReserva != Integer.MIN_VALUE) {
 					DetalhesHospedagem detalhes = new DetalhesHospedagem();
 					detalhes.setIdHospedagem(idReserva);
-					detalhes.setIdHospede(hosp.getIdHospede());
+					detalhes.setIdUsuario(hosp.getIdUsuario());
 
 					DetaHospDAO detalhesDAO = DetaHospDAO.getInstancia();
 					int idDetalhes = detalhesDAO.inserirDetalhes(detalhes);
