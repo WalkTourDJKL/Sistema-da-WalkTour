@@ -50,12 +50,13 @@ public class TelaQuartos extends JFrame {
 	 * Create the frame.
 	 * @param hosp 
 	 * @param cidade 
+	 * @param estado 
 	 * 
 	 * @param nome
 	 * @param cpf
 	 */
 
-	public TelaQuartos(Usuarios hosp, String cidade) {
+	public TelaQuartos(Usuarios hosp, String cidade, String estado) {
 		setTitle("Tela de selecao de quartos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -73,7 +74,7 @@ public class TelaQuartos extends JFrame {
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int tVolt = 3;
-				TelaUsuario user = new TelaUsuario(hosp, null, cidade, tVolt);
+				TelaUsuario user = new TelaUsuario(hosp, null, cidade, tVolt, estado);
 				dispose();
 				user.setResizable(false);
 				user.setVisible(true);
@@ -106,7 +107,7 @@ public class TelaQuartos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String tipo = lblTipoQuarto1.getText();
-				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade);
+				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade,estado);
 				dispose();
 				quarto.setResizable(false);
 				quarto.setVisible(true);
@@ -148,7 +149,7 @@ public class TelaQuartos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String tipo = lblTipoQuarto2.getText();
-				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade);
+				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade, estado);
 				dispose();
 				quarto.setResizable(false);
 				quarto.setVisible(true);
@@ -184,7 +185,7 @@ public class TelaQuartos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String tipo = lblTipoQuarto3.getText();
-				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade);
+				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade, estado);
 				dispose();
 				quarto.setResizable(false);
 				quarto.setVisible(true);
@@ -194,7 +195,7 @@ public class TelaQuartos extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaHotel telahotel = new TelaHotel(hosp, cidade);
+				TelaHotel telahotel = new TelaHotel(hosp, cidade, estado);
 				dispose();
 				telahotel.setResizable(false);
 				telahotel.setVisible(true);

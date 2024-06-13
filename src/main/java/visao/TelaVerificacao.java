@@ -94,7 +94,7 @@ public class TelaVerificacao extends JFrame {
     private void reproduzirMusica() {
         try {
             AudioInputStream audioInputStream = AudioSystem
-                    .getAudioInputStream(TelaVerificacao.class.getResource("/imgs/Audio1.wav"));
+                    .getAudioInputStream(TelaVerificacao.class.getResource("/music/Audio2.wav"));
 
             AudioFormat format = audioInputStream.getFormat();
 

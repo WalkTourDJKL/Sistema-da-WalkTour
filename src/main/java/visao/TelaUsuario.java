@@ -1,20 +1,17 @@
 package visao;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
-import com.mysql.cj.xdevapi.Table;
-
 import controle.Conexao;
 import controle.DetaHospDAO;
 import controle.UsuariosDAO;
 import controle.ReservaDAO;
 import modelo.DetalhesHospedagem;
+import modelo.Quarto;
 import modelo.Usuarios;
 import modelo.Reserva;
 
@@ -23,32 +20,21 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.Color;
-import java.awt.Dimension;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -56,6 +42,10 @@ import java.awt.Component;
 
 public class TelaUsuario extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public static JTextField txtNome;
 	private JTextField txtCPF;
@@ -71,11 +61,13 @@ public class TelaUsuario extends JFrame {
 	 * @param tipo
 	 * @param cidade
 	 * @param tVolt
+	 * @param estado
 	 */
-	public TelaUsuario(Usuarios hosp, String tipo, String cidade, int tVolt) {
+	public TelaUsuario(Usuarios hosp, String tipo, String cidade, int tVolt, String estado) {
 		setTitle("Tela do usuario:" + hosp.getNome());
 		Usuarios hops = new Usuarios();
 		Usuarios h1 = hosp;
+		Quarto quartos = new Quarto();
 		hops = hospdao.passaLogado();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -115,7 +107,7 @@ public class TelaUsuario extends JFrame {
 		txtDtNsc.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtDtNsc.setColumns(10);
 		txtDtNsc.setBounds(370, 440, 500, 38);
-		txtDtNsc.setText(String.valueOf(hops.getDtNasc()));
+		txtDtNsc.setText(hops.getDtNasc().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		contentPane.add(txtDtNsc);
 
 		JLabel lblNomeSc = new JLabel("Nome social do hospede:");
@@ -142,12 +134,12 @@ public class TelaUsuario extends JFrame {
 		txtCPF.setBounds(370, 500, 500, 38);
 		contentPane.add(txtCPF);
 
-		Date dataNascimento = convertStringToDate(txtDtNsc.getText());
+		LocalDate dataNascimento = convertStringToDate(txtDtNsc.getText());
 
 		JButton btnAtualizar = new JButton("Atualizar");
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Date dataNascimento = convertStringToDate(txtDtNsc.getText());
+				LocalDate dataNascimento = convertStringToDate(txtDtNsc.getText());
 				if (dataNascimento == null) {
 					JOptionPane.showMessageDialog(null,
 							"Data de nascimento invï¿½lida. Por favor, use o formato aaaa-mm-dd.");
@@ -196,19 +188,25 @@ public class TelaUsuario extends JFrame {
 					telaVolta.setVisible(true);
 				}
 				if (tVolt == 2) {
-					TelaHotel telaVolta = new TelaHotel(hosp, cidade);
+					TelaHotel telaVolta = new TelaHotel(hosp, cidade, estado);
 					dispose();
 					telaVolta.setResizable(false);
 					telaVolta.setVisible(true);
 				}
 				if (tVolt == 3) {
-					TelaQuartos telaVolta = new TelaQuartos(hosp, cidade);
+					TelaQuartos telaVolta = new TelaQuartos(hosp, cidade, estado);
 					dispose();
 					telaVolta.setResizable(false);
 					telaVolta.setVisible(true);
 				}
 				if (tVolt == 4) {
-					TelaQuarto telaVolta = new TelaQuarto(tipo, hosp, cidade);
+					TelaQuarto telaVolta = new TelaQuarto(tipo, hosp, cidade, estado);
+					dispose();
+					telaVolta.setResizable(false);
+					telaVolta.setVisible(true);
+				}
+				if (tVolt == 5) {
+					TelaCidade telaVolta = new TelaCidade(hosp, cidade, estado);
 					dispose();
 					telaVolta.setResizable(false);
 					telaVolta.setVisible(true);
@@ -219,7 +217,7 @@ public class TelaUsuario extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnVoltar.setBounds(40, 242, 89, 23);
 		contentPane.add(btnVoltar);
-
+		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
 		lblNewLabel_1.setBounds(723, 0, 712, 1089);
@@ -227,19 +225,19 @@ public class TelaUsuario extends JFrame {
 
 	}
 
-	public Date convertStringToDate(String dateString) {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+	public LocalDate convertStringToDate(String dateString) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		try {
-			java.util.Date date = formatter.parse(dateString);
-			return new java.sql.Date(date.getTime());
-		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, "Formato de data invï¿½lido. Use o formato yyyy-MM-dd.");
+			return LocalDate.parse(dateString, formatter);
+		} catch (DateTimeParseException e) {
+			JOptionPane.showMessageDialog(null, "Formato de data inválido. Use o formato dd/MM/yyyy.");
 			return null;
 		}
 	}
 
 	private void atualizarTabela(Usuarios hops, Usuarios h1) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Conexao conexao = Conexao.getConexao();
 
 		Connection conDB = conexao.conectar();
@@ -270,17 +268,21 @@ public class TelaUsuario extends JFrame {
 
 		String[] colunas = { "forma_pag", "data_in", "data_out", "preco", "Editar", "Excluir", "ID" };
 		DefaultTableModel model = new DefaultTableModel(colunas, 0) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return column == 4 || column == 5;
 			}
 		};
 		for (Reserva r : reserva) {
-			Object[] rowData = { r.getFormaPag(), r.getDataIn(), r.getDataOut(), r.getPreco(), "Editar", "Excluir",
-					r.getIdHospedagem() };
+			Object[] rowData = { r.getFormaPag(), r.getDataIn().format(formatter), r.getDataOut().format(formatter),
+					r.getPreco(), "Editar", "Excluir", r.getIdHospedagem() };
 			model.addRow(rowData);
 		}
-
 		table.setModel(model);
 		table.getColumnModel().getColumn(6).setMinWidth(0);
 		table.getColumnModel().getColumn(6).setMaxWidth(0);
@@ -294,6 +296,11 @@ public class TelaUsuario extends JFrame {
 
 	class ButtonRenderer extends JButton implements TableCellRenderer {
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public ButtonRenderer() {
 			setOpaque(true);
 		}
@@ -306,6 +313,10 @@ public class TelaUsuario extends JFrame {
 	}
 
 	class ButtonEditor extends DefaultCellEditor {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		protected JButton button;
 		private String label;
 		private boolean isPushed;

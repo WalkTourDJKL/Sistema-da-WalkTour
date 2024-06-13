@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Usuarios {
 	private int idUsuario;
@@ -9,7 +10,7 @@ public class Usuarios {
 	private String login;
 	private String senha;
 	private String cpf;
-	private Date dtNasc;
+	private LocalDate dtNasc;
 	private int tipoUser;
 
 	public String getLogin() {
@@ -52,12 +53,12 @@ public class Usuarios {
 		this.nomeSocial = nomeSocial;
 	}
 
-	public Date getDtNasc() {
+	public LocalDate getDtNasc() {
 		return dtNasc;
 	}
 
-	public void setDtNasc(Date dtNasc) {
-		this.dtNasc = dtNasc;
+	public void setDtNasc(LocalDate dataNascimento) {
+		this.dtNasc = dataNascimento;
 	}
 
 	public String getCpf() {

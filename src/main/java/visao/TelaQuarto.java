@@ -18,7 +18,7 @@ public class TelaQuarto extends JFrame {
 	private JTextField textField;
 	private ModeloQuartoDAO modeqdao = ModeloQuartoDAO.getInstancia();
 
-	public TelaQuarto(String tipo, Usuarios hosp, String cidade) {
+	public TelaQuarto(String tipo, Usuarios hosp, String cidade, String estado) {
 		setTitle("Tela do quarto de " + cidade);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -36,7 +36,7 @@ public class TelaQuarto extends JFrame {
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int tVolt = 4;
-				TelaUsuario user = new TelaUsuario(hosp, tipo, cidade, tVolt);
+				TelaUsuario user = new TelaUsuario(hosp, tipo, cidade, tVolt, estado);
 				dispose();
 				user.setResizable(false);
 				user.setVisible(true);
@@ -130,7 +130,7 @@ public class TelaQuarto extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaQuartos telaQuartos = new TelaQuartos(hosp, cidade);
+				TelaQuartos telaQuartos = new TelaQuartos(hosp, cidade, estado);
 				dispose();
 				telaQuartos.setResizable(false);
 				telaQuartos.setVisible(true);
@@ -158,7 +158,7 @@ public class TelaQuarto extends JFrame {
 		JButton btnReservar = new JButton("");
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaFinalizar telaFinalizar = new TelaFinalizar(tipo, hosp, cidade, preco);
+				TelaFinalizar telaFinalizar = new TelaFinalizar(tipo, hosp, cidade, preco, estado);
 				dispose();
 				telaFinalizar.setResizable(false);
 				telaFinalizar.setVisible(true);

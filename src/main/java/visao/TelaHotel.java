@@ -53,8 +53,9 @@ public class TelaHotel extends JFrame {
 	 * @param cidade
 	 * @param hosp
 	 * @param cidade
+	 * @param estado 
 	 */
-	public TelaHotel(Usuarios hosp, String cidade) {
+	public TelaHotel(Usuarios hosp, String cidade, String estado) {
 		setTitle("Tela Hotel de " + cidade);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -66,7 +67,7 @@ public class TelaHotel extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaPrincipal telaprincipal = new TelaPrincipal(hosp);
+				TelaCidade telaprincipal = new TelaCidade(hosp, cidade, estado);
 				dispose();
 				telaprincipal.setResizable(false);
 				telaprincipal.setVisible(true);
@@ -91,7 +92,7 @@ public class TelaHotel extends JFrame {
 		lbliconePerfil.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int tVolt = 2; 
-				TelaUsuario user = new TelaUsuario(hosp,null ,cidade,tVolt);
+				TelaUsuario user = new TelaUsuario(hosp,null ,cidade,tVolt, estado);
 				dispose();
 				user.setResizable(false);
 				user.setVisible(true);
@@ -161,7 +162,7 @@ public class TelaHotel extends JFrame {
 		JButton btnProcurarQuarto = new JButton("");
 		btnProcurarQuarto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaQuartos telaquartos = new TelaQuartos(hosp, cidade);
+				TelaQuartos telaquartos = new TelaQuartos(hosp, cidade,estado);
 				dispose();
 				telaquartos.setResizable(false);
 				telaquartos.setVisible(true);
@@ -170,5 +171,32 @@ public class TelaHotel extends JFrame {
 		btnProcurarQuarto.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/btnBuscaQuarto.png")));
 		btnProcurarQuarto.setBounds(842, 715, 427, 61);
 		contentPane.add(btnProcurarQuarto);
+		
+        
+        JComboBox SobreOhotel = new JComboBox();
+        SobreOhotel.setBounds(971, 440, 430, 30);
+        contentPane.add(SobreOhotel);
+        
+        SobreOhotel.addItem("Sobre o Hotel");
+        
+        JComboBox Comodidades = new JComboBox();
+        Comodidades.setBounds(971, 493, 430, 30);
+        contentPane.add(Comodidades);
+        
+        Comodidades.addItem("Comodidades");
+
+        
+        JComboBox QuartosMaisReservados = new JComboBox();
+        QuartosMaisReservados.setBounds(971, 548, 430, 30);
+        contentPane.add(QuartosMaisReservados);
+        
+        QuartosMaisReservados.addItem("Quartos Mais Reservados");
+
+        
+        JComboBox Especificações = new JComboBox();
+        Especificações.setBounds(971, 602, 430, 30);
+        contentPane.add(Especificações);
+ 
+        Especificações.addItem("Especificações e Regulamentações da Reserva");
 	}
 }

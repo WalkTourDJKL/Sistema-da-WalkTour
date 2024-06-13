@@ -46,8 +46,9 @@ public class TelaFinalizar extends JFrame {
 	 * @param hosp
 	 * @param tipo
 	 * @param preco
+	 * @param estado 
 	 */
-	public TelaFinalizar(String tipo, Usuarios hosp, String cidade, String preco) {
+	public TelaFinalizar(String tipo, Usuarios hosp, String cidade, String preco, String estado) {
 		setTitle("Tela de finalizar reserva");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -59,7 +60,7 @@ public class TelaFinalizar extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaQuarto telaQuarto = new TelaQuarto(tipo, hosp, cidade);
+				TelaQuarto telaQuarto = new TelaQuarto(tipo, hosp, cidade, estado);
 				dispose();
 				telaQuarto.setResizable(false);
 				telaQuarto.setVisible(true);
@@ -115,8 +116,6 @@ public class TelaFinalizar extends JFrame {
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String dataInicio = txt_digiDataI.getText();
-				String dataFim = txt_digiDataF.getText();
 				String formaPagamento = "";
 
 				if (radioPIX.isSelected()) {

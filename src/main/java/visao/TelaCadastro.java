@@ -11,13 +11,16 @@ import modelo.Usuarios;
 import controle.UsuariosDAO;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
@@ -33,8 +36,7 @@ public class TelaCadastro extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtDigiteSeuNomeSocial;
 	private JTextField txtDigiteSeuNome;
-	private JTextField txtDigiteSeuCpf;
-	private JFormattedTextField formattedTextFieldDataNascimento;
+	private JTextField txtDigitDtNasc;
 	private JFormattedTextField formattedTextFieldCPF;
 	private JTextField txtSenha;
 	private JTextField txtLogin;
@@ -110,6 +112,16 @@ public class TelaCadastro extends JFrame {
 		lbl_DNasc.setFont(new Font("Corbel", Font.BOLD, 35));
 		lbl_DNasc.setBounds(10, 276, 500, 50);
 		contentPane.add(lbl_DNasc);
+		try {
+			MaskFormatter mascaraData = new MaskFormatter("##/##/####");
+			txtDigitDtNasc = new JFormattedTextField(mascaraData);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		txtDigitDtNasc.setBounds(10, 321, 458, 35);
+		txtDigitDtNasc.setFont(new Font("Corbel", Font.BOLD, 15));
+		contentPane.add(txtDigitDtNasc);
+		txtDigitDtNasc.setColumns(10);
 
 		JLabel lbl_CPF = new JLabel("CPF");
 		lbl_CPF.setForeground(new Color(52, 64, 84));
@@ -129,13 +141,16 @@ public class TelaCadastro extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+
 				String nome = txtDigiteSeuNome.getText();
 				String nomeSc = txtDigiteSeuNomeSocial.getText();
 				String cpf = formattedTextFieldCPF.getText();
-				String dataNascimento = formattedTextFieldDataNascimento.getText();
+				String dataNascimento = txtDigitDtNasc.getText();
 				String login = txtLogin.getText();
 				String senha = txtSenha.getText();
 				int tipo = 0;
@@ -147,22 +162,30 @@ public class TelaCadastro extends JFrame {
 				} else {
 
 					Usuarios end = new Usuarios();
+					if (dataNascimento.length() == 0) {
+						JOptionPane.showMessageDialog(null, "Campo Data de Entrada obrigatório!");
+						return;
+					}
 
+					MaskFormatter mascaradataI = null;
+					try {
+						mascaradataI = new MaskFormatter("##/##/####");
+					} catch (ParseException e1) {
+						e1.printStackTrace();
+					}
+					txtDigitDtNasc = new JFormattedTextField(mascaradataI);
+					contentPane.add(txtDigitDtNasc);
+					txtDigitDtNasc.setColumns(10);
+
+					LocalDate dtnsc = LocalDate.parse(dataNascimento, formatter);
+					
 					end.setNome(nome);
 					end.setNomeSocial(nomeSc);
+					end.setDtNasc(dtnsc);
 					end.setCpf(cpf);
 					end.setLogin(login);
 					end.setSenha(senha);
 					end.setTipoUser(0);
-
-					try {
-						SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-						java.util.Date dataFormatadaUtil = formatador.parse(dataNascimento);
-						java.sql.Date dataFormatadaSql = new java.sql.Date(dataFormatadaUtil.getTime());
-						end.setDtNasc(dataFormatadaSql);
-					} catch (ParseException ex) {
-						ex.printStackTrace();
-					}
 
 					UsuariosDAO dao = UsuariosDAO.getInstancia();
 
@@ -192,11 +215,6 @@ public class TelaCadastro extends JFrame {
 		contentPane.add(btnNewButton_1);
 
 		try {
-			MaskFormatter formatter = new MaskFormatter("####-##-##");
-			formatter.setPlaceholderCharacter('_');
-			formattedTextFieldDataNascimento = new JFormattedTextField(formatter);
-			formattedTextFieldDataNascimento.setBounds(10, 316, 458, 35);
-			contentPane.add(formattedTextFieldDataNascimento);
 
 			JLabel lblNewLabel_1 = new JLabel("Ja tem Cadastro?");
 			lblNewLabel_1.setFont(new Font("Corbel", Font.ITALIC, 14));
