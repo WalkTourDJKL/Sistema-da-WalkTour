@@ -185,6 +185,10 @@ public class TelaFinalizar extends JFrame {
 						sucesso.setResizable(false);
 						sucesso.setLocationRelativeTo(null);
 						sucesso.setVisible(true);
+						TelaQuarto telaQuarto = new TelaQuarto(tipo, hosp, cidade, estado);
+						dispose();
+						telaQuarto.setResizable(false);
+						telaQuarto.setVisible(true);
 					} else {
 
 					}
