@@ -9,8 +9,10 @@ import javax.swing.table.TableCellRenderer;
 import controle.Conexao;
 import controle.DetaHospDAO;
 import controle.UsuariosDAO;
+import controle.pontosTurDAO;
 import controle.ReservaDAO;
 import modelo.DetalhesHospedagem;
+import modelo.PontosTur;
 import modelo.Quarto;
 import modelo.Usuarios;
 import modelo.Reserva;
@@ -51,9 +53,12 @@ public class TelaUsuario extends JFrame {
 	private JTextField txtCPF;
 	private JTextField txtNomeSc;
 	private UsuariosDAO hospdao = UsuariosDAO.getInstancia();
+	private pontosTurDAO dao = pontosTurDAO.getInstancia();
 	private JTextField txtDtNsc;
 	private JTable table;
-
+	private JTable tableP;
+	ArrayList<PontosTur> pontosTur = new ArrayList<>();
+	
 	/**
 	 * Create the frame.
 	 * 
@@ -62,6 +67,7 @@ public class TelaUsuario extends JFrame {
 	 * @param cidade
 	 * @param tVolt
 	 * @param estado
+	 * 
 	 */
 	public TelaUsuario(Usuarios hosp, String tipo, String cidade, int tVolt, String estado) {
 		setTitle("Tela do usuario:" + hosp.getNome());
@@ -75,11 +81,6 @@ public class TelaUsuario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		table = new JTable();
-		atualizarTabela(hosp, h1);
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(40, 619, 584, 231);
-		contentPane.add(scrollPane);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/Title.png")));
@@ -217,25 +218,59 @@ public class TelaUsuario extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnVoltar.setBounds(40, 242, 89, 23);
 		contentPane.add(btnVoltar);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
-		lblNewLabel_1.setBounds(723, 0, 712, 1089);
-		contentPane.add(lblNewLabel_1);
+
+		if (hosp.getTipoUser() == 1) {
+			tableP = new JTable();
+			atualizarTabela();
+			JScrollPane scrollPane = new JScrollPane(tableP);
+			scrollPane.setBounds(40, 619, 584, 231);
+			contentPane.add(scrollPane);
+
+			JLabel lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
+			lblNewLabel_1.setBounds(723, 0, 712, 1089);
+			contentPane.add(lblNewLabel_1);
+		} else {
+			table = new JTable();
+			atualizarTabela(hosp, h1);
+			JScrollPane scrollPane = new JScrollPane(table);
+			scrollPane.setBounds(40, 619, 584, 231);
+			contentPane.add(scrollPane);
+			JLabel lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
+			lblNewLabel_1.setBounds(723, 0, 712, 1089);
+			contentPane.add(lblNewLabel_1);
+		}
 
 	}
-
 
 	public LocalDate convertStringToDate(String dateString) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		try {
 			return LocalDate.parse(dateString, formatter);
 		} catch (DateTimeParseException e) {
-			JOptionPane.showMessageDialog(null, "Formato de data inválido. Use o formato dd/MM/yyyy.");
+			JOptionPane.showMessageDialog(null, "Formato de data invï¿½lido. Use o formato dd/MM/yyyy.");
 			return null;
 		}
 	}
 
+	private void atualizarTabela() {
+
+		pontosTur = dao.listarPontoTur();
+		DefaultTableModel model2 = new DefaultTableModel(new Object[] { "Id", "Hora Abre", "Hora Fecha", "Preï¿½o" }, 0) {
+		private static final long serialVersionUID = 1L;
+
+		public boolean isCellEditable(int row, int column) {
+		return false;
+		}
+		};
+		for (PontosTur pt : pontosTur) {
+		model2.addRow(new Object[] { pt.getPontoId(), pt.getHoraAbre(), pt.getHoraFecha(), pt.getPreco() });
+		}
+		tableP.setModel(model2);
+
+		}
+	
 	private void atualizarTabela(Usuarios hops, Usuarios h1) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Conexao conexao = Conexao.getConexao();
@@ -406,4 +441,5 @@ public class TelaUsuario extends JFrame {
 		System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data Inï¿½cio: " + dataIn + ", Data Fim: "
 				+ dataOut + ", Preï¿½o: " + preco);
 	}
+
 }

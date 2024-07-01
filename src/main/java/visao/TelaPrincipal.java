@@ -287,7 +287,7 @@ public class TelaPrincipal extends JFrame {
 
 		
 		
-		/* essa é a logica do funcionario ver coisas que o cliente não pode ver */
+		/* essa ï¿½ a logica do funcionario ver coisas que o cliente nï¿½o pode ver */
 		if (hosp.getTipoUser() == 1) {
 			JButton btnNewButton = new JButton("Botao");
 			btnNewButton.setFont(new Font("Segoe UI Black", Font.BOLD | Font.ITALIC, 18));
@@ -296,6 +296,7 @@ public class TelaPrincipal extends JFrame {
 		} else {
 
 		}
-
+		
+		
 	}
 }
