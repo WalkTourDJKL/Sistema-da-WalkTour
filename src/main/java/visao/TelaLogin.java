@@ -84,6 +84,7 @@ public class TelaLogin extends JFrame {
 		lbl_Login.setFont(new Font("Corbel", Font.BOLD, 35));
 
 		txt_digiLogin = new JTextField();
+		txt_digiLogin.setText("hosp0");
 		txt_digiLogin.setBounds(950, 203, 464, 35);
 		contentPane.add(txt_digiLogin);
 		txt_digiLogin.setToolTipText("Digite seu login");
@@ -98,6 +99,7 @@ public class TelaLogin extends JFrame {
 		lbl_cpf.setFont(new Font("Corbel", Font.BOLD, 35));
 
 		txt_digiSenha = new JTextField();
+		txt_digiSenha.setText("0");
 		txt_digiSenha.setBounds(950, 328, 464, 35);
 		contentPane.add(txt_digiSenha);
 		txt_digiSenha.setToolTipText("Digite sua senha");
@@ -180,7 +182,24 @@ public class TelaLogin extends JFrame {
 		btnNewButton_1.setFont(new Font("Corbel", Font.ITALIC, 14));
 		btnNewButton_1.setBackground(UIManager.getColor("Button.background"));
 		contentPane.add(btnNewButton_1);
-
+		//so para agilizar os testes
+		String login = txt_digiLogin.getText();
+		String senha = txt_digiSenha.getText();
+		JButton btnNewButton_2 = new JButton("Funcionario");
+		btnNewButton_2.setFont(new Font("Impact", Font.PLAIN, 41));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_digiLogin.setText(null);
+				txt_digiSenha.setText(null);
+				txt_digiLogin.setText("func0");
+				txt_digiSenha.setText("1");
+			}
+		});
+		btnNewButton_2.setBounds(950, 374, 236, 140);
+		contentPane.add(btnNewButton_2);
+		
+		
+		
 		JLabel lblNewLabel_2 = new JLabel(
 				"Ao continuar com o acesso, voce concorda com nossa politica de privacidade ");
 		lblNewLabel_2.setBounds(984, 570, 430, 18);
@@ -196,6 +215,22 @@ public class TelaLogin extends JFrame {
 		lblNewLabel_3.setBounds(-254, -74, 1309, 1051);
 		lblNewLabel_3.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/LadoA.png")));
 		LadoJanela.add(lblNewLabel_3);
+		
+		//so para agilizar os testes
+		JButton btnNewButton_3 = new JButton("Hospede");
+		btnNewButton_3.setFont(new Font("Impact", Font.PLAIN, 41));
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_digiLogin.setText(null);
+				txt_digiSenha.setText(null);
+				txt_digiLogin.setText("hosp0");
+				txt_digiSenha.setText("0");
+			}
+		});
+		btnNewButton_3.setBounds(1223, 374, 191, 140);
+		contentPane.add(btnNewButton_3);
+
+
 	}
 
 	public MaskFormatter getFormatterCPF() {
@@ -205,5 +240,4 @@ public class TelaLogin extends JFrame {
 	public void setFormatterCPF(MaskFormatter formatterCPF) {
 		this.formatterCPF = formatterCPF;
 	}
-
 }

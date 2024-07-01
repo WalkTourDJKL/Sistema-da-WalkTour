@@ -193,10 +193,10 @@ public class TelaHotel extends JFrame {
         QuartosMaisReservados.addItem("Quartos Mais Reservados");
 
         
-        JComboBox Especificações = new JComboBox();
-        Especificações.setBounds(971, 602, 430, 30);
-        contentPane.add(Especificações);
+        JComboBox Especifica = new JComboBox();
+        Especifica.setBounds(971, 602, 430, 30);
+        contentPane.add(Especifica);
  
-        Especificações.addItem("Especificações e Regulamentações da Reserva");
+        Especifica.addItem("Especificaï¿½ï¿½es e Regulamentaï¿½ï¿½es da Reserva");
 	}
 }
