@@ -136,7 +136,9 @@ public class TelaQuarto extends JFrame {
 				telaQuartos.setVisible(true);
 			}
 		});
-		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnVoltar.setFocusPainted(false);
+		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setBounds(10, 241, 90, 25);
 		contentPane.add(btnVoltar);
 

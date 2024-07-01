@@ -36,6 +36,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Canvas;
+import java.awt.Color;
+
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -75,7 +77,9 @@ public class TelaCidade extends JFrame {
 				telaprincipal.setVisible(true);
 			}
 		});
-		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnVoltar.setFocusPainted(false);
+		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setBounds(10, 240, 90, 25);
 		contentPane.add(btnVoltar);
 
@@ -124,7 +128,7 @@ public class TelaCidade extends JFrame {
 				Image.SCALE_SMOOTH);
 		ImageIcon iconRedimensionado = new ImageIcon(imgRedimensionada);
 
-		// Define o ícone redimensionado no JLabel
+		// Define o ï¿½cone redimensionado no JLabel
 		lblImagemMaior.setIcon(iconRedimensionado);
 
 		// Adiciona o JLabel ao contentPane

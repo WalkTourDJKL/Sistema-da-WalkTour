@@ -201,7 +201,9 @@ public class TelaQuartos extends JFrame {
 				telahotel.setVisible(true);
 			}
 		});
-		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnVoltar.setFocusPainted(false);
+		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setBounds(40, 242, 89, 23);
 		contentPane.add(btnVoltar);
 		

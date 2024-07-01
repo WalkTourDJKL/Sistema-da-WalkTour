@@ -214,7 +214,9 @@ public class TelaUsuario extends JFrame {
 
 			}
 		});
-		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnVoltar.setFocusPainted(false);
+		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setBounds(40, 242, 89, 23);
 		contentPane.add(btnVoltar);
 		
@@ -231,7 +233,7 @@ public class TelaUsuario extends JFrame {
 		try {
 			return LocalDate.parse(dateString, formatter);
 		} catch (DateTimeParseException e) {
-			JOptionPane.showMessageDialog(null, "Formato de data inválido. Use o formato dd/MM/yyyy.");
+			JOptionPane.showMessageDialog(null, "Formato de data invï¿½lido. Use o formato dd/MM/yyyy.");
 			return null;
 		}
 	}
