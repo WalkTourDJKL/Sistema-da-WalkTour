@@ -58,13 +58,13 @@ public class TelaConfirmacao extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Tem certeza que deseseja");
-		lblNewLabel.setBounds(21, 16, 386, 43);
+		JLabel lblNewLabel = new JLabel("Tem certeza que deseja");
+		lblNewLabel.setBounds(38, 24, 373, 43);
 		lblNewLabel.setForeground(new Color(102, 112, 122));
 		lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 35));
 		contentPane.add(lblNewLabel);
 
-		JLabel lblExcluirSuaConta = new JLabel("excluir sua" + coisa + "?");
+		JLabel lblExcluirSuaConta = new JLabel("excluir sua <dynamic>?");
 		lblExcluirSuaConta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblExcluirSuaConta.setBounds(21, 69, 386, 43);
 		lblExcluirSuaConta.setForeground(new Color(102, 112, 122));
@@ -74,7 +74,7 @@ public class TelaConfirmacao extends JFrame {
 		JButton btnNewButton = new JButton("Sim");
 		btnNewButton.setBackground(new Color(0, 255, 0));
 		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBounds(81, 151, 77, 33);
+		btnNewButton.setBounds(75, 137, 77, 33);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (coisa.equals("conta")) {
@@ -104,7 +104,7 @@ public class TelaConfirmacao extends JFrame {
 		});
 		btnNao.setBackground(new Color(255, 0, 0));
 		btnNao.setFont(new Font("Corbel", Font.PLAIN, 20));
-		btnNao.setBounds(290, 151, 77, 33);
+		btnNao.setBounds(284, 137, 77, 33);
 		contentPane.add(btnNao);
 	}
 }
