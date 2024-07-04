@@ -26,7 +26,7 @@ public class pontosTurDAO implements IpontosTurDAO {
 	}
 
 	public int inserirPontoTur(PontosTur end) {
-		String SQL = "INSERT INTO pontos_tur(hora_abre, hora_fecha, preco, endereco_id) VALUES (?,?,?,?)";
+		String SQL = "INSERT INTO pontos_tur(nome, hora_abre, hora_fecha, preco, endereco_id) VALUES (?,?,?,?,?)";
 
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -35,11 +35,12 @@ public class pontosTurDAO implements IpontosTurDAO {
 
 		try {
 			PreparedStatement ps = conDB.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-
-			ps.setTime(1, end.getHoraAbre());
-			ps.setTime(2, end.getHoraFecha());
-			ps.setFloat(3, end.getPreco());
-			ps.setInt(4, 2);
+			
+			ps.setString(1, end.getNomePontoTur());
+			ps.setTime(2, end.getHoraAbre());
+			ps.setTime(3, end.getHoraFecha());
+			ps.setInt(4, end.getPreco());
+			ps.setInt(5, 2);
 
 			int affectedRows = ps.executeUpdate();
 			if (affectedRows > 0) {
@@ -73,12 +74,14 @@ public class pontosTurDAO implements IpontosTurDAO {
 
 			while (rs.next()) {
 				PontosTur end = new PontosTur();
-
+				
+                String nome = rs.getString("nome");
 				Integer pontoId = rs.getInt("ponto_id");
 				Time horaAbre = rs.getTime("hora_abre");
 				Time horaFecha = rs.getTime("hora_fecha");
-				Float preco = rs.getFloat("preco");
+				int preco = rs.getInt("preco");
 
+				end.setNomePontoTur(nome);
 				end.setPontoId(pontoId);
 				end.setHoraAbre(horaAbre);
 				end.setHoraFecha(horaFecha);
@@ -98,17 +101,18 @@ public class pontosTurDAO implements IpontosTurDAO {
 	}
 
 	public int atualizarPontosTur(PontosTur end) {
-		String SQL = "UPDATE pontos_tur SET hora_abre = ?, hora_fecha = ?, preco = ? WHERE ponto_id = ?";
+		String SQL = "UPDATE pontos_tur SET nome = ?, hora_abre = ?, hora_fecha = ?, preco = ? WHERE ponto_id = ?";
 		Conexao con = Conexao.getConexao();
 		Connection conBD = con.conectar();
 		int retorno = 0;
 
 		try {
 			PreparedStatement ps = conBD.prepareStatement(SQL);
-			ps.setTime(1, end.getHoraAbre());
-			ps.setTime(2, end.getHoraFecha());
-			ps.setFloat(3, end.getPreco());
-			ps.setInt(4, end.getPontoId());
+			ps.setString(1, end.getNomePontoTur());
+			ps.setTime(2, end.getHoraAbre());
+			ps.setTime(3, end.getHoraFecha());
+			ps.setInt(4, end.getPreco());
+			ps.setInt(5, end.getPontoId());
 
 			retorno = ps.executeUpdate();
 		} catch (SQLException e) {
