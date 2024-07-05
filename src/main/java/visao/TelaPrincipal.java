@@ -284,18 +284,7 @@ public class TelaPrincipal extends JFrame {
 		panel_1_1_3.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1_3.setBounds(896, 561, 300, 300);
 		contentPane.add(panel_1_1_3);
-
 		
 		
-		/* essa é a logica do funcionario ver coisas que o cliente não pode ver */
-		if (hosp.getTipoUser() == 1) {
-			JButton btnNewButton = new JButton("Botao");
-			btnNewButton.setFont(new Font("Segoe UI Black", Font.BOLD | Font.ITALIC, 18));
-			btnNewButton.setBounds(1272, 299, 89, 23);
-			contentPane.add(btnNewButton);
-		} else {
-
-		}
-
 	}
 }

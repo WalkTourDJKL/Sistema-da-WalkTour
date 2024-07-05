@@ -6,7 +6,7 @@ public class PontosTur {
 	private int pontoId;
 	private Time horaAbre;
 	private Time horaFecha;
-	private float preco;
+	private int preco;
 	private String nomePontoTur;
 
 	public int getPontoId() {
@@ -33,11 +33,11 @@ public class PontosTur {
 		this.horaFecha = horaFecha;
 	}
 
-	public float getPreco() {
+	public int getPreco() {
 		return preco;
 	}
 
-	public void setPreco(float preco) {
+	public void setPreco(int preco) {
 		this.preco = preco;
 	}
 

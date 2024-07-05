@@ -38,10 +38,11 @@ CREATE TABLE WalkTourDB.`eventos` (
 -- -----------------------------------------------------
 CREATE TABLE WalkTourDB.`pontos_tur` (
   `ponto_id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
   `hora_abre` TIME NOT NULL,
   `hora_fecha` TIME NOT NULL,
-  `preco` FLOAT NOT NULL,
-  `endereco_id` INT NOT NULL,
+  `preco` INT NOT NULL,
+  `endereco_id` INT ,
   PRIMARY KEY (`ponto_id`, `endereco_id`),
   CONSTRAINT `fk_pontos_tur_enderecos1`
     FOREIGN KEY (`endereco_id`)
@@ -188,26 +189,11 @@ SET @id_evento = LAST_INSERT_ID();
 
     
     /* 1 chave estrangeira */
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:05', '8:49', '113.98', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:26', '8:11', '37.56', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:16', '10:52', '56.51', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:13', '8:29', '66.96', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:10', '9:39', '73.72', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:21', '8:17', '83.58', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:00', '9:25', '76.19', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:01', '10:44', '73.44', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:11', '8:07', '93.62', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:02', '10:12', '38.94', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:23', '9:18', '119.06', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:23', '8:13', '76.35', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:01', '8:38', '118.22', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:20', '10:38', '80.22', @endereco_id);
-   	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:24', '10:48', '87.31', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:21', '9:33', '75.68', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:10', '9:24', '81.30', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:03', '10:01', '69.47', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:14', '9:09', '81.52', @endereco_id);
-	insert into pontos_tur (hora_abre, hora_fecha, preco, endereco_id) values ('6:10', '10:41', '87.33', @endereco_id);
+	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega','6:05', '8:49', '11', @endereco_id);
+	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega 2','6:05', '8:49', '81', @endereco_id);
+	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega 3','6:05', '8:49', '41', @endereco_id);
+	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega 4','6:05', '8:49', '01', @endereco_id);
+	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega Dexule','6:05', '8:49', '91', @endereco_id);
     SET @ponto_id = LAST_INSERT_ID();
     
     /* Nenhuma chave estrangeira */

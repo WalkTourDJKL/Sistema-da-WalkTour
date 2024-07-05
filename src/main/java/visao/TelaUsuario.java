@@ -9,8 +9,10 @@ import javax.swing.table.TableCellRenderer;
 import controle.Conexao;
 import controle.DetaHospDAO;
 import controle.UsuariosDAO;
+import controle.pontosTurDAO;
 import controle.ReservaDAO;
 import modelo.DetalhesHospedagem;
+import modelo.PontosTur;
 import modelo.Quarto;
 import modelo.Usuarios;
 import modelo.Reserva;
@@ -26,10 +28,13 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -51,8 +56,11 @@ public class TelaUsuario extends JFrame {
 	private JTextField txtCPF;
 	private JTextField txtNomeSc;
 	private UsuariosDAO hospdao = UsuariosDAO.getInstancia();
+	private pontosTurDAO dao = pontosTurDAO.getInstancia();
 	private JTextField txtDtNsc;
 	private JTable table;
+	private JTable tableP;
+	ArrayList<PontosTur> pontosTur = new ArrayList<>();
 
 	/**
 	 * Create the frame.
@@ -62,6 +70,7 @@ public class TelaUsuario extends JFrame {
 	 * @param cidade
 	 * @param tVolt
 	 * @param estado
+	 * 
 	 */
 	public TelaUsuario(Usuarios hosp, String tipo, String cidade, int tVolt, String estado) {
 		setTitle("Tela do usuario:" + hosp.getNome());
@@ -75,11 +84,6 @@ public class TelaUsuario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		table = new JTable();
-		atualizarTabela(hosp, h1);
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(40, 619, 584, 231);
-		contentPane.add(scrollPane);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/Title.png")));
@@ -219,14 +223,36 @@ public class TelaUsuario extends JFrame {
 		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setBounds(40, 242, 89, 23);
 		contentPane.add(btnVoltar);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
-		lblNewLabel_1.setBounds(723, 0, 712, 1089);
-		contentPane.add(lblNewLabel_1);
+
+		if (hosp.getTipoUser() == 1) {
+			tableP = new JTable();
+			tableP.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					int row = tableP.getSelectedRow();
+					editPonto(row);
+				}
+			});
+			atualizarTabela();
+			JScrollPane scrollPane = new JScrollPane(tableP);
+			scrollPane.setBounds(40, 619, 584, 231);
+			contentPane.add(scrollPane);
+			JLabel lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
+			lblNewLabel_1.setBounds(723, 0, 712, 1089);
+			contentPane.add(lblNewLabel_1);
+		} else {
+			table = new JTable();
+			atualizarTabela(hosp, h1);
+			JScrollPane scrollPane = new JScrollPane(table);
+			scrollPane.setBounds(40, 619, 584, 231);
+			contentPane.add(scrollPane);
+			JLabel lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
+			lblNewLabel_1.setBounds(723, 0, 712, 1089);
+			contentPane.add(lblNewLabel_1);
+		}
 
 	}
-
 
 	public LocalDate convertStringToDate(String dateString) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -236,6 +262,25 @@ public class TelaUsuario extends JFrame {
 			JOptionPane.showMessageDialog(null, "Formato de data inv�lido. Use o formato dd/MM/yyyy.");
 			return null;
 		}
+	}
+
+	private void atualizarTabela() {
+
+		pontosTur = dao.listarPontoTur();
+		DefaultTableModel model2 = new DefaultTableModel(
+				new Object[] { "Id", "Nome", "Hora Abre", "Hora Fecha", "Pre�o" }, 0) {
+			private static final long serialVersionUID = 1L;
+
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		for (PontosTur pt : pontosTur) {
+			model2.addRow(new Object[] { pt.getPontoId(), pt.getNomePontoTur(), pt.getHoraAbre(), pt.getHoraFecha(),
+					pt.getPreco() });
+		}
+		tableP.setModel(model2);
+
 	}
 
 	private void atualizarTabela(Usuarios hops, Usuarios h1) {
@@ -407,5 +452,20 @@ public class TelaUsuario extends JFrame {
 		edit.setVisible(true);
 		System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data In�cio: " + dataIn + ", Data Fim: "
 				+ dataOut + ", Pre�o: " + preco);
+	}
+
+	private void editPonto(int row) {
+		DefaultTableModel model2 = (DefaultTableModel) tableP.getModel();
+
+		int idPonto = (Integer) model2.getValueAt(row, 0);
+		String nome = (String) model2.getValueAt(row, 1);
+		Time horaAbre = (Time) model2.getValueAt(row, 2);
+		Time horaFecha = (Time) model2.getValueAt(row, 3);
+		int preco = (Integer) model2.getValueAt(row, 4);
+		TelaEditPontosTur edit = new TelaEditPontosTur(nome, horaAbre, horaFecha, preco, idPonto);
+		edit.setResizable(false);
+		edit.setVisible(true);
+		System.out.println("Editando ponto: Nome do ponto: " + nome + ",horaAbre: " + horaAbre + ", horaFecha: "
+				+ horaFecha + ", Pre�o: " + preco + ", ID: " + idPonto);
 	}
 }
