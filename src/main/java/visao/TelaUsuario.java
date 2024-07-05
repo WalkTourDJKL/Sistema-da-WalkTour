@@ -234,14 +234,6 @@ public class TelaUsuario extends JFrame {
 			JScrollPane scrollPane = new JScrollPane(tableP);
 			scrollPane.setBounds(40, 619, 584, 231);
 			contentPane.add(scrollPane);
-			JButton btnNewButton = new JButton("New button");
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-				}
-			});
-			btnNewButton.setBounds(740, 569, 89, 23);
-			contentPane.add(btnNewButton);
 			JLabel lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
 			lblNewLabel_1.setBounds(723, 0, 712, 1089);
@@ -468,7 +460,7 @@ public class TelaUsuario extends JFrame {
 		Time horaAbre = (Time) model2.getValueAt(row, 2);
 		Time horaFecha = (Time) model2.getValueAt(row, 3);
 		int preco = (Integer) model2.getValueAt(row, 4);
-		TelaEditPontosTur edit = new TelaEditPontosTur(nome, horaAbre, horaFecha,preco, idPonto);
+		TelaEditPontosTur edit = new TelaEditPontosTur(nome, horaAbre, horaFecha, preco, idPonto);
 		edit.setResizable(false);
 		edit.setVisible(true);
 		System.out.println("Editando ponto: Nome do ponto: " + nome + ",horaAbre: " + horaAbre + ", horaFecha: "
