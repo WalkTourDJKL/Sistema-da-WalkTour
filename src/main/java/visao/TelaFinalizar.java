@@ -1,5 +1,6 @@
 package visao;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -66,7 +67,9 @@ public class TelaFinalizar extends JFrame {
 				telaQuarto.setVisible(true);
 			}
 		});
-		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnVoltar.setFocusPainted(false);
+		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setBounds(983, 108, 90, 25);
 		contentPane1.add(btnVoltar);
 
