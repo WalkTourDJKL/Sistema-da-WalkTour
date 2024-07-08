@@ -8,6 +8,7 @@ import javax.swing.table.TableCellRenderer;
 
 import controle.Conexao;
 import controle.DetaHospDAO;
+import controle.QuartoDAO;
 import controle.UsuariosDAO;
 import controle.pontosTurDAO;
 import controle.ReservaDAO;
@@ -57,9 +58,11 @@ public class TelaUsuario extends JFrame {
 	private JTextField txtNomeSc;
 	private UsuariosDAO hospdao = UsuariosDAO.getInstancia();
 	private pontosTurDAO dao = pontosTurDAO.getInstancia();
+	private QuartoDAO dao2 = QuartoDAO.getInstancia();
 	private JTextField txtDtNsc;
 	private JTable table;
 	private JTable tableP;
+	private JTable tableQ;
 	ArrayList<PontosTur> pontosTur = new ArrayList<>();
 
 	/**
@@ -74,6 +77,7 @@ public class TelaUsuario extends JFrame {
 	 */
 	public TelaUsuario(Usuarios hosp, String tipo, String cidade, int tVolt, String estado) {
 		setTitle("Tela do usuario:" + hosp.getNome());
+		
 		Usuarios hops = new Usuarios();
 		Usuarios h1 = hosp;
 		Quarto quartos = new Quarto();
@@ -236,6 +240,19 @@ public class TelaUsuario extends JFrame {
 			JScrollPane scrollPane = new JScrollPane(tableP);
 			scrollPane.setBounds(40, 619, 584, 231);
 			contentPane.add(scrollPane);
+			
+			tableQ = new JTable();
+			tableQ.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					int row = tableQ.getSelectedRow();
+					editQuarto(row);
+				}
+			});
+			atualizarTabelaQ();
+			JScrollPane scrollPane3 = new JScrollPane(tableQ);
+			scrollPane3.setBounds(630, 619, 240, 231);
+			contentPane.add(scrollPane3);
+			
 			JLabel lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
 			lblNewLabel_1.setBounds(723, 0, 712, 1089);
@@ -281,6 +298,23 @@ public class TelaUsuario extends JFrame {
 		}
 		tableP.setModel(model2);
 
+	}
+	private void atualizarTabelaQ() {
+		ArrayList<Quarto> quarto = new ArrayList<Quarto>();
+
+		quarto = dao2.listarQuartos();
+		DefaultTableModel model = new DefaultTableModel(new Object[] { "num_quarto", "hora_limpeza", "tipo_id" }, 0) {
+
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+
+		for (Quarto e : quarto) {
+			model.addRow(new Object[] { e.getNumQuarto(), e.getHoraLimpeza(), e.getTipoId() });
+		}
+
+		tableQ.setModel(model);
 	}
 
 	private void atualizarTabela(Usuarios hops, Usuarios h1) {
@@ -467,5 +501,16 @@ public class TelaUsuario extends JFrame {
 		edit.setVisible(true);
 		System.out.println("Editando ponto: Nome do ponto: " + nome + ",horaAbre: " + horaAbre + ", horaFecha: "
 				+ horaFecha + ", Pre�o: " + preco + ", ID: " + idPonto);
+	}
+	
+	private void editQuarto(int row) {
+		DefaultTableModel model2 = (DefaultTableModel) tableQ.getModel();
+
+		int idQuarto = (Integer) model2.getValueAt(row, 0);
+		Time horaLimpeza = (Time) model2.getValueAt(row, 1);
+		int TipoId = (Integer) model2.getValueAt(row, 2);
+		TelaEditQuarto edit = new TelaEditQuarto( TipoId,horaLimpeza,idQuarto );
+		edit.setResizable(false);
+		edit.setVisible(true);
 	}
 }
