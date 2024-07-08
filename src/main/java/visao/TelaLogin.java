@@ -138,7 +138,7 @@ public class TelaLogin extends JFrame {
 					if (hospTesteLogin != null) {
 						// Passa para a proxima tela
 						TelaSucesso sucesso = new TelaSucesso();
-						TelaUsuario homepage = new TelaUsuario(hospTesteLogin, null, null, 2, null);
+						TelaPrincipal homepage = new TelaPrincipal(hospTesteLogin);
 						sucesso.setResizable(false);
 						sucesso.setLocationRelativeTo(null);
 						sucesso.setVisible(true);
