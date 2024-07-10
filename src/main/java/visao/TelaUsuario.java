@@ -45,6 +45,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import java.awt.Component;
+import javax.swing.SwingConstants;
 
 public class TelaUsuario extends JFrame {
 
@@ -77,7 +78,7 @@ public class TelaUsuario extends JFrame {
 	 */
 	public TelaUsuario(Usuarios hosp, String tipo, String cidade, int tVolt, String estado) {
 		setTitle("Tela do usuario:" + hosp.getNome());
-		
+
 		Usuarios hops = new Usuarios();
 		Usuarios h1 = hosp;
 		Quarto quartos = new Quarto();
@@ -144,7 +145,7 @@ public class TelaUsuario extends JFrame {
 
 		LocalDate dataNascimento = convertStringToDate(txtDtNsc.getText());
 
-		JButton btnAtualizar = new JButton("Atualizar");
+		JButton btnAtualizar = new JButton("Atualizar informa\u00E7\u00F5es");
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LocalDate dataNascimento = convertStringToDate(txtDtNsc.getText());
@@ -167,10 +168,10 @@ public class TelaUsuario extends JFrame {
 		btnAtualizar.setFont(new Font("Krona One", Font.PLAIN, 18));
 		btnAtualizar.setFocusPainted(false);
 		btnAtualizar.setBackground(new Color(240, 240, 240));
-		btnAtualizar.setBounds(40, 560, 250, 35);
+		btnAtualizar.setBounds(40, 549, 250, 35);
 		contentPane.add(btnAtualizar);
 
-		JButton btnDeletar = new JButton("Deletar");
+		JButton btnDeletar = new JButton("Deletar conta");
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String coisa = "conta";
@@ -183,7 +184,7 @@ public class TelaUsuario extends JFrame {
 		btnDeletar.setFont(new Font("Dialog", Font.PLAIN, 18));
 		btnDeletar.setFocusPainted(false);
 		btnDeletar.setBackground(new Color(240, 240, 240));
-		btnDeletar.setBounds(370, 560, 250, 35);
+		btnDeletar.setBounds(370, 549, 250, 35);
 		contentPane.add(btnDeletar);
 
 		JButton btnVoltar = new JButton("Voltar");
@@ -227,6 +228,12 @@ public class TelaUsuario extends JFrame {
 		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setBounds(40, 242, 89, 23);
 		contentPane.add(btnVoltar);
+		
+		JLabel lblGestoDaConta = new JLabel("Gest\u00E3o da conta");
+		lblGestoDaConta.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGestoDaConta.setFont(new Font("Dialog", Font.PLAIN, 32));
+		lblGestoDaConta.setBounds(40, 277, 830, 32);
+		contentPane.add(lblGestoDaConta);
 
 		if (hosp.getTipoUser() == 1) {
 			tableP = new JTable();
@@ -240,7 +247,7 @@ public class TelaUsuario extends JFrame {
 			JScrollPane scrollPane = new JScrollPane(tableP);
 			scrollPane.setBounds(40, 619, 584, 231);
 			contentPane.add(scrollPane);
-			
+
 			tableQ = new JTable();
 			tableQ.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
@@ -252,11 +259,30 @@ public class TelaUsuario extends JFrame {
 			JScrollPane scrollPane3 = new JScrollPane(tableQ);
 			scrollPane3.setBounds(630, 619, 240, 231);
 			contentPane.add(scrollPane3);
-			
+
 			JLabel lblNewLabel_1 = new JLabel("");
 			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
 			lblNewLabel_1.setBounds(723, 0, 712, 1089);
 			contentPane.add(lblNewLabel_1);
+
+			JPanel panel = new JPanel();
+			panel.setBackground(new Color(192, 192, 192));
+			panel.setBounds(32, 586, 848, 275);
+			contentPane.add(panel);
+			panel.setLayout(null);
+
+			JLabel lblGestoDe = new JLabel("Gest\u00E3o de pontos turisticos");
+			lblGestoDe.setHorizontalAlignment(SwingConstants.CENTER);
+			lblGestoDe.setBounds(10, 0, 578, 32);
+			lblGestoDe.setFont(new Font("Dialog", Font.PLAIN, 24));
+			panel.add(lblGestoDe);
+
+			JLabel lblGestoDeQuartos = new JLabel("Gest\u00E3o de quartos");
+			lblGestoDeQuartos.setHorizontalAlignment(SwingConstants.CENTER);
+			lblGestoDeQuartos.setFont(new Font("Dialog", Font.PLAIN, 24));
+			lblGestoDeQuartos.setBounds(598, 0, 240, 32);
+			panel.add(lblGestoDeQuartos);
+
 		} else {
 			table = new JTable();
 			atualizarTabela(hosp, h1);
@@ -267,6 +293,18 @@ public class TelaUsuario extends JFrame {
 			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
 			lblNewLabel_1.setBounds(723, 0, 712, 1089);
 			contentPane.add(lblNewLabel_1);
+
+			JPanel panel = new JPanel();
+			panel.setBackground(new Color(192, 192, 192));
+			panel.setBounds(32, 586, 600, 275);
+			contentPane.add(panel);
+			panel.setLayout(null);
+
+			JLabel lblGestoDe = new JLabel("Gest\u00E3o de suas reservas");
+			lblGestoDe.setHorizontalAlignment(SwingConstants.CENTER);
+			lblGestoDe.setBounds(10, 0, 578, 32);
+			lblGestoDe.setFont(new Font("Dialog", Font.PLAIN, 24));
+			panel.add(lblGestoDe);
 		}
 
 	}
@@ -299,6 +337,7 @@ public class TelaUsuario extends JFrame {
 		tableP.setModel(model2);
 
 	}
+
 	private void atualizarTabelaQ() {
 		ArrayList<Quarto> quarto = new ArrayList<Quarto>();
 
@@ -496,20 +535,24 @@ public class TelaUsuario extends JFrame {
 		Time horaAbre = (Time) model2.getValueAt(row, 2);
 		Time horaFecha = (Time) model2.getValueAt(row, 3);
 		int preco = (Integer) model2.getValueAt(row, 4);
-		TelaEditPontosTur edit = new TelaEditPontosTur(nome, horaAbre, horaFecha, preco, idPonto);
+		String coisa = "ponto turistico";
+		TelaIseriEdita edit = new TelaIseriEdita(nome, horaAbre, horaFecha, preco, idPonto, preco, horaFecha, preco,
+				coisa);
 		edit.setResizable(false);
 		edit.setVisible(true);
 		System.out.println("Editando ponto: Nome do ponto: " + nome + ",horaAbre: " + horaAbre + ", horaFecha: "
 				+ horaFecha + ", Pre�o: " + preco + ", ID: " + idPonto);
 	}
-	
+
 	private void editQuarto(int row) {
 		DefaultTableModel model2 = (DefaultTableModel) tableQ.getModel();
 
 		int idQuarto = (Integer) model2.getValueAt(row, 0);
 		Time horaLimpeza = (Time) model2.getValueAt(row, 1);
 		int TipoId = (Integer) model2.getValueAt(row, 2);
-		TelaEditQuarto edit = new TelaEditQuarto( TipoId,horaLimpeza,idQuarto );
+		String coisa = "quarto";
+		TelaIseriEdita edit = new TelaIseriEdita(coisa, horaLimpeza, horaLimpeza, TipoId, TipoId, TipoId, horaLimpeza,
+				idQuarto, coisa);
 		edit.setResizable(false);
 		edit.setVisible(true);
 	}

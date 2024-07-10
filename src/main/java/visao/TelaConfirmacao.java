@@ -64,7 +64,7 @@ public class TelaConfirmacao extends JFrame {
 		lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 35));
 		contentPane.add(lblNewLabel);
 
-		JLabel lblExcluirSuaConta = new JLabel("excluir sua <dynamic>?");
+		JLabel lblExcluirSuaConta = new JLabel("excluir sua conta?");
 		lblExcluirSuaConta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblExcluirSuaConta.setBounds(21, 69, 386, 43);
 		lblExcluirSuaConta.setForeground(new Color(102, 112, 122));
