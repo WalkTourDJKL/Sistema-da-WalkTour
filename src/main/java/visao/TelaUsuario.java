@@ -234,6 +234,23 @@ public class TelaUsuario extends JFrame {
 		lblGestoDaConta.setFont(new Font("Dialog", Font.PLAIN, 32));
 		lblGestoDaConta.setBounds(40, 277, 830, 32);
 		contentPane.add(lblGestoDaConta);
+		
+		JButton btnSair = new JButton("Sair da Conta");
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				dispose();
+				TelaLogin telaLogin = new TelaLogin();
+				telaLogin.setResizable(false);
+				telaLogin.setVisible(true);
+			}
+		});
+		btnSair.setBounds(734, 277, 136, 32);
+		btnSair.setForeground(Color.BLACK);
+		btnSair.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnSair.setFocusPainted(false);
+		btnSair.setBackground(new Color(240, 240, 240));
+		contentPane.add(btnSair);
 
 		if (hosp.getTipoUser() == 1) {
 			tableP = new JTable();
