@@ -58,13 +58,8 @@ public class TelaUsuario extends JFrame {
 	private JTextField txtCPF;
 	private JTextField txtNomeSc;
 	private UsuariosDAO hospdao = UsuariosDAO.getInstancia();
-	private pontosTurDAO dao = pontosTurDAO.getInstancia();
-	private QuartoDAO dao2 = QuartoDAO.getInstancia();
 	private JTextField txtDtNsc;
 	private JTable table;
-	private JTable tableP;
-	private JTable tableQ;
-	ArrayList<PontosTur> pontosTur = new ArrayList<>();
 
 	/**
 	 * Create the frame.
@@ -228,13 +223,13 @@ public class TelaUsuario extends JFrame {
 		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setBounds(40, 242, 89, 23);
 		contentPane.add(btnVoltar);
-		
+
 		JLabel lblGestoDaConta = new JLabel("Gest\u00E3o da conta");
 		lblGestoDaConta.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGestoDaConta.setFont(new Font("Dialog", Font.PLAIN, 32));
 		lblGestoDaConta.setBounds(40, 277, 830, 32);
 		contentPane.add(lblGestoDaConta);
-		
+
 		JButton btnSair = new JButton("Sair da Conta");
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -252,77 +247,27 @@ public class TelaUsuario extends JFrame {
 		btnSair.setBackground(new Color(240, 240, 240));
 		contentPane.add(btnSair);
 
-		if (hosp.getTipoUser() == 1) {
-			tableP = new JTable();
-			tableP.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent e) {
-					int row = tableP.getSelectedRow();
-					editPonto(row);
-				}
-			});
-			atualizarTabela();
-			JScrollPane scrollPane = new JScrollPane(tableP);
-			scrollPane.setBounds(40, 619, 584, 231);
-			contentPane.add(scrollPane);
+		table = new JTable();
+		atualizarTabela(hosp, h1);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(40, 619, 584, 231);
+		contentPane.add(scrollPane);
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
+		lblNewLabel_1.setBounds(723, 0, 712, 1089);
+		contentPane.add(lblNewLabel_1);
 
-			tableQ = new JTable();
-			tableQ.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent e) {
-					int row = tableQ.getSelectedRow();
-					editQuarto(row);
-				}
-			});
-			atualizarTabelaQ();
-			JScrollPane scrollPane3 = new JScrollPane(tableQ);
-			scrollPane3.setBounds(630, 619, 240, 231);
-			contentPane.add(scrollPane3);
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(192, 192, 192));
+		panel.setBounds(32, 586, 600, 275);
+		contentPane.add(panel);
+		panel.setLayout(null);
 
-			JLabel lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
-			lblNewLabel_1.setBounds(723, 0, 712, 1089);
-			contentPane.add(lblNewLabel_1);
-
-			JPanel panel = new JPanel();
-			panel.setBackground(new Color(192, 192, 192));
-			panel.setBounds(32, 586, 848, 275);
-			contentPane.add(panel);
-			panel.setLayout(null);
-
-			JLabel lblGestoDe = new JLabel("Gest\u00E3o de pontos turisticos");
-			lblGestoDe.setHorizontalAlignment(SwingConstants.CENTER);
-			lblGestoDe.setBounds(10, 0, 578, 32);
-			lblGestoDe.setFont(new Font("Dialog", Font.PLAIN, 24));
-			panel.add(lblGestoDe);
-
-			JLabel lblGestoDeQuartos = new JLabel("Gest\u00E3o de quartos");
-			lblGestoDeQuartos.setHorizontalAlignment(SwingConstants.CENTER);
-			lblGestoDeQuartos.setFont(new Font("Dialog", Font.PLAIN, 24));
-			lblGestoDeQuartos.setBounds(598, 0, 240, 32);
-			panel.add(lblGestoDeQuartos);
-
-		} else {
-			table = new JTable();
-			atualizarTabela(hosp, h1);
-			JScrollPane scrollPane = new JScrollPane(table);
-			scrollPane.setBounds(40, 619, 584, 231);
-			contentPane.add(scrollPane);
-			JLabel lblNewLabel_1 = new JLabel("");
-			lblNewLabel_1.setIcon(new ImageIcon(TelaUsuario.class.getResource("/imgs/ladoD.png")));
-			lblNewLabel_1.setBounds(723, 0, 712, 1089);
-			contentPane.add(lblNewLabel_1);
-
-			JPanel panel = new JPanel();
-			panel.setBackground(new Color(192, 192, 192));
-			panel.setBounds(32, 586, 600, 275);
-			contentPane.add(panel);
-			panel.setLayout(null);
-
-			JLabel lblGestoDe = new JLabel("Gest\u00E3o de suas reservas");
-			lblGestoDe.setHorizontalAlignment(SwingConstants.CENTER);
-			lblGestoDe.setBounds(10, 0, 578, 32);
-			lblGestoDe.setFont(new Font("Dialog", Font.PLAIN, 24));
-			panel.add(lblGestoDe);
-		}
+		JLabel lblGestoDe = new JLabel("Gest\u00E3o de suas reservas");
+		lblGestoDe.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGestoDe.setBounds(10, 0, 578, 32);
+		lblGestoDe.setFont(new Font("Dialog", Font.PLAIN, 24));
+		panel.add(lblGestoDe);
 
 	}
 
@@ -334,43 +279,6 @@ public class TelaUsuario extends JFrame {
 			JOptionPane.showMessageDialog(null, "Formato de data inv�lido. Use o formato dd/MM/yyyy.");
 			return null;
 		}
-	}
-
-	private void atualizarTabela() {
-
-		pontosTur = dao.listarPontoTur();
-		DefaultTableModel model2 = new DefaultTableModel(
-				new Object[] { "Id", "Nome", "Hora Abre", "Hora Fecha", "Pre�o" }, 0) {
-			private static final long serialVersionUID = 1L;
-
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-		for (PontosTur pt : pontosTur) {
-			model2.addRow(new Object[] { pt.getPontoId(), pt.getNomePontoTur(), pt.getHoraAbre(), pt.getHoraFecha(),
-					pt.getPreco() });
-		}
-		tableP.setModel(model2);
-
-	}
-
-	private void atualizarTabelaQ() {
-		ArrayList<Quarto> quarto = new ArrayList<Quarto>();
-
-		quarto = dao2.listarQuartos();
-		DefaultTableModel model = new DefaultTableModel(new Object[] { "num_quarto", "hora_limpeza", "tipo_id" }, 0) {
-
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
-
-		for (Quarto e : quarto) {
-			model.addRow(new Object[] { e.getNumQuarto(), e.getHoraLimpeza(), e.getTipoId() });
-		}
-
-		tableQ.setModel(model);
 	}
 
 	private void atualizarTabela(Usuarios hops, Usuarios h1) {
@@ -542,35 +450,5 @@ public class TelaUsuario extends JFrame {
 		edit.setVisible(true);
 		System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data In�cio: " + dataIn + ", Data Fim: "
 				+ dataOut + ", Pre�o: " + preco);
-	}
-
-	private void editPonto(int row) {
-		DefaultTableModel model2 = (DefaultTableModel) tableP.getModel();
-
-		int idPonto = (Integer) model2.getValueAt(row, 0);
-		String nome = (String) model2.getValueAt(row, 1);
-		Time horaAbre = (Time) model2.getValueAt(row, 2);
-		Time horaFecha = (Time) model2.getValueAt(row, 3);
-		int preco = (Integer) model2.getValueAt(row, 4);
-		String coisa = "ponto turistico";
-		TelaIseriEdita edit = new TelaIseriEdita(nome, horaAbre, horaFecha, preco, idPonto, preco, horaFecha, preco,
-				coisa);
-		edit.setResizable(false);
-		edit.setVisible(true);
-		System.out.println("Editando ponto: Nome do ponto: " + nome + ",horaAbre: " + horaAbre + ", horaFecha: "
-				+ horaFecha + ", Pre�o: " + preco + ", ID: " + idPonto);
-	}
-
-	private void editQuarto(int row) {
-		DefaultTableModel model2 = (DefaultTableModel) tableQ.getModel();
-
-		int idQuarto = (Integer) model2.getValueAt(row, 0);
-		Time horaLimpeza = (Time) model2.getValueAt(row, 1);
-		int TipoId = (Integer) model2.getValueAt(row, 2);
-		String coisa = "quarto";
-		TelaIseriEdita edit = new TelaIseriEdita(coisa, horaLimpeza, horaLimpeza, TipoId, TipoId, TipoId, horaLimpeza,
-				idQuarto, coisa);
-		edit.setResizable(false);
-		edit.setVisible(true);
 	}
 }

@@ -33,8 +33,8 @@ public class TelaPrincipal extends JFrame {
 	public TelaPrincipal(Usuarios hosp) {
 
 		setTitle("Tela Principal");
-		//MusicPlayer tocar = new MusicPlayer("/music/WalktourTheme.wav");
-		//tocar.play();
+		// MusicPlayer tocar = new MusicPlayer("/music/WalktourTheme.wav");
+		// tocar.play();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
@@ -55,7 +55,7 @@ public class TelaPrincipal extends JFrame {
 				dispose();
 				user.setResizable(false);
 				user.setVisible(true);
-				//tocar.stop();
+				// tocar.stop();
 
 			}
 		});
@@ -92,11 +92,11 @@ public class TelaPrincipal extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade.getText();
 				String estado = lblEstado.getText();
-				TelaCidade hotel = new TelaCidade(hosp, cidade,estado);
+				TelaCidade hotel = new TelaCidade(hosp, cidade, estado);
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
-				//tocar.stop();
+				// tocar.stop();
 
 			}
 		});
@@ -133,7 +133,7 @@ public class TelaPrincipal extends JFrame {
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
-				//tocar.stop();
+				// tocar.stop();
 			}
 		});
 		panel_1.setLayout(null);
@@ -169,7 +169,7 @@ public class TelaPrincipal extends JFrame {
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
-				//tocar.stop();
+				// tocar.stop();
 			}
 		});
 		panel_1_1.setLayout(null);
@@ -200,12 +200,12 @@ public class TelaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cidade = lblCidade_1_1_1.getText();
-				String estado = lblEstado_1_1_1.getText(); 
+				String estado = lblEstado_1_1_1.getText();
 				TelaCidade hotel = new TelaCidade(hosp, cidade, estado);
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
-				//tocar.stop();
+				// tocar.stop();
 			}
 		});
 		panel_1_1_1.setLayout(null);
@@ -240,7 +240,7 @@ public class TelaPrincipal extends JFrame {
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
-				//tocar.stop();
+				// tocar.stop();
 			}
 		});
 		panel_1_1_2.setLayout(null);
@@ -249,7 +249,7 @@ public class TelaPrincipal extends JFrame {
 		contentPane.add(panel_1_1_2);
 
 		JPanel panel_1_1_3 = new JPanel();
-		
+
 		JLabel lblImageCidade_1_1_3 = new JLabel("");
 		lblImageCidade_1_1_3.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/BentoGoncalves.png")));
 		lblImageCidade_1_1_3.setBounds(10, 11, 280, 225);
@@ -266,8 +266,7 @@ public class TelaPrincipal extends JFrame {
 		lblEstado_1_1_3.setBackground(UIManager.getColor("Button.background"));
 		lblEstado_1_1_3.setBounds(10, 269, 193, 31);
 		panel_1_1_3.add(lblEstado_1_1_3);
-		
-		
+
 		panel_1_1_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -277,14 +276,34 @@ public class TelaPrincipal extends JFrame {
 				dispose();
 				hotel.setResizable(false);
 				hotel.setVisible(true);
-				//tocar.stop();
+				// tocar.stop();
 			}
 		});
 		panel_1_1_3.setLayout(null);
 		panel_1_1_3.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1_3.setBounds(896, 561, 300, 300);
 		contentPane.add(panel_1_1_3);
-		
-		
+
+		if (hosp.getTipoUser() == 1) {
+			JButton btnRealizarAGesto = new JButton("Realizar a gest\u00E3o");
+			btnRealizarAGesto.setForeground(Color.BLACK);
+			btnRealizarAGesto.setFont(new Font("Krona One", Font.PLAIN, 18));
+			btnRealizarAGesto.setFocusPainted(false);
+			btnRealizarAGesto.setBackground(new Color(240, 240, 240));
+			btnRealizarAGesto.setBounds(853, 52, 250, 35);
+			btnRealizarAGesto.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					int tVolt = 1;
+					TelaGestao user = new TelaGestao(hosp, null, null, tVolt, null);
+					dispose();
+					user.setResizable(false);
+					user.setVisible(true);
+					// tocar.stop();
+
+				}
+			});
+			contentPane.add(btnRealizarAGesto);
+		}else {}
+
 	}
 }

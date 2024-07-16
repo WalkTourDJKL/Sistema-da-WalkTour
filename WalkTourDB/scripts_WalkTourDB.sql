@@ -199,6 +199,8 @@ SET @id_evento = LAST_INSERT_ID();
     /* Nenhuma chave estrangeira */
 	insert into  usuarios (nome, nome_social, dt_nasc, cpf, login, senha, tipo_user) values ('0', null, '1989-04-25', '000.000.000-00','hosp0','0',0);
     insert into  usuarios (nome, nome_social, dt_nasc, cpf, login, senha, tipo_user) values ('1', null, '1989-04-25', '111.111.111-11','func0','1',1);
+    insert into  usuarios (nome, nome_social, dt_nasc, cpf, login, senha, tipo_user) values ('Lucas Guerega', null, '1995-04-15', '156.948.741-54','lucas.g2006','0',0);
+    insert into  usuarios (nome, nome_social, dt_nasc, cpf, login, senha, tipo_user) values ('José Paulo Baptista', null, '1989-02-24', '165.715.472-31','jose.p2005','1',1);
 	SET @id_usuario = LAST_INSERT_ID();
 
     /* Organizar o resto da tabela */

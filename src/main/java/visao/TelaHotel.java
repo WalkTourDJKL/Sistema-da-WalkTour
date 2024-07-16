@@ -172,7 +172,7 @@ public class TelaHotel extends JFrame {
 				telaquartos.setVisible(true);
 			}
 		});
-		btnProcurarQuarto.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/btnBuscaQuarto.png")));
+		btnProcurarQuarto.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/btnBuscaModeloQuarto.png")));
 		btnProcurarQuarto.setBounds(842, 715, 427, 61);
 		contentPane.add(btnProcurarQuarto);
 		
