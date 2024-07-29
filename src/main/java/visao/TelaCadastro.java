@@ -168,7 +168,7 @@ public class TelaCadastro extends JFrame {
 						return;
 					}
 					if (validacaoData(dataNascimento) == false) {
-						JOptionPane.showMessageDialog(null, "Data de nascimetno inválida.");
+						JOptionPane.showMessageDialog(null, "Data de nascimento inválida.");
 						return;
 					}
 					
