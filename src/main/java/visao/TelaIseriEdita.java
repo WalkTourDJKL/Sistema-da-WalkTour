@@ -79,7 +79,7 @@ public class TelaIseriEdita extends JFrame {
 		lblExcluirSuaConta.setFont(new Font("Corbel", Font.BOLD, 35));
 		contentPane.add(lblExcluirSuaConta);
 
-		JButton btnInserir = new JButton("Inserir");
+		JButton btnInserir = new JButton("Deletar");
 		btnInserir.setFocusPainted(false);
 		btnInserir.setBackground(new Color(240, 240, 240));
 		btnInserir.setForeground(new Color(0, 0, 0));
@@ -87,14 +87,14 @@ public class TelaIseriEdita extends JFrame {
 		btnInserir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (coisa.equals("ponto turistico")) {
-					String coisa = "insert";
+					String coisa = "delete";
 					TelaEditPontosTur edit = new TelaEditPontosTur(nome, horaAbre, horaFecha, preco, idPonto,coisa);
 					edit.setResizable(false);
 					edit.setVisible(true);
 					dispose();
 				}
 				if (coisa.equals("quarto")) {
-					String coisa = "insert";
+					String coisa = "delete";
 					TelaEditQuarto edit = new TelaEditQuarto(tipoId,horaLimpeza,idQuarto,coisa);
 					edit.setResizable(false);
 					edit.setVisible(true);

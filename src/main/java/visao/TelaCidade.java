@@ -163,6 +163,8 @@ public class TelaCidade extends JFrame {
 		panel.add(info1);
 
 		info1.addItem("Informaca 1");
+		info1.addItem("Localizado no Litoral catarinense, o One Tower é oficialmente o edifício");
+		info1.addItem("mais alto do Brasil, segundo Council on Tall Buildings and Urban Habitat");
 
 		JComboBox<String> info2 = new JComboBox<String>();
 		info2.setBounds(10, 64, 430, 30);
@@ -175,7 +177,7 @@ public class TelaCidade extends JFrame {
 		panel.add(info3);
 
 		info3.addItem("Informaca 3");
-
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBounds(468, 695, 448, 155);

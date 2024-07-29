@@ -140,6 +140,24 @@ public class TelaEditQuarto extends JFrame {
 			btnInserir.setBounds(40, 502, 140, 35);
 			contentPane.add(btnInserir);
 		}
+		if (coisa.equals("delete")) {
+			JButton btnDeletar = new JButton("Deletar");
+			btnDeletar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Quarto quartos = new Quarto();
+					quartos.setNumQuarto(idQuarto);
+					QuartoDAO pt = QuartoDAO.getInstancia();
+					pt.removerQuarto(quartos);
+					dispose();
+				}
+			});
+			btnDeletar.setForeground(Color.BLACK);
+			btnDeletar.setFont(new Font("Dialog", Font.PLAIN, 18));
+			btnDeletar.setFocusPainted(false);
+			btnDeletar.setBackground(new Color(240, 240, 240));
+			btnDeletar.setBounds(414, 502, 140, 35);
+			contentPane.add(btnDeletar);
+		}
 		if (coisa.equals("edit")) {
 			JButton btnAtualizar = new JButton("Atualizar");
 			btnAtualizar.addActionListener(new ActionListener() {
@@ -173,23 +191,6 @@ public class TelaEditQuarto extends JFrame {
 			btnAtualizar.setBackground(new Color(240, 240, 240));
 			btnAtualizar.setBounds(224, 502, 140, 35);
 			contentPane.add(btnAtualizar);
-
-			JButton btnDeletar = new JButton("Deletar");
-			btnDeletar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Quarto quartos = new Quarto();
-					quartos.setNumQuarto(idQuarto);
-					QuartoDAO pt = QuartoDAO.getInstancia();
-					pt.removerQuarto(quartos);
-					dispose();
-				}
-			});
-			btnDeletar.setForeground(Color.BLACK);
-			btnDeletar.setFont(new Font("Dialog", Font.PLAIN, 18));
-			btnDeletar.setFocusPainted(false);
-			btnDeletar.setBackground(new Color(240, 240, 240));
-			btnDeletar.setBounds(414, 502, 140, 35);
-			contentPane.add(btnDeletar);
 		}
 
 	}

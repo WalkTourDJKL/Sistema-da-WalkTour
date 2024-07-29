@@ -121,10 +121,6 @@ public class TelaGestao extends JFrame {
 				editQuarto(row);
 			}
 		});
-		JScrollPane scrollPane3 = new JScrollPane(tableQ);
-		scrollPane3.setBounds(23, 33, 578, 231);
-		contentPane.add(scrollPane3);
-		atualizarTabelaQ();
 
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TelaGestao.class.getResource("/imgs/ladoD.png")));
@@ -165,6 +161,11 @@ public class TelaGestao extends JFrame {
 		panel_1.setBackground(Color.LIGHT_GRAY);
 		panel_1.setBounds(32, 300, 743, 275);
 		contentPane.add(panel_1);
+
+		JScrollPane scrollPane3 = new JScrollPane(tableQ);
+		scrollPane3.setBounds(25, 31, 573, 233);
+		panel_1.add(scrollPane3);
+		atualizarTabelaQ();
 		
 		JLabel lblGestoDeQuartos_1 = new JLabel("Gest\u00E3o de quartos");
 		lblGestoDeQuartos_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -175,13 +176,19 @@ public class TelaGestao extends JFrame {
 				JButton btnInserirQ = new JButton("Inserir");
 				btnInserirQ.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//TelaEditPontosTur
+						String coisa = "insert";
+						int tipoId=0;
+						Time horaLimpeza=null;
+						int idQuarto=0;
+						TelaEditQuarto edit = new TelaEditQuarto(tipoId,horaLimpeza,idQuarto, coisa);
+						edit.setResizable(false);
+						edit.setVisible(true);
 					}
 				});
 				btnInserirQ.setForeground(Color.BLACK);
 				btnInserirQ.setFont(new Font("Dialog", Font.PLAIN, 18));
 				btnInserirQ.setFocusPainted(false);
-				btnInserirQ.setBackground(UIManager.getColor("Button.background"));
+				btnInserirQ.setBackground(new Color(240, 240, 240));
 				btnInserirQ.setBounds(604, 43, 129, 35);
 				panel_1.add(btnInserirQ);
 

@@ -98,19 +98,19 @@ public class TelaUsuario extends JFrame {
 		txtNome = new JTextField();
 		txtNome.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNome.setColumns(10);
-		txtNome.setBounds(370, 320, 500, 38);
+		txtNome.setBounds(395, 320, 475, 38);
 		txtNome.setText(hops.getNome());
 		contentPane.add(txtNome);
 
 		JLabel lblDtNsc = new JLabel("Data de nascimento do hospede:");
 		lblDtNsc.setFont(new Font("Krona One", Font.PLAIN, 24));
-		lblDtNsc.setBounds(40, 440, 320, 38);
+		lblDtNsc.setBounds(40, 440, 363, 38);
 		contentPane.add(lblDtNsc);
 
 		txtDtNsc = new JTextField();
 		txtDtNsc.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtDtNsc.setColumns(10);
-		txtDtNsc.setBounds(370, 440, 500, 38);
+		txtDtNsc.setBounds(395, 440, 475, 38);
 		txtDtNsc.setText(hops.getDtNasc().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		contentPane.add(txtDtNsc);
 
@@ -122,7 +122,7 @@ public class TelaUsuario extends JFrame {
 		txtNomeSc = new JTextField();
 		txtNomeSc.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNomeSc.setColumns(10);
-		txtNomeSc.setBounds(370, 380, 500, 38);
+		txtNomeSc.setBounds(395, 380, 475, 38);
 		txtNomeSc.setText(hops.getNomeSocial());
 
 		contentPane.add(txtNomeSc);
@@ -135,7 +135,7 @@ public class TelaUsuario extends JFrame {
 		txtCPF.setText(String.valueOf(hops.getCpf()));
 		txtCPF.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtCPF.setColumns(10);
-		txtCPF.setBounds(370, 500, 500, 38);
+		txtCPF.setBounds(395, 500, 475, 38);
 		contentPane.add(txtCPF);
 
 		LocalDate dataNascimento = convertStringToDate(txtDtNsc.getText());

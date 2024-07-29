@@ -16,9 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
+import controle.QuartoDAO;
 import controle.ReservaDAO;
 import controle.pontosTurDAO;
 import modelo.PontosTur;
+import modelo.Quarto;
 import modelo.Reserva;
 import modelo.Usuarios;
 import javax.swing.JTextField;
@@ -169,6 +171,25 @@ public class TelaEditPontosTur extends JFrame {
 			btnInserir.setBounds(40, 502, 140, 35);
 			contentPane.add(btnInserir);
 		}
+		if (coisa.equals("delete")) {
+			JButton btnDeletar = new JButton("Deletar");
+			btnDeletar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					PontosTur ponto = new PontosTur();
+					ponto.setPontoId(idPonto);
+					pontosTurDAO pt = pontosTurDAO.getInstancia();
+					pt.removerPontosTur(ponto);
+					dispose();
+				}
+			});
+			btnDeletar.setForeground(Color.BLACK);
+			btnDeletar.setFont(new Font("Dialog", Font.PLAIN, 18));
+			btnDeletar.setFocusPainted(false);
+			btnDeletar.setBackground(new Color(240, 240, 240));
+			btnDeletar.setBounds(414, 502, 140, 35);
+			contentPane.add(btnDeletar);
+		}
+
 		if (coisa.equals("edit")) {
 			JButton btnAtualizar = new JButton("Atualizar");
 			btnAtualizar.addActionListener(new ActionListener() {
@@ -208,23 +229,6 @@ public class TelaEditPontosTur extends JFrame {
 			btnAtualizar.setBackground(new Color(240, 240, 240));
 			btnAtualizar.setBounds(224, 502, 140, 35);
 			contentPane.add(btnAtualizar);
-
-			JButton btnDeletar = new JButton("Deletar");
-			btnDeletar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					PontosTur ponto = new PontosTur();
-					ponto.setPontoId(idPonto);
-					pontosTurDAO pt = pontosTurDAO.getInstancia();
-					pt.removerPontosTur(ponto);
-					dispose();
-				}
-			});
-			btnDeletar.setForeground(Color.BLACK);
-			btnDeletar.setFont(new Font("Dialog", Font.PLAIN, 18));
-			btnDeletar.setFocusPainted(false);
-			btnDeletar.setBackground(new Color(240, 240, 240));
-			btnDeletar.setBounds(414, 502, 140, 35);
-			contentPane.add(btnDeletar);
 		}
 
 		JButton btnCancelar = new JButton("Cancelar");
