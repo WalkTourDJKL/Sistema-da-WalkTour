@@ -59,8 +59,8 @@ public class pontosTurDAO implements IpontosTurDAO {
 
 	}
 
-	public ArrayList listarPontoTur() {
-		ArrayList pontosTur = new ArrayList();
+	public ArrayList<PontosTur> listarPontoTur() {
+		ArrayList<PontosTur> pontosTur = new ArrayList<PontosTur>();
 
 		String SQL = "SELECT * FROM pontos_tur";
 

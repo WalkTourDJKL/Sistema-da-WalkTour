@@ -8,6 +8,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controle.EventoDAO;
+import controle.pontosTurDAO;
+import modelo.Evento;
+import modelo.PontosTur;
 import modelo.Usuarios;
 
 import java.awt.Font;
@@ -35,6 +39,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.Canvas;
 import java.awt.Color;
 
@@ -46,6 +51,10 @@ public class TelaCidade extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private pontosTurDAO dao = pontosTurDAO.getInstancia();
+	private EventoDAO dao2 = EventoDAO.getInstancia();
+	ArrayList<PontosTur> pontosTur = new ArrayList<>();
+	ArrayList<Evento> evento = new ArrayList<Evento>();
 
 	/**
 	 * Launch the application.
@@ -158,44 +167,449 @@ public class TelaCidade extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JComboBox<String> info1 = new JComboBox<String>();
-		info1.setBounds(10, 11, 430, 30);
-		panel.add(info1);
+		JLabel lblNewLabel = new JLabel("Informações sobre a cidade");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(10, 11, 428, 39);
+		panel.add(lblNewLabel);
 
-		info1.addItem("Informaca 1");
-		info1.addItem("Localizado no Litoral catarinense, o One Tower é oficialmente o edifício");
-		info1.addItem("mais alto do Brasil, segundo Council on Tall Buildings and Urban Habitat");
-
-		JComboBox<String> info2 = new JComboBox<String>();
-		info2.setBounds(10, 64, 430, 30);
-		panel.add(info2);
-
-		info2.addItem("Informaca 2");
-
-		JComboBox<String> info3 = new JComboBox<String>();
-		info3.setBounds(10, 119, 430, 30);
-		panel.add(info3);
-
-		info3.addItem("Informaca 3");
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBounds(468, 695, 448, 155);
 		contentPane.add(panel_1);
 
-		JComboBox<String> info1_1 = new JComboBox<String>();
-		info1_1.setBounds(10, 11, 430, 30);
-		panel_1.add(info1_1);
-		info1_1.addItem("Informaca 1");
+		JLabel lblEventosEPontos = new JLabel("Eventos e pontos turisticos na cidade");
+		lblEventosEPontos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEventosEPontos.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblEventosEPontos.setBounds(10, 11, 428, 39);
+		panel_1.add(lblEventosEPontos);
 
-		JComboBox<String> info2_1 = new JComboBox<String>();
-		info2_1.setBounds(10, 64, 430, 30);
-		panel_1.add(info2_1);
-		info2_1.addItem("Informaca 2");
+		if (cidade == "Blumenau") {
+			JComboBox<String> info1 = new JComboBox<String>();
+			info1.setBounds(10, 61, 430, 30);
+			panel.add(info1);
 
-		JComboBox<String> info3_1 = new JComboBox<String>();
-		info3_1.setBounds(10, 119, 430, 30);
-		panel_1.add(info3_1);
-		info3_1.addItem("Informaca 3");
+			info1.addItem("Informação 1");
+			info1.addItem("Conhecida pelo Oktoberfest, um dos maiores festivais de cerveja do Brasil,");
+			info1.addItem("que celebra a cultura germânica da cidade.");
+			info1.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info1.getSelectedIndex() != 0) {
+						info1.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info2 = new JComboBox<String>();
+			info2.setBounds(10, 114, 430, 30);
+			panel.add(info2);
+
+			info2.addItem("Informação 2");
+			info2.addItem("Possui uma arquitetura de influência alemã, com diversos edifícios");
+			info2.addItem("em estilo enxaimel, refletindo sua herança europeia.");
+			info2.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info2.getSelectedIndex() != 0) {
+						info2.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info4 = new JComboBox<String>();
+			info4.setBounds(10, 61, 430, 30);
+			info4.addItem("Pontos turisticos ");
+			ArrayList<PontosTur> pontosTur = dao.listarPontoTur();
+
+			for (PontosTur ponto : pontosTur) {
+				info4.addItem(ponto.getNomePontoTur());
+			}
+			info4.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info4.getSelectedIndex() != 0) {
+						info4.setSelectedIndex(0);
+					}
+				}
+			});
+
+			panel_1.add(info4);
+
+			JComboBox<String> info5 = new JComboBox<String>();
+			info5.setBounds(10, 114, 430, 30);
+			panel_1.add(info5);
+
+			info5.addItem("Eventos");
+			ArrayList<Evento> eventos = dao2.listarEventos();
+
+			for (Evento evento : eventos) {
+				info5.addItem(evento.getNomeEvento());
+			}
+			info5.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info5.getSelectedIndex() != 0) {
+						info5.setSelectedIndex(0);
+					}
+				}
+			});
+		}
+		if (cidade == "Sao Francisco do Sul") {
+			JComboBox<String> info1 = new JComboBox<String>();
+			info1.setBounds(10, 61, 430, 30);
+			panel.add(info1);
+
+			info1.addItem("Informação 1");
+			info1.addItem("É uma das cidades mais antigas do Brasil, com um centro histórico que");
+			info1.addItem("remonta ao período colonial e diversos edifícios preservados");
+			info1.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info1.getSelectedIndex() != 0) {
+						info1.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info2 = new JComboBox<String>();
+			info2.setBounds(10, 114, 430, 30);
+			panel.add(info2);
+
+			info2.addItem("Informação 2");
+			info2.addItem("Possui um dos maiores portos pesqueiros do Brasil e é conhecida");
+			info2.addItem("por suas belas praias e festas tradicionais.");
+			info2.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info2.getSelectedIndex() != 0) {
+						info2.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info4 = new JComboBox<String>();
+			info4.setBounds(10, 61, 430, 30);
+			info4.addItem("Pontos turisticos ");
+			ArrayList<PontosTur> pontosTur = dao.listarPontoTur();
+
+			for (PontosTur ponto : pontosTur) {
+				info4.addItem(ponto.getNomePontoTur());
+			}
+			info4.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info4.getSelectedIndex() != 0) {
+						info4.setSelectedIndex(0);
+					}
+				}
+			});
+
+			panel_1.add(info4);
+
+			JComboBox<String> info5 = new JComboBox<String>();
+			info5.setBounds(10, 114, 430, 30);
+			panel_1.add(info5);
+
+			info5.addItem("Eventos");
+			ArrayList<Evento> eventos = dao2.listarEventos();
+
+			for (Evento evento : eventos) {
+				info5.addItem(evento.getNomeEvento());
+			}
+			info5.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info5.getSelectedIndex() != 0) {
+						info5.setSelectedIndex(0);
+					}
+				}
+			});
+		}
+		if (cidade == "Balneario Camburiu") {
+			JComboBox<String> info1 = new JComboBox<String>();
+			info1.setBounds(10, 61, 430, 30);
+			panel.add(info1);
+
+			info1.addItem("Informação 1");
+			info1.addItem("Famosa por suas praias urbanas e vida noturna vibrante, é um dos destinos");
+			info1.addItem("turísticos mais populares do sul do Brasil.");
+			info1.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info1.getSelectedIndex() != 0) {
+						info1.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info2 = new JComboBox<String>();
+			info2.setBounds(10, 114, 430, 30);
+			panel.add(info2);
+
+			info2.addItem("Informação 2");
+			info2.addItem("Possui o edifício residencial mais alto do Brasil, o One Tower,");
+			info2.addItem("com 290  metros de altura.");
+			info2.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info2.getSelectedIndex() != 0) {
+						info2.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info4 = new JComboBox<String>();
+			info4.setBounds(10, 61, 430, 30);
+			info4.addItem("Pontos turisticos ");
+			ArrayList<PontosTur> pontosTur = dao.listarPontoTur();
+
+			for (PontosTur ponto : pontosTur) {
+				info4.addItem(ponto.getNomePontoTur());
+			}
+			info4.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info4.getSelectedIndex() != 0) {
+						info4.setSelectedIndex(0);
+					}
+				}
+			});
+
+			panel_1.add(info4);
+
+			JComboBox<String> info5 = new JComboBox<String>();
+			info5.setBounds(10, 114, 430, 30);
+			panel_1.add(info5);
+
+			info5.addItem("Eventos");
+			ArrayList<Evento> eventos = dao2.listarEventos();
+
+			for (Evento evento : eventos) {
+				info5.addItem(evento.getNomeEvento());
+			}
+			info5.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info5.getSelectedIndex() != 0) {
+						info5.setSelectedIndex(0);
+					}
+				}
+			});
+		}
+		if (cidade == "Canela") {
+			JComboBox<String> info1 = new JComboBox<String>();
+			info1.setBounds(10, 61, 430, 30);
+			panel.add(info1);
+
+			info1.addItem("Informação 1");
+			info1.addItem("Localizada na Serra Gaúcha, é conhecida por seu charme de cidade pequena");
+			info1.addItem("e sua arquitetura em estilo europeu.");
+			info1.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info1.getSelectedIndex() != 0) {
+						info1.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info2 = new JComboBox<String>();
+			info2.setBounds(10, 114, 430, 30);
+			panel.add(info2);
+
+			info2.addItem("Informação 2");
+			info2.addItem("Abriga a Catedral de Pedra, um imponente edifício gótico que é um dos");
+			info2.addItem("principais pontos turísticos da região.");
+			info2.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info2.getSelectedIndex() != 0) {
+						info2.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info4 = new JComboBox<String>();
+			info4.setBounds(10, 61, 430, 30);
+			info4.addItem("Pontos turisticos ");
+			ArrayList<PontosTur> pontosTur = dao.listarPontoTur();
+
+			for (PontosTur ponto : pontosTur) {
+				info4.addItem(ponto.getNomePontoTur());
+			}
+			info4.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info4.getSelectedIndex() != 0) {
+						info4.setSelectedIndex(0);
+					}
+				}
+			});
+
+			panel_1.add(info4);
+
+			JComboBox<String> info5 = new JComboBox<String>();
+			info5.setBounds(10, 114, 430, 30);
+			panel_1.add(info5);
+
+			info5.addItem("Eventos");
+			ArrayList<Evento> eventos = dao2.listarEventos();
+
+			for (Evento evento : eventos) {
+				info5.addItem(evento.getNomeEvento());
+			}
+			info5.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info5.getSelectedIndex() != 0) {
+						info5.setSelectedIndex(0);
+					}
+				}
+			});
+		}
+		if (cidade == "Gramado") {
+			JComboBox<String> info1 = new JComboBox<String>();
+			info1.setBounds(10, 61, 430, 30);
+			panel.add(info1);
+
+			info1.addItem("Informação 1");
+			info1.addItem("É famosa pelo seu Festival de Cinema, o Festival de Cinema de Gramado,");
+			info1.addItem("um dos mais importantes eventos do setor no Brasil.");
+			info1.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info1.getSelectedIndex() != 0) {
+						info1.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info2 = new JComboBox<String>();
+			info2.setBounds(10, 114, 430, 30);
+			panel.add(info2);
+
+			info2.addItem("Informação 2");
+			info2.addItem("Oferece uma atmosfera de montanha e clima europeu, com uma grande");
+			info2.addItem("variedade de atrações turísticas, como o Mini Mundo e o Snowland.");
+			info2.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info2.getSelectedIndex() != 0) {
+						info2.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info4 = new JComboBox<String>();
+			info4.setBounds(10, 61, 430, 30);
+			info4.addItem("Pontos turisticos ");
+			ArrayList<PontosTur> pontosTur = dao.listarPontoTur();
+
+			for (PontosTur ponto : pontosTur) {
+				info4.addItem(ponto.getNomePontoTur());
+			}
+			info4.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info4.getSelectedIndex() != 0) {
+						info4.setSelectedIndex(0);
+					}
+				}
+			});
+
+			panel_1.add(info4);
+
+			JComboBox<String> info5 = new JComboBox<String>();
+			info5.setBounds(10, 114, 430, 30);
+			panel_1.add(info5);
+
+			info5.addItem("Eventos");
+			ArrayList<Evento> eventos = dao2.listarEventos();
+
+			for (Evento evento : eventos) {
+				info5.addItem(evento.getNomeEvento());
+			}
+			info5.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info5.getSelectedIndex() != 0) {
+						info5.setSelectedIndex(0);
+					}
+				}
+			});
+		}
+		if (cidade == "Bento Goncalves") {
+			JComboBox<String> info1 = new JComboBox<String>();
+			info1.setBounds(10, 61, 430, 30);
+			panel.add(info1);
+
+			info1.addItem("Informação 1");
+			info1.addItem("Considerada a capital do vinho do Brasil, é rodeada por vinícolas e");
+			info1.addItem("oferece roteiros enológicos renomados.");
+			info1.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info1.getSelectedIndex() != 0) {
+						info1.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info2 = new JComboBox<String>();
+			info2.setBounds(10, 114, 430, 30);
+			panel.add(info2);
+
+			info2.addItem("Informação 2");
+			info2.addItem("Tem um forte apelo cultural italiano, refletido na arquitetura");
+			info2.addItem("e na culinária local, com festas como a Festa Nacional da Uva.");
+			info2.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info2.getSelectedIndex() != 0) {
+						info2.setSelectedIndex(0);
+					}
+				}
+			});
+
+			JComboBox<String> info4 = new JComboBox<String>();
+			info4.setBounds(10, 61, 430, 30);
+			info4.addItem("Pontos turisticos ");
+			ArrayList<PontosTur> pontosTur = dao.listarPontoTur();
+
+			for (PontosTur ponto : pontosTur) {
+				info4.addItem(ponto.getNomePontoTur());
+			}
+			info4.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info4.getSelectedIndex() != 0) {
+						info4.setSelectedIndex(0);
+					}
+				}
+			});
+
+			panel_1.add(info4);
+
+			JComboBox<String> info5 = new JComboBox<String>();
+			info5.setBounds(10, 114, 430, 30);
+			panel_1.add(info5);
+
+			info5.addItem("Eventos");
+			ArrayList<Evento> eventos = dao2.listarEventos();
+
+			for (Evento evento : eventos) {
+				info5.addItem(evento.getNomeEvento());
+			}
+			info5.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (info5.getSelectedIndex() != 0) {
+						info5.setSelectedIndex(0);
+					}
+				}
+			});
+		}
 	}
+
 }

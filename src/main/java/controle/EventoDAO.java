@@ -28,7 +28,7 @@ public class EventoDAO implements IEventoDAO{
 	
 	
 	public int inserirEvento(Evento end) {
-		String SQL = "INSERT INTO evento(id_evento, diainicio, diafim, horainicio, horafim, nomeevento, preco) VALUES (?,?,?,?,?,?,?)";
+		String SQL = "INSERT INTO eventos(id_evento, diainicio, diafim, horainicio, horafim, nomeevento, preco) VALUES (?,?,?,?,?,?,?)";
 		
 		Conexao con = Conexao.getConexao();
 		Connection conDB = con.conectar();
@@ -59,7 +59,7 @@ public class EventoDAO implements IEventoDAO{
 	public ArrayList<Evento> listarEventos() {
 		ArrayList<Evento> evento = new ArrayList<Evento>(); 
 		
-		String SQL = "SELECT * FROM evento";
+		String SQL = "SELECT * FROM eventos";
 		
 		Conexao con = Conexao.getConexao(); 
 		Connection conDB = con.conectar(); 
@@ -73,11 +73,11 @@ public class EventoDAO implements IEventoDAO{
 				Evento end = new Evento(); 
 				
 				Integer idEvento = rs.getInt("id_evento");
-				Date diaInicio = rs.getDate("diainicio");
-				Date diaFim = rs.getDate("diafim");
-				Time horaInicio = rs.getTime("horainicio");
-				Time horaFim = rs.getTime("horafim");
-				String nomeEvento = rs.getString("nomeevento");
+				Date diaInicio = rs.getDate("dia_inicio");
+				Date diaFim = rs.getDate("dia_fim");
+				Time horaInicio = rs.getTime("hora_inicio");
+				Time horaFim = rs.getTime("hora_fim");
+				String nomeEvento = rs.getString("nome_evento");
 				Float preco = rs.getFloat("preco");
 				 
 				 
@@ -88,6 +88,7 @@ public class EventoDAO implements IEventoDAO{
 				end.setHoraFim(horaFim);
 				end.setNomeEvento(nomeEvento);
 				end.setPreco(preco);
+				evento.add(end);
  
 			} 
 			 
@@ -101,7 +102,7 @@ public class EventoDAO implements IEventoDAO{
 	}
 
 	public int atualizarEventos(Evento end) {
-		String SQL = "UPDATE evento SET diaInicio = ?, diaFim = ?, horaInicio = ?, horaFim = ?, nomeEvento = ?, preco = ? WHERE endereco_id = ?";
+		String SQL = "UPDATE eventos SET diaInicio = ?, diaFim = ?, horaInicio = ?, horaFim = ?, nomeEvento = ?, preco = ? WHERE endereco_id = ?";
 		
 		Conexao con = Conexao.getConexao();
 		
@@ -132,7 +133,7 @@ public class EventoDAO implements IEventoDAO{
 	}
  
 	public int removerEventos(Evento end) {
-		String SQL = "DELETE FROM evento WHERE id_evento = ?";
+		String SQL = "DELETE FROM eventos WHERE id_evento = ?";
 		Conexao con = Conexao.getConexao();
 
 		Connection conBD = con.conectar();

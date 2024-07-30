@@ -147,53 +147,19 @@ CREATE TABLE WalkTourDB.`detalhes_hospedagem` (
     SET @endereco_id = LAST_INSERT_ID();
 
 	/* 1 chave estrangeira */
-	insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id) values ('2023-06-09', '2023-10-01', '7:28', '4:44', 'Bogan LLC', '513.52', @endereco_id);
-	insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)values ('2023-09-19', '2023-11-01', '7:29', '8:37', 'Vandervort, Ward and O''Kon', '405.95', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-02-21', '2023-05-26', '7:15', '8:03', 'Keeling LLC', '29.79', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-06-21', '2023-01-27', '7:11', '12:43', 'Dickinson Inc', '100.95', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2022-12-29', '2022-12-04', '7:05', '8:25', 'Pfannerstill, Blick and Franecki', '532.80', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-01-21', '2023-03-29', '7:08', '7:56', 'Schowalter, Mueller and Watsica', '478.88', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-06-14', '2023-04-30', '7:25', '6:47', 'Friesen and Sons', '461.64', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-01-15', '2022-11-23', '7:08', '7:51', 'Goldner and Sons', '398.27', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-03-21', '2022-11-10', '7:11', '5:19', 'Hansen, Hauck and Quitzon', '105.47', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-04-20', '2023-06-14', '7:17', '8:54', 'Carroll-Thompson', '549.21', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-10-15', '2023-10-06', '7:20', '2:13', 'Cruickshank, Veum and Howe', '207.15', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-01-04', '2023-06-08', '7:13', '7:48', 'Bartoletti-Wintheiser', '148.63', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-07-11', '2023-08-11', '7:21', '8:51', 'Lowe, Christiansen and Ledner', '363.98', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-02-13', '2023-04-01', '7:16', '1:45', 'Crona Inc', '262.66', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2022-10-28', '2023-08-15', '7:02', '11:23', 'Casper Inc', '297.29', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-09-28', '2023-05-03', '7:22', '4:09', 'Cremin Inc', '264.03', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2022-11-20', '2022-12-25', '7:04', '7:15', 'Jast Inc', '406.40', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2022-12-11', '2023-02-25', '7:24', '7:39', 'Torphy, Shields and Davis', '76.38', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-08-06', '2023-07-12', '7:23', '11:20', 'Kunde Inc', '441.18', @endereco_id);
-insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id)
-values ('2023-09-21', '2022-11-16', '7:07', '11:03', 'Hermann-Howell', '535.89', @endereco_id);
-SET @id_evento = LAST_INSERT_ID();
+	insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id) 
+	values ('2023-06-09', '2023-10-01', '7:28', '4:44', 'Show do Leno Brega', '513.52', 20);
+	insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id) 
+	values ('2023-06-09', '2023-10-01', '7:28', '4:44', 'Show do Roberto Carlos', '513.52', 20);
+	insert into eventos (dia_inicio, dia_fim, hora_inicio, hora_fim, nome_evento, preco, endereco_id) 
+	values ('2023-06-09', '2023-10-01', '7:28', '4:44', 'Show do Lionel Messi', '513.52', 20);
+	SET @id_evento = LAST_INSERT_ID();
 
     
     /* 1 chave estrangeira */
-	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega','6:05', '8:49', '11', @endereco_id);
-	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega 2','6:05', '8:49', '81', @endereco_id);
-	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega 3','6:05', '8:49', '41', @endereco_id);
-	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega 4','6:05', '8:49', '01', @endereco_id);
-	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Leno Brega Dexule','6:05', '8:49', '91', @endereco_id);
+	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Praça central','6:05', '8:49', '11', @endereco_id);
+	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Parque municipal','6:05', '8:49', '81', @endereco_id);
+	insert into pontos_tur (nome,hora_abre, hora_fecha, preco, endereco_id) values ('Lagoa azul','6:05', '8:49', '41', @endereco_id);
     SET @ponto_id = LAST_INSERT_ID();
     
     /* Nenhuma chave estrangeira */
