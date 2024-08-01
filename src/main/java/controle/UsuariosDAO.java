@@ -114,7 +114,7 @@ public class UsuariosDAO implements IUsuariosDAO {
         try {
             PreparedStatement ps = conDB.prepareStatement(SQL);
 
-            ps.setString(1, end.getNome());
+            ps.setString(1, end.getNomeRegistro());
             ps.setString(2, end.getNomeSocial());
             ps.setDate(3, Date.valueOf(end.getDtNasc()));
             ps.setString(4, end.getCpf());

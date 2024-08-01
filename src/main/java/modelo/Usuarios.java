@@ -38,8 +38,8 @@ public class Usuarios {
 	
 	public String getNome() {
 		if (getNomeSocial() != null) {
-		return nomeSocial;	
-	}
+			return nomeSocial;	
+		}
 		return nome;
 	}
 
