@@ -99,7 +99,7 @@ public class TelaUsuario extends JFrame {
 		txtNome.setFont(new Font("Dialog", Font.PLAIN, 16));
 		txtNome.setColumns(10);
 		txtNome.setBounds(370, 320, 500, 38);
-		txtNome.setText(hops.getNome());
+		txtNome.setText(hops.getNomeRegistro());
 		contentPane.add(txtNome);
 
 		JLabel lblDtNsc = new JLabel("Data de nascimento do hospede:");

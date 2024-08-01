@@ -35,6 +35,7 @@ public class TelaPrincipal extends JFrame {
 		setTitle("Tela Principal");
 		//MusicPlayer tocar = new MusicPlayer("/music/WalktourTheme.wav");
 		//tocar.play();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
@@ -284,7 +285,6 @@ public class TelaPrincipal extends JFrame {
 		panel_1_1_3.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_1_1_3.setBounds(896, 561, 300, 300);
 		contentPane.add(panel_1_1_3);
-		
 		
 	}
 }

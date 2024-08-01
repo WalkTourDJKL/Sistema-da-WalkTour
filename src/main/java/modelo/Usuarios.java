@@ -28,8 +28,18 @@ public class Usuarios {
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
+	
 
+
+	public String getNomeRegistro() {	
+		return nome;
+	}
+
+	
 	public String getNome() {
+		if (getNomeSocial() != null) {
+		return nomeSocial;	
+	}
 		return nome;
 	}
 

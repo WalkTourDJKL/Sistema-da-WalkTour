@@ -86,27 +86,6 @@ public class TelaQuarto extends JFrame {
 		lblArCon.setBounds(1112, 389, 98, 68);
 		contentPane.add(lblArCon);
 
-		JLabel lblMaquinaCafe = new JLabel("");
-		lblMaquinaCafe.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/MaquinaCafe.png")));
-		lblMaquinaCafe.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblMaquinaCafe.setBounds(1312, 369, 78, 72);
-		contentPane.add(lblMaquinaCafe);
-
-		JLabel lblCafe = new JLabel("");
-		lblCafe.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/cafeIcon.png")));
-		lblCafe.setBounds(780, 538, 65, 78);
-		contentPane.add(lblCafe);
-
-		JLabel lblTv = new JLabel("");
-		lblTv.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/Tv.png")));
-		lblTv.setBounds(944, 549, 78, 72);
-		contentPane.add(lblTv);
-
-		JLabel lblComputador = new JLabel("");
-		lblComputador.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/PcDisplay.png")));
-		lblComputador.setBounds(1129, 536, 76, 89);
-		contentPane.add(lblComputador);
-
 		JLabel lblWifiGra = new JLabel("Wifi Gratis ");
 		lblWifiGra.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblWifiGra.setBounds(772, 468, 78, 14);
@@ -122,11 +101,6 @@ public class TelaQuarto extends JFrame {
 		lblArcondi.setBounds(1114, 468, 99, 25);
 		contentPane.add(lblArcondi);
 
-		JLabel lblCafeMaq = new JLabel("Maquina de Cafe");
-		lblCafeMaq.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblCafeMaq.setBounds(1299, 474, 115, 14);
-		contentPane.add(lblCafeMaq);
-
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -141,11 +115,6 @@ public class TelaQuarto extends JFrame {
 		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setBounds(10, 241, 90, 25);
 		contentPane.add(btnVoltar);
-
-		JLabel lblComputadorr = new JLabel("Computador ");
-		lblComputadorr.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblComputadorr.setBounds(1129, 632, 89, 14);
-		contentPane.add(lblComputadorr);
 
 		ModeloQuarto modeloQuarto = new ModeloQuarto();
 		modeloQuarto.setNomeModelo(tipo);
@@ -170,20 +139,56 @@ public class TelaQuarto extends JFrame {
 		btnReservar.setBounds(860, 771, 463, 56);
 		contentPane.add(btnReservar);
 
-		JLabel lblCafeManha = new JLabel("Cafe da Manha");
-		lblCafeManha.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblCafeManha.setBounds(760, 632, 99, 14);
-		contentPane.add(lblCafeManha);
+		if ((tipo == "Suite Executiva") || (tipo == "Deluxe")) {
+			JLabel lblTv = new JLabel("");
+			lblTv.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/Tv.png")));
+			lblTv.setBounds(944, 549, 78, 72);
+			contentPane.add(lblTv);
+			
+			JLabel lbltv = new JLabel("TV HD");
+			lbltv.setFont(new Font("Arial", Font.PLAIN, 14));
+			lbltv.setBounds(954, 632, 78, 14);
+			contentPane.add(lbltv);
 
-		JLabel lblgratis = new JLabel("Gratuito ");
-		lblgratis.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblgratis.setBounds(1142, 652, 71, 14);
-		contentPane.add(lblgratis);
-
-		JLabel lbltv = new JLabel("TV HD");
-		lbltv.setFont(new Font("Arial", Font.PLAIN, 14));
-		lbltv.setBounds(954, 632, 78, 14);
-		contentPane.add(lbltv);
+			
+			JLabel lblCafe = new JLabel("");
+			lblCafe.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/cafeIcon.png")));
+			lblCafe.setBounds(780, 538, 65, 78);
+			contentPane.add(lblCafe);
+			
+			JLabel lblCafeManha = new JLabel("Cafe da Manha");
+			lblCafeManha.setFont(new Font("Arial", Font.PLAIN, 14));
+			lblCafeManha.setBounds(760, 632, 99, 14);
+			contentPane.add(lblCafeManha);
+		}
+		if (tipo == "Deluxe") {
+			JLabel lblComputador = new JLabel("");
+			lblComputador.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/PcDisplay.png")));
+			lblComputador.setBounds(1129, 536, 76, 89);
+			contentPane.add(lblComputador);
+			
+			JLabel lblComputadorr = new JLabel("Computador");
+			lblComputadorr.setFont(new Font("Arial", Font.PLAIN, 14));
+			lblComputadorr.setBounds(1129, 632, 89, 14);
+			contentPane.add(lblComputadorr);
+			
+			JLabel lblgratis = new JLabel("Gratuito");
+			lblgratis.setFont(new Font("Arial", Font.PLAIN, 14));
+			lblgratis.setBounds(1142, 652, 71, 14);
+			contentPane.add(lblgratis);
+			
+			
+			JLabel lblMaquinaCafe = new JLabel("");
+			lblMaquinaCafe.setIcon(new ImageIcon(TelaQuarto.class.getResource("/imgs/MaquinaCafe.png")));
+			lblMaquinaCafe.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lblMaquinaCafe.setBounds(1312, 369, 78, 72);
+			contentPane.add(lblMaquinaCafe);
+			
+			JLabel lblCafeMaq = new JLabel("Maquina de Cafe");
+			lblCafeMaq.setFont(new Font("Arial", Font.PLAIN, 14));
+			lblCafeMaq.setBounds(1299, 474, 115, 14);
+			contentPane.add(lblCafeMaq);
+		}
 
 	}
 }
