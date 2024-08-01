@@ -32,7 +32,7 @@ public class TelaPrincipal extends JFrame {
 	 */
 	public TelaPrincipal(Usuarios hosp) {
 
-		setTitle("WalkTour - Tela Principal");
+		setTitle("WalkTour - Principal");
 		// MusicPlayer tocar = new MusicPlayer("/music/WalktourTheme.wav");
 		// tocar.play();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
