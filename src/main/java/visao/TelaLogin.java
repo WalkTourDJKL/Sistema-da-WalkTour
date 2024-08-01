@@ -9,23 +9,13 @@ import javax.swing.text.MaskFormatter;
 
 import controle.UsuariosDAO;
 import modelo.Usuarios;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
-import javax.sound.midi.SysexMessage;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-
-import java.awt.SystemColor;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.UIManager;
 
 public class TelaLogin extends JFrame {
@@ -51,6 +41,7 @@ public class TelaLogin extends JFrame {
 				try {
 					TelaLogin frame = new TelaLogin();
 					frame.setVisible(true);
+					controle.CriacaoDB.main(args);
 					/* Não deixa ser redimensionado a tela */
 					frame.setResizable(false);
 				} catch (Exception e) {
