@@ -25,6 +25,8 @@ import javax.swing.text.MaskFormatter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import controle.DetaHospDAO;
 import controle.ReservaDAO;
@@ -166,6 +168,17 @@ public class TelaFinalizar extends JFrame {
 
 				LocalDate dtI = LocalDate.parse(dataI, formatter);
 				LocalDate dtF = LocalDate.parse(dataF, formatter);
+				String dtIString = dtI.toString();
+				String dtFString = dtF.toString();
+				
+				if (validacaoData(dtIString) == false) {
+					JOptionPane.showMessageDialog(null, "Data de Início inválida.");
+					return;
+				}
+				if (validacaoData(dtFString) == false) {
+					JOptionPane.showMessageDialog(null, "Data Final inválida.");
+					return;
+				}
 
 				reserva.setDataIn(dtI);
 				reserva.setDataOut(dtF);
@@ -241,5 +254,18 @@ public class TelaFinalizar extends JFrame {
 		lblNewLabel_3.setBounds(-267, 0, 1283, 895);
 		lblNewLabel_3.setIcon(new ImageIcon(TelaFinalizar.class.getResource("/imgs/LadoA.png")));
 		LadoJanela.add(lblNewLabel_3);
+	}
+	public static Boolean validacaoData(String strDate) {
+	    String dateFormat = "dd/MM/uuuu";
+
+	    DateTimeFormatter dateTimeFormatter = DateTimeFormatter
+	    .ofPattern(dateFormat)
+	    .withResolverStyle(ResolverStyle.STRICT);
+	    try {
+	        LocalDate date = LocalDate.parse(strDate, dateTimeFormatter);
+	        return true;
+	    } catch (DateTimeParseException e) {
+	       return false;
+	    } 
 	}
 }

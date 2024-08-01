@@ -86,6 +86,15 @@ public class TelaCidade extends JFrame {
 				telaprincipal.setVisible(true);
 			}
 		});
+		
+				JLabel lblPerfil = new JLabel(hosp.getNome());
+				lblPerfil.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblPerfil.setFont(new Font("Corbel", Font.PLAIN, 18));
+				lblPerfil.setBounds(853, 64, 409, 23);
+				contentPane.add(lblPerfil);
+				
+				System.out.println(lblPerfil.getText());
+				
 		btnVoltar.setFont(new Font("Dialog", Font.BOLD, 15));
 		btnVoltar.setFocusPainted(false);
 		btnVoltar.setBackground(new Color(240, 240, 240));
@@ -117,12 +126,6 @@ public class TelaCidade extends JFrame {
 		lbliconePerfil.setIcon(new ImageIcon(TelaPrincipal.class.getResource("/imgs/perfil.png")));
 		lbliconePerfil.setBounds(1302, 11, 99, 95);
 		contentPane.add(lbliconePerfil);
-
-		JLabel lblPerfil = new JLabel(hosp.getNome());
-		lblPerfil.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPerfil.setFont(new Font("Corbel", Font.PLAIN, 18));
-		lblPerfil.setBounds(853, 64, 409, 23);
-		contentPane.add(lblPerfil);
 
 		JLabel lblImagemMaior = new JLabel("");
 		lblImagemMaior.setBounds(10, 378, 1391, 323);

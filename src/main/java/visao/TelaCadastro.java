@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
@@ -166,6 +167,11 @@ public class TelaCadastro extends JFrame {
 						JOptionPane.showMessageDialog(null, "Campo Data de Entrada obrigatório!");
 						return;
 					}
+					if (validacaoData(dataNascimento) == false) {
+						JOptionPane.showMessageDialog(null, "Data de nascimento inválida.");
+						return;
+					}
+					
 
 					MaskFormatter mascaradataI = null;
 					try {
@@ -279,5 +285,18 @@ public class TelaCadastro extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public static Boolean validacaoData(String strDate) {
+	    String dateFormat = "dd/MM/uuuu";
+
+	    DateTimeFormatter dateTimeFormatter = DateTimeFormatter
+	    .ofPattern(dateFormat)
+	    .withResolverStyle(ResolverStyle.STRICT);
+	    try {
+	        LocalDate date = LocalDate.parse(strDate, dateTimeFormatter);
+	        return true;
+	    } catch (DateTimeParseException e) {
+	       return false;
+	    } 
 	}
 }
