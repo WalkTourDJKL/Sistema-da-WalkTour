@@ -69,7 +69,7 @@ public class TelaCidade extends JFrame {
 	 * @param estado
 	 */
 	public TelaCidade(Usuarios hosp, String cidade, String estado) {
-		setTitle("Tela de " + cidade);
+		setTitle("WalkTour - " + cidade);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();

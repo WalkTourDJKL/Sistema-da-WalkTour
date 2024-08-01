@@ -61,7 +61,7 @@ public class TelaLogin extends JFrame {
 	}
 
 	public TelaLogin() {
-		setTitle("Tela Login");
+		setTitle("WalkTour - Login");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();

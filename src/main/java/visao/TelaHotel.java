@@ -58,7 +58,7 @@ public class TelaHotel extends JFrame {
 	 * @param estado 
 	 */
 	public TelaHotel(Usuarios hosp, String cidade, String estado) {
-		setTitle("Tela Hotel de " + cidade);
+		setTitle("WalkTour - Hotel de " + cidade);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();

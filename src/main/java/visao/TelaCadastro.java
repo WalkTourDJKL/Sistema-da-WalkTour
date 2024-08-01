@@ -63,7 +63,7 @@ public class TelaCadastro extends JFrame {
 	}
 
 	public TelaCadastro() {
-		setTitle("Tela Cadastro");
+		setTitle("WalkTour - Cadastro");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();

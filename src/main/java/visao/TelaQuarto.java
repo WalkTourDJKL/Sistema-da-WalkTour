@@ -19,7 +19,7 @@ public class TelaQuarto extends JFrame {
 	private ModeloQuartoDAO modeqdao = ModeloQuartoDAO.getInstancia();
 
 	public TelaQuarto(String tipo, Usuarios hosp, String cidade, String estado) {
-		setTitle("Tela do quarto de " + cidade);
+		setTitle("WalkTour - Quarto de " + cidade);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();

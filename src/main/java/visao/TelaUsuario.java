@@ -72,7 +72,7 @@ public class TelaUsuario extends JFrame {
 	 * 
 	 */
 	public TelaUsuario(Usuarios hosp, String tipo, String cidade, int tVolt, String estado) {
-		setTitle("Tela do usuario:" + hosp.getNome());
+		setTitle("WalkTour - Dados do usuario:" + hosp.getNome());
 
 		Usuarios hops = new Usuarios();
 		Usuarios h1 = hosp;

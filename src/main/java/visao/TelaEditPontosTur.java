@@ -49,7 +49,7 @@ public class TelaEditPontosTur extends JFrame {
 	 * @param coisa
 	 */
 	public TelaEditPontosTur(String nome, Time horaAbre, Time horaFecha, int preco, int idPonto, String coisa) {
-		setTitle("Tela de edicao do ponto turístico");
+		setTitle("WalkTour - Editar ponto turístico");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 768, 607);
 		contentPane = new JPanel();

@@ -57,7 +57,7 @@ public class TelaQuartos extends JFrame {
 	 */
 
 	public TelaQuartos(Usuarios hosp, String cidade, String estado) {
-		setTitle("Tela de selecao de quartos");
+		setTitle("WalkTour - Tipos de quartos");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
