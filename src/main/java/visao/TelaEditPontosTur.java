@@ -2,6 +2,7 @@ package visao;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Time;
@@ -50,6 +51,8 @@ public class TelaEditPontosTur extends JFrame {
 	 */
 	public TelaEditPontosTur(String nome, Time horaAbre, Time horaFecha, int preco, int idPonto, String coisa) {
 		setTitle("WalkTour - Editar ponto turístico");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 768, 607);
 		contentPane = new JPanel();

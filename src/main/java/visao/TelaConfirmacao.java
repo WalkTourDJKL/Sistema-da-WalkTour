@@ -25,6 +25,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
@@ -49,6 +50,7 @@ public class TelaConfirmacao extends JFrame {
 	 */
 	public TelaConfirmacao(String coisa, String tipo, Usuarios hosp, UsuariosDAO hospdao, JFrame frame) {
 		setTitle("Tela de confirmacao de exclusao de " + coisa);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 444, 234);
 		contentPane = new JPanel();

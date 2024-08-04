@@ -35,6 +35,7 @@ import javax.swing.JMenu;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSlider;
 import java.awt.TextArea;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -70,6 +71,8 @@ public class TelaCidade extends JFrame {
 	 */
 	public TelaCidade(Usuarios hosp, String cidade, String estado) {
 		setTitle("WalkTour - " + cidade);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
@@ -82,12 +85,13 @@ public class TelaCidade extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaPrincipal telaprincipal = new TelaPrincipal(hosp);
 				dispose();
+				telaprincipal.setLocationRelativeTo(null);
 				telaprincipal.setResizable(false);
 				telaprincipal.setVisible(true);
 			}
 		});
 		
-				JLabel lblPerfil = new JLabel(hosp.getNome());
+				JLabel lblPerfil = new JLabel(hosp.getNomeRegistro());
 				lblPerfil.setHorizontalAlignment(SwingConstants.RIGHT);
 				lblPerfil.setFont(new Font("Corbel", Font.PLAIN, 18));
 				lblPerfil.setBounds(853, 64, 409, 23);
@@ -118,6 +122,7 @@ public class TelaCidade extends JFrame {
 				int tVolt = 5;
 				TelaUsuario user = new TelaUsuario(hosp, null, cidade, tVolt, estado);
 				dispose();
+				user.setLocationRelativeTo(null);
 				user.setResizable(false);
 				user.setVisible(true);
 
@@ -151,6 +156,7 @@ public class TelaCidade extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaHotel hotel = new TelaHotel(hosp, cidade, estado);
 				dispose();
+				hotel.setLocationRelativeTo(null);
 				hotel.setResizable(false);
 				hotel.setVisible(true);
 			}

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -45,6 +46,8 @@ public class TelaEditReserva extends JFrame {
 	 */
 	public TelaEditReserva(String formaPag, LocalDate dataIn, LocalDate dataOut, int idHospedagem) {
 		Usuarios hops = new Usuarios();
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		hops = hospdao.passaLogado();
 		setTitle("WalkTour - Editar reserva");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -74,6 +75,8 @@ public class TelaGestao extends JFrame {
 	 */
 	public TelaGestao(Usuarios hosp, String tipo, String cidade, int tVolt, String estado) {
 		setTitle("Tela de gestao:" + hosp.getNome());
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		Usuarios hops = new Usuarios();
 		Usuarios h1 = hosp;
 		Quarto quartos = new Quarto();
@@ -94,6 +97,7 @@ public class TelaGestao extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaPrincipal telaVolta = new TelaPrincipal(hosp);
 				dispose();
+				telaVolta.setLocationRelativeTo(null);
 				telaVolta.setResizable(false);
 				telaVolta.setVisible(true);
 			}
@@ -138,24 +142,25 @@ public class TelaGestao extends JFrame {
 		lblGestoDe.setBounds(0, 0, 626, 32);
 		lblGestoDe.setFont(new Font("Dialog", Font.PLAIN, 24));
 		panel.add(lblGestoDe);
-		
-				JButton btnInserirPT = new JButton("Inserir");
-				btnInserirPT.setBounds(604, 43, 129, 35);
-				panel.add(btnInserirPT);
-				btnInserirPT.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String coisa = "insert";
-						TelaEditPontosTur edit = new TelaEditPontosTur(null, null, null, 0, 0, coisa);
-						edit.setResizable(false);
-						edit.setVisible(true);
 
-					}
-				});
-				btnInserirPT.setForeground(Color.BLACK);
-				btnInserirPT.setFont(new Font("Dialog", Font.PLAIN, 18));
-				btnInserirPT.setFocusPainted(false);
-				btnInserirPT.setBackground(new Color(240, 240, 240));
-		
+		JButton btnInserirPT = new JButton("Inserir");
+		btnInserirPT.setBounds(604, 43, 129, 35);
+		panel.add(btnInserirPT);
+		btnInserirPT.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String coisa = "insert";
+				TelaEditPontosTur edit = new TelaEditPontosTur(null, null, null, 0, 0, coisa);
+				edit.setResizable(false);
+				edit.setLocationRelativeTo(null);
+				edit.setVisible(true);
+
+			}
+		});
+		btnInserirPT.setForeground(Color.BLACK);
+		btnInserirPT.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btnInserirPT.setFocusPainted(false);
+		btnInserirPT.setBackground(new Color(240, 240, 240));
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBackground(Color.LIGHT_GRAY);
@@ -166,31 +171,32 @@ public class TelaGestao extends JFrame {
 		scrollPane3.setBounds(25, 31, 573, 233);
 		panel_1.add(scrollPane3);
 		atualizarTabelaQ();
-		
+
 		JLabel lblGestoDeQuartos_1 = new JLabel("Gest\u00E3o de quartos");
 		lblGestoDeQuartos_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGestoDeQuartos_1.setFont(new Font("Dialog", Font.PLAIN, 24));
 		lblGestoDeQuartos_1.setBounds(0, 0, 626, 32);
 		panel_1.add(lblGestoDeQuartos_1);
-				
-				JButton btnInserirQ = new JButton("Inserir");
-				btnInserirQ.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String coisa = "insert";
-						int tipoId=0;
-						Time horaLimpeza=null;
-						int idQuarto=0;
-						TelaEditQuarto edit = new TelaEditQuarto(tipoId,horaLimpeza,idQuarto, coisa);
-						edit.setResizable(false);
-						edit.setVisible(true);
-					}
-				});
-				btnInserirQ.setForeground(Color.BLACK);
-				btnInserirQ.setFont(new Font("Dialog", Font.PLAIN, 18));
-				btnInserirQ.setFocusPainted(false);
-				btnInserirQ.setBackground(new Color(240, 240, 240));
-				btnInserirQ.setBounds(604, 43, 129, 35);
-				panel_1.add(btnInserirQ);
+
+		JButton btnInserirQ = new JButton("Inserir");
+		btnInserirQ.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String coisa = "insert";
+				int tipoId = 0;
+				Time horaLimpeza = null;
+				int idQuarto = 0;
+				TelaEditQuarto edit = new TelaEditQuarto(tipoId, horaLimpeza, idQuarto, coisa);
+				edit.setLocationRelativeTo(null);
+				edit.setResizable(false);
+				edit.setVisible(true);
+			}
+		});
+		btnInserirQ.setForeground(Color.BLACK);
+		btnInserirQ.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btnInserirQ.setFocusPainted(false);
+		btnInserirQ.setBackground(new Color(240, 240, 240));
+		btnInserirQ.setBounds(604, 43, 129, 35);
+		panel_1.add(btnInserirQ);
 
 	}
 

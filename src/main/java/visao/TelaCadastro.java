@@ -17,6 +17,7 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -64,6 +65,8 @@ public class TelaCadastro extends JFrame {
 	}
 
 	public TelaCadastro() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		setTitle("WalkTour - Cadastro");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -208,6 +211,7 @@ public class TelaCadastro extends JFrame {
 						TelaLogin telalogin = new TelaLogin();
 						dispose();
 						telalogin.setResizable(false);
+						telalogin.setLocationRelativeTo(null);
 						telalogin.setVisible(true);
 					}
 
@@ -238,6 +242,7 @@ public class TelaCadastro extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					TelaLogin log = new TelaLogin();
 					dispose();
+					log.setLocationRelativeTo(null);
 					log.setResizable(false);
 					log.setVisible(true);
 				}

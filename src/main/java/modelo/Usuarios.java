@@ -37,7 +37,7 @@ public class Usuarios {
 
 	
 	public String getNome() {
-		if (getNomeSocial() != null) {
+		if (getNomeSocial() != null && !nomeSocial.isEmpty()) {
 			return nomeSocial;	
 		}
 		return nome;

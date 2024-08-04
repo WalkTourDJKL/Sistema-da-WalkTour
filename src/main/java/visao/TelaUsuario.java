@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -73,6 +74,7 @@ public class TelaUsuario extends JFrame {
 	 */
 	public TelaUsuario(Usuarios hosp, String tipo, String cidade, int tVolt, String estado) {
 		setTitle("WalkTour - Dados do usuario:" + hosp.getNome());
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
 
 		Usuarios hops = new Usuarios();
 		Usuarios h1 = hosp;
@@ -157,6 +159,10 @@ public class TelaUsuario extends JFrame {
 				hosp.setDtNasc(dataNascimento);
 				hospdao.atualizarUsuarios(hosp);
 				atualizarTabela(hosp, h1);
+				TelaSucesso sucesso = new TelaSucesso();
+				sucesso.setResizable(false);
+				sucesso.setLocationRelativeTo(null);
+				sucesso.setVisible(true);
 			}
 		});
 		btnAtualizar.setForeground(Color.BLACK);
@@ -171,6 +177,7 @@ public class TelaUsuario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String coisa = "conta";
 				TelaConfirmacao del = new TelaConfirmacao(coisa, tipo, hosp, hospdao, TelaUsuario.this);
+				del.setLocationRelativeTo(null);
 				del.setResizable(false);
 				del.setVisible(true);
 			}
@@ -188,30 +195,35 @@ public class TelaUsuario extends JFrame {
 				if (tVolt == 1) {
 					TelaPrincipal telaVolta = new TelaPrincipal(hosp);
 					dispose();
+					telaVolta.setLocationRelativeTo(null);
 					telaVolta.setResizable(false);
 					telaVolta.setVisible(true);
 				}
 				if (tVolt == 2) {
 					TelaHotel telaVolta = new TelaHotel(hosp, cidade, estado);
 					dispose();
+					telaVolta.setLocationRelativeTo(null);
 					telaVolta.setResizable(false);
 					telaVolta.setVisible(true);
 				}
 				if (tVolt == 3) {
 					TelaQuartos telaVolta = new TelaQuartos(hosp, cidade, estado);
 					dispose();
+					telaVolta.setLocationRelativeTo(null);
 					telaVolta.setResizable(false);
 					telaVolta.setVisible(true);
 				}
 				if (tVolt == 4) {
 					TelaQuarto telaVolta = new TelaQuarto(tipo, hosp, cidade, estado);
 					dispose();
+					telaVolta.setLocationRelativeTo(null);
 					telaVolta.setResizable(false);
 					telaVolta.setVisible(true);
 				}
 				if (tVolt == 5) {
 					TelaCidade telaVolta = new TelaCidade(hosp, cidade, estado);
 					dispose();
+					telaVolta.setLocationRelativeTo(null);
 					telaVolta.setResizable(false);
 					telaVolta.setVisible(true);
 				}
@@ -236,6 +248,7 @@ public class TelaUsuario extends JFrame {
 				setVisible(false);
 				dispose();
 				TelaLogin telaLogin = new TelaLogin();
+				telaLogin.setLocationRelativeTo(null);
 				telaLogin.setResizable(false);
 				telaLogin.setVisible(true);
 			}
@@ -446,6 +459,7 @@ public class TelaUsuario extends JFrame {
 		int preco = (Integer) model.getValueAt(row, 3);
 		int idHospedagem = (Integer) model.getValueAt(row, 6);
 		TelaEditReserva edit = new TelaEditReserva(formaPag, dataIn, dataOut, idHospedagem);
+		edit.setLocationRelativeTo(null);
 		edit.setResizable(false);
 		edit.setVisible(true);
 		System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data In�cio: " + dataIn + ", Data Fim: "

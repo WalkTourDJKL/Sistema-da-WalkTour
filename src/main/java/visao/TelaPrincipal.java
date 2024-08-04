@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.UIManager;
@@ -31,6 +33,7 @@ public class TelaPrincipal extends JFrame {
 	 * @param cpf
 	 */
 	public TelaPrincipal(Usuarios hosp) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
 
 		setTitle("WalkTour - Principal");
 		// MusicPlayer tocar = new MusicPlayer("/music/WalktourTheme.wav");
@@ -53,6 +56,7 @@ public class TelaPrincipal extends JFrame {
 				int tVolt = 1;
 				TelaUsuario user = new TelaUsuario(hosp, null, null, tVolt, null);
 				dispose();
+				user.setLocationRelativeTo(null);
 				user.setResizable(false);
 				user.setVisible(true);
 				// tocar.stop();
@@ -95,6 +99,7 @@ public class TelaPrincipal extends JFrame {
 				TelaCidade hotel = new TelaCidade(hosp, cidade, estado);
 				dispose();
 				hotel.setResizable(false);
+				hotel.setLocationRelativeTo(null);
 				hotel.setVisible(true);
 				// tocar.stop();
 
@@ -132,6 +137,7 @@ public class TelaPrincipal extends JFrame {
 				TelaCidade hotel = new TelaCidade(hosp, cidade, estado);
 				dispose();
 				hotel.setResizable(false);
+				hotel.setLocationRelativeTo(null);
 				hotel.setVisible(true);
 				// tocar.stop();
 			}
@@ -167,6 +173,7 @@ public class TelaPrincipal extends JFrame {
 				String estado = lblEstado_1_1.getText();
 				TelaCidade hotel = new TelaCidade(hosp, cidade, estado);
 				dispose();
+				hotel.setLocationRelativeTo(null);
 				hotel.setResizable(false);
 				hotel.setVisible(true);
 				// tocar.stop();
@@ -203,6 +210,7 @@ public class TelaPrincipal extends JFrame {
 				String estado = lblEstado_1_1_1.getText();
 				TelaCidade hotel = new TelaCidade(hosp, cidade, estado);
 				dispose();
+				hotel.setLocationRelativeTo(null);
 				hotel.setResizable(false);
 				hotel.setVisible(true);
 				// tocar.stop();
@@ -238,6 +246,7 @@ public class TelaPrincipal extends JFrame {
 				String estado = lblEstado_1_1_2.getText();
 				TelaCidade hotel = new TelaCidade(hosp, cidade, estado);
 				dispose();
+				hotel.setLocationRelativeTo(null);
 				hotel.setResizable(false);
 				hotel.setVisible(true);
 				// tocar.stop();
@@ -274,6 +283,7 @@ public class TelaPrincipal extends JFrame {
 				String estado = lblEstado_1_1_3.getText();
 				TelaCidade hotel = new TelaCidade(hosp, cidade, estado);
 				dispose();
+				hotel.setLocationRelativeTo(null);
 				hotel.setResizable(false);
 				hotel.setVisible(true);
 				// tocar.stop();
@@ -296,6 +306,7 @@ public class TelaPrincipal extends JFrame {
 					int tVolt = 1;
 					TelaGestao user = new TelaGestao(hosp, null, null, tVolt, null);
 					dispose();
+					user.setLocationRelativeTo(null);
 					user.setResizable(false);
 					user.setVisible(true);
 					// tocar.stop();
@@ -303,7 +314,8 @@ public class TelaPrincipal extends JFrame {
 				}
 			});
 			contentPane.add(btnRealizarAGesto);
-		}else {}
+		} else {
+		}
 
 	}
 }

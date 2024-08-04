@@ -17,6 +17,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
@@ -47,6 +48,8 @@ public class TelaSucesso extends JFrame {
 	 */
 	public TelaSucesso() {
 		setTitle("Sucesso");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 444, 234);
 		contentPane = new JPanel();
@@ -55,12 +58,12 @@ public class TelaSucesso extends JFrame {
 
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] {418};
-		gbl_contentPane.rowHeights = new int[] {0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+		gbl_contentPane.columnWidths = new int[] { 418 };
+		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.columnWeights = new double[] { 0.0 };
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		contentPane.setLayout(gbl_contentPane);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(TelaSucesso.class.getResource("/imgs/sucessoIcon.png")));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
@@ -68,7 +71,7 @@ public class TelaSucesso extends JFrame {
 		gbc_lblNewLabel_2.gridx = 0;
 		gbc_lblNewLabel_2.gridy = 1;
 		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
-		
+
 		JLabel lblNewLabel = new JLabel("Operacao Concluida");
 		lblNewLabel.setForeground(new Color(102, 112, 122));
 		lblNewLabel.setFont(new Font("Corbel", Font.BOLD, 35));
@@ -78,7 +81,7 @@ public class TelaSucesso extends JFrame {
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 2;
 		contentPane.add(lblNewLabel, gbc_lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Com Sucesso!");
 		lblNewLabel_1.setForeground(new Color(77, 223, 6));
 		lblNewLabel_1.setFont(new Font("Corbel", Font.BOLD, 35));
@@ -88,11 +91,11 @@ public class TelaSucesso extends JFrame {
 		gbc_lblNewLabel_1.gridx = 0;
 		gbc_lblNewLabel_1.gridy = 3;
 		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
-		
+
 		JButton btnNewButton = new JButton("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+				dispose();
 			}
 		});
 		btnNewButton.setFont(new Font("Corbel", Font.PLAIN, 20));

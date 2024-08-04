@@ -25,6 +25,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -56,6 +57,8 @@ public class TelaIseriEdita extends JFrame {
 	 */
 	public TelaIseriEdita(String nome, Time horaAbre, Time horaFecha, int preco, int idPonto,int tipoId, Time horaLimpeza, int idQuarto, String coisa) {
 		setTitle("Tela de escolha");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 234);
 		contentPane = new JPanel();
@@ -89,6 +92,7 @@ public class TelaIseriEdita extends JFrame {
 				if (coisa.equals("ponto turistico")) {
 					String coisa = "delete";
 					TelaEditPontosTur edit = new TelaEditPontosTur(nome, horaAbre, horaFecha, preco, idPonto,coisa);
+					edit.setLocationRelativeTo(null);
 					edit.setResizable(false);
 					edit.setVisible(true);
 					dispose();
@@ -96,6 +100,7 @@ public class TelaIseriEdita extends JFrame {
 				if (coisa.equals("quarto")) {
 					String coisa = "delete";
 					TelaEditQuarto edit = new TelaEditQuarto(tipoId,horaLimpeza,idQuarto,coisa);
+					edit.setLocationRelativeTo(null);
 					edit.setResizable(false);
 					edit.setVisible(true);
 					dispose();
@@ -112,6 +117,7 @@ public class TelaIseriEdita extends JFrame {
 				if (coisa.equals("ponto turistico")) {
 					String coisa = "edit";
 					TelaEditPontosTur edit = new TelaEditPontosTur(nome, horaAbre, horaFecha, preco, idPonto,coisa);
+					edit.setLocationRelativeTo(null);
 					edit.setResizable(false);
 					edit.setVisible(true);
 					dispose();
@@ -119,6 +125,7 @@ public class TelaIseriEdita extends JFrame {
 				if (coisa.equals("quarto")) {
 					String coisa = "edit";
 					TelaEditQuarto edit = new TelaEditQuarto(tipoId,horaLimpeza,idQuarto,coisa);
+					edit.setLocationRelativeTo(null);
 					edit.setResizable(false);
 					edit.setVisible(true);
 					dispose();

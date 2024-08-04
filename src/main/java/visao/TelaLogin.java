@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import java.awt.Toolkit;
 
 public class TelaLogin extends JFrame {
 	/**
@@ -41,6 +42,7 @@ public class TelaLogin extends JFrame {
 				try {
 					TelaLogin frame = new TelaLogin();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 					controle.CriacaoDB.main(args);
 					/* Não deixa ser redimensionado a tela */
 					frame.setResizable(false);
@@ -52,6 +54,7 @@ public class TelaLogin extends JFrame {
 	}
 
 	public TelaLogin() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
 		setTitle("WalkTour - Login");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
@@ -129,11 +132,12 @@ public class TelaLogin extends JFrame {
 					if (hospTesteLogin != null) {
 						// Passa para a proxima tela
 						TelaSucesso sucesso = new TelaSucesso();
-						TelaPrincipal homepage = new TelaPrincipal(hospTesteLogin);
 						sucesso.setResizable(false);
 						sucesso.setLocationRelativeTo(null);
 						sucesso.setVisible(true);
 						dispose();
+						TelaPrincipal homepage = new TelaPrincipal(hospTesteLogin);
+						homepage.setLocationRelativeTo(null);
 						homepage.setResizable(false);
 						homepage.setVisible(true);
 
@@ -164,6 +168,7 @@ public class TelaLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastro cad = new TelaCadastro();
 				dispose();
+				cad.setLocationRelativeTo(null);
 				cad.setResizable(false);
 				cad.setVisible(true);
 			}
@@ -173,24 +178,7 @@ public class TelaLogin extends JFrame {
 		btnNewButton_1.setFont(new Font("Corbel", Font.ITALIC, 14));
 		btnNewButton_1.setBackground(UIManager.getColor("Button.background"));
 		contentPane.add(btnNewButton_1);
-		//so para agilizar os testes
-		String login = txt_digiLogin.getText();
-		String senha = txt_digiSenha.getText();
-		JButton btnNewButton_2 = new JButton("Funcionario");
-		btnNewButton_2.setFont(new Font("Impact", Font.PLAIN, 41));
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txt_digiLogin.setText(null);
-				txt_digiSenha.setText(null);
-				txt_digiLogin.setText("func0");
-				txt_digiSenha.setText("1");
-			}
-		});
-		btnNewButton_2.setBounds(950, 374, 236, 140);
-		contentPane.add(btnNewButton_2);
-		
-		
-		
+
 		JLabel lblNewLabel_2 = new JLabel(
 				"Ao continuar com o acesso, voce concorda com nossa politica de privacidade ");
 		lblNewLabel_2.setBounds(984, 570, 430, 18);
@@ -206,21 +194,6 @@ public class TelaLogin extends JFrame {
 		lblNewLabel_3.setBounds(-254, -74, 1309, 1051);
 		lblNewLabel_3.setIcon(new ImageIcon(TelaLogin.class.getResource("/imgs/LadoA.png")));
 		LadoJanela.add(lblNewLabel_3);
-		
-		//so para agilizar os testes
-		JButton btnNewButton_3 = new JButton("Hospede");
-		btnNewButton_3.setFont(new Font("Impact", Font.PLAIN, 41));
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				txt_digiLogin.setText(null);
-				txt_digiSenha.setText(null);
-				txt_digiLogin.setText("hosp0");
-				txt_digiSenha.setText("0");
-			}
-		});
-		btnNewButton_3.setBounds(1223, 374, 191, 140);
-		contentPane.add(btnNewButton_3);
-
 
 	}
 

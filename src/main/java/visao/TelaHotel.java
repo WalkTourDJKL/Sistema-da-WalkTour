@@ -29,6 +29,7 @@ import javax.swing.JMenu;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSlider;
 import java.awt.TextArea;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -59,6 +60,8 @@ public class TelaHotel extends JFrame {
 	 */
 	public TelaHotel(Usuarios hosp, String cidade, String estado) {
 		setTitle("WalkTour - Hotel de " + cidade);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
@@ -71,6 +74,7 @@ public class TelaHotel extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaCidade telaprincipal = new TelaCidade(hosp, cidade, estado);
 				dispose();
+				telaprincipal.setLocationRelativeTo(null);
 				telaprincipal.setResizable(false);
 				telaprincipal.setVisible(true);
 			}
@@ -98,6 +102,7 @@ public class TelaHotel extends JFrame {
 				int tVolt = 2; 
 				TelaUsuario user = new TelaUsuario(hosp,null ,cidade,tVolt, estado);
 				dispose();
+				user.setLocationRelativeTo(null);
 				user.setResizable(false);
 				user.setVisible(true);
 
@@ -114,17 +119,17 @@ public class TelaHotel extends JFrame {
 		contentPane.add(lblPerfil);
 
 		JLabel lblEndereco = new JLabel("");
-		lblEndereco.setBounds(701, 440, 45, 30);
+		lblEndereco.setBounds(873, 432, 45, 30);
 		lblEndereco.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/endereco.png")));
 		contentPane.add(lblEndereco);
 
 		JLabel lblTelefone = new JLabel("");
-		lblTelefone.setBounds(701, 519, 46, 30);
+		lblTelefone.setBounds(873, 511, 46, 30);
 		lblTelefone.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/telefone.png")));
 		contentPane.add(lblTelefone);
 
 		JLabel lblEmail = new JLabel("");
-		lblEmail.setBounds(701, 596, 46, 30);
+		lblEmail.setBounds(873, 588, 46, 30);
 		lblEmail.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/email.png")));
 		contentPane.add(lblEmail);
 
@@ -143,19 +148,19 @@ public class TelaHotel extends JFrame {
 		lblEntrada.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/entrada.png")));
 		contentPane.add(lblEntrada);
 
-		JLabel lblEnd = new JLabel("Rua XXXX, Nº XXX");
+		JLabel lblEnd = new JLabel("Rua Teodoro Fonseca, Nº 152");
 		lblEnd.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblEnd.setBounds(800, 430, 256, 52);
+		lblEnd.setBounds(972, 422, 256, 52);
 		contentPane.add(lblEnd);
 
-		JLabel lblTel = new JLabel("+55 (99) 99999999");
+		JLabel lblTel = new JLabel("+55 (47) 3035-3759");
 		lblTel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblTel.setBounds(800, 525, 256, 14);
+		lblTel.setBounds(972, 517, 256, 14);
 		contentPane.add(lblTel);
 
-		JLabel lblEmail2 = new JLabel("XX@XX.com");
+		JLabel lblEmail2 = new JLabel("walktour@hotmail.com");
 		lblEmail2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblEmail2.setBounds(800, 589, 256, 40);
+		lblEmail2.setBounds(972, 581, 256, 40);
 		contentPane.add(lblEmail2);
 
 		JLabel lblQuadra = new JLabel("");
@@ -168,6 +173,7 @@ public class TelaHotel extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaQuartos telaquartos = new TelaQuartos(hosp, cidade,estado);
 				dispose();
+				telaquartos.setLocationRelativeTo(null);
 				telaquartos.setResizable(false);
 				telaquartos.setVisible(true);
 			}
@@ -175,32 +181,5 @@ public class TelaHotel extends JFrame {
 		btnProcurarQuarto.setIcon(new ImageIcon(TelaHotel.class.getResource("/imgs/btnBuscaModeloQuarto.png")));
 		btnProcurarQuarto.setBounds(842, 715, 427, 61);
 		contentPane.add(btnProcurarQuarto);
-		
-        
-        JComboBox SobreOhotel = new JComboBox();
-        SobreOhotel.setBounds(971, 440, 430, 30);
-        contentPane.add(SobreOhotel);
-        
-        SobreOhotel.addItem("Sobre o Hotel");
-        
-        JComboBox Comodidades = new JComboBox();
-        Comodidades.setBounds(971, 493, 430, 30);
-        contentPane.add(Comodidades);
-        
-        Comodidades.addItem("Comodidades");
-
-        
-        JComboBox QuartosMaisReservados = new JComboBox();
-        QuartosMaisReservados.setBounds(971, 548, 430, 30);
-        contentPane.add(QuartosMaisReservados);
-        
-        QuartosMaisReservados.addItem("Quartos Mais Reservados");
-
-        
-        JComboBox Especifica = new JComboBox();
-        Especifica.setBounds(971, 602, 430, 30);
-        contentPane.add(Especifica);
- 
-        Especifica.addItem("Especifica��es e Regulamenta��es da Reserva");
 	}
 }

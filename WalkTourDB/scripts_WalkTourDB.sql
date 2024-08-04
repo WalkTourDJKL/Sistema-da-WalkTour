@@ -1,10 +1,9 @@
-DROP DATABASE IF EXISTS WalkTourDB;
 CREATE DATABASE IF NOT EXISTS WalkTourDB;
 USE WalkTourDB;
 -- -----------------------------------------------------
 -- Table WalkTourDB.`enderecos`
 -- -----------------------------------------------------
-CREATE TABLE WalkTourDB.`enderecos` (
+CREATE TABLE WalkTourDB.`enderecos`(
   `endereco_id` INT NOT NULL AUTO_INCREMENT,
   `cep` VARCHAR(45) NOT NULL,
   `cidade` VARCHAR(45) NOT NULL,
@@ -17,7 +16,7 @@ CREATE TABLE WalkTourDB.`enderecos` (
 -- -----------------------------------------------------
 -- Table WalkTourDB.`eventos`
 -- -----------------------------------------------------
-CREATE TABLE WalkTourDB.`eventos` (
+CREATE TABLE WalkTourDB.`eventos`(
   `id_evento` INT NOT NULL AUTO_INCREMENT,
   `dia_inicio` DATE NOT NULL,
   `dia_fim` DATE NOT NULL,

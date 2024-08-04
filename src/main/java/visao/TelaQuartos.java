@@ -26,6 +26,7 @@ import javax.swing.JMenu;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JSlider;
 import java.awt.TextArea;
+import java.awt.Toolkit;
 import java.awt.Canvas;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -58,6 +59,8 @@ public class TelaQuartos extends JFrame {
 
 	public TelaQuartos(Usuarios hosp, String cidade, String estado) {
 		setTitle("WalkTour - Tipos de quartos");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
@@ -76,6 +79,7 @@ public class TelaQuartos extends JFrame {
 				int tVolt = 3;
 				TelaUsuario user = new TelaUsuario(hosp, null, cidade, tVolt, estado);
 				dispose();
+				user.setLocationRelativeTo(null);
 				user.setResizable(false);
 				user.setVisible(true);
 			}
@@ -109,6 +113,7 @@ public class TelaQuartos extends JFrame {
 				String tipo = lblTipoQuarto1.getText();
 				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade,estado);
 				dispose();
+				quarto.setLocationRelativeTo(null);
 				quarto.setResizable(false);
 				quarto.setVisible(true);
 				System.out.println(tipo);
@@ -151,6 +156,7 @@ public class TelaQuartos extends JFrame {
 				String tipo = lblTipoQuarto2.getText();
 				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade, estado);
 				dispose();
+				quarto.setLocationRelativeTo(null);
 				quarto.setResizable(false);
 				quarto.setVisible(true);
 				System.out.println(tipo);
@@ -187,6 +193,7 @@ public class TelaQuartos extends JFrame {
 				String tipo = lblTipoQuarto3.getText();
 				TelaQuarto quarto = new TelaQuarto(tipo, hosp, cidade, estado);
 				dispose();
+				quarto.setLocationRelativeTo(null);
 				quarto.setResizable(false);
 				quarto.setVisible(true);
 				System.out.println(tipo);
@@ -197,6 +204,7 @@ public class TelaQuartos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaHotel telahotel = new TelaHotel(hosp, cidade, estado);
 				dispose();
+				telahotel.setLocationRelativeTo(null);
 				telahotel.setResizable(false);
 				telahotel.setVisible(true);
 			}

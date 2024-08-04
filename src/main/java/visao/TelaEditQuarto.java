@@ -2,6 +2,7 @@ package visao;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Time;
@@ -44,6 +45,8 @@ public class TelaEditQuarto extends JFrame {
 	 */
 	public TelaEditQuarto(int TipoId, Time horaLimpeza, int idQuarto, String coisa) {
 		setTitle("Tela de edicao do quarto");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 768, 607);
 		contentPane = new JPanel();

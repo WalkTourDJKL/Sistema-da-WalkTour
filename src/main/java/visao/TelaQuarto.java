@@ -20,6 +20,8 @@ public class TelaQuarto extends JFrame {
 
 	public TelaQuarto(String tipo, Usuarios hosp, String cidade, String estado) {
 		setTitle("WalkTour - Quarto de " + cidade);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/imgs/Icon2.png")));
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 1440, 900);
 		contentPane = new JPanel();
@@ -106,6 +108,7 @@ public class TelaQuarto extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaQuartos telaQuartos = new TelaQuartos(hosp, cidade, estado);
 				dispose();
+				telaQuartos.setLocationRelativeTo(null);
 				telaQuartos.setResizable(false);
 				telaQuartos.setVisible(true);
 			}
@@ -131,6 +134,7 @@ public class TelaQuarto extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaFinalizar telaFinalizar = new TelaFinalizar(tipo, hosp, cidade, preco, estado);
 				dispose();
+				telaFinalizar.setLocationRelativeTo(null);
 				telaFinalizar.setResizable(false);
 				telaFinalizar.setVisible(true);
 			}
