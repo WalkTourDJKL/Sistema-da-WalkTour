@@ -26,6 +26,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.sql.Date;
 import java.awt.event.ActionEvent;
 
@@ -68,8 +69,8 @@ public class TelaEditReserva extends JFrame {
 		contentPane.add(lbl_dataI);
 
 		try {
-			MaskFormatter mascaraData = new MaskFormatter("####/##/##");
-			txt_digiDataI = new JFormattedTextField(mascaraData);
+			MaskFormatter mascaraData = new MaskFormatter("##/##/####");
+	        txt_digiDataI = new JFormattedTextField(mascaraData);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -85,7 +86,7 @@ public class TelaEditReserva extends JFrame {
 		contentPane.add(lbl_dataF);
 
 		try {
-			MaskFormatter mascaraData = new MaskFormatter("####/##/##");
+			MaskFormatter mascaraData = new MaskFormatter("##/##/####");
 			txt_digiDataF = new JFormattedTextField(mascaraData);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -95,6 +96,12 @@ public class TelaEditReserva extends JFrame {
 		txt_digiDataF.setBounds(370, 369, 500, 38);
 		txt_digiDataF.setText(String.valueOf(dataOut));
 		contentPane.add(txt_digiDataF);
+
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    txt_digiDataI.setText(dataIn.format(formatter));
+	    txt_digiDataF.setText(dataOut.format(formatter));
+		
+		
 
 		JLabel lbl_forma = new JLabel("Formas de Pagamento");
 		lbl_forma.setFont(new Font("Corbel", Font.PLAIN, 25));
@@ -122,6 +129,7 @@ public class TelaEditReserva extends JFrame {
 		grupoFormasPagamento.add(radioCartao);
 
 		JButton btnAtualizar = new JButton("Atualizar");
+
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String dataInicio = txt_digiDataI.getText();
@@ -138,27 +146,32 @@ public class TelaEditReserva extends JFrame {
 
 				Reserva reserva = new Reserva();
 
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-				LocalDate dtI = LocalDate.parse(dataInicio, formatter);
-				LocalDate dtF = LocalDate.parse(dataFim, formatter);
+				try {
+					LocalDate dtI = LocalDate.parse(dataInicio, formatter);
+					LocalDate dtF = LocalDate.parse(dataFim, formatter);
 
-				reserva.setFormaPag(formaPagamento);
-				reserva.setIdHospedagem(idHospedagem);
-				reserva.setDataIn(dtI);
-				reserva.setDataOut(dtF);
-				ReservaDAO dao = ReservaDAO.getInstancia();
-				if (dao.atualizarReserva(reserva) > 0) {
-					TelaSucesso sucesso = new TelaSucesso();
-					sucesso.setResizable(false);
-					sucesso.setLocationRelativeTo(null);
-					sucesso.setVisible(true);
-					dispose();
-				} else {
-					TelaErro erro = new TelaErro();
-					erro.setResizable(false);
-					erro.setLocationRelativeTo(null);
-					erro.setVisible(true);
+					reserva.setFormaPag(formaPagamento);
+					reserva.setIdHospedagem(idHospedagem);
+					reserva.setDataIn(dtI);
+					reserva.setDataOut(dtF);
+
+					ReservaDAO dao = ReservaDAO.getInstancia();
+					if (dao.atualizarReserva(reserva) > 0) {
+						TelaSucesso sucesso = new TelaSucesso();
+						sucesso.setResizable(false);
+						sucesso.setLocationRelativeTo(null);
+						sucesso.setVisible(true);
+						dispose();
+					} else {
+						TelaErro erro = new TelaErro();
+						erro.setResizable(false);
+						erro.setLocationRelativeTo(null);
+						erro.setVisible(true);
+					}
+				} catch (DateTimeParseException ex) {
+					JOptionPane.showMessageDialog(null, "Formato de data inválido. Use o formato dd/MM/yyyy.");
 				}
 			}
 		});

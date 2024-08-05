@@ -167,12 +167,16 @@ public class TelaCadastro extends JFrame {
 
 					Usuarios end = new Usuarios();
 					if (dataNascimento.length() == 0) {
-						JOptionPane.showMessageDialog(null, "Campo Data de Entrada obrigatório!");
-						return;
+						TelaErro erro = new TelaErro();
+						erro.setResizable(false);
+						erro.setLocationRelativeTo(null);
+						erro.setVisible(true);						return;
 					}
 					if (validacaoData(dataNascimento) == false) {
-						JOptionPane.showMessageDialog(null, "Data de nascimento inválida.");
-						return;
+						TelaErro erro = new TelaErro();
+						erro.setResizable(false);
+						erro.setLocationRelativeTo(null);
+						erro.setVisible(true);						return;
 					}
 					
 
@@ -205,14 +209,15 @@ public class TelaCadastro extends JFrame {
 						erro.setLocationRelativeTo(null);
 						erro.setVisible(true);
 					} else {
-						TelaSucesso sucesso = new TelaSucesso();
-						sucesso.setLocationRelativeTo(null);
-						sucesso.setVisible(true);
+						
 						TelaLogin telalogin = new TelaLogin();
 						dispose();
 						telalogin.setResizable(false);
 						telalogin.setLocationRelativeTo(null);
 						telalogin.setVisible(true);
+						TelaSucesso sucesso = new TelaSucesso();
+						sucesso.setLocationRelativeTo(null);
+						sucesso.setVisible(true);
 					}
 
 				}

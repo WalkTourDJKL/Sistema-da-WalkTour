@@ -78,7 +78,7 @@ public class TelaLogin extends JFrame {
 		lbl_Login.setFont(new Font("Corbel", Font.BOLD, 35));
 
 		txt_digiLogin = new JTextField();
-		txt_digiLogin.setText("hosp0");
+		txt_digiLogin.setText("");
 		txt_digiLogin.setBounds(950, 203, 464, 35);
 		contentPane.add(txt_digiLogin);
 		txt_digiLogin.setToolTipText("Digite seu login");
@@ -93,7 +93,7 @@ public class TelaLogin extends JFrame {
 		lbl_cpf.setFont(new Font("Corbel", Font.BOLD, 35));
 
 		txt_digiSenha = new JTextField();
-		txt_digiSenha.setText("0");
+		txt_digiSenha.setText("");
 		txt_digiSenha.setBounds(950, 328, 464, 35);
 		contentPane.add(txt_digiSenha);
 		txt_digiSenha.setToolTipText("Digite sua senha");
@@ -131,15 +131,16 @@ public class TelaLogin extends JFrame {
 					// Se o valor retornado pela função ser true
 					if (hospTesteLogin != null) {
 						// Passa para a proxima tela
-						TelaSucesso sucesso = new TelaSucesso();
-						sucesso.setResizable(false);
-						sucesso.setLocationRelativeTo(null);
-						sucesso.setVisible(true);
+						
 						dispose();
 						TelaPrincipal homepage = new TelaPrincipal(hospTesteLogin);
 						homepage.setLocationRelativeTo(null);
 						homepage.setResizable(false);
 						homepage.setVisible(true);
+						TelaSucesso sucesso = new TelaSucesso();
+						sucesso.setResizable(false);
+						sucesso.setLocationRelativeTo(null);
+						sucesso.setVisible(true);
 
 					} else {
 						TelaErro erro = new TelaErro();

@@ -127,13 +127,19 @@ public class TelaFinalizar extends JFrame {
 
 				String dataI = txt_digiDataI.getText();
 				if (dataI.length() == 0) {
-					JOptionPane.showMessageDialog(null, "Campo Data de Entrada obrigatório!");
+					TelaErro erro = new TelaErro();
+					erro.setResizable(false);
+					erro.setLocationRelativeTo(null);
+					erro.setVisible(true);
 					return;
 				}
 
 				String dataF = txt_digiDataF.getText();
 				if (dataF.length() == 0) {
-					JOptionPane.showMessageDialog(null, "Campo Data de Saída obrigatório!");
+					TelaErro erro = new TelaErro();
+					erro.setResizable(false);
+					erro.setLocationRelativeTo(null);
+					erro.setVisible(true);
 					return;
 				}
 
@@ -143,12 +149,18 @@ public class TelaFinalizar extends JFrame {
 					dtI = LocalDate.parse(dataI, formatter);
 					dtF = LocalDate.parse(dataF, formatter);
 				} catch (DateTimeParseException ex) {
-					JOptionPane.showMessageDialog(null, "Data inválida!");
+					TelaErro erro = new TelaErro();
+					erro.setResizable(false);
+					erro.setLocationRelativeTo(null);
+					erro.setVisible(true);
 					return;
 				}
 
 				if (validacaoData(dtI.toString()) || validacaoData(dtF.toString())) {
-					JOptionPane.showMessageDialog(null, "Data de Início ou Data Final inválida.");
+					TelaErro erro = new TelaErro();
+					erro.setResizable(false);
+					erro.setLocationRelativeTo(null);
+					erro.setVisible(true);
 					return;
 				}
 
@@ -169,20 +181,27 @@ public class TelaFinalizar extends JFrame {
 					int idDetalhes = detalhesDAO.inserirDetalhes(detalhes);
 
 					if (idDetalhes != Integer.MIN_VALUE) {
-						TelaSucesso sucesso = new TelaSucesso();
-						sucesso.setResizable(false);
-						sucesso.setLocationRelativeTo(null);
-						sucesso.setVisible(true);
+
 						TelaQuarto telaQuarto = new TelaQuarto(tipo, hosp, cidade, estado);
 						dispose();
 						telaQuarto.setLocationRelativeTo(null);
 						telaQuarto.setResizable(false);
 						telaQuarto.setVisible(true);
+						TelaSucesso sucesso = new TelaSucesso();
+						sucesso.setResizable(false);
+						sucesso.setLocationRelativeTo(null);
+						sucesso.setVisible(true);
 					} else {
-						JOptionPane.showMessageDialog(null, "Erro ao inserir detalhes da hospedagem.");
+						TelaErro erro = new TelaErro();
+						erro.setResizable(false);
+						erro.setLocationRelativeTo(null);
+						erro.setVisible(true);
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Erro ao inserir reserva.");
+					TelaErro erro = new TelaErro();
+					erro.setResizable(false);
+					erro.setLocationRelativeTo(null);
+					erro.setVisible(true);
 				}
 			}
 		});

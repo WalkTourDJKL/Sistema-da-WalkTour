@@ -289,8 +289,10 @@ public class TelaUsuario extends JFrame {
 		try {
 			return LocalDate.parse(dateString, formatter);
 		} catch (DateTimeParseException e) {
-			JOptionPane.showMessageDialog(null, "Formato de data inv�lido. Use o formato dd/MM/yyyy.");
-			return null;
+			TelaErro erro = new TelaErro();
+			erro.setResizable(false);
+			erro.setLocationRelativeTo(null);
+			erro.setVisible(true);			return null;
 		}
 	}
 
@@ -443,6 +445,10 @@ public class TelaUsuario extends JFrame {
 			Reserva reserva = new Reserva();
 			reserva.setIdHospedagem(idHospedagem);
 			reservaDAO.removerReserva(reserva);
+			
+			TelaSucesso sucesso = new TelaSucesso();
+			sucesso.setLocationRelativeTo(null);
+			sucesso.setVisible(true);
 
 			System.out.println("Excluindo reserva e detalhes da hospedagem: ID Reserva " + idHospedagem
 					+ ", ID Detalhe " + idDetalheHospedagem);
@@ -454,15 +460,20 @@ public class TelaUsuario extends JFrame {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
 		String formaPag = (String) model.getValueAt(row, 0);
-		LocalDate dataIn = (LocalDate) model.getValueAt(row, 1);
-		LocalDate dataOut = (LocalDate) model.getValueAt(row, 2);
+		String dataInStr = (String) model.getValueAt(row, 1);
+		String dataOutStr = (String) model.getValueAt(row, 2);
 		int preco = (Integer) model.getValueAt(row, 3);
 		int idHospedagem = (Integer) model.getValueAt(row, 6);
+
+		LocalDate dataIn = convertStringToDate(dataInStr);
+		LocalDate dataOut = convertStringToDate(dataOutStr);
+
 		TelaEditReserva edit = new TelaEditReserva(formaPag, dataIn, dataOut, idHospedagem);
 		edit.setLocationRelativeTo(null);
 		edit.setResizable(false);
 		edit.setVisible(true);
-		System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data In�cio: " + dataIn + ", Data Fim: "
-				+ dataOut + ", Pre�o: " + preco);
+		System.out.println("Editando reserva: Forma Pag: " + formaPag + ", Data Início: " + dataIn + ", Data Fim: "
+				+ dataOut + ", Preço: " + preco);
 	}
+
 }
