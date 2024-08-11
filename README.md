@@ -24,6 +24,13 @@ uma conexão mais profunda com os locais que visita
 
 <h1 align="center">
     <a>
+        Telas
+    </a>
+</h1>
+<br><br>
+
+<h1 align="center">
+    <a>
         Participantes
     </a>
 </h1>
