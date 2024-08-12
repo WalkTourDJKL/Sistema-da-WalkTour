@@ -23,7 +23,7 @@ este software se posiciona como uma ferramenta essencial ao usuário, que busca 
 uma conexão mais profunda com os locais que visita
 # Telas
 ### Tela de cadastro<br>
-(https://github.com/WalkTourDJKL/WalkTourDB/blob/main/logo.png)<br>
+([https://github.com/WalkTourDJKL/WalkTourDB/blob/main/logo.png])<br>
 A tela de cadastro é onde o usuário é capaz de fazer o seu cadastro no sistema da Walk Tour, assim podendo realizar uma reserva em algum hotel da Walk Tour. Nela o usuário digita as informações necessárias para fazer o seu cadastro no Banco de Dados.<br>
 ### Tela de login<br>
 (https://github.com/WalkTourDJKL/WalkTourDB/blob/main/logo.png)<br>
