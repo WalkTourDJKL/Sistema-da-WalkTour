@@ -21,13 +21,7 @@ A proposta se diferencia por aliar tecnologia e hospedagem, permitindo que os us
 destinos turísticos com todas as informações, além de reservas em hotéis da WalkTour. Assim,
 este software se posiciona como uma ferramenta essencial ao usuário, que busca praticidade e
 uma conexão mais profunda com os locais que visita
-
-<h1 align="center">
-    <a>
-        Telas
-    </a>
-</h1>
-<br><br>
+# Telas
 #### Tela de cadastro<br>
 (https://github.com/WalkTourDJKL/WalkTourDB/blob/main/logo.png)<br>
 A tela de cadastro é onde o usuário é capaz de fazer o seu cadastro no sistema da Walk Tour, assim podendo realizar uma reserva em algum hotel da Walk Tour. Nela o usuário digita as informações necessárias para fazer o seu cadastro no Banco de Dados.<br>
